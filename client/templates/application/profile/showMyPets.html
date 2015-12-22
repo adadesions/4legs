@@ -1,0 +1,44 @@
+<template name="showMyPets">
+  <input type="hidden" name="profile-id" value="{{_id}}">
+  {{#each allMyPets _id}}
+    <div class="myPets-block row">
+      <div class="col-lg-4 pet-profile">
+        {{#if Image_id}}
+          <img src="{{image_id}}" alt="">
+        {{else}}
+          <img class="pet-picture" src="/images/object/7-profile/profile-pet.png" alt="">
+        {{/if}}
+      </div>
+      <div class="col-lg-8 pet-info">
+        <input type="hidden" name="id" value="{{this._id}}">
+        <b>Name </b>:<span class="my-color-brown"> {{petName}}</span>
+        <br>
+        <b>Type </b>:<span class="my-color-brown"> {{type}}</span>
+        <br>
+        <b>Species </b>:<span class="my-color-brown"> {{species}}</span>
+        <br>
+        <b>Gender </b>:<span class="my-color-brown"> {{gender}}</span>
+        <br>
+        <b>Birthday </b>:<span class="my-color-brown"> {{birthday}}</span>
+        <br>
+        <b>Details </b>:<span class="my-color-brown"> {{detail}}</span>
+        <br>
+        {{#if localCheckAuthority}}
+          <button class="btn pet-btn my-btn-edit">Edit</button>
+          <button class="btn pet-btn btn-danger my-btn-delete">Delete</button>
+        {{/if}}
+      </div>
+    </div>
+  {{/each}}
+
+  {{#if isNoPets _id}}
+    <h2 class="my-color-gray text-center">No pets</h2>
+  {{/if}}
+
+  {{#if checkAuthority _id}}
+    <div class="add-new-pet text-center">
+      <hr>
+      <img class="my-add-btn" src="/images/object/7-profile/add.png" alt="">
+    </div>
+  {{/if}}
+</template>

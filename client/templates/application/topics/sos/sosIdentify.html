@@ -1,0 +1,17 @@
+<template name="sosIdentify">
+
+    <p class="text-center">
+      <b>ต้องการประกาศ SOS ของคุณเองเพื่อขอความช่วยเหลือในหมวด {{sosCurrentLocation}}</b><br>
+      เริ่มต้นที่ กรอกรหัสประจำตัวประชาชน และ เบอร์โทรศัพท์ของคุณ (ข้อมูลนี้จะไม่ถูกเผยแพร่)
+    </p>
+    <div class="row sos-form">
+      <div class="col-lg-1">
+        <img  class="profile-picture img-circle" src="{{profilePicture currentUser._id}}" alt="">
+      </div>
+      <form class="form-inline">
+        <input type="text" name="id-card-number" class="sos-input form-control" placeholder="รหัสประจำตัวประชาชน" maxlength="13">
+        <input type="text" name="tel-number" class="sos-input form-control" maxlength="10" placeholder="เบอร์โทรศัพท์">
+        <button type="button" id="verify-btn" class="btn btn-success">ดำเนินการต่อ</button>
+      </form>
+    </div>  
+</template>

@@ -1,0 +1,37 @@
+<template name="profile">
+  <div class="profile-left-panel col-lg-3">
+    <div class="text-center">
+      <img class="img-circle profile-picture-large" src="{{profilePicture _id}}" alt="">
+    </div>
+    <div class="profile-summary">
+      <a href="{{pathFor 'profile' id=_id }}">
+        <span id="profile-username" class="my-color-brown">{{this.username}}</span>
+      </a>
+      <br>
+      <span><b>Level :</b> 1</span>
+      <br>
+      <span><b>Following :</b> {{profile.following.length}}</span>
+      <br>
+      <span><b>Followers :</b> {{profile.followers.length}}</span>
+      <br>
+      {{#unless checkAuthority _id}}
+        {{#if isFollowing _id}}
+          <button id="{{_id}}" class="btn btn-danger my-btn my-btn-unfollow">Unfollow</button>
+        {{else}}
+          <button id="{{_id}}" class="btn btn-success my-btn my-btn-follow">Follow</button>
+        {{/if}}
+      {{/unless}}
+    </div>
+  </div>
+  <div class="profile-right-panel col-lg-9">
+
+      <div id="timeline" class="profile-menu-box text-center col-lg-4 {{isActive 'postFeed'}}">Timeline</div>
+      <div id="aboutme" class="profile-menu-box text-center col-lg-4 {{isActive 'aboutMe'}}">About Me</div>
+      <div id="mypets" class="profile-menu-box text-center col-lg-4 {{isActive 'myPets'}}">My Pets</div>
+
+      <!-- Profile-Container -->
+      <div class="profile-container">
+        {{> Template.dynamic template=profileContainer data=this}}
+      </div>
+  </div>
+</template>

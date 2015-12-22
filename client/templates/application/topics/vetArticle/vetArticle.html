@@ -1,0 +1,15 @@
+<template name="vetArticle">
+  <div id="basic-pet-care" class="topics-menu-box text-center col-lg-4
+  {{isBoxActive container='vetArticleContainer' location='basic-pet-care'}}">Basic Pet Care</div>
+  <div id="disease-and-prevention" class="topics-menu-box text-center col-lg-4
+  {{isBoxActive container='vetArticleContainer' location='disease-and-prevention'}}">Disease and Prevention</div>
+  <div id="vet-story" class="topics-menu-box text-center col-lg-4
+  {{isBoxActive container='vetArticleContainer' location='vet-story'}}">Vet Story</div>
+  <form class="form-group">
+    <input type="text" class="vet-article-search form-control col-lg-12" placeholder="ค้นหา {{vetArticleCurrentLocation}}">
+  </form>
+  <br>
+  <div class="topics-container">
+    {{> Template.dynamic template=vetArticleContainer }}
+  </div>
+</template>

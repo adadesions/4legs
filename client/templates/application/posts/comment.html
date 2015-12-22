@@ -1,0 +1,15 @@
+<template name="comment">
+  <div class="row comment withPadding">
+    <div class="col-lg-1">
+      <img  class="profile-picture img-circle" src="{{profilePictureForComment commentOwnerId}}" alt="">
+    </div>
+    <div class="col-lg-11 post-info">
+      <span class="my-color-brown">{{commentOwner}}</span>
+      <span class="duration">
+        <i class="fa fa-clock-o"></i>
+        {{enhanceTime commentAt}}
+      </span>
+    </div>
+    <p>{{commentBody}}</p>
+  </div>
+</template>

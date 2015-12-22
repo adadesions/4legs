@@ -1,0 +1,8 @@
+<template name="layout">
+  <header>
+    {{#if currentUser}}
+      {{> navigator}}
+    {{/if}}
+  </header>
+    <div id="main">{{> yield}}</div>
+</template>

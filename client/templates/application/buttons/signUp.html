@@ -1,0 +1,12 @@
+<template name="signUp">
+    {{#if currentUser}}
+        <!-- <button id="logout" class="btn btn-danger">Logout</button> -->
+    {{else}}
+        <a href="{{pathFor 'register'}}">
+          <button id="btn-signUp" class="btn pull-right">
+            <i class="fa fa-globe"></i>
+            Sign Up
+          </button>
+        </a>
+    {{/if}}
+</template>

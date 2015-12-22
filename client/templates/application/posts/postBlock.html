@@ -1,0 +1,36 @@
+<template name="postBlock">
+  <div class="post-block">
+    <div class="row">
+      <div class="col-lg-1">
+        <img  class="profile-picture img-circle" src="{{profilePicture currentUser._id}}" alt="">
+      </div>
+      <div class="col-lg-11 post-info profile-name">
+        <a href="{{pathFor 'profile' id=currentUser._id}}">
+          <span class="my-color-brown">{{currentUser.username}}</span>
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-6 upload-picture">
+        <div class="col-lg-4 text-bottom upload-group">
+          <input type="file" name="upload" id="file" class="upload-img">
+          <label for="file" class="my-color-brown label-upload text-center">
+            <!-- <u>อัพโหลดรูปภาพ</u> -->
+          </label>
+        </div>
+        <div class="add-more-pic col-lg-6 text-center">
+          <i class="fa fa-plus fa-5x"></i>
+        </div>
+      </div>
+
+      <div class="col-lg-6 status">
+        <textarea type="text" class="status-form" name="newStatus" placeholder="รายละเอียด..."></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row pull-right">
+      <button class="btn btn-post">โพสต์</button>
+    </div>
+  </div>
+</template>

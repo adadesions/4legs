@@ -1,0 +1,26 @@
+<template name="location">
+  <div class="container-fluid withOutPaddind-right">
+    <div class="row">
+      <div id="location-left-side" class="col-lg-3">
+        <br>
+        <form class="form-group">
+          <label for="pet-shop">Pet Shop</label>
+          <input type="text" name="pet-shop" class="form-control">
+          <label for="shop-location">Shop location</label>
+          <br>
+          Lat : <input id="lat" type="text" name="lat-location" class="form-control">
+          Lng : <input id="lng" type="text" name="lng-location" class="form-control">
+          <br>
+          <button id="add-location-btn" type="button" class="btn btn-success">add location</button>
+        </form>
+      </div>
+      <div id="location-right-side" class="col-lg-9">
+        {{#unless geolocationError}}
+          {{> googleMap name="4legsMap" options=MapOptions}}
+        {{else}}
+          Geolocation failed: {{geolocationError}}
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+</template>

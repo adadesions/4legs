@@ -1,0 +1,12 @@
+<template name="notification">
+  <div class='container'>
+    <h2 class="notify-h2" >Unread  <span class="as-read">mark all as read</span></h2>    
+    {{#each unreadNotify}}
+      {{> notifyItem}}
+    {{/each}}
+    <h2 class="notify-h2" >Read</h2>
+    {{#each readNotify}}
+      {{> notifyItem}}
+    {{/each}}
+  </div>
+</template>

@@ -1,0 +1,162 @@
+<template name="aboutMe">
+  <div class="row edit-section">
+    {{> Template.dynamic template=aboutMeContainer data=this}}
+  </div>
+  <div class="text-center">
+    <img class="feet-line" src="/images/object/7-profile/feet.png" alt="">
+  </div>
+  <div class="row badges">
+    <h4>Badges จากการติดตามเพื่อนที่เลี้ยงสัตว์</h4><br>
+    <div class="col-lg-6">
+      <div class="badge-item" id="dog">
+        <img class="badge-img" src="/images/object/2-signup/dog.png" alt="" />
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <br>
+        <span class="badge-text short-text">สุนัข</span>
+      </div>
+      <br>
+      <div class="badge-item" id="pocket">
+        <img class="badge-img" src="/images/object/2-signup/petpocket.png" alt="" />
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <br>
+        <span class="badge-text">Pocket Pets</span>
+      </div>
+      <br>
+      <div class="badge-item" id="reptile">
+        <img class="badge-img" src="/images/object/2-signup/turtle.png" alt="" />
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <br>
+        <span class="badge-text">สัตว์เลื้อนคลาน</span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="badge-item" id="cat">
+        <img class="badge-img" src="/images/object/2-signup/cat.png" alt="" />
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <br>
+        <span class="badge-text short-text">แมว</span>
+      </div>
+      <br>
+      <div class="badge-item" id="fish">
+        <img class="badge-img" src="/images/object/2-signup/fish.png" alt="" />
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <br>
+        <span class="badge-text short-text">ปลา</span>
+      </div>
+      <br>
+      <div class="badge-item" id="bird">
+        <img class="badge-img" src="/images/object/2-signup/bird.png" alt="" />
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <br>
+        <span class="badge-text short-text">นก</span>
+      </div>
+      <br>
+    </div>
+  </div>
+
+
+  <div class="row badges">
+    <h4>Badges จากการร่วมกิจกรรม</h4><br>
+    <div class="col-lg-6">
+      <div class="badge-item" id="dog">
+        <img class="badge-img" src="/images/object/6-topics/dog-color.png" alt="" />
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <br>
+        <span class="badge-text short-text">สุนัข</span>
+      </div>
+      <br>
+      <div class="badge-item" id="pocket">
+        <img class="badge-img" src="/images/object/6-topics/pocket-color.png" alt="" /><br>
+        <span class="badge-text">Pocket Pets</span>
+      </div>
+      <br>
+      <div class="badge-item" id="reptile">
+        <img class="badge-img" src="/images/object/6-topics/turtle-color.png" alt="" /><br>
+        <span class="badge-text">สัตว์เลื้อนคลาน</span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="badge-item" id="cat">
+        <img class="badge-img" src="/images/object/6-topics/cat-color.png" alt="" />
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <img src="/images/object/6-topics/dog-gray.png" alt="" class="img-circle badge-img badge-medal">
+        <br>
+        <span class="badge-text short-text">แมว</span>
+      </div>
+      <br>
+      <div class="badge-item" id="fish">
+        <img class="badge-img" src="/images/object/6-topics/fish-color.png" alt="" /><br>
+        <span class="badge-text short-text">ปลา</span>
+      </div>
+      <br>
+      <div class="badge-item" id="bird">
+        <img class="badge-img" src="/images/object/6-topics/other-color.png" alt="" /><br>
+        <span class="badge-text short-text">นก</span>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <img class="feet-line" src="/images/object/3-news feed/feet-left.png" alt="">
+  </div>
+<!-- Following Section -->
+  <div class="row follow following">
+    <h4>Following ({{profile.following.length}})</h4>
+    <div class="follow-block col-lg-12">
+      <table class="table">
+        <tr>
+          {{#each showAllFollowing _id}}
+          <td class="col-lg-4">
+              <a href="{{pathFor 'profile' id=_id}}">
+                <img src="{{profilePicture _id}}" class="img-circle follow-picture" alt="">
+              <span class="my-color-brown follow-text"><b>{{this.username}}</b></span>
+              </a>
+              <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
+          </td>
+          {{/each}}
+        </tr>
+      </table>
+    </div>
+  </div>
+<!--  End following section-->
+
+<!-- Follower section -->
+<div class="row follow follower">
+  <h4>Followers ({{profile.followers.length}})</h4>
+  <div class="follow-block col-lg-12">
+    <table class="table">
+      <tr>
+        {{#each showAllFollowers _id}}
+        <td class="col-lg-4">
+            <a href="{{pathFor 'profile' id=_id}}">
+              <img src="{{profilePicture _id}}" class="img-circle follow-picture" alt="">
+            <span class="my-color-brown follow-text"><b>{{this.username}}</b></span>
+            </a>
+            <i id={{_id}} class="fa fa-minus-circle fa-lg unfollow-btn pull-right"></i>
+        </td>
+        {{/each}}
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!--  End Follower section-->
+
+</template>

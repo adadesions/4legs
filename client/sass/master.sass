@@ -1,0 +1,675 @@
+@import "colors"
+
+body
+  padding: 0
+  margin: 0
+
+a
+  color: $gray
+  &:hover
+    text-decoration: none
+  &:focus
+    text-decoration: none
+
+.my-color-brown
+  color: $brown
+
+.my-color-dark-brown
+  color: $dark-brown
+
+.my-color-red
+  color: red
+.my-color-light-gray
+  color: $light-gray
+.my-color-gray
+  color: $gray
+
+.logo
+  margin-top: -0.5em
+  width: 3em
+  height: 3em
+
+.logo-login
+  width: 10em
+  height: 10em
+
+.reduce-font-size
+  font-size: 0.8em
+
+/*LogIn
+
+.col-login
+  padding-top: 5em
+
+.bg-login
+  background: url('/images/object/1-login/bg.png')
+  background-size: cover
+  background-repeat: repeat-y
+
+.btn-myLogin
+  margin-bottom: 1em
+  background-color: $orange
+  color: #FFF
+  &:hover
+    color: #FFF
+    background-color: $orange-hover
+
+.col-login a
+  color: #795548
+
+.loginForm
+  margin-bottom: 6em
+
+.btn-logout
+  font-size: 0.8em
+  width: 10em
+
+/*Sign Up
+
+#btn-signUp
+  width: 11em
+  background-color: #1b5e20
+  color: #FFF
+  &:hover
+    background-color: #2e7d32
+
+.mynav-signup
+  background-color: #ffab40
+  border-radius: 0
+  box-shadow: 0 0.2em 5px #bdbdbd
+  color: #FFF
+  a
+    color: #FFF
+
+.mynav-main
+  background-color: #FFF
+  border-radius: 0
+  box-shadow: 0 0.2em 5px #bdbdbd
+  color: #AAA
+  margin-bottom: 0
+  z-index: 100
+
+.upload-profile
+  width: 12em
+  height: 12em
+  border: 1px solid #AAA
+
+.upload-group-profile
+  margin-left: 2.8em
+
+.text-center-modify
+  margin-left: 1.5em
+  color: #795548
+  text-decoration: underline
+
+.vet-block
+  background-color: #fff3e0
+  border-radius: 0.5em
+  padding: 1em
+  b
+    margin-right: 1em
+
+.register-form label
+  font-size: 1.2em
+  font-weight: normal
+.input-success
+  background-color: $success
+.input-error
+  background-color: $error
+
+.my-btn-confrim
+  background-color: #388E3C
+  color: #FFF
+  margin-top: 2em
+  margin-left: 0.5em
+  width: 6em
+  &:hover
+    color: #FFF
+    background-color: #4CAF50
+  &:focus
+    color : #FFF
+
+#cancel-btn
+  margin-top: 2em
+  width: 6em
+
+/*Newsfeed
+
+.menu-icon
+  width: 6em
+  height: 4em
+  margin-left: 0
+  margin-bottom: -1em
+  margin-top: -0.8em
+
+.icon
+  width: 2em
+  height: 2.5em
+
+.my-nav-color
+  color: #AAA
+
+.my-btn-more
+  background-color: #fff
+  height: 4.2em
+  margin-top: 0.1em
+  border-radius: 0
+  &:hover
+    color: #ff9800
+    background-color: #EEE
+
+.active
+  background-color: #ff9800
+  color: #FFF
+  a
+    color: #FFF
+
+.navbar-nav a:hover
+  color: #ff9800
+
+/*PostBlock
+
+.post-block
+  background-color: #fff3e0
+  border-radius: 0.5em
+  padding-left: 2em
+  padding-top: 1em
+  padding-bottom: 4em
+  margin-top: 2em
+
+.profile-picture
+  width: 3em
+  height: 3em
+
+.profile-name
+  margin-top: 0.5em
+  font-size: 18px
+
+.upload-picture
+  width: 50%
+  height: 14em
+  border: 1px solid $weak-gray
+  padding: 0
+  cursor: pointer
+  background-image: url('/images/object/upload-img.png')
+  background-size: 67%
+  background-repeat: no-repeat
+  background-position: center
+  background-color: $weak-gray
+  a:hover
+    color: #4e342e
+
+.text-bottom
+  padding-top: 11em
+
+.status
+  padding: 0
+
+.status-form
+  width: 94%
+  height: 14em
+  padding: 1em
+  resize: none
+  overflow: auto
+  border: 1px solid $weak-gray
+  border-left: 0
+
+.btn-post
+  background-color: #ff7043
+  color: #FFF
+  width: 6em
+  margin-right: 2em
+  &:hover
+    color: #FFF
+    background-color: #ff8a65
+  &:focus
+    color: #FFF
+    background-color: #ff8a65
+
+.upload-img
+  width: 0.1px
+  height: 0.1px
+  opacity: 0
+  overflow: hidden
+  position: absolute
+  z-index: -1
+  + .label-upload
+    cursor: pointer
+    width: 100%
+
+.upload-group
+  margin-left: 10.5em
+
+.preview-img-gtwidth
+  width: 30em
+  height: 14em
+  position: absolute
+
+.preview-img-gtheight
+  width: 14em
+  height: 14em
+  position: absolute
+  left: 8em
+.preview-img-gtwidth-profile
+  width: 100%
+  height: 12em
+  position: absolute
+  top: 0
+.preview-img-gtheight-profile
+  width: 100%
+  height: 120%
+  position: absolute
+  top: 0
+
+.preview-for-profile
+  left: 0
+
+.add-more-pic
+  width: 100%
+  height: 14em
+  position: absolute
+  padding: 5em
+  padding-top: 4em
+  border: 1px dashed $gray
+
+
+.absolute
+  position: absolute
+
+/*PostFeed
+
+.post-feed
+  background-color: #FFF
+  border-radius: 0.5em
+  border: 2px solid $light-gray
+  padding-top: 1em
+  margin-bottom: 1em
+.withPadding
+  padding-left: 2em
+.post-info
+  padding: 0
+
+.duration
+  color: #AAA
+  font-size: 12px
+
+.post-picture
+  width: 100%
+  height: 100%
+
+.picture
+  width: 30em
+  height: 16em
+  border: 1px solid #DDD
+  padding: 0
+
+.thumbnail
+  @extend .picture
+
+.status-post
+  width: 95%
+  height: 16em
+  padding-left: 1em
+  overflow: auto
+  line-height: 2em
+  font-size: 16px
+
+.social-bar
+  height: 2.5em
+  width: 100%
+  background-color: #EEE
+  // margin-left: -2em
+  margin-top: 1em
+  padding-top: 0.5em
+
+.social-icon
+  width: 2em
+  height: 1.5em
+
+.new-comment
+  margin-left: -1.5em
+  margin-top: 0.5em
+
+.icon-like
+  cursor: pointer
+.icon-comment
+  cursor: pointer
+.icon-share
+  cursor: pointer
+.icon-favorite
+  cursor: pointer
+
+
+
+/*Ads
+
+.ads-container
+  background-color: #f5f5f5
+  color: #AAA
+  border-radius: 0.5em
+  margin-left: 1em
+  margin-top: 2em
+
+.ads-box
+  padding: 1em
+  img
+    width: 10em
+    height: 10em
+
+/*Profile Section
+.profile-left-panel
+  background-color: #FFF3E0
+  height: 90vh
+.profile-picture-large
+  margin-top: 3em
+  width: 10em
+  height: 10em
+.profile-summary
+  font-size: 18px
+  padding-left: 2em
+  padding-top: 2em
+.profile-menu-box
+  height: 2.5em
+  margin-top: 2em
+  padding-top: 0.6em
+  color: #FFF
+  background-color: $weak-brown
+  cursor: pointer
+  font-size: 18px
+  border-radius: 3px
+  border-right: 2px solid #FFF
+  &:hover
+    background-color: $active-brown
+.profile-menu-active
+  background-color: $brown
+.profile-container
+  margin-top: 8em
+.my-btn-follow
+  margin-top: 1em
+.my-btn-unfollow
+  margin-top: 1em
+
+/*About Me
+.edit-display-picture
+  width: 100%
+  border: 4px solid $weak-gray
+.edit-upload-profile
+  width: 12em
+  height: 12em
+.edit-profile-picture
+  padding-left: 3em
+.edit-profile
+  padding-top: 1em
+  font-size: 18px
+  line-height: 2em
+.edit-label-upload
+  cursor: pointer
+  background-color: #FFF
+  padding-left: 1em
+  padding-right: 1em
+  border-radius: 0.5em
+  margin-left: -1em
+  &:hover
+    background-color: $brown
+    color: #FFF
+
+.profile-picture-aboutMe
+  margin-top: 1em
+.my-btn
+  width: 8em
+.my-btn-edit
+  @extend .my-btn
+  color: #FFF
+  background-color: $orange
+  &:hover
+    color: #FFF
+    background-color: $weak-orange
+  &:focus
+    color: #FFF
+.feet-line
+  height: 1em
+  margin-top: 4em
+.badges
+  padding: 2em
+  padding-top: 4em
+.badge-item
+  margin-bottom: 1em
+.badge-img
+  height: 5em
+  margin-left: 0.5em
+  margin-bottom: 0.5em
+.badge-medal
+  margin-left: 1em
+.badge-text
+  color: $gray
+  font-size: 16px
+.short-text
+  margin-left: 1.7em
+#dog
+  span
+    margin-left: 2.3em
+#bird
+  span
+    margin-left: 2.4em
+
+.follow-block
+  width: 99%
+  height: 5.2em
+  border: 2px solid $light-gray
+  border-radius: 0.5em
+  padding-left: 1em
+  padding-top: 0.5em
+  padding-bottom: 0.5em
+.follow-picture
+  height: 4em
+  width: 4em
+  margin-right: 1em
+.follow-text
+  font-size: 18px
+.left-border
+  border-left: 1px solid $light-gray
+.unfollow-btn
+  color: $red
+  margin-top: 1em
+.following
+  margin-bottom: 2em
+
+/*myPets
+.pet-info
+  font-size: 18px
+  line-height: 2em
+.pet-profile
+  padding: 2em
+  padding-top: 0
+.pet-picture
+  width: 100%
+  height: 100%
+.pet-btn
+  margin-top: 2em
+.my-btn-delete
+  @extend .my-btn
+.add-new-pet
+  hr
+    width: 50%
+    margin-top: 4em
+.my-add-btn
+  height: 4em
+  margin-top: -4.5em
+  cursor: pointer
+.pet-form
+  width: 50%
+.my-btn-done
+  width: 8em
+  margin-left: 7em
+
+/* FavoriteTopics
+.favtopics-header
+  height: 8em
+  width: 100%
+  color: #FFF
+  margin-bottom: 3em
+  margin-top: -1.3em
+  padding-left: 2em
+  padding-top: 1.8em
+  background-color: $light-pink
+
+/* Topics
+.topics-left-panel
+  height: 100vh
+  background-color: $pink
+.topics-menu
+  margin-top: 1.5em
+.topics-menu-item
+  display: flex
+  flex-direction: column
+  width: 100%
+  height: 8em
+  border-top: 1px solid #FFF
+  background-color: $inactive-pink
+  color: #FFF
+  cursor: pointer
+  &:hover
+    background-color: $active-pink
+  img
+    width: 25%
+    height: 25%
+    display: block
+    margin-left: auto
+    margin-right: auto
+    margin-top: 2em
+
+.catagory
+  margin-top: 5em
+  position: fixed
+  p
+    font-size: 16px
+    color: $gray
+    padding-left: 0.6em
+
+.catagory-item
+  display: flex
+  flex-direction: column
+  width: 70px
+  height: 70px
+  background-size: 80%
+  background-repeat: no-repeat
+  cursor: pointer
+#topics-dog
+  background-image: url('/images/object/6-topics/dog-gray.png')
+  &:hover
+    background-image: url('/images/object/6-topics/dog-color.png')
+#topics-cat
+  background-image: url('/images/object/6-topics/cat-gray.png')
+  &:hover
+    background-image: url('/images/object/6-topics/cat-color.png')
+#topics-pocket
+  background-image: url('/images/object/6-topics/pocket-gray.png')
+  &:hover
+    background-image: url('/images/object/6-topics/pocket-color.png')
+#topics-turtle
+  background-image: url('/images/object/6-topics/turtle-gray.png')
+  &:hover
+    background-image: url('/images/object/6-topics/turtle-color.png')
+#topics-fish
+  background-image: url('/images/object/6-topics/fish-gray.png')
+  &:hover
+    background-image: url('/images/object/6-topics/fish-color.png')
+#topics-other
+  background-image: url('/images/object/6-topics/other-gray.png')
+  &:hover
+    background-image: url('/images/object/6-topics/other-color.png')
+#topics-bird
+  background-image: url('/images/object/6-topics/bird-gray.png')
+  &:hover
+    background-image: url('/images/object/6-topics/bird-color.png')
+.topics-center-panel
+  padding-left: 3em
+  padding-right: 3em
+.topics-container
+  margin-top: 8em
+  .status-post
+    width: 100%
+    margin-left: 1em
+.topics-menu-box
+  @extend .profile-menu-box
+.topics-box-active
+  background-color: $active-brown
+.topics-menu-active
+  background-color: $active-pink
+.vet-article-search
+  margin-top: 1em
+
+.sos-identify
+  background-color: $brown-background
+  border-radius: 1em
+  margin-top: 7em
+  padding: 1em
+  padding-left: 2em
+  padding-bottom: 1.5em
+  padding-right: 2em
+  font-size: 17px
+  line-height: 2em
+
+.sos-form
+  margin-right: auto
+  margin-left: auto
+  display: block
+  form
+    padding-top: 0.5em
+  .form-control
+    width: 35%
+  .btn
+    width: 20%
+
+.sos-sub-container
+  margin-top: -6em
+
+//news
+.news-sub-container
+  margin-top: -8em
+
+//notification
+.notify-from
+  font-size: 24px
+.notify-action
+  font-size: 18px
+.notify-item
+  margin-top: 0.2em
+  padding: 1em
+.withOutPadding
+  padding: 0
+.notify-profile
+  @extend .profile-picture
+  height: 4em
+  width: 4em
+  margin-top: 0.2em
+.notify-duration
+  @extend .duration
+  font-size: 16px
+.unread
+  background-color: $lighter-gray
+  &:hover
+    background-color: $light-gray
+.read
+  background-color: #FFF
+  &:hover
+    background-color: $lighter-gray
+.notify-h2
+  color: $light-gray
+.notify-badge
+  background-color: $sky
+  color: #FFF
+  margin-top: -1em
+.as-read
+  font-size: 16px
+  color: $sky
+  cursor: pointer
+
+//Location
+#location-right-side
+  width: 75%
+  max-width: 100%
+  height: 100vh
+
+.withOutPaddind-right
+  padding-right: 0

@@ -1,0 +1,23 @@
+<template name="news">
+  <div class="row">
+    <div id="about-pet" class="topics-menu-box text-center col-lg-2
+    {{isBoxActive container='newsContainer' location='about-pet'}}">About Pet</div>
+    <div id="pet-technology" class="topics-menu-box text-center col-lg-3
+    {{isBoxActive container='newsContainer' location='pet-technology'}}">Pet Technology</div>
+    <div id="pet-event" class="topics-menu-box text-center col-lg-2
+    {{isBoxActive container='newsContainer' location='pet-event'}}">Pet Event</div>
+    <div id="review" class="topics-menu-box text-center col-lg-2
+    {{isBoxActive container='newsContainer' location='review'}}">Review</div>
+    <div id="pet-health" class="topics-menu-box text-center col-lg-3
+    {{isBoxActive container='newsContainer' location='pet-health'}}">Pet Health</div>
+  </div>
+  <div class="row">
+    <form class="form-group">
+      <input type="text" class="vet-article-search form-control col-lg-12" placeholder="ค้นหา {{newsCurrentLocation}}">
+    </form>
+  </div>
+  <br>
+  <div class="topics-container">
+    {{> Template.dynamic template=newsContainer }}
+  </div>
+</template>

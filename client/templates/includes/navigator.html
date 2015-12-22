@@ -1,0 +1,75 @@
+<template name="navigator">
+  <nav class="navbar mynav-main">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{pathFor 'newsfeed'}}">
+          <img class="logo" src="/images/object/logo.png" alt="">
+        </a>
+    </div>
+    <div id="navbar-main" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="{{isActive 'newsfeed'}}">
+          <a href="{{pathFor 'newsfeed'}}">
+              <div class="menu-icon text-center" id="newsfeed">
+                <img class="icon" src="/images/menu-icon/news feed.png" alt="">
+                <br>
+                News Feed
+              </div>
+          </a>
+        </li>
+        <li class="{{isActive 'location'}}">
+          <a href="{{pathFor 'location'}}">
+            <div class="menu-icon text-center" id="location">
+              <img class="icon" src="/images/menu-icon/location.png" alt="">
+              <br>
+              Location
+            </div>
+          </a>
+        </li>
+        <li class="{{isActive 'topics'}}">
+          <a href="{{pathFor 'mainTopics'}}">
+            <div class="menu-icon text-center" id="topics">
+              <img class="icon" src="/images/menu-icon/topics.png" alt="">
+              <br>
+              Topics
+            </div>
+          </a>
+        </li>
+        <li class="{{isActive 'notification'}}">
+          <a href="{{pathFor 'notification'}}">
+            <div class="menu-icon text-center" id="notification">
+              <img class="icon" src="/images/menu-icon/notification.png" alt="">
+               <span class="badge notify-badge">{{notifyBadge}}</span>
+              <br>
+              Notification
+            </div>
+          </a>
+        </li>
+        <li class="dropdow">
+          <button class="dropdown-toggle btn my-btn-more {{isActive 'more'}}" type="button" id="more-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="menu-icon text-center" id="more">
+              <img class="icon" src="/images/menu-icon/more.png" alt="">
+              <br>
+              More
+            </div>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="{{pathFor 'profile' id=currentUser._id}}">Profile</a></li>
+            <li><a href="#">Favorite places</a></li>
+            <li><a href="{{pathFor 'FavoriteTopics'}}">Favorite topics</a></li>
+            <li><a href="#">Add Follow</a></li>
+            <li><a href="#">Feedback</a></li>
+            <li><a id="navigator-logout" href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+</template>

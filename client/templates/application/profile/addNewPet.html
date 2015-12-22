@@ -1,0 +1,42 @@
+<template name="addNewPet">
+  <div class="col-lg-4 pet-profile">
+    <img class="pet-picture" src="/images/object/7-profile/profile-pet.png" alt="">
+  </div>
+  <div class="col-lg-8 pet-info">
+    <form >
+      <b>Name </b>
+      <input class="form-control pet-form" type="text" name="petName">
+      <b>Type </b>
+      <br>
+        {{#each topics}}
+        <div class='radio-inline'>
+          <label>
+            <input type='radio' name='petType' value='{{this}}'>
+            {{this}}
+          </label>
+        </div>
+        {{/each}}
+      <br>
+      <b>Species </b>
+      <input class="form-control pet-form" type="text" name="petSpecies">
+      <b>Gender </b>
+      <div class='radio'>
+        <label>
+          <input type='radio' name='petGender' value='Male' checked>
+          Male
+        </label>
+      </div>
+      <div class='radio'>
+        <label>
+          <input type='radio' name='petGender' value='Female'>
+          Female
+        </label>
+      </div>
+      <b>Birthday </b>
+      <input class="form-control pet-form" type="text" name="petBirthday">
+      <b>Details </b>
+      <textarea class="form-control pet-form" type="text" name="petDetails"></textarea>
+    </form>
+    <button class="btn btn-success pet-btn my-btn-done">Done</button>
+  </div>
+</template>

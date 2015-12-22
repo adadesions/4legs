@@ -1,0 +1,19 @@
+<template name="sos">
+  <div class="row">
+    <div id="lost-and-found" class="topics-menu-box text-center col-lg-3
+    {{isBoxActive container='sosContainer' location='lost-and-found'}}">Lost & Found</div>
+    <div id="blood-donation" class="topics-menu-box text-center col-lg-3
+    {{isBoxActive container='sosContainer' location='blood-donation'}}">Blood Donation</div>
+    <div id="new-home" class="topics-menu-box text-center col-lg-3
+    {{isBoxActive container='sosContainer' location='new-home'}}">New Home</div>
+    <div id="fund-raising" class="topics-menu-box text-center col-lg-3
+    {{isBoxActive container='sosContainer' location='fund-raising'}}">Fund Raising</div>
+
+    <div class="sos-identify">
+      {{> Template.dynamic template=identifyContainer}}
+    </div>
+  </div>
+  <div class="topics-container">
+    {{> Template.dynamic template=sosContainer }}
+  </div>
+</template>

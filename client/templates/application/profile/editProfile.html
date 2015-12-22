@@ -1,0 +1,97 @@
+<template name="editProfile">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-3">
+        <div class="edit-upload-profile">
+            <img class="edit-display-picture" src="{{profilePicture this._id}}" alt="">
+        </div>
+        <br>
+        <div class="upload-group-profile">
+          <input type="file" name="upload" id="file" class="upload-img">
+          <label for="file" class="my-color-brown edit-label-upload">
+            <u>อัพโหลดรูปภาพ</u>
+          </label>
+        </div>
+      </div>
+      <!-- <div class="col-lg-1"></div> -->
+      <div class="col-lg-8">
+        <div class="register-form">
+          <form clsss="form-horizontal" action="">
+            <div class="vet-block">
+              คุณเป็นสัตวแพทย์ใช่หรือไม่?
+                <input type="checkbox" value="vet" name="vet" id="vet">
+                <span class="my-color-brown">ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
+                {{#if isVet}}
+                  <br><br>
+                  <div class="form-group">
+                    <label for="vet-id" class="col-lg-5 control-label "><span class="reduce-font-size">เลขใบอนุญาติประกอบวิชาชีพสัตวแพทย์</span><span class="my-color-red">*</span><span class="pull-right">:</span></label>
+                    <div class="col-lg-7">
+                      <input type="text" class="form-control" id="vet-id" name="vet-id" placeholder="01-xxxx/2xxx" required>
+                    </div>
+                  </div>
+                  <br><br>
+
+                  <div class="form-group">
+                    <label for="vet-info" class="control-label"><span class="reduce-font-size">ชื่อ-นามสกุล ภาษาไทย</span><span class="my-color-red">*</span><span class="pull-right">:</span></label>
+                    <br>
+                    <div class="col-lg-6">
+                      <input type="text" id="vet-name" name="vet-name" class="form-control" placeholder="ชื่อ" required>
+                    </div>
+                    <div class="col-lg-6">
+                      <input type="text" id="vet-lastname" name="vet-lastname" class="form-control" placeholder="นามสกุล" required>
+                    </div>
+                    <br>
+                  </div>
+                {{/if}}
+            </div>
+
+            <br><br>
+            <div class="form-group">
+              <label for="username" class="col-lg-3 control-label">Username<span class="my-color-red">*</span><span class="pull-right">:</span></label>
+              <div class="col-lg-9">
+                <input type="text" class="form-control" id="username" name="username" value="{{this.username}}" required>
+              </div>
+            </div>
+            <br><br>
+
+            <div class="form-group">
+              <label for="password" class="col-lg-3 control-label">Password<span class="my-color-red">*</span><span class="pull-right">:</span></label>
+              <div class="col-lg-9">
+                <input type="password" class="form-control " id="password" name="password" disabled>
+              </div>
+            </div>
+            <br><br>
+
+            <div class="form-group">
+              <label for="re-password" class="col-lg-3 control-label">Re-Password<span class="my-color-red">*</span><span class="pull-right">:</span></label>
+              <div class="col-lg-9">
+                <input type="password" class="form-control " id="re-password" name="re-password" disabled>
+              </div>
+            </div>
+            <br><br>
+
+            <div class="form-group">
+              <label for="birthday" class="col-lg-3 control-label">Birthday<span class="my-color-red">*</span><span class="pull-right">:</span></label>
+              <div class="col-lg-9">
+                <input type="text" class="form-control" id="birthday" name="birthday" value="{{this.profile.birthday}}" required>
+              </div>
+            </div>
+            <br><br>
+
+            <label for="topics" class="control-label pull-left">หัวข้อที่สนใจ :</label><br><br>
+              {{#each topices}}
+              <div class="form-group col-lg-4">
+                <label class="checkbox-inline">
+                  {{#if isTheValue this}}
+                  <input type="checkbox" id="inlineCheckbox1" name="topics" value="{{this}}" checked> {{this}}
+                  {{else}}
+                  <input type="checkbox" id="inlineCheckbox1" name="topics" value="{{this}}"> {{this}}
+                  {{/if}}
+                </label>
+              </div>
+              {{/each}}
+          </form><br><br>
+          <button id="cancel-btn" type="button" class="btn btn-danger">ยกเลิก</button>
+          <button id="update-btn" type="submit" class="btn my-btn-confrim">ยืนยัน</button>
+        </div>
+      </div>
+</template>
