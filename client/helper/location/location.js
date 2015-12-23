@@ -29,8 +29,7 @@ Template.location.onCreated(function() {
     google.maps.event.addListener(map.instance, 'click', function (e) {
       $('#lat').val(e.latLng.lat())
       $('#lng').val(e.latLng.lng())
-    })
-    console.log(map);
+    })    
     //code here
     var markers = {}
     Markers.find().observe({

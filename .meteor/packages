@@ -39,3 +39,5 @@ reactive-var
 tyler:numeric
 dburles:google-maps
 mdg:geolocation
+kadira:debug
+meteorhacks:fast-render

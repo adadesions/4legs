@@ -1,0 +1,60 @@
+<template name="createLocation">
+  <div id="createLocation" class="location-header text-center">
+    เพิ่มสถานประกอบการลงบนแผนที่ของ 4 ขา
+  </div>
+  <div class="location-left-container">
+    {{> Template.dynamic template=stepsContainer}}
+  </div>
+</template>
+
+<!-- STEP 1 -->
+<template name="createStep1">
+  <form class="form-group">
+    <label for="pet-shop">ชื่อสถานประกอบการ</label>
+    <input type="text" name="pet-shop" class="form-control">
+    <br>
+    <label for="shop-location">ตำแหน่งสถานประกอบการ (คลิกบนแผนที่)</label>
+    <br>
+    Lat : <input id="lat" type="text" name="lat-location" class="form-control">
+    Lng : <input id="lng" type="text" name="lng-location" class="form-control">
+    <br>
+    <label for="business-type">ประเภท</label>
+    <div class="checkbox">
+      <label>
+        <input name="business-type" type="checkbox" value="สถานพยาบาล">
+        สถานพยาบาล
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input name="business-type" type="checkbox" value="บริการสัตว์เลี้ยง">
+        บริการสัตว์เลี้ยง
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input name="business-type" type="checkbox" value="ร้านค้า">
+        ร้านค้า
+      </label>
+    </div>
+    <label for="type">ชนิดสัตว์</label>
+    {{#each animalType}}
+      <div class="checkbox">
+        <label>
+          <input name="animal-type" type="checkbox" value="{{this}}">
+          {{this}}
+        </label>
+      </div>
+    {{/each}}
+  <br>
+  <button type="button" id="cancel" class="btn btn-danger col-lg-5">ยกเลิก</button>
+  <div class="col-lg-1"></div>
+  <button type="button" id="next" class="btn btn-success col-lg-5">ต่อไป</button>
+  </form>
+</template>
+
+<!-- STEP 2 -->
+<template name="createStep2">
+  <label for="days-week">วันเปิดทำการ</label>
+
+</template>
