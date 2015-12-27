@@ -9,8 +9,10 @@ Template.postBlock.events({
      else{
        var path = Router.current().location.get().path
            path = path.slice(1,path.length)
-       newPost.catagory.push(path)
+       if(path === 'adminsite/superuser') newPost.catagory.push(Session.get('adminNewsContainer'))
        if(Session.get('identifyContainer') === 'postBlock') newPost.catagory.push(Session.get('sosContainer'))
+       newPost.catagory.push(path)
+
        newPost.info = {
           postOwner : Meteor.userId(),
           postBody : $('[name=newStatus]').val(),
@@ -19,7 +21,7 @@ Template.postBlock.events({
        Posts.insert(newPost, function (err) {
          if (err) throw err;
          else{
-           var upload = '<div class="col-lg-4 text-bottom upload-group"><input type="file" name="upload" id="file" class="upload-img"><label for="file" class="my-color-brown label-upload"><u>อัพโหลดรูปภาพ</u></label></div><div class="add-more-pic col-lg-6 text-center" ><i class="fa fa-plus fa-5x"></i></div>'
+           var upload = '<div class="col-lg-4 text-bottom upload-group"><input type="file" name="upload" id="file" class="upload-img"></div><div class="add-more-pic col-lg-6 text-center" ><i class="fa fa-plus fa-5x"></i></div>'
            $('[name=newStatus]').val('')
            $('.upload-picture').empty().append(upload)
            newPost.catagory = []
@@ -75,3 +77,19 @@ Template.postBlock.events({
      $('[name=upload]').click()
    }
 })
+
+Template.postBlock.helpers({
+  isAdminUpload: function () {
+    return isAdminSite('admin-upload-picture')
+  },
+  isAdminStatus: function () {
+    return isAdminSite('admin-status-form')
+  },
+  isAdminMorePic: function () {
+    return isAdminSite('admin-add-more-pic')
+  },
+})
+
+function isAdminSite(adminClass) {
+  return Router.current().route.getName() === 'superuser' ? adminClass : ''
+}

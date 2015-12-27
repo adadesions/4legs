@@ -2,6 +2,8 @@ accounts-base@1.2.2
 accounts-facebook@1.0.6
 accounts-oauth@1.1.8
 accounts-password@1.1.4
+aldeed:template-extension@3.4.3
+altapp:aes@1.2.0
 autopublish@1.0.4
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
@@ -71,6 +73,7 @@ iron:location@1.0.11
 iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
+jplack:bootstrap-timepicker@0.2.1
 jquery@1.11.4
 kadira:debug@2.2.4
 launch-screen@1.0.4
@@ -120,6 +123,7 @@ tanis:bootstrap-social@0.1.1
 templating@1.1.5
 templating-tools@1.0.0
 tracker@1.0.9
+tsega:bootstrap3-datetimepicker@4.17.37_1
 twbs:bootstrap@3.3.5
 tyler:numeric@1.0.0
 ui@1.0.8
