@@ -65,6 +65,9 @@
             <li><a href="{{pathFor 'FavoriteTopics'}}">Favorite topics</a></li>
             <li><a href="#">Add Follow</a></li>
             <li><a href="#">Feedback</a></li>
+            {{#if currentUser.profile.privileged}}
+              <li><a href="{{pathFor 'admin'}}">Admin Site</a></li>
+            {{/if}}
             <li><a id="navigator-logout" href="#">Logout</a></li>
           </ul>
         </li>

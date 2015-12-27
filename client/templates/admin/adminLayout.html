@@ -1,0 +1,31 @@
+<template name="adminLayout">
+  <div class="admin-navigator">
+    <img class="admin-logo" src="/images/object/logo.png" alt="">
+    <div class="admin-nav-items pull-right">
+      <div id="adminVet" class="admin-nav-item">
+        <label>Verify Vet</label>
+      </div>
+      <div id="adminLocation" class="admin-nav-item">
+        <label>Location</label>
+      </div>
+      <div id="adminNews" class="admin-nav-item">
+        <label>News</label>
+      </div>
+      <div id="adminHighlight" class="admin-nav-item">
+        <label>Highlight</label>
+      </div>
+      <div id="adminAdvertise" class="admin-nav-item">
+        <label>Advertise</label>
+      </div>
+      <div id="adminNotification" class="admin-nav-item">
+        <label>Notification</label>
+      </div>
+      <div id="adminLogOut" class="admin-nav-item">
+        <label>Logout</label>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {{> yield}}
+  </div>
+</template>

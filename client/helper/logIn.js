@@ -5,6 +5,7 @@ Template.login.events({
     var password = $('[name=password]').val();
     Meteor.loginWithPassword(username, password, function (err) {
       if (err) {
+          toastr.error("Your Username or Password is incorrect")
           throw new Meteor.Error("login failed");
       }
       else{

@@ -1,26 +1,157 @@
 <template name="location">
-  <div class="container-fluid withOutPaddind-right">
+  <div class="container-fluid withOutPaddind">
     <div class="row">
-      <div id="location-left-side" class="col-lg-3">
-        <br>
-        <form class="form-group">
-          <label for="pet-shop">Pet Shop</label>
-          <input type="text" name="pet-shop" class="form-control">
-          <label for="shop-location">Shop location</label>
-          <br>
-          Lat : <input id="lat" type="text" name="lat-location" class="form-control">
-          Lng : <input id="lng" type="text" name="lng-location" class="form-control">
-          <br>
-          <button id="add-location-btn" type="button" class="btn btn-success">add location</button>
-        </form>
+      <div id="location-left-side" class="col-lg-4 withOutPadding">
+        {{> Template.dynamic template=locationContainer}}
       </div>
-      <div id="location-right-side" class="col-lg-9">
-        {{#unless geolocationError}}
+      <div id="location-right-side" class="col-lg-8 withOutPadding">
+        {{#unless geolocationError}}  
           {{> googleMap name="4legsMap" options=MapOptions}}
         {{else}}
           Geolocation failed: {{geolocationError}}
         {{/unless}}
+        <div class="add-location">
+          <img src="/images/object/5-location/add.png" alt="">
+          <span>เพิ่มสถานที่ใหม่</span>
+        </div>
       </div>
     </div>
+  </div>
+</template>
+
+<template name="locationList">
+  <div class="location-list-header">
+    <form class=form-group>
+      <input id="location-search" type="text" class="form-control" placeholder="&#xf002; ค้นหาสถานที่">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name='now-open'>
+          ดูเฉพาะสถานที่ที่กำลังให้บริการ
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="location-block">
+    {{#each allLocation}}
+      {{> theList}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="theList">
+  <div id={{_id}} class="the-list-block">
+    <h4>
+      <img class="location-status" src="/images/object/5-location/open.png" alt="">
+      {{locationName}}
+      <i class="fa fa-chevron-right fa-lg pull-right"></i>
+    </h4>
+    <div class="location-services">
+      {{#each businessTypes}}
+        <img class="service-iconic" src="{{locationServices this}}" alt="">
+      {{/each}}
+      {{#each animalTypes}}
+        <img class="service-iconic" src="{{locationServices this}}" alt="">
+      {{/each}}
+    </div>
+    <div class="location-duration">
+      เปิดเวลา: {{openTime}} - {{closeTime}}
+    </div>
+  </div>
+</template>
+
+<template name="locationSelected">
+   {{#with findLocation selectedLocationId}}
+     <div class="location-selected-header">
+       <img id="back" class="pull-left" src="/images/object/5-location/back.png" alt="">
+       <div id="location-name" class="text-center">
+         {{locationName}}
+         <img class="pull-right" src="/images/object/5-location/sign.png" alt="">
+       </div>
+       <p class="text-center">{{businessTypes}}</p>
+       <div class="text-center">
+         {{#each animalTypes}}
+           <img class="service-iconic" src="{{locationServices this}}" alt="">
+         {{/each}}
+       </div>
+       <div class="location-orders">
+         <div id="locationDetail" class="topics-menu-box text-center col-lg-3
+         {{isBoxActive container='subSelectedLocationContainer' location='locationDetail'}}">รายละเอียด</div>
+         <div id="locationAnnouncement" class="topics-menu-box text-center col-lg-6
+         {{isBoxActive container='subSelectedLocationContainer' location='locationAnnouncement'}}">ประกาศ,โปรโมชั่น</div>
+         <div id="locationComment" class="topics-menu-box text-center col-lg-3
+         {{isBoxActive container='subSelectedLocationContainer' location='locationComment'}}">ความคิดเห็น</div>
+       </div>
+     </div>
+     <div class="location-selected-body">
+       {{> Template.dynamic template=subSelectedLocationContainer}}
+     </div>
+   {{/with}}
+</template>
+
+<template name="locationDetail">
+  <div class="location-photo-detail">
+    <img src="{{getImageUrl photos._id}}" alt="">
+  </div>
+  <div class="open-days">
+    <b>เปิดทำการ :</b>
+    <span class="{{isOpen day='อา' data=daysWeek}}">อา</span>
+    <span class="{{isOpen day='จ' data=daysWeek}}">จ</span>
+    <span class="{{isOpen day='อ' data=daysWeek}}">อ</span>
+    <span class="{{isOpen day='พ' data=daysWeek}}">พ</span>
+    <span class="{{isOpen day='พฤ' data=daysWeek}}">พฤ</span>
+    <span class="{{isOpen day='ศ' data=daysWeek}}">ศ</span>
+    <span class="{{isOpen day='ส' data=daysWeek}}">ส</span>
+  </div>
+  <div class="selected-duration">
+    <i class="fa fa-clock-o fa-lg"></i>
+    {{openTime}} - {{closeTime}}
+    <br>
+    <i class="fa fa-commenting-o fa-lg"></i>
+    <span>วันหยุดและวันทำการพิเศษจะแสดงที่หัวข้อประกาศ</span>
+  </div>
+  <div class="selected-detail">
+    <b>รายละเอียด​ :</b>
+    <span>{{detail}}</span>
+  </div>
+  <div class="selected-detail">
+    <b>ที่อยู่​ :</b>
+    <span>{{address}}</span>
+  </div>
+  <div class="selected-detail">
+    <b>โทร :</b>
+    <span>{{tel}}</span>
+  </div>
+  <div class="selected-detail">
+    <b>E-mail :</b>
+    <span>{{email}}</span>
+  </div>
+  <div class="selected-detail">
+    <b>Facebook :</b>
+    <span>{{facebook}}</span>
+  </div>
+  <div class="selected-detail">
+    <b>Line ID:</b>
+    <span>{{line}}</span>
+  </div>
+</template>
+
+<template name="locationAnnouncement">
+  <div class="selected-announcement">
+    <h3>** ประกาศ **</h3>
+  </div>
+  <div class="selected-promotion">
+    <h3>** โปรโมชั่น **</h3>
+  </div>
+</template>
+
+<template name="locationComment">
+  <div class="location-comment-block">
+    <br>
+    {{#each feedComment _id}}
+      <br>
+      {{> commentLocation}}
+    {{/each}}
+    <br>
+    {{> newCommentLocation}}
   </div>
 </template>

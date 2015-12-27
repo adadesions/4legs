@@ -12,20 +12,19 @@
     </div>
     <br>
     <div class="row">
-      <div class="col-lg-6 upload-picture">
+      <div class="col-lg-6 upload-picture {{isAdminUpload}}">
         <div class="col-lg-4 text-bottom upload-group">
           <input type="file" name="upload" id="file" class="upload-img">
           <label for="file" class="my-color-brown label-upload text-center">
-            <!-- <u>อัพโหลดรูปภาพ</u> -->
           </label>
         </div>
-        <div class="add-more-pic col-lg-6 text-center">
+        <div class="add-more-pic {{isAdminMorePic}} col-lg-6 text-center">
           <i class="fa fa-plus fa-5x"></i>
         </div>
       </div>
 
       <div class="col-lg-6 status">
-        <textarea type="text" class="status-form" name="newStatus" placeholder="รายละเอียด..."></textarea>
+        <textarea type="text" class="status-form {{isAdminStatus}}" name="newStatus" placeholder="รายละเอียด..."></textarea>
       </div>
     </div>
     <br>

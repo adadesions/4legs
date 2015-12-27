@@ -1,0 +1,30 @@
+<template name="admin">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4 col-login text-center">
+        <img class="logo-login" src="/images/object/logo.png" alt="" />
+        <h4><strong>ชุมชนคนรักสัตว์ที่เชื่อถือได้</strong></h4>
+        <hr>
+        <h1 class="text-center">ADMIN ONLY</h1>
+        <br>
+        <form class="loginForm">
+          <input type="text" class="form-control" name="username" placeholder="Username" value="{{getEmail}}">
+          <br>
+          <input type="password" class="form-control" name="password" placeholder="Password">
+          <br>
+          <button type="button" class="btn col-lg-12 btn-myLogin">
+            <strong>Log in</strong>
+          </button>
+          <br>
+            <div class="pull-left">
+              <input type="checkbox" class="myCheckbox">
+              keep me logged in
+            </div>
+            <a href="" class="pull-right pull-right">forget password</a>
+        </form>
+      </div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
+</template>

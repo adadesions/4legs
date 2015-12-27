@@ -13,7 +13,8 @@ a
 
 .my-color-brown
   color: $brown
-
+.my-color-active-brown
+  color: $active-brown
 .my-color-dark-brown
   color: $dark-brown
 
@@ -53,6 +54,8 @@ a
   &:hover
     color: #FFF
     background-color: $orange-hover
+  &:focus
+    color: #FFF
 
 .col-login a
   color: #795548
@@ -241,15 +244,17 @@ a
   margin-left: 10.5em
 
 .preview-img-gtwidth
-  width: 30em
-  height: 14em
+  width: 100%
+  height: 100%
   position: absolute
 
 .preview-img-gtheight
-  width: 14em
-  height: 14em
-  position: absolute
-  left: 8em
+  width: auto
+  height: 100%
+  display: block
+  margin-left: auto
+  margin-right: auto
+
 .preview-img-gtwidth-profile
   width: 100%
   height: 12em
@@ -299,12 +304,18 @@ a
 
 .picture
   width: 30em
-  height: 16em
+  height: 20em
   border: 1px solid #DDD
   padding: 0
 
 .thumbnail
-  @extend .picture
+  display:block
+  margin-left: auto
+  margin-right: auto
+  width: 100%
+  height: 100%
+  border: 1px solid #DDD
+  padding: 0
 
 .status-post
   width: 95%
@@ -667,9 +678,259 @@ a
 
 //Location
 #location-right-side
-  width: 75%
+  width: 66%
   max-width: 100%
-  height: 100vh
+  height: 93vh
 
 .withOutPaddind-right
   padding-right: 0
+
+.location-header
+  background-color: $active-brown
+  color: #FFF
+  height: 3em
+  padding-top: 1em
+  font-size: 16px
+
+.location-left-container
+  padding: 1em
+  overflow-y: scroll
+
+.checkbox
+  label
+    color: $brown
+    font-weight: 500
+
+.days-week
+  font-size: 15px
+
+input.shop-time
+  font-family: FontAwesome
+  font-size: 12px
+  margin-right: 1em
+
+
+
+.head-step4
+  img
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 40%
+#location-add-photo
+  width: 7%
+  height: 50%
+.preview-photo-gtwidth-location
+  width: 100%
+  height: 50%
+.preview-photo-gtheight-location
+  width: 40%
+  height: auto
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+.location-owner
+  background-color: $brown-background
+  padding: 0.8em
+  margin-top: 1em
+  border-radius: 0.5em
+  h4
+    font-weight: bold
+  .radio
+    font-size: 16px
+    color: $active-brown
+
+//locaitonList
+#location-search
+  font-family: FontAwesome
+.location-list-header
+  padding: 1em
+  padding-right: 1.5em
+  padding-bottom: 0.1em
+  background-color: $location-header-color
+  input
+    font-size: 18px
+    margin-bottom: 1em
+  label
+    font-size: 16px
+
+.the-list-block
+  padding: 1em
+  cursor: pointer
+  &:hover
+    background-color: $weak-gray
+  .fa-chevron-right
+    color: $gray
+.location-status
+  width: 5%
+  margin-right: 0.5em
+.location-services
+  padding-left: 2.4em
+.service-iconic
+  width: 5%
+  margin-right: 0.3em
+.location-duration
+  @extend .location-services
+  margin-top: 0.5em
+  color: $gray
+.location-block
+  overflow-y: scroll
+  height: 78vh
+.add-location
+  position: absolute
+  bottom: 2em
+  left: 1em
+  cursor: pointer
+  img
+    position: relative
+    width: 15%
+    z-index: 2
+  span
+    position: relative
+    background-color: rgba(255,255,255,0.8)
+    padding: 0.5em
+    padding-left: 2em
+    font-size: 18px
+    margin-left: -2em
+    border-radius: 0.5em
+    z-index: 1
+
+.location-selected-header
+  padding: 1em
+  padding-left: 0.5em
+  padding-right: 0.5em
+  img
+    width: 9%
+  p
+    font-size: 16px
+  #back
+    cursor: pointer
+#location-name
+  font-size: 30px
+  font-weight: bold
+
+.location-orders
+  .topics-menu-box
+    font-size: 13px
+    font-weight: bold
+.location-selected-body
+  padding: 1em
+  padding-left: 0.8em
+  padding-right: 0.8em
+.location-photo-detail
+  margin-top: 3em
+  img
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 70%
+    height: auto
+
+.open-days
+  margin-top: 1em
+  font-size: 18px
+  span
+   margin-left: 0.5em
+   color: $light-gray
+  .is-open
+    font-weight: bold
+    color: $blue
+
+.selected-duration
+  margin-left: 1em
+  margin-top: 0.5em
+  font-size: 20px
+  font-weight: 200
+  i
+    color: $gray
+    margin-right: 0.2em
+  i.fa-commenting-o
+    color: $pink
+  span
+    font-size: 12px
+    color: $gray
+.selected-detail
+  margin-top: 1em
+  font-size: 18px
+.location-sub-block
+  overflow-y: scroll
+
+.selected-announcement
+  margin-top: 4em
+  margin-left: 0.5em
+  color: $orange
+.selected-promotion
+  @extend .selected-announcement
+
+.location-comment-block
+  .comment-block
+    padding: 0
+  .form-group
+    margin-left: 0
+    padding-left: 2em
+  .forn-control
+    width: 90%
+
+
+//Admin
+.admin-navigator
+  height: 5em
+  background-color: $orange-background
+  padding-left: 1em
+  box-shadow: 0 0.2em 5px #bdbdbd
+.admin-logo
+  width: 5.5em
+  height: auto
+  margin-top: 0.3em
+.admin-nav-item
+  float: left
+  color: #FFF
+  padding: 1em
+  padding-top: 1.3em
+  font-size: 18px
+  cursor: pointer
+  &:hover
+    background-color: $weak-orange
+  label
+    font-weight: 400
+    cursor: pointer
+.admin-head
+  padding-top: 1.5em
+.admin-head-text
+  font-size: 28px
+  font-weight: bold
+  margin-top: 2em
+  padding-left: 1em
+.adminNews
+  padding-right: 2em
+  .topics-menu-box
+    margin-top: 1em
+.admin-pets-type
+  margin-top: 1em
+  height: 3.5em
+  background-color: $weak-gray
+.admin-pet-text
+  font-size: 16px
+  margin-left: 3em
+  margin-top: 1em
+  color: $gray
+.admin-catagory-item
+  @extend .catagory-item
+  display: flex
+  flex-direction: row
+  flex-flow: row
+
+.admin-post-section
+  padding-left: 13em
+  padding-right: 13em
+
+.admin-upload-picture
+  @extend .upload-picture
+  height: 16em
+.admin-status-form
+  @extend .status-form
+  height: 16em
+.admin-add-more-pic
+  @extend .add-more-pic
+  height: 16em

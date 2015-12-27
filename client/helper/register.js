@@ -74,19 +74,21 @@ Template.register.events({
     else vetObj = {isVet : false}
 
       Accounts.createUser({
-        username: username,
-        email: email,
-        password: password,
+        username,
+        email,
+        password,
         profile: {
-          birthday: birthday,
-          topics: topics,
+          birthday,
+          topics,
           vetInfo : vetObj,
           image : profileImg,
           followers : [],
           following : []
-        }        
+        }
+      },function (err) {
+        if(err) toastr.error("May be your Username or Email is used by another user")
+        else Router.go('newsfeed')
       });
-    Router.go('newsfeed');
   },
 
   'change [name=upload]': function (e) {
