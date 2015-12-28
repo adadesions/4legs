@@ -19,15 +19,19 @@
     {{isBoxActive container='adminNewsContainer' location='pet-health'}}">Pet Health</div>
   </div>
   <div class="row admin-pets-type">
-    <div class="admin-pet-text">Pets</div>
     <div class="admin-catagory">
-
+      <div class="admin-pet-text">Pets </div>
+      {{#each petImgs}}
+        <div id="{{label}}" class="admin-catagory-item">
+          <img src="{{passiveUrl}}" name="{{label}}">
+        </div>
+      {{/each}}
     </div>
   </div>
   <div class="admin-post-section">
     <br>
     {{> postBlock}}
     <br>
-    {{> postFeed type="about-pet"}}
+    {{> postFeed type=adminNewsContainer }}
   </div>
 </template>

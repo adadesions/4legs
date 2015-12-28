@@ -23,6 +23,10 @@ Template.postFeed.helpers({
         return Posts.find({'favorites': Meteor.userId()}, {sort: {'info.createdAt': -1}})
     }
     else if(type){
+      if(Session.get('adminPetType')){
+        let petType = Session.get('adminPetType')
+        return Posts.find({catagory : type, 'info.petType': petType}, {sort: {'info.createdAt': -1}})
+      }
       return Posts.find({catagory : type}, {sort: {'info.createdAt': -1}})
     }
     if(userId) {
@@ -72,9 +76,29 @@ Template.postFeed.events({
       }
     })
   },
-
-  'ready document' : function (e) {
-    e.preventDefault()
-    $('.comment-section').hide()
+  'click .admin-delete-btn': function (e) {
+    let id = $(e.target).attr('id'),
+        picId = Posts.findOne({_id:id}).img._id
+    let confirm = new Confirmation({
+      message: "Are you sure to delete this post?",
+      title: "Confirmation",
+      cancelText: "Cancel",
+      okText: "Confirm",
+      success: true // wether the button should be green or red
+    }, function (ok) {
+        if(ok) {
+          Posts.remove({_id:id}, function (err) {
+            if(err){
+              throw err
+              toastr.error('Can not delete this post right now')
+            }
+            else{
+              console.log(picId);
+              Meteor.call('removePicture', picId)
+              toastr.success('The post has deleted by admin')
+            }
+          })
+        }
+    })
   }
 })

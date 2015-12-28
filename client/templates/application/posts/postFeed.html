@@ -18,6 +18,11 @@
           <i class="fa fa-clock-o"></i>
           {{enhanceTime info.createdAt}}
         </span>
+          {{#if currentUser.profile.asAdmin.loggedIn}}
+            <div class="admin-delete-btn pull-right">
+              <img id="{{_id}}" src="/images/object/7-profile/delete.png" alt="delete">
+            </div>
+          {{/if}}
       </div>
     </div>
     <br>
