@@ -169,6 +169,11 @@ a
 
 .navbar-nav a:hover
   color: #ff9800
+.highlight-block
+  img
+    display: block
+    margin-left: auto
+    margin-right: auto
 
 /*PostBlock
 
@@ -289,6 +294,8 @@ a
   border: 2px solid $light-gray
   padding-top: 1em
   margin-bottom: 1em
+.post-highlight
+  border: 4px solid #FFD600
 .withPadding
   padding-left: 2em
 .post-info
@@ -328,8 +335,7 @@ a
 .social-bar
   height: 2.5em
   width: 100%
-  background-color: #EEE
-  // margin-left: -2em
+  background-color: $lighter-gray
   margin-top: 1em
   padding-top: 0.5em
 
@@ -949,3 +955,56 @@ input.shop-time
     width: auto
     margin-top: -3em
     margin-left: -4em
+.admin-highlight-btn
+  label
+    height: 2em
+    width: auto
+    margin-top: -1em
+    margin-left: -6em
+    font-size: 25px
+    color: purple
+  input
+    margin-top: 0.4em
+
+//adminVet
+.adminVet-search
+  margin-right: 2em
+  width: auto
+  i
+    margin-right: 0.5em
+  .form-control
+    width: 30em
+
+.adminVet-head-left-topic
+  height: 6em
+  padding: 2em
+  padding-left: 3em
+  margin-top: 1em
+  background-color: #F3EFE9
+  label
+    font-size: 20px
+    color: $dark-brown
+.adminVet-head-right-topic
+  @extend .adminVet-head-left-topic
+  background-color: #EDE6DE
+.adminVet-item-block
+  display: flex
+  flex-direction: row
+  padding: 1em
+  cursor: pointer
+  i
+    margin-top: 2em
+    margin-left: 2em
+    color: $brown
+  &:hover
+    background-color: #F3EFE9
+.adminVet-profile-picture
+  width: 6em
+  height: 6em
+.adminVet-username
+  font-size: 24px
+  color: $brown
+  padding-top: 1em
+  margin-left: 1em
+.pc-container
+  font-size: 16px
