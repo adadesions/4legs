@@ -146,3 +146,10 @@ Template.adminVet.events({
     })
   }
 })
+
+//AdminAds
+Template.adminAds.helpers({
+  getAdsCard: function () {
+    return Ads.find()
+  }
+})

@@ -11,7 +11,10 @@
         {{> postFeed}}
       </div>
       <div class="col-lg-3">
-        {{> ads}}
+        <br><br>
+        {{#each getAdsLimit '2'}}
+          {{> adsCard}}
+        {{/each}}
       </div>
     </div>
   </div>

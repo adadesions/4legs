@@ -103,6 +103,22 @@
 
 <!-- AdminAds -->
 <template name="adminAds">
-  
+  <div class="adminAds">
+    <div class="admin-head">
+      <span class="admin-head-text">Advertisment</span>
+      <div class="adminVet-search pull-right">
+        <form class='form-inline'>
+          <i class="fa fa-search fa-2x"></i>
+          <input type="text" class="form-control">
+        </form>
+      </div>
+    </div>
+    <div class="adminAds-body">
+      {{> adsCreateCard}}
 
+    {{#each getAdsCard}}
+      {{> adsCard}}
+    {{/each}}
+    </div>
+  </div>
 </template>

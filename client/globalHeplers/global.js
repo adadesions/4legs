@@ -15,3 +15,7 @@ Template.registerHelper('getUsername', function (id) {
 Template.registerHelper('checkAuthority', function (id) {
   return Meteor.userId() === id ? true : false
 })
+
+Template.registerHelper('getImage', function (id) {
+  return Images.findOne({_id:id}).url()
+})
