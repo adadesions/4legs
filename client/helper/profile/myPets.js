@@ -1,5 +1,5 @@
 Session.setDefault('myPetsContainer', 'showMyPets')
-
+let newPet = {}
 //myPets
 Template.myPets.helpers({
   myPetsContainer : function () {
@@ -16,10 +16,10 @@ Template.myPets.helpers({
 //showMyPets
 Template.showMyPets.helpers({
   allMyPets : function (myId) {
-    return Pets.find({petOwner:myId})
+    return Pets.find({'info.petOwner':myId})
   },
   isNoPets : function (myId) {
-    return Pets.find({petOwner:myId}).count() === 0 ? true : false
+    return Pets.find({'info.petOwner':myId}).count() === 0 ? true : false
   },
   localCheckAuthority : function () {
     let id = $('[name=profile-id]:hidden').val()
@@ -55,21 +55,21 @@ Template.addNewPet.helpers({
 })
 Template.addNewPet.events({
   'click .my-btn-done' : function (e) {
-    var petName = $('[name=petName]').val(),
+    let petName = $('[name=petName]').val(),
         petType = $('[name=petType]:checked').val(),
         petSpecies = $('[name=petSpecies]').val(),
         petGender = $('[name=petGender]:checked').val(),
         petBirthday = $('[name=petBirthday]').val(),
-        petDetails = $('[name=petDetails]').val(),
-        newPet = {
+        petDetails = $('[name=petDetails]').val()
+        //New pet object
+        newPet.info = {
+          petName,
           petOwner : Meteor.userId(),
-          petName : petName,
           type : petType,
           species : petSpecies,
           gender: petGender,
           birthday : petBirthday,
           detail : petDetails,
-          img_id : ""
         }
     Meteor.call('insertNewPet', newPet, function (err) {
       if(err) toastr.error("Add new pet error... please try again.")
@@ -77,6 +77,46 @@ Template.addNewPet.events({
         toastr.success("Your pet is with us, it's so cute")
         Session.set('myPetsContainer','showMyPets')
       }
+    })
+  },
+  'click .add-more-pic': function (e) {
+    $('[name=upload]').click()
+  },
+  'change [name=upload]' : function (e, template) {
+    FS.Utility.eachFile(e, function (file) {
+      Images.insert(file, function (err, fileObj) {
+        if(err){
+          toastr.error("Upload failed... please try again.")
+        }else{
+          newPet.img = {'_id': fileObj._id}
+          toastr.success('Upload succeeded!')
+        }
+      })
+      var uploadPicture = $('.upload-picture')
+      var img = document.createElement("img")
+      img.file = $('[name=upload]')[0].files[0]
+      img.onload = function () {
+               if(this.width > this.height) img.classList.add('preview-img-gtwidth')
+               else img.classList.add('preview-img-gtheight')
+           };
+      img.classList.add('preview-img')
+      var preview = $('.preview-img')
+
+      if(preview.length)
+       preview.replaceWith(img)
+      else
+       uploadPicture.append(img)
+
+
+      var reader = new FileReader()
+      reader.onload = (function(aImg) {
+        return function(e) {
+          aImg.src = e.target.result
+        }
+      })(img)
+      reader.readAsDataURL(file)
+
+      $('.upload-group, .add-more-pic').hide()
     })
   }
 })

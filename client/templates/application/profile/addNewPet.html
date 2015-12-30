@@ -1,6 +1,15 @@
 <template name="addNewPet">
   <div class="col-lg-4 pet-profile">
-    <img class="pet-picture" src="/images/object/7-profile/profile-pet.png" alt="">
+    <div class="col-lg-6 upload-picture">
+      <div class="col-lg-4 text-bottom upload-group">
+        <input type="file" name="upload" id="file" class="upload-img">
+        <label for="file" class="my-color-brown label-upload text-center">
+        </label>
+      </div>
+      <div class="add-more-pic col-lg-6 text-center">
+        <i class="fa fa-plus fa-5x"></i>
+      </div>
+    </div>
   </div>
   <div class="col-lg-8 pet-info">
     <form >
