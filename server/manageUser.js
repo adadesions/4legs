@@ -99,5 +99,9 @@ Meteor.methods({
       })
       return true
     }
+  },
+
+  updateVetVerify: function (userId,bool) {
+    Meteor.users.update({_id:userId}, {$set: {'profile.vetInfo.verified':bool}})
   }
 })

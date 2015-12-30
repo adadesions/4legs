@@ -1,0 +1,61 @@
+<template name="adsCard">
+  <div class="ads-card">
+    {{#if currentUser.profile.asAdmin.loggedIn}}
+      <div class="card-tools pull-right">
+        <!-- <img src="/images/object/7-profile/edit.png" alt=""> -->
+        <img id="{{_id}}" class="delete-ads" src="/images/object/7-profile/delete.png" alt="">
+      </div>
+    {{/if}}
+    <div class="card-picture">
+      <img src="{{getImage img._id}}" alt="">
+    </div>
+    <div class="card-detail">
+      <h4>{{info.cardHeader}}</h4>
+      <p>{{info.cardDetail}}</p>
+      <p>
+        <b>link :</b>
+        <a href="http://{{info.cardUrl}}">{{info.cardUrl}}</a>
+      </p>
+    </div>
+  </div>
+</template>
+
+<template name="adsCreateCard">
+  <div class="adminAds-card-create">
+    {{> Template.dynamic template=createCard}}
+  </div>
+</template>
+
+<template name="createCardStep1">
+  <div class="createCardStep1">
+    <img class="new-ads-btn" src="/images/object/7-profile/add.png" alt="">
+  </div>
+</template>
+
+<template name="createCardStep2">
+  <div class="createCardStep2">
+    <h4>ใส่รายละเอียดได้สูงสุด 150 ตัวอักษร</h4>
+    <div class="col-lg-6 upload-picture">
+      <div class="col-lg-4 text-bottom upload-group">
+        <input type="file" name="upload" id="file" class="upload-img">
+        <label for="file" class="my-color-brown label-upload text-center">
+        </label>
+      </div>
+      <div class="add-more-pic col-lg-6 text-center">
+        <i class="fa fa-plus fa-5x"></i>
+      </div>
+    </div>
+    <form>
+      <input type="text" class="form-control" name="card-header" placeholder="หัวข้อ">
+      <br>
+      <textarea name="card-detail" class="form-control" rows="4" placeholder="รายละเอียด..."></textarea>
+      <br>
+      <input type="text" class="form-control" name="card-url" placeholder="url">
+      <br>
+    </form>
+    <div class="btn-section text-center">
+      <button id="cancel" class="btn btn-danger">ยกเลิก</button>
+      <button id="confirm" class="btn btn-success">ยืนยัน</button>
+    </div>
+  </div>
+</template>

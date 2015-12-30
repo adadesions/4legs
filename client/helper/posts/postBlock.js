@@ -16,6 +16,7 @@ Template.postBlock.events({
        newPost.info = {
           postOwner : Meteor.userId(),
           postBody : $('[name=newStatus]').val(),
+          petType : Session.get('adminPetType'),
           createdAt : new Date(),
        }
        Posts.insert(newPost, function (err) {

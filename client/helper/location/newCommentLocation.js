@@ -1,10 +1,6 @@
 Template.newCommentLocation.helpers({
   username : function () {
     return Meteor.user().username || Meteor.user().profile.name
-  },
-  profilePicture : function (id) {
-    var img = Images.findOne({_id:id})
-    return img.url()
   }
 })
 

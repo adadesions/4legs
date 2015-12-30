@@ -4,7 +4,7 @@
   {{/if}}
 
   {{#each posts this._id}}
-  <div class="post-feed">
+  <div class="post-feed {{postHighlight}}">
     <div class="row withPadding">
       <div class="col-lg-1">
         <img  class="profile-picture img-circle" src="{{profilePicture info.postOwner}}" alt="">
@@ -18,6 +18,19 @@
           <i class="fa fa-clock-o"></i>
           {{enhanceTime info.createdAt}}
         </span>
+          {{#if showDeleteBtn}}
+            <div class="admin-delete-btn pull-right">
+              <img id="{{_id}}" src="/images/object/7-profile/delete.png" alt="delete">
+            </div>
+          {{/if}}
+          {{#if showHighlightBtn}}
+            <div id="{{_id}}" class="admin-highlight-btn pull-right">
+              <label id="{{_id}}" class="radio-inline">
+                <input type="radio" name="highlight-btn" id="{{_id}}" {{isHighlight _id}}>
+                Highlight
+              </label>
+            </div>
+          {{/if}}
       </div>
     </div>
     <br>

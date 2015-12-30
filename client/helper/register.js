@@ -65,13 +65,14 @@ Template.register.events({
             vetName = $('[name=vet-name]').val(),
             vetLastName = $('[name=vet-lastname]').val();
         vetObj = {
-          isVet : true,
-          vetId : vetId,
-          vetName : vetName,
-          vetLastName : vetLastName
+          vetId,
+          vetName,
+          vetLastName,
+          isVet: true,
+          verified: false
         }
     }
-    else vetObj = {isVet : false}
+    else vetObj = {isVet : false, verified: false}
 
       Accounts.createUser({
         username,

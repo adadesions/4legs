@@ -1,17 +1,21 @@
 Template.registerHelper('profilePicture', function (id) {
-  var user = Meteor.users.findOne({_id:id})
-  if(user.profile.image){
+  let user = Meteor.users.findOne({_id:id})
+  if(user && user.profile.image._id){
     let img = Images.findOne({_id:user.profile.image._id})
     return img.url()
   }
   return '/images/object/2-signup/profile-img.png'
 })
 
-Template.registerHelper('username', function (id) {
+Template.registerHelper('getUsername', function (id) {
   var user = Meteor.users.findOne({_id:id})
   return user.username
 })
 
 Template.registerHelper('checkAuthority', function (id) {
   return Meteor.userId() === id ? true : false
+})
+
+Template.registerHelper('getImage', function (id) {
+  return Images.findOne({_id:id}).url()
 })

@@ -3,25 +3,25 @@
   {{#each allMyPets _id}}
     <div class="myPets-block row">
       <div class="col-lg-4 pet-profile">
-        {{#if Image_id}}
-          <img src="{{image_id}}" alt="">
+        {{#if img}}
+          <img src="{{getImage img._id}}" alt="">
         {{else}}
           <img class="pet-picture" src="/images/object/7-profile/profile-pet.png" alt="">
         {{/if}}
       </div>
       <div class="col-lg-8 pet-info">
         <input type="hidden" name="id" value="{{this._id}}">
-        <b>Name </b>:<span class="my-color-brown"> {{petName}}</span>
+        <b>Name </b>:<span class="my-color-brown"> {{info.petName}}</span>
         <br>
-        <b>Type </b>:<span class="my-color-brown"> {{type}}</span>
+        <b>Type </b>:<span class="my-color-brown"> {{info.type}}</span>
         <br>
-        <b>Species </b>:<span class="my-color-brown"> {{species}}</span>
+        <b>Species </b>:<span class="my-color-brown"> {{info.species}}</span>
         <br>
-        <b>Gender </b>:<span class="my-color-brown"> {{gender}}</span>
+        <b>Gender </b>:<span class="my-color-brown"> {{info.gender}}</span>
         <br>
-        <b>Birthday </b>:<span class="my-color-brown"> {{birthday}}</span>
+        <b>Birthday </b>:<span class="my-color-brown"> {{info.birthday}}</span>
         <br>
-        <b>Details </b>:<span class="my-color-brown"> {{detail}}</span>
+        <b>Details </b>:<span class="my-color-brown"> {{info.detail}}</span>
         <br>
         {{#if localCheckAuthority}}
           <button class="btn pet-btn my-btn-edit">Edit</button>
