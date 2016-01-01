@@ -1,29 +1,28 @@
 <template name="postBlock">
   <div class="post-block">
-    <div class="row">
-      <div class="col-lg-1">
-        <img  class="profile-picture img-circle" src="{{profilePicture currentUser._id}}" alt="">
-      </div>
-      <div class="col-lg-11 post-info profile-name">
-        <a href="{{pathFor 'profile' id=currentUser._id}}">
-          <span class="my-color-brown">{{currentUser.username}}</span>
-        </a>
+    <div class="row profile-center">
+      <div class="col-lg-12 post-info profile-name">
+        <p class="text-center">
+          <img  class="profile-picture img-circle" src="{{profilePicture currentUser._id}}" alt="">
+          <a href="{{pathFor 'profile' id=currentUser._id}}">
+            <span class="my-color-brown">{{currentUser.username}}</span>
+          </a>
+      </p>
       </div>
     </div>
     <br>
     <div class="row">
-      <div class="col-lg-6 upload-picture {{isAdminUpload}}">
-        <div class="col-lg-4 text-bottom upload-group">
-          <input type="file" name="upload" id="file" class="upload-img">
-          <label for="file" class="my-color-brown label-upload text-center">
-          </label>
+        <div class="col-lg-6 text-center upload-picture {{isAdminUpload}}">
+          <div class="col-lg-4 text-bottom upload-group">
+            <input type="file" name="upload" id="file" class="upload-img">
+            <label for="file" class="my-color-brown label-upload text-center">
+            </label>
+          </div>
+          <div class="add-more-pic {{isAdminMorePic}} col-lg-6 text-center">
+            <i class="fa fa-plus fa-5x"></i>
+          </div>
         </div>
-        <div class="add-more-pic {{isAdminMorePic}} col-lg-6 text-center">
-          <i class="fa fa-plus fa-5x"></i>
-        </div>
-      </div>
-
-      <div class="col-lg-6 status">
+      <div class="status-row col-lg-6">
         <textarea type="text" class="status-form {{isAdminStatus}}" name="newStatus" placeholder="รายละเอียด..."></textarea>
       </div>
     </div>
