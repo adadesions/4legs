@@ -21,3 +21,5 @@ var topicData = {
 }
 
 if(Topices.find().count() === 0) Topices.insert(topicData)
+if(Posts.find().count() === 0) Posts.insert({test:'test'})
+if(Ads.find().count() === 0) Ads.insert({test:'test'})

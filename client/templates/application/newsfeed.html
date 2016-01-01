@@ -4,10 +4,12 @@
       <div class="col-lg-9">
         {{> postBlock}}
         <br><br>
-        <div class="highlight-block">
-          <img src="/images/object/8-highlight/highlight.png" alt="">
-        </div>
-        {{> postFeed highlight=true}}
+        {{#if hasHighlight}}
+          <div class="highlight-block">
+            <img src="/images/object/8-highlight/highlight.png" alt="">
+          </div>
+          {{> postFeed highlight=true}}
+        {{/if}}
         {{> postFeed}}
       </div>
       <div class="col-lg-3">

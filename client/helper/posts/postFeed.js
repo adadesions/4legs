@@ -49,7 +49,8 @@ Template.postFeed.helpers({
   },
   showDeleteBtn: function () {
     let isHighlight = Session.get('superuserContainer') === 'adminHighlight'
-    return Meteor.user().profile.asAdmin.loggedIn && !isHighlight
+    if(Meteor.user().profile.asAdmin)
+      return Meteor.user().profile.asAdmin.loggedIn && !isHighlight
   },
   showHighlightBtn: function () {
     return Session.get('superuserContainer') === 'adminHighlight'

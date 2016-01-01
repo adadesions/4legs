@@ -12,7 +12,7 @@ Template.postBlock.events({
        if(path === 'adminsite/superuser') newPost.catagory.push(Session.get('adminNewsContainer'))
        if(Session.get('identifyContainer') === 'postBlock') newPost.catagory.push(Session.get('sosContainer'))
        newPost.catagory.push(path)
-
+       newPost.highlight = false
        newPost.info = {
           postOwner : Meteor.userId(),
           postBody : $('[name=newStatus]').val(),

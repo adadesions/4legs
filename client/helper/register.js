@@ -84,10 +84,15 @@ Template.register.events({
           vetInfo : vetObj,
           image : profileImg,
           followers : [],
-          following : []
+          following : [],
+          asAdmin : {loggedIn: false},
+          privileged: false
         }
       },function (err) {
-        if(err) toastr.error("May be your Username or Email is used by another user")
+        if(err){
+          throw err
+          toastr.error("May be your Username or Email is used by another user")
+        }
         else Router.go('newsfeed')
       });
   },

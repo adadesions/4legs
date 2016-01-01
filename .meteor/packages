@@ -39,9 +39,7 @@ reactive-var
 tyler:numeric
 dburles:google-maps
 mdg:geolocation
-kadira:debug
 meteorhacks:fast-render
 tsega:bootstrap3-datetimepicker
 jplack:bootstrap-timepicker
-altapp:aes
 matdutour:popup-confirm
