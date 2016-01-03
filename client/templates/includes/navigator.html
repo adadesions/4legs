@@ -2,20 +2,21 @@
   <nav class="navbar mynav-main">
     <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed nav-button-border" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{pathFor 'newsfeed'}}">
-          <img class="logo" src="/images/object/logo.png" alt="">
-        </a>
+        <div class="nav-layer"></div>
+          <a class="navbar-brand" href="{{pathFor 'newsfeed'}}">
+            <img class="logo" src="/images/object/logo.png" alt="">
+          </a>
     </div>
     <div id="navbar-main" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="{{isActive 'newsfeed'}}">
-          <a href="{{pathFor 'newsfeed'}}">
+          <a class="anchor-navbar" href="{{pathFor 'newsfeed'}}">
               <div class="menu-icon text-center" id="newsfeed">
                 <img class="icon" src="/images/menu-icon/news feed.png" alt="">
                 <br>
@@ -24,7 +25,7 @@
           </a>
         </li>
         <li class="{{isActive 'location'}}">
-          <a href="{{pathFor 'location'}}">
+          <a class="anchor-navbar" href="{{pathFor 'location'}}">
             <div class="menu-icon text-center" id="location">
               <img class="icon" src="/images/menu-icon/location.png" alt="">
               <br>
@@ -32,17 +33,17 @@
             </div>
           </a>
         </li>
-        <li class="{{isActive 'topics'}}">
-          <a href="{{pathFor 'mainTopics'}}">
+        <li class="{{isActive 'mainTopics'}}">
+          <a class="anchor-navbar" href="{{pathFor 'mainTopics'}}">
             <div class="menu-icon text-center" id="topics">
               <img class="icon" src="/images/menu-icon/topics.png" alt="">
               <br>
-              Topics
+              <span class="nav-text-topic">Topics</span>
             </div>
           </a>
         </li>
         <li class="{{isActive 'notification'}}">
-          <a href="{{pathFor 'notification'}}">
+          <a class="anchor-navbar" href="{{pathFor 'notification'}}">
             <div class="menu-icon text-center" id="notification">
               <img class="icon" src="/images/menu-icon/notification.png" alt="">
                <span class="badge notify-badge">{{notifyBadge}}</span>
@@ -52,7 +53,7 @@
           </a>
         </li>
         <li class="dropdow">
-          <button class="dropdown-toggle btn my-btn-more {{isActive 'more'}}" type="button" id="more-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <button class="anchor-btn-navbar dropdown-toggle btn my-btn-more {{isActive 'more'}}" type="button" id="more-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <div class="menu-icon text-center" id="more">
               <img class="icon" src="/images/menu-icon/more.png" alt="">
               <br>

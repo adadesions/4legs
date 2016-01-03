@@ -19,7 +19,7 @@ Template.navigator.helpers({
           has = _.contains(pathSet, Router.current().route.getName())
       if(has) return 'active'
     }
-    return Router.current().route.getName() === myLocation ? 'active' : ""
+    return Router.current().route.getName() === myLocation ? 'active' : ''
   },
   notifyBadge: function () {
     return Notify.find({notifyTo:Meteor.userId(), read:false}).count()
