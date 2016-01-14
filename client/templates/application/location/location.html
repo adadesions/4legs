@@ -4,8 +4,8 @@
       <div id="location-left-side" class="col-lg-4 withOutPadding">
         {{> Template.dynamic template=locationContainer}}
       </div>
-      <div id="location-right-side" class="col-lg-8 withOutPadding">
-        {{#unless geolocationError}}  
+      <div id="location-right-side" class="col-lg-8 withOutPadding mapCenter">
+        {{#unless geolocationError}}
           {{> googleMap name="4legsMap" options=MapOptions}}
         {{else}}
           Geolocation failed: {{geolocationError}}
