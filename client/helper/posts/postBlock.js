@@ -1,5 +1,9 @@
 var newPost = {comments : [], likes : [], shares : [], favorites : [], catagory : []}
 
+Template.postBlock.onRendered(function () {
+  $('textarea').elastic()
+})
+
 Template.postBlock.events({
    'click .btn-post' : function (e) {
      e.preventDefault();
@@ -89,6 +93,25 @@ Template.postBlock.helpers({
   isAdminMorePic: function () {
     return isAdminSite('admin-add-more-pic')
   },
+  postBlockFormData: function () {
+    return {
+      ownerId: Meteor.userId(),
+      ownerName: Meteor.user().username
+    }
+  },
+  postBlockUpload: function () {
+    return {
+      formData: function (index,fileInfo,formFields) {
+        return {
+          albums: 'postblock',
+          userId: Meteor.userId()
+        }
+      },
+      finished: function(index,fileInfo,formFields) {
+        console.log(fileInfo);
+      }
+    }
+  }
 })
 
 function isAdminSite(adminClass) {
