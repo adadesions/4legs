@@ -149,6 +149,7 @@ Template.location.onCreated(function() {
 
 Template.location.helpers({
   MapOptions: function() {
+    if (GoogleMaps.loaded()) {
     var latLng = Geolocation.latLng()
     // Make sure the maps API has loaded
     if (GoogleMaps.loaded() && latLng) {
@@ -160,6 +161,7 @@ Template.location.helpers({
         },
         zoom: MAP_ZOOM
       }
+    }
     }
   },
   geolocationError: function () {
