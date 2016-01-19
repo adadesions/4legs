@@ -88,7 +88,7 @@ $mobile: "(max-width: 768px)";
   .topics-menu-box
     margin-top: 0.5em
   .menu-item-mobile
-    width: 5em
+    width: 4.5em
     .active
       background-color: #F8A02E
   .navbar-right
@@ -108,5 +108,14 @@ $mobile: "(max-width: 768px)";
     width: 4em
     margin-right: -0.8em
   .dropdown-menu
-    a
-      width: 20%
+    min-width: 8em
+    margin-left: -3.5em
+    li
+      a
+        margin-left: -1em
+  .navbar-nav
+    .open
+      .dropdown-menu
+        background-color: #fff
+        &:focus
+          background-color: #F8A02E
