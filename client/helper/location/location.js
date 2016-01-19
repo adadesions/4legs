@@ -119,14 +119,6 @@ Template.location.onCreated(function() {
             }
           })
         })
-        // google.maps.event.addListener(marker, 'dragend', function (e) {
-        //   Markers.update({_id:marker.id}, {
-        //     $set : {
-        //       lat: e.latLng.lat(),
-        //       lng: e.latLng.lng()
-        //     }
-        //   })
-        // })
         markers[document._id] = marker
       },
       //CHANGEDs MARKER
