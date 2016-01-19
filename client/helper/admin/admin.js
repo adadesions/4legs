@@ -26,7 +26,8 @@ Template.admin.events({
         Router.go('superuser');
       }
     })
-  }
+  },
+
 })
 
 //adminLayout

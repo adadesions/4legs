@@ -9,6 +9,11 @@ Template.navigator.events({
   },
   'click #notification': function (e) {
     // $('.notify-badge').text("")
+  },
+
+  'click a' : function (e) {
+    $('#navbar-main').addClass('collapsed').attr('aria-expanded',false)
+    $('.navbar-collapse').removeClass('in').attr('aria-expanded',false)
   }
 })
 
