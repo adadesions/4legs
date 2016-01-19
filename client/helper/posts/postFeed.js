@@ -8,11 +8,7 @@ Template.postFeed.helpers({
   matchUserId : function (userId) {
     var user = Meteor.users.findOne({_id:userId})
     return user.username || user.profile.name
-  },
-  enhanceTime : function (postTime) {
-    var adjTime = moment(postTime);
-    return adjTime.fromNow();
-  },
+  },  
   findPicture : function (id) {
     var img = Images.findOne({_id:id})
     return img.url()

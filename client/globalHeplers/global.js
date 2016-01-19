@@ -19,3 +19,8 @@ Template.registerHelper('checkAuthority', function (id) {
 Template.registerHelper('getImage', function (id) {
   return Images.findOne({_id:id}).url()
 })
+
+Template.registerHelper('enhanceTime', function (time) {
+  var adjTime = moment(time);
+  return adjTime.fromNow();
+})

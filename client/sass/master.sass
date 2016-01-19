@@ -177,8 +177,12 @@ li
   color: $orange-background
 .nav
   li
-    &:hover
-      background-color: $orange-background
+     a
+      &:hover
+        background-color: $orange-background
+        color: #FFF
+      &:focus
+        background-color: $orange-background
 
 .highlight-block
   img
@@ -197,7 +201,22 @@ li
   margin-right: 1em
 
 /*PostBlock
-
+.post-block-card
+  margin-top: 1em
+  .card
+    width: 100%
+  textarea
+    width: 100%
+    height: auto
+    border: 1px solid $light-gray
+    border-radius: 0.5em
+    resize: none
+    font-size: 16px
+    line-height: 1em
+    padding-top: 1em
+    padding-left: 1em
+    &:focus
+      padding-bottom: 1em
 .post-block
   background-color: #fff3e0
   border-radius: 0.5em
@@ -228,6 +247,9 @@ li
   a:hover
     color: #4e342e
 
+.upload-zone
+  padding: 1em
+  padding-top: 0
 .text-bottom
   padding-top: 11em
 

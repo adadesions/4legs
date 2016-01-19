@@ -1,4 +1,4 @@
-var MAP_ZOOM = 10
+const MAP_ZOOM = 10
 function getIcon(value) {
   let imgUrl = {
     'สถานพยาบาล': '/images/object/2-signup/clinic.png',
