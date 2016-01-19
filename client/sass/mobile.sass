@@ -12,13 +12,14 @@ $mobile: "(max-width: 768px)";
     margin-left: -0.5em
     z-index: 2
   .nav-button-border
-    border: 2px solid $orange-background
+    border: 2px solid #F8A02E
+    margin-top: 1em
     &:focus
       background-color: $orange-background
       .icon-bar
-        background-color: #FFF
+        background-color: #fff
   .icon-bar
-    background-color: $orange-background
+    background-color: #F8A02E
   .navbar-brand
     width: 12em
   .nav-layer
@@ -119,3 +120,52 @@ $mobile: "(max-width: 768px)";
         background-color: #fff
         &:focus
           background-color: #F8A02E
+  .admin-nav-item
+    .admin-nav-label
+      color: #000
+  .admin-navigator
+    .colorSpan
+      .icon-bar
+        border: 2px solid #fff
+    &:focus
+      background-color: $orange-background
+      .icon-bar
+        background-color: #fff
+  .adminVet-head-left-topic
+    margin-top: 6em
+    label
+      font-size: 18px
+  .adminVet-head-right-topic
+    label
+      font-size: 18px
+  .adminNews
+    margin-left: 1.1em
+  .admin-pets-type
+    height: 3em
+    display: flex
+    justify-content: space-around
+  .admin-catagory
+    .admin-pet-text
+      visibility: hidden
+      margin-left: -2em
+    .admin-catagory-item
+      img
+        width: auto
+        height: 3em
+        margin-left: 0.2em
+  .adminVet-search
+    margin-right: 0.5em
+    visibility: hidden
+    .form-control
+      width: 18em
+  .adminAds-body
+    display: flex
+    flex-direction: column
+  .adminAds-card-create
+    margin-top: 3.5em
+    margin-left: 0.4em
+    img
+      margin-top: 0
+  .ads-card
+    margin-left: 0.4em
+    img
