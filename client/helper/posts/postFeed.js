@@ -2,17 +2,6 @@ Template.postFeed.helpers({
   username : function () {
     return Meteor.user().username || Meteor.user().profile.name
   },
-  checkLen : function (ele) {
-    return ele.length > 100 ? true : false;
-  },
-  matchUserId : function (userId) {
-    var user = Meteor.users.findOne({_id:userId})
-    return user.username || user.profile.name
-  },  
-  findPicture : function (id) {
-    var img = Images.findOne({_id:id})
-    return img.url()
-  },
   posts : function (userId) {
     let type = Template.currentData() ? Template.currentData().type : false,
         highlight = Template.currentData() ? Template.currentData().highlight : false
@@ -51,29 +40,22 @@ Template.postFeed.helpers({
   showHighlightBtn: function () {
     return Session.get('superuserContainer') === 'adminHighlight'
   },
-  isHighlight: function (postId) {
-    return Posts.findOne({_id:postId}).highlight ? 'checked' : ''
-  },
+  // isHighlight: function (postId) {
+  //   return Posts.findOne({_id:postId}).highlight ? 'checked' : ''
+  // },
   postHighlight: function () {
     let highlight = Template.currentData() ? Template.currentData().highlight : false
     return highlight ? 'post-highlight' : ''
+  },
+  numOfCol: function () {
+    return Template.currentData() ? Template.currentData().col : 'one'
   }
 })
 
 Template.postFeed.events({
-  'click .icon-comment' : function (e) {
-    var postId = '#cs-'+$(e.target).attr('id'),
-        section = $(postId+'.comment-section')
-    if(section.hasClass("hidden")){
-      section.slideDown(300, function () {
-        section.removeClass('hidden')
-      })
-    }
-    else{
-      section.slideUp(500, function () {
-        section.addClass('hidden')
-      })
-    }
+  'click .comment-icon' : function (e) {
+    console.log('ffff');
+      $(e.target).next('.comments').addClass('collapsed')
   },
 
   'click .icon-like' : function (e) {

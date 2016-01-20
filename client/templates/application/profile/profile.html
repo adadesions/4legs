@@ -7,13 +7,11 @@
       <a href="{{pathFor 'profile' id=_id }}">
         <span id="profile-username" class="my-color-brown">{{this.username}}</span>
       </a>
-      <br>
-      <span><b>Level :</b> 1</span>
-      <br>
+      <br><br>
       <span><b>Following :</b> {{profile.following.length}}</span>
-      <br>
+      <br><br>
       <span><b>Followers :</b> {{profile.followers.length}}</span>
-      <br>
+      <br><br>
       {{#unless checkAuthority _id}}
         {{#if isFollowing _id}}
           <button id="{{_id}}" class="btn btn-danger my-btn my-btn-unfollow">Unfollow</button>
@@ -25,7 +23,7 @@
   </div>
   <div class="profile-right-panel col-lg-9">
 
-      <div id="timeline" class="profile-menu-box text-center col-lg-4 {{isActive 'postFeed'}}">Timeline</div>
+      <div id="timeline" class="profile-menu-box text-center col-lg-4 {{isActive 'timeline'}}">Timeline</div>
       <div id="aboutme" class="profile-menu-box text-center col-lg-4 {{isActive 'aboutMe'}}">About Me</div>
       <div id="mypets" class="profile-menu-box text-center col-lg-4 {{isActive 'myPets'}}">My Pets</div>
 
