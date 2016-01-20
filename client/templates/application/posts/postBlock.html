@@ -7,17 +7,26 @@
           <div class="left floated author">
             <img class="ui avatar big image" src="{{profilePicture currentUser._id}}">
           </div>
+          <div class="right floated">
+            <i id="photo-upload" class="photo big icon"></i>
+            <input type="file" name='upload' id="file" class="new-upload">
+          </div>
         </div>
         <div class="header">{{currentUser.username}}</div>
         <div class="meta">
           <span class="category">4Legs Member</span>
         </div>
+        <br>
         <div class="description">
-          <textarea name="postblock-content" id="" placeholder="แบ่งปันเรื่องราวของคุณ..."></textarea>
+          <textarea name="newStatus" id="" placeholder="แบ่งปันเรื่องราวของคุณ..."></textarea>
         </div>
-      </div>
-      <div class="upload-zone">
-        {{> upload_bootstrap multiple=true callbacks=postBlockUpload}}
+        <br>
+        <div class="ui center aligned container">
+          <div class="new-upload-preview"></div>
+        </div>        
+        <div class="right floated">
+          <button class="ui blue basic right floated medium button btn-post">Post</button>
+        </div>
       </div>
     </div>
   </div>

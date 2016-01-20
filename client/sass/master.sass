@@ -11,10 +11,10 @@ a
   &:focus
     text-decoration: none
 
-li
-  &:hover
-    background-color: $orange-background
-    color: #FFF
+// li
+//   &:hover
+//     background-color: $orange-background
+//     color: #FFF
 .my-color-brown
   color: $brown
 .my-color-active-brown
@@ -266,13 +266,9 @@ li
   border-left: 0
 
 .btn-post
-  background-color: #ff7043
-  color: #FFF
-  width: 6em
-  margin-right: 2em
   &:hover
     color: #FFF
-    background-color: #ff8a65
+    background-color: blue
   &:focus
     color: #FFF
     background-color: #ff8a65
@@ -387,6 +383,8 @@ li
   height: 1.5em
 
 //Comment
+#newComment
+  padding-left: 0.5em !important
 .comment-block
   margin-top: -1em
 .new-comment
@@ -989,8 +987,8 @@ input.shop-time
     margin-left: 1em
 
 .admin-post-section
-  padding-left: 13em
-  padding-right: 13em
+  padding-left: 0
+  padding-right: 0
 
 .admin-upload-picture
   @extend .upload-picture
@@ -1129,3 +1127,21 @@ input.shop-time
     height: 2.5em
     margin-top: -0.6em
     margin-left: -1em
+
+.font-20
+  font-size: 20px
+.font-18
+  font-size: 18px
+.font-16
+  font-size: 16px
+
+.event
+  .content
+    padding-left: 0.5em
+.new-upload
+  width: 0
+  height: 0
+  overflow: hidden
+  position: absolute
+.new-upload-preview
+  margin-bottom: 0.5em

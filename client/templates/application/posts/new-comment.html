@@ -1,10 +1,6 @@
 <template name="newComment">
-  <div class="row withPadding comment-block">
-    <div class="col-lg-1">
-      <img  class="profile-picture img-circle" src="{{profilePicture currentUser._id}}" alt="">
-    </div>
-    <div class="form-group col-lg-11 new-comment">
-      <input type="text" class="form-control" id="newComment" name="{{_id}}" placeholder="เขียนความคิดเห็น">
-    </div>
+  <div class="ui transparent left icon input">    
+    <img class="ui avatar big image" src="{{profilePicture currentUser._id}}">
+    <input type="text" id="newComment" name='{{_id}}' placeholder="Add Comment...">
   </div>
 </template>

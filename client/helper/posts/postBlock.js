@@ -26,9 +26,8 @@ Template.postBlock.events({
        Posts.insert(newPost, function (err) {
          if (err) throw err;
          else{
-           var upload = '<div class="col-lg-4 text-bottom upload-group"><input type="file" name="upload" id="file" class="upload-img"></div><div class="add-more-pic col-lg-6 text-center" ><i class="fa fa-plus fa-5x"></i></div>'
            $('[name=newStatus]').val('')
-           $('.upload-picture').empty().append(upload)
+           $('.new-upload-preview').empty()
            newPost.catagory = []
            Session.set('identifyContainer', 'sosIdentify')
            toastr.success('Your post is online!')
@@ -47,21 +46,17 @@ Template.postBlock.events({
            toastr.success('Upload succeeded!')
          }
        })
-       var uploadPicture = $('.upload-picture')
+       var uploadPicture = $('.new-upload-preview')
        var img = document.createElement("img")
        img.file = $('[name=upload]')[0].files[0]
-       img.onload = function () {
-                if(this.width > this.height) img.classList.add('preview-img-gtwidth')
-                else img.classList.add('preview-img-gtheight')
-            };
-       img.classList.add('preview-img')
-       var preview = $('.preview-img')
+       img.classList.add('ui','centered','medium','image')
 
-       if(preview.length)
-        preview.replaceWith(img)
-       else
+       console.log(uploadPicture.children().length);
+
+       if(uploadPicture.children().length == 0)
         uploadPicture.append(img)
-
+       else
+        uploadPicture.children().replaceWith(img)
 
        var reader = new FileReader()
        reader.onload = (function(aImg) {
@@ -70,9 +65,11 @@ Template.postBlock.events({
          }
        })(img)
        reader.readAsDataURL(file)
-
-       $('.upload-group, .add-more-pic').hide()
      })
+   },
+
+   'click #photo-upload': function (e) {
+     $('.new-upload').trigger('click')
    },
 
    'click .add-more-pic' : function (e) {

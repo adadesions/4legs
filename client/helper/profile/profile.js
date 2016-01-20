@@ -1,4 +1,4 @@
-Session.setDefault('profileContainer', 'postFeed')
+Session.setDefault('profileContainer', 'timeline')
 Session.setDefault('followingBtn', false)
 
 Template.profile.helpers({
@@ -15,7 +15,7 @@ Template.profile.helpers({
 })
 
 Template.profile.events({
-  'click #timeline' : function (e) {Session.set('profileContainer', 'postFeed')},
+  'click #timeline' : function (e) {Session.set('profileContainer', 'timeline')},
   'click #aboutme' : function (e) {Session.set('profileContainer', 'aboutMe')},
   'click #mypets' : function (e) {Session.set('profileContainer', 'myPets')},
   'click .my-btn-follow' : function (e) {

@@ -2,90 +2,49 @@
   {{#if isNoPosts this._id}}
     <h2 class="my-color-gray text-center">Have no any posts</h2>
   {{/if}}
-
-  {{#each posts this._id}}
-  <div class="post-feed {{postHighlight}}">
-    <div class="row withPadding">
-      <div class="col-lg-1">
-        <img  class="profile-picture img-circle" src="{{profilePicture info.postOwner}}" alt="">
-      </div>
-      <div class="col-lg-11 post-info">
-        <a href="{{pathFor 'profile' id=info.postOwner}}">
-          <span class="my-color-brown">{{matchUserId info.postOwner}}</span>
+  <div class="ui {{numOfCol}} link stackable cards">
+    {{#each posts this._id}}
+      <div class="ui blue card">
+        <div class="content">
+          <div class="right floated meta">
+            {{enhanceTime info.createdAt}}
+          </div>
+          <a href="{{pathFor 'profile' id=info.postOwner}}">
+            <img class="ui avatar big image" src="{{profilePicture info.postOwner}}">
+            {{matchUserId info.postOwner}}
+          </a>
+        </div>
+        <a href="/post/{{_id}}">
+          <div class="image">
+            <img src="{{findPicture img._id}}" class="thumbnail" alt="" />
+          </div>
         </a>
-        <br>
-        <span class="duration">
-          <i class="fa fa-clock-o"></i>
-          {{enhanceTime info.createdAt}}
-        </span>
-          {{#if showDeleteBtn}}
-            <div class="admin-delete-btn pull-right">
-              <img id="{{_id}}" src="/images/object/7-profile/delete.png" alt="delete">
-            </div>
-          {{/if}}
-          {{#if showHighlightBtn}}
-            <div id="{{_id}}" class="admin-highlight-btn pull-right">
-              <label id="{{_id}}" class="radio-inline">
-                <input type="radio" name="highlight-btn" id="{{_id}}" {{isHighlight _id}}>
-                Highlight
-              </label>
-            </div>
-          {{/if}}
-      </div>
-    </div>
-    <br>
+        <div class="content">
+          <span class="right floated">
+            <i class="heart like icon icon-like {{isLiked _id}}" id="{{_id}}"></i>
+            {{likes.length}} likes
+          </span>
+          <i class="comment icon comment-icon"></i>
+          {{comments.length}} comments
+        </div>
+        <div class="extra content">
+          <a href="/post/{{_id}}">
+            <p class="font-20">
+              {{limitLength info.postBody}}
+              {{#if checkLen info.postBody}}
+              <br><b>Read more</b>
+              {{/if}}
+            </p>
+            <br>
+          </a>
 
-    <div class="row withPadding">
-      <div class="col-lg-6 picture text-center">
-          <img src="{{findPicture img._id}}" class="thumbnail" alt="" />
-      </div>
-
-      <div class="col-lg-6 status">
-        <div class="status-post">
-          {{info.postBody}}
-          <br>
+          {{#each comments}}
+           {{> comment}}
+          {{/each}}
+          <!--  new comment -->
+          {{> newComment}}
         </div>
       </div>
-    </div>
-
-    <div class="social-bar">
-        <div id="{{_id}}" class="icon-like col-lg-3">
-          <span>
-            <img class="social-icon" src="/images/icon/like-icon.png" alt="">
-          </span>
-          Likes ({{likes.length}})
-        </div>
-
-        <div class="icon-comment col-lg-3" id="{{_id}}">
-          <span>
-            <img class="social-icon" src="/images/icon/comment-icon.png" alt="">
-          </span>
-          Comment ({{comments.length}})
-        </div>
-
-        <div id="{{_id}}" class="icon-share col-lg-3">
-          <span>
-            <img class="social-icon" src="/images/icon/share-icon.png" alt="">
-          </span>
-          Share
-        </div>
-
-        <div id="{{_id}}" class="icon-favorite col-lg-3">
-          <span>
-            <img class="social-icon" src="/images/icon/favorite-icon.png" alt="">
-          </span>
-          Favorite ({{favorites.length}})
-        </div>
-    </div>
-    <br>
-    <div class="comment-section hidden" id="cs-{{_id}}">
-      {{#each comments}}
-        {{> comment}}
-      {{/each}}
-      <br>
-      {{> newComment}}
-      </div>
-      <br>
-    </div>
-  {{/each}}
+    {{/each}}
+  </div>
 </template>

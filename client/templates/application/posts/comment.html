@@ -1,18 +1,24 @@
 <template name="comment">
-  <div class="row comment withPadding comment-location">
-    <div class="col-lg-1">
-      <img  class="profile-picture img-circle" src="{{profilePicture commentOwnerId}}" alt="">
-    </div>
-    <div class="col-lg-11 post-info">
+  <div class="ui feed">
+    <div class="event">
       <a href="{{pathFor 'profile' id=commentOwnerId}}">
-        <span class="my-color-brown">{{commentOwner}}</span>
+        <img class="ui avatar big image" src="{{profilePicture commentOwnerId}}">
+        {{matchUserId info.postOwner}}
       </a>
-      <span class="duration">
-        <i class="fa fa-clock-o"></i>
-        {{enhanceTime commentAt}}
-      </span>
+      <div class="content">
+        <div class="summary">
+          <a href="{{pathFor 'profile' id=commentOwnerId}}" class="user">
+            {{commentOwner}}
+          </a>
+          <div class="date">
+            {{enhanceTime commentAt}}
+          </div>
+          <br>
+          <p>
+            {{commentBody}}
+          </p>
+        </div>
+      </div>
     </div>
-    <p>{{commentBody}}</p>
   </div>
-  <br>
 </template>
