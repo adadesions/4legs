@@ -1,18 +1,12 @@
 <template name="register">
   <nav class="navbar mynav-signup">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+    <div class="container-fluid nav-signup">
+      <div class="navbar-header signup-flex">
+        <h3 class="text-center">ลงทะเบียนเพื่อเข้าใช้งาน</h3>
         <a class="navbar-brand" href="{{pathFor 'newsfeed'}}">
           <img class="logo" src="/images/object/logo.png" alt="">
         </a>
     </div>
-    <h3 class="text-center">ลงทะเบียนเพื่อเข้าใช้งาน</h3>
   </div>
   </nav>
 
@@ -21,7 +15,7 @@
       <div class="col-lg-1"></div>
       <div class="col-lg-2">
         <div class="upload-profile">
-
+          <img src="/images/object/2-signup/profile-img.png">
         </div>
         <br>
         <div class="upload-group-profile">
@@ -35,9 +29,9 @@
         <div class="register-form">
           <form clsss="form-horizontal" action="">
             <div class="vet-block">
-              คุณเป็นสัตวแพทย์ใช่หรือไม่?
+              คุณเป็นสัตวแพทย์ใช่หรือไม่?&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="checkbox" value="vet" name="vet" id="vet">
-                <span class="my-color-brown">ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
+                <span class="my-color-brown">&nbsp;&nbsp;ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
                 {{#if isVet}}
                   <br><br>
                   <div class="form-group">
@@ -98,7 +92,7 @@
             <div class="form-group">
               <label for="birthday" class="col-lg-3 control-label">Birthday<span class="my-color-red">*</span><span class="pull-right">:</span></label>
               <div class="col-lg-9">
-                <input type="text" class="form-control" id="birthday" name="birthday" required>
+                <input type="text" class="form-control" id="birthday" name="birthday" placeholder="mm/dd/yyyy" required>
               </div>
             </div>
             <br><br>
@@ -121,5 +115,8 @@
       <div class="col-lg-1"></div>
 
     </div>
+  </div>
+  <div class="img-footer-reigster">
+    <img src="/images/object/2-signup/dog-word.png">
   </div>
 </template>
