@@ -11,11 +11,13 @@
   {{isBoxActive container='vetArticleContainer' location='vet-story'}} icon-topic-menubox">
   <img src="/images/object/6-topics/VetStory.png" alt="Vet Story">Vet Story
   </div>
-  <form class="form-group">
-    <input type="text" class="vet-article-search form-control col-lg-12" placeholder="ค้นหา {{vetArticleCurrentLocation}}">
-  </form>
+  <div class='row '>
+    <form class="form-group">
+      <input type="text" class="vet-article-search form-control col-lg-12" placeholder="ค้นหา {{vetArticleCurrentLocation}}">
+    </form>
+  </div>
   <br>
-  <div class="topics-container">
+  <div class="topics-container row">
     {{> Template.dynamic template=vetArticleContainer }}
   </div>
 </template>
