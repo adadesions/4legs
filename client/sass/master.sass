@@ -1,5 +1,6 @@
 @import "colors"
 
+
 body
   padding: 0
   margin: 0
@@ -45,6 +46,7 @@ a
 
 .col-login
   padding-top: 2em
+  margin-left: 28em
   input
     margin-left: auto
     margin-right: auto
@@ -69,6 +71,9 @@ a
   background-repeat: repeat-y
 .footer
   color: $gray
+  display: flex
+  justify-content: flex-start
+  align-items: flex-end
 .btn-myLogin
   margin-bottom: 1em
   background-color: $orange
@@ -87,6 +92,9 @@ a
 
 .loginForm
   margin-bottom: 6em
+  input[type=checkbox]
+    width: 1em
+    height: 1em
 
 .btn-logout
   font-size: 0.8em
@@ -153,22 +161,6 @@ a
   padding: 1em
   b
     margin-right: 1em
-  input[type=checkbox]
-    display:none
-  input[type=checkbox]:checked
-    background: url(cc.jpg) no-repeat
-    width: 15px
-    height: 15px
-    display:inline-block
-    padding: 0 0 0 0px
-  input[type=checkbox]
-    background: url(cc.jpg) no-repeat
-    width: 15px
-    height: 15px
-    display:inline-block
-    padding: 0 0 0 0px
-
-
 .register-form label
   font-size: 1.2em
   font-weight: normal
