@@ -1,5 +1,6 @@
 @import "colors"
 
+
 body
   padding: 0
   margin: 0
@@ -40,17 +41,42 @@ a
 /*LogIn
 
 .col-login
-  padding-top: 5em
+  padding-top: 2em
   margin-left: 28em
+  input
+    margin-left: auto
+    margin-right: auto
+    margin-bottom: 0.5em
+    width: 90%
+    height: 3em
+.btn-facebook
+  height: 3em
+  width: 18em
+  margin-left: -1em
+  font-size: 14px
+  h3
+    margin-top: 0.1em
+    margin-left: 0.6em
+    border: none
+  i
+    margin-top: 0.1em
+    border: none
 .bg-login
   background: url('/images/object/1-login/bg.png')
   background-size: cover
   background-repeat: repeat-y
-
+.footer
+  color: $gray
+  display: flex
+  justify-content: flex-start
+  align-items: flex-end
 .btn-myLogin
   margin-bottom: 1em
   background-color: $orange
   color: #FFF
+  margin-left: 2em
+  width: 90%
+  height: 3em
   &:hover
     color: #FFF
     background-color: $orange-hover
@@ -62,6 +88,9 @@ a
 
 .loginForm
   margin-bottom: 6em
+  input[type=checkbox]
+    width: 1em
+    height: 1em
 
 .btn-logout
   font-size: 0.8em
@@ -70,12 +99,20 @@ a
 /*Sign Up
 
 #btn-signUp
-  width: 11em
+  width: 15em
   background-color: #1b5e20
   color: #FFF
+  height: 3em
+  margin-right: 2em
+  font-size: 14px
   &:hover
     background-color: #2e7d32
-
+  h3
+    margin-top: -1.5em
+    margin-left: 0.6em
+    border: none
+  i
+    margin-right: 3em
 .mynav-signup
   background-color: #ffab40
   border-radius: 0
@@ -83,7 +120,12 @@ a
   color: #FFF
   a
     color: #FFF
-
+.signup-flex
+  display: flex
+  flex-flow: row-reverse
+  h3
+    margin-left: 25em
+    margin-top: 1em
 .mynav-main
   background-color: #FFF
   border-radius: 0
@@ -97,6 +139,9 @@ a
   width: 12em
   height: 12em
   border: 1px solid #AAA
+  img
+    width: 12em
+    height: 12em
 
 .upload-group-profile
   margin-left: 2.8em
@@ -112,7 +157,6 @@ a
   padding: 1em
   b
     margin-right: 1em
-
 .register-form label
   font-size: 1.2em
   font-weight: normal
@@ -1117,22 +1161,18 @@ input.shop-time
 .btn-section
   button
     width: 8em
-#basic-pet-care
+.icon-topic-menubox
   img
     width: auto
     height: 2.5em
     margin-top: -0.6em
-#disease-and-prevention
+    margin-left: -1em
+.img-footer-reigster
   img
     width: auto
-    height: 2.5em
-    margin-top: -0.6em
-#vet-story
-  img
-    width: auto
-    height: 2.5em
-    margin-top: -0.6em
-
+    height: 20em
+    position: absolute
+    margin-top: -20em
 .font-20
   font-size: 20px
 .font-18
@@ -1143,7 +1183,6 @@ input.shop-time
 .event
   .content
     padding-left: 0.5em
-//newUpload
 .new-upload
   width: 0
   height: 0

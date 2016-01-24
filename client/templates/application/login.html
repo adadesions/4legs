@@ -1,10 +1,10 @@
 <template name="login">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4"></div>
-      <div class="col-lg-4 col-login text-center">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6 col-login text-center">
         <img class="logo-login" src="/images/object/logo.png" alt="" />
-        <h4><strong>ชุมชนคนรักสัตว์ที่เชื่อถือได้</strong></h4>
+        <h3><strong>ชุมชนคนรักสัตว์ที่เชื่อถือได้</strong></h3>
         <br>
         <form class="loginForm">
           <input type="text" class="form-control" name="username" placeholder="Username">
@@ -12,15 +12,17 @@
           <input type="password" class="form-control" name="password" placeholder="Password">
           <br>
           <button type="button" class="btn col-lg-12 btn-myLogin">
-            <strong>Log in</strong>
+            <strong><h3>Log in</h3></strong>
           </button>
-          <br>
         </form>
         <hr>
+        <br>
         {{> loginFb}}
         {{> signUp}}
-      </div>
-      <div class="col-lg-4"></div>
+        </div>
+      <div class="col-lg-3"></div>
     </div>
   </div>
+  <br>
+  <br>
 </template>
