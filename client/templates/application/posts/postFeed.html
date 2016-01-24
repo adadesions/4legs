@@ -21,13 +21,11 @@
         </a>
         <div class="content">
           <span class="right floated">
-            <i class="heart like icon icon-like {{isLiked _id}}" id="{{_id}}"></i>
-            {{likes.length}} likes
+            {{> likeBtn}}
           </span>
-          <i class="comment icon comment-icon"></i>
-          {{comments.length}} comments
+          {{> commentBtn}}
         </div>
-        <div class="extra content">
+        <div id="post-{{_id}}" class="extra content">
           <a href="/post/{{_id}}">
             <p class="font-20">
               {{limitLength info.postBody}}
@@ -37,7 +35,6 @@
             </p>
             <br>
           </a>
-
           {{#each comments}}
            {{> comment}}
           {{/each}}

@@ -42,7 +42,3 @@ Template.registerHelper('limitLength', function (msg) {
 Template.registerHelper('checkLen', function (msg) {
     return msg.charAt(75) ? true : false;
 })
-
-Template.registerHelper('isLiked', function (postId) {
-  return Posts.find({_id:postId, likes:Meteor.userId()}).count() > 0 ? 'red' : ''
-})

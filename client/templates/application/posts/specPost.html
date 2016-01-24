@@ -15,11 +15,9 @@
         </div>
         <div class="content">
           <span class="right floated">
-            <i class="heart like icon icon-like {{isLiked _id}}" id="{{_id}}"></i>
-            {{likes.length}} likes
+            {{> likeBtn}}
           </span>
-          <i class="comment icon comment-icon"></i>
-          {{comments.length}} comments
+            {{> commentBtn}}
         </div>
         <div class="extra content">
           <p class="font-20">

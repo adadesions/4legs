@@ -2,9 +2,10 @@ Template.postFeed.helpers({
   username : function () {
     return Meteor.user().username || Meteor.user().profile.name
   },
-  posts : function (userId) {
+  posts : function () {
     let type = Template.currentData() ? Template.currentData().type : false,
-        highlight = Template.currentData() ? Template.currentData().highlight : false
+        highlight = Template.currentData() ? Template.currentData().highlight : false,
+        userId = Template.currentData() ? Template.currentData().userId : false
 
     if(highlight) return Posts.find({highlight:true})
 
@@ -48,21 +49,11 @@ Template.postFeed.helpers({
     return highlight ? 'post-highlight' : ''
   },
   numOfCol: function () {
-    return Template.currentData() ? Template.currentData().col : 'one'
+    return Template.currentData().col ? Template.currentData().col : 'one'
   }
 })
 
 Template.postFeed.events({
-  'click .comment-icon' : function (e) {
-    console.log('ffff');
-      $(e.target).next('.comments').addClass('collapsed')
-  },
-
-  'click .icon-like' : function (e) {
-    var id = $(e.target).attr('id')
-    Meteor.call("clickLike", id)
-  },
-
   'click .icon-favorite' : function (e) {
     var id = $(e.target).attr('id')
     Meteor.call("saveFavorite", id, function (err) {
