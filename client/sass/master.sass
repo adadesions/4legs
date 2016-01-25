@@ -4,7 +4,7 @@
 body
   padding: 0
   margin: 0
-
+  height: 100vh
 a
   color: $gray
   &:hover
@@ -42,6 +42,15 @@ a
 
 .col-login
   padding-top: 2em
+  margin-left: 0
+  input
+    margin-left: auto
+    margin-right: auto
+    margin-bottom: 0.5em
+    width: 90%
+    height: 3em
+.col-login-admin
+  padding-top: 2em
   margin-left: 28em
   input
     margin-left: auto
@@ -67,9 +76,13 @@ a
   background-repeat: repeat-y
 .footer
   color: $gray
+  background-color: #fff
+  width: 100%
+  height: 2em
+  position: fixed
+  bottom: 0
   display: flex
-  justify-content: flex-start
-  align-items: flex-end
+  align-items: center
 .btn-myLogin
   margin-bottom: 1em
   background-color: $orange
