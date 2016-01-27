@@ -1,3 +1,16 @@
+Template.navigator.onCreated(function () {
+  let barkSound = new Audio('/sound/bark.wav'),
+      query = Notify.find({notifyTo:Meteor.userId(), read:false})
+  Tracker.autorun(function () {
+    query.observe({
+      added: function(newDoc){
+        barkSound.play()
+        console.log('Barkๆๆๆ');
+      }
+    })
+  })
+})
+
 Template.navigator.events({
   'click #navigator-logout' : function (e) {
     Meteor.logout(function(err){
