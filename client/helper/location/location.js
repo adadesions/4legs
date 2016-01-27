@@ -26,11 +26,11 @@ Template.location.onCreated(function() {
   var self = this,
       latLng= {}
   GoogleMaps.ready('4legsMap', function(map) {
-    var marker
-    var directionsDisplay = new google.maps.DirectionsRenderer
-    var directionsService = new google.maps.DirectionsService
+    var marker,
+        directionsDisplay = new google.maps.DirectionsRenderer,
+        directionsService = new google.maps.DirectionsService
 
-    directionsDisplay.setMap(map)
+    directionsDisplay.setMap(map.instance)
 
     self.autorun(function () {
       latLng = Geolocation.latLng()
@@ -94,9 +94,9 @@ Template.location.onCreated(function() {
         })
         google.maps.event.addListener(marker,'click',function (e) {
           let eLatLng = new google.maps.LatLng(document.lat,document.lng),
-              // eLatLng = e.latLng,
               infoWindow = new google.maps.InfoWindow({map: map.instance}),
               info = Markers.findOne({_id:marker.id})
+
           infoWindow.setPosition(eLatLng);
           Session.set('selectedLocationId',document._id)
           Session.set('locationContainer','locationSelected')
@@ -125,7 +125,24 @@ Template.location.onCreated(function() {
               Session.set('distance', distance)
             }
           })
+
+          directionsDisplay.setMap(null)
+          directionsDisplay.setMap(map.instance)
+
+          directionsService.route({
+            origin: origin,
+            destination: eLatLng,
+            travelMode: google.maps.TravelMode.DRIVING
+          }, function (res, status) {
+            if(status === google.maps.DirectionsStatus.OK){
+              directionsDisplay.setDirections(res)
+            }
+            else{
+              console.log('fail!');
+            }
+          })
         })
+
 
         markers[document._id] = marker
       },
