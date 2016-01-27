@@ -1,4 +1,6 @@
 const MAP_ZOOM = 10
+var markers = {}
+
 function getIcon(value) {
   let imgUrl = {
     'สถานพยาบาล': '/images/object/2-signup/clinic.png',
@@ -20,12 +22,15 @@ Template.location.onRendered(function () {
 
 Template.location.onCreated(function() {
   Session.set('locationContainer', 'locationList')
-
   //START GOOGLE MAPS SECION
   var self = this,
       latLng= {}
   GoogleMaps.ready('4legsMap', function(map) {
     var marker
+    var directionsDisplay = new google.maps.DirectionsRenderer
+    var directionsService = new google.maps.DirectionsService
+
+    directionsDisplay.setMap(map)
 
     self.autorun(function () {
       latLng = Geolocation.latLng()
@@ -38,27 +43,26 @@ Template.location.onCreated(function() {
             size: new google.maps.Size(36, 65),
             origin: new google.maps.Point(0, 0)
           }
+
           marker = new google.maps.Marker({
           position: new google.maps.LatLng(latLng.lat, latLng.lng),
           map: map.instance,
           icon: currentImg
         })
-        // var cityCircle = new google.maps.Circle({
-        //   strokeColor: '#FF0000',
-        //   strokeOpacity: 0.8,
-        //   strokeWeight: 2,
-        //   fillColor: '#FF0000',
-        //   fillOpacity: 0.35,
-        //   map: map.instance,
-        //   center: new google.maps.LatLng(latLng.lat, latLng.lng),
-        //   radius: 5000
-        // })
       }
       else marker.setPosition(latLng)
 
-
-      map.instance.setCenter(marker.getPosition());
-      map.instance.setZoom(MAP_ZOOM);
+      if(Session.get('centerLat')){
+        let centerLat = Session.get('centerLat'),
+            centerLng = Session.get('centerLng'),
+            newPosition = new google.maps.LatLng(centerLat,centerLng)
+        map.instance.setCenter(newPosition)
+        map.instance.setZoom(15)
+      }
+      else{
+        map.instance.setCenter(marker.position)
+        map.instance.setZoom(10)
+      }
     })
 
     google.maps.event.addListener(map.instance, 'click', function (e) {
@@ -72,7 +76,6 @@ Template.location.onCreated(function() {
       infoWindow.setContent('You are here');
     })
     //code here
-    var markers = {}
     Markers.find().observe({
       //ADDED MARKER
       added: function (document) {
@@ -90,11 +93,13 @@ Template.location.onCreated(function() {
           icon: openImg
         })
         google.maps.event.addListener(marker,'click',function (e) {
-          let eLatLng = e.latLng,
+          let eLatLng = new google.maps.LatLng(document.lat,document.lng),
+              // eLatLng = e.latLng,
               infoWindow = new google.maps.InfoWindow({map: map.instance}),
               info = Markers.findOne({_id:marker.id})
           infoWindow.setPosition(eLatLng);
-
+          Session.set('selectedLocationId',document._id)
+          Session.set('locationContainer','locationSelected')
 
           //Distance Services
           let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
@@ -111,14 +116,17 @@ Template.location.onCreated(function() {
             }, function(response, status) {
             if (status !== google.maps.DistanceMatrixStatus.OK) {
               alert('Error was: ' + status);
-            } else {
+            }
+            else {
               let originList = response.originAddresses,
                   destinationList = response.destinationAddresses,
                   distance = response.rows[0].elements[0].distance.text
               infoWindow.setContent(info.locationName+" "+distance);
+              Session.set('distance', distance)
             }
           })
         })
+
         markers[document._id] = marker
       },
       //CHANGEDs MARKER
@@ -151,7 +159,7 @@ Template.location.helpers({
         options: {
           mapTypeId: google.maps.MapTypeId.ROADMAP
         },
-        zoom: MAP_ZOOM
+        zoom: 10
       }
     }
     }
@@ -185,11 +193,21 @@ Template.theList.helpers({
 })
 Template.theList.events({
   'click .the-list-block': function (e) {
-    let id = $(e.target).attr('id')
-    if(!id)
-      id = $(e.target).closest('.the-list-block').attr('id')
+    let $ele = $(e.target),
+        id = $ele.attr('id'),
+        lat = $ele.data('lat'),
+        lng = $ele.data('lng')
+    // console.log('lat: '+lat+' lng: '+lng);
+    if(!id){
+      id = $ele.closest('.the-list-block').attr('id'),
+      lat = $ele.closest('.the-list-block').data('lat'),
+      lng = $ele.closest('.the-list-block').data('lng')
+    }
     Session.set('selectedLocationId',id)
     Session.set('locationContainer','locationSelected')
+    Session.set('centerLat', lat)
+    Session.set('centerLng', lng)
+    google.maps.event.trigger(markers[id], 'click')
   }
 })
 
@@ -205,6 +223,9 @@ Template.locationSelected.helpers({
   },
   locationServices: function (value) {
     return getIcon(value)
+  },
+  getDistance: function () {
+    return Session.get('distance')
   }
 })
 Template.locationSelected.events({

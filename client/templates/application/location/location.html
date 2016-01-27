@@ -39,7 +39,7 @@
 </template>
 
 <template name="theList">
-  <div id={{_id}} class="the-list-block">
+  <div id={{_id}} data-lat="{{lat}}" data-lng="{{lng}}" class="the-list-block">
     <h4>
       <img class="location-status" src="/images/object/5-location/open.png" alt="">
       {{locationName}}
@@ -61,27 +61,47 @@
 
 <template name="locationSelected">
    {{#with findLocation selectedLocationId}}
-     <div class="location-selected-header">
-       <img id="back" class="pull-left" src="/images/object/5-location/back.png" alt="">
-       <div id="location-name" class="text-center">
-         {{locationName}}
-         <img class="pull-right" src="/images/object/5-location/sign.png" alt="">
+     <div class="ui three column grid container">
+       <div class="ui left aligned column">
+         <img id="back" class="ui mini image back-margin" src="/images/object/5-location/back.png" alt="">
        </div>
-       <p class="text-center">{{businessTypes}}</p>
-       <div class="text-center">
-         {{#each animalTypes}}
-           <img class="service-iconic" src="{{locationServices this}}" alt="">
-         {{/each}}
+       <div class="ui center aligned column">
+         <div class="locaiton-name-margin">
+           <h3 class="ui header">
+             {{locationName}}
+             <div class="sub header">
+              {{businessTypes}}
+             </div>
+           </h3>
+         </div>
        </div>
-       <div class="location-orders">
-         <div id="locationDetail" class="topics-menu-box text-center col-lg-3
-         {{isBoxActive container='subSelectedLocationContainer' location='locationDetail'}}">รายละเอียด</div>
-         <div id="locationAnnouncement" class="topics-menu-box text-center col-lg-6
-         {{isBoxActive container='subSelectedLocationContainer' location='locationAnnouncement'}}">ประกาศ,โปรโมชั่น</div>
-         <div id="locationComment" class="topics-menu-box text-center col-lg-3
-         {{isBoxActive container='subSelectedLocationContainer' location='locationComment'}}">ความคิดเห็น</div>
+       <div class="ui column">
+         <div class="direct-margin">
+           <img class="ui mini right floated image" src="/images/object/5-location/sign.png" alt="">
+          <br>
+           <h3 class="ui right aligned sub header">
+             {{getDistance}}
+           </h3>
+         </div>
        </div>
+    </div>
+
+     <div class="ui center aligned container">
+         <div class="ui mini centered images">
+          {{#each animalTypes}}
+             <img class="ui image" src="{{locationServices this}}" alt="">
+          {{/each}}
+         </div>
      </div>
+     <div class="location-orders">
+       <div id="locationDetail" class="topics-menu-box text-center col-lg-3
+       {{isBoxActive container='subSelectedLocationContainer' location='locationDetail'}}">รายละเอียด</div>
+       <div id="locationAnnouncement" class="topics-menu-box text-center col-lg-6
+       {{isBoxActive container='subSelectedLocationContainer' location='locationAnnouncement'}}">ประกาศ,โปรโมชั่น</div>
+       <div id="locationComment" class="topics-menu-box text-center col-lg-3
+       {{isBoxActive container='subSelectedLocationContainer' location='locationComment'}}">ความคิดเห็น</div>
+     </div>
+     <br>
      <div class="location-selected-body">
        {{> Template.dynamic template=subSelectedLocationContainer}}
      </div>
@@ -102,10 +122,11 @@
     <span class="{{isOpen day='ศ' data=daysWeek}}">ศ</span>
     <span class="{{isOpen day='ส' data=daysWeek}}">ส</span>
   </div>
+  <br>
   <div class="selected-duration">
     <i class="fa fa-clock-o fa-lg"></i>
     {{openTime}} - {{closeTime}}
-    <br>
+    <br><br>
     <i class="fa fa-commenting-o fa-lg"></i>
     <span>วันหยุดและวันทำการพิเศษจะแสดงที่หัวข้อประกาศ</span>
   </div>
