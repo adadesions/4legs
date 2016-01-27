@@ -61,13 +61,13 @@
 
 <template name="locationSelected">
    {{#with findLocation selectedLocationId}}
-     <div class="ui three column grid container">
-       <div class="ui left aligned column">
-         <img id="back" class="ui mini image back-margin" src="/images/object/5-location/back.png" alt="">
+     <div class="ui center three column head-selected-location">
+       <div class="ui aligned column">
+         <img id="back" class="ui mini image" src="/images/object/5-location/back.png" alt="">
        </div>
-       <div class="ui center aligned column">
+       <div class="ui aligned column">
          <div class="locaiton-name-margin">
-           <h3 class="ui header">
+           <h3 class="ui header text-center">
              {{locationName}}
              <div class="sub header">
               {{businessTypes}}
@@ -76,13 +76,11 @@
          </div>
        </div>
        <div class="ui column">
-         <div class="direct-margin">
            <img class="ui mini right floated image" src="/images/object/5-location/sign.png" alt="">
           <br>
            <h3 class="ui right aligned sub header">
              {{getDistance}}
            </h3>
-         </div>
        </div>
     </div>
 

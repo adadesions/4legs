@@ -30,7 +30,10 @@
           <form clsss="form-horizontal" action="">
             <div class="vet-block">
               คุณเป็นสัตวแพทย์ใช่หรือไม่?&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" value="vet" name="vet" id="vet">
+              <label>
+                <input class="img-check" type="checkbox" value="vet" name="vet" id="vet">
+                <img src="/images/icon/check.png"/>
+              </label>  
                 <span class="my-color-brown">&nbsp;&nbsp;ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
                 {{#if isVet}}
                   <br><br>
