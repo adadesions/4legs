@@ -119,7 +119,7 @@ Template.register.events({
                }
                else{
                  img.classList.add('preview-img-gtheight-profile')
-                 $('.upload-group-profile').css({"margin-top":"4em","position":"absolute"})
+                 $('.upload-group-profile').css({"margin-top":"1em","position":"absolute"})
                }
            };
       img.classList.add('preview-img')

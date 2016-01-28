@@ -18,4 +18,4 @@ Template.login.events({
     e.keyCode === 13 ? $('.btn-myLogin').trigger('click') : ''
   }
 
-})
+}) 
