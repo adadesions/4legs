@@ -20,10 +20,12 @@
           </div>
         </a>
         <div class="content">
-          <span class="right floated">
+          <span class="left floated">
             {{> likeBtn}}
+            {{> commentBtn}}
+            {{> favoriteBtn}}
+            {{> shareBtn}}
           </span>
-          {{> commentBtn}}
         </div>
         <div id="post-{{_id}}" class="extra content">
           <a href="/post/{{_id}}">

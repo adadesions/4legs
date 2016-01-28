@@ -1,6 +1,4 @@
-<template name="commentBtn">
-  <div id="{{_id}}" class="comment-icon">
-    <i class="comment icon"></i>
-    {{comments.length}} comments
-  </div>
+<template name="commentBtn">  
+  <img id="{{_id}}" class="ui image social-icon icon-like" src="{{isComment _id}}" alt="" />
+  {{comments.length}} comments
 </template>
