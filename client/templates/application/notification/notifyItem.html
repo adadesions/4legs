@@ -1,7 +1,7 @@
 <template name="notifyItem">
   <a href="{{pathFor 'specPost' id=postId}}">
     <div id="{{_id}}" class="row notify-item {{isRead read}}">
-        <div class="col-lg-1 text-center notify-body withOutPadding">
+        <div class="col-lg-1 notify-body withOutPadding">
           <img  class="notify-profile img-circle" src="{{profilePicture notifyFrom}}" alt="">
         </div>
         <div id="{{_id}}" class="col-lg-11 notify-body withOutPadding">

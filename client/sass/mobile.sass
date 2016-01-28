@@ -85,20 +85,12 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     .btn-success
       width: 80%
       margin-left: 1.5em
-  .profile-picture
-    margin-left: 3.5em
   .topics-menu-box
     margin-top: 0.5em
   .menu-item-mobile
     width: 4.5em
     .active
       background-color: #F8A02E
-  .navbar-right
-    li
-      a
-        &:focus
-          color: #fff
-          background-color: #F8A02E
   .catagory
     display: flex
     flex-direction: row
@@ -163,14 +155,13 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     display: flex
     flex-direction: column
   .adminAds-card-create
-    margin-top: 3.5em
-    margin-left: 0.4em
+    margin-top: 1em
+    margin-left: 2.5em
     height: 8em
     img
       margin-top: 0
   .ads-card
-    margin-left: 0.4em
-    img
+    margin-left: 2.5em
   .btn-myLogin
     width: 100%
   #facebook-login
@@ -186,7 +177,14 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     margin-right: 5.5em
   .navbar-right
     display: flex
-    justify-content: flex-end
+    justify-content: space-around
+    .active
+      height: 5.7em
+    li
+      a
+        &:focus
+          color: #fff
+          background-color: #F8A02E
   .profile-picture-large
     margin-left: 3em
   .col-login
@@ -244,6 +242,73 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     justify-content:space-between
     padding-left: 1em
     padding-right: 1em
+  .text-nav
+    margin-left: -1em
+  .location-button
+    display: flex
+    justify-content: center
+    flex-flow: row-reverse
+  .sos-form
+    display: flex
+    flex-flow: column
+    justify-content: center
+  .img-sos
+    display: flex
+    justify-content: center
+  .notify-item
+    display: flex
+    flex-flow: row
+  .notify-body
+    margin-right: 1em
+    span
+      font-size: 18px
+  .profile-left-panel
+    background-color: #FFF3E0
+    height: 60vh
+  .edit-profile-picture
+    padding-left: 1em
+    margin-top: -6em
+  .edit-profile
+    button
+      width: 100%
+  .profile-picture-large
+    width: 10em
+    height: 10em
+  .badges
+    margin-top: -5em
+  .badge-item
+    display: flex
+    flex-flow: column-reverse
+    .badge-img
+      width: auto
+      height: 3em
+    span
+      margin-left: auto
+      margin-right: auto
+  #dog
+    span
+      margin-left: auto
+      margin-right: auto
+  #bird
+    span
+      margin-left: auto
+      margin-right: auto
+  .img-badge-group
+    display: flex
+    flex-flow: row
+  .logo-login
+    margin-left: 3.5em
+    margin-top: 1em
+  .admin-head-text
+    margin-left: -1em
+    margin-top: 1em
+  .adminVet-body
+    margin-top: -5em
+  .adminNews
+    .admin-head-text
+      margin-left: -2em
+      margin-top: 1em
+
 @media #{$tablet}
   .loginForm
     width: 70%
@@ -323,6 +388,11 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     top: 13em
   .catagory-item
     margin-left: 1em
-  .navbar-right
-    .active
-      height: 5.7em
+  .profile-left-panel
+    background-color: #FFF3E0
+    height: 50vh
+  .edit-profile-picture
+    padding-left: 1em
+  .profile-picture-large
+    width: 20em
+    height: 20em
