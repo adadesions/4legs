@@ -32,13 +32,6 @@
             </div>
           </span>
           <hr>
-          <span>
-            <div class="justify-item">
-              {{> commentBtn}}
-            </div>
-          </span>
-        </div>
-        <div id="post-{{_id}}" class="extra content">
           <a href="/post/{{_id}}">
             <p class="font-20">
               {{limitLength info.postBody}}
@@ -48,6 +41,13 @@
             </p>
             <br>
           </a>
+          <span>
+            <div class="justify-item">
+              {{> commentBtn}}
+            </div>
+          </span>
+        </div>
+        <div id="post-{{_id}}" class="extra content">
           {{#each comments}}
            {{> comment}}
           {{/each}}

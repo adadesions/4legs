@@ -65,7 +65,7 @@
             <li><a href="#">Favorite places</a></li>
             <li><a href="{{pathFor 'FavoriteTopics'}}">Favorite topics</a></li>
             <li><a href="#">Add Follow</a></li>
-            <li><a href="#">Feedback</a></li>
+            <li><a href="{{pathFor 'feedback'}}">Feedback</a></li>
             {{#if currentUser.profile.privileged}}
               <li><a href="{{pathFor 'admin'}}">Admin Site</a></li>
             {{/if}}
