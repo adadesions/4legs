@@ -4,8 +4,7 @@ Template.navigator.onCreated(function () {
   Tracker.autorun(function () {
     query.observe({
       added: function(newDoc){
-        barkSound.play()
-        console.log('Barkๆๆๆ');
+        barkSound.play()        
       }
     })
   })

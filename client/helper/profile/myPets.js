@@ -21,9 +21,8 @@ Template.showMyPets.helpers({
   isNoPets : function (myId) {
     return Pets.find({'info.petOwner':myId}).count() === 0 ? true : false
   },
-  localCheckAuthority : function () {
-    let id = $('[name=profile-id]:hidden').val()
-    return Meteor.userId() === id ? true : false
+  localCheckAuthority : function (userId) {    
+    return Meteor.userId() === userId ? true : false
   }
 })
 
