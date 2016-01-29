@@ -33,7 +33,7 @@
               <label>
                 <input class="img-check" type="checkbox" value="vet" name="vet" id="vet">
                 <img src="/images/icon/check.png"/>
-              </label>  
+              </label>
                 <span class="my-color-brown">&nbsp;&nbsp;ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
                 {{#if isVet}}
                   <br><br>
@@ -104,7 +104,9 @@
               {{#each topics}}
               <div class="form-group col-lg-4">
                 <label class="checkbox-inline">
-                  <input type="checkbox" id="inlineCheckbox1" name="topics" value="{{this}}"> {{this}}
+                  <input type="checkbox" id="inlineCheckbox1" name="topics" value="{{value}}">
+                  <img class="ui middle aligned mini image" src="{{imgUrl}}" alt="" />
+                  <span>{{value}}</span>
                 </label>
               </div>
               {{/each}}
