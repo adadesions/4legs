@@ -1,0 +1,51 @@
+<template name="editPet">
+  <div class="col-lg-4 pet-profile">
+    <div class="col-lg-6 upload-picture">
+      <div class="col-lg-4 text-bottom upload-group">
+        <input type="file" name="upload" id="file" class="upload-img">
+        <label for="file" class="my-color-brown label-upload text-center">
+        </label>
+      </div>
+      <div class="add-more-pic col-lg-6 text-center">
+        <i class="fa fa-plus fa-5x"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 pet-info">
+    <form >
+      <b>Name </b>
+      <input class="form-control pet-form" type="text" name="petName">
+      <b>Type </b>
+      <br>
+        {{#each topics}}
+        <div class='radio-inline'>
+          <label>
+            <input type='radio' name='petType' value='{{this}}'>
+            {{this}}
+          </label>
+        </div>
+        {{/each}}
+      <br>
+      <b>Species </b>
+      <input class="form-control pet-form" type="text" name="petSpecies">
+      <b>Gender </b>
+      <div class='radio'>
+        <label>
+          <input type='radio' name='petGender' value='Male' checked>
+          Male
+        </label>
+      </div>
+      <div class='radio'>
+        <label>
+          <input type='radio' name='petGender' value='Female'>
+          Female
+        </label>
+      </div>
+      <b>Birthday </b>
+      <input class="form-control pet-form" type="text" name="petBirthday">
+      <b>Details </b>
+      <textarea class="form-control pet-form" type="text" name="petDetails"></textarea>
+    </form>
+    <button class="btn btn-success pet-btn my-btn-update">Update</button>
+  </div>
+</template>
