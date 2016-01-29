@@ -20,11 +20,22 @@
           </div>
         </a>
         <div class="content">
-          <span class="left floated">
-            {{> likeBtn}}
-            {{> commentBtn}}
-            {{> favoriteBtn}}
-            {{> shareBtn}}
+          <span class="left justify-icon">
+            <div class="justify-item">
+              {{> likeBtn}}
+            </div>
+            <div class="justify-item">
+              {{> favoriteBtn}}
+            </div>
+            <div class="justify-item">
+              {{> shareBtn}}
+            </div>
+          </span>
+          <hr>
+          <span>
+            <div class="justify-item">
+              {{> commentBtn}}
+            </div>
           </span>
         </div>
         <div id="post-{{_id}}" class="extra content">
