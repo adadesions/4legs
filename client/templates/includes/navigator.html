@@ -62,10 +62,10 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li><a href="{{pathFor 'profile' id=currentUser._id}}">Profile</a></li>
-            <li><a href="{{pathFor 'favoritePlace'}}">Favorite places</a></li>
-            <li><a href="{{pathFor 'FavoriteTopics'}}">Favorite topics</a></li>
-            <li><a href="{{pathFor 'addFollow'}}">Add Follow</a></li>
-            <li><a href="{{pathFor 'feedback'}}">Feedback</a></li>
+            <li><a href="{{pathFor 'favoritePlace' id=currentUser._id}}">Favorite places</a></li>
+            <li><a href="{{pathFor 'FavoriteTopics' id=currentUser._id}}">Favorite topics</a></li>
+            <li><a href="{{pathFor 'addFollow' id=currentUser._id}}">Add Follow</a></li>
+            <li><a href="{{pathFor 'feedback' id=currentUser._id}}">Feedback</a></li>
             {{#if currentUser.profile.privileged}}
               <li><a href="{{pathFor 'admin'}}">Admin Site</a></li>
             {{/if}}
