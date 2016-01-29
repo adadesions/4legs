@@ -22,8 +22,13 @@ Template.favoriteBtn.helpers({
   }
 })
 
+UI.registerHelper('shareOnFacebookLink', function() {
+  return 'https://www.facebook.com/sharer/sharer.php?&u=' + 'https://developers.facebook.com/docs/plugins/';
+});
+
 Template.shareBtn.helpers({
   isShare: function (postId) {
     return Posts.find({_id:postId, shares:Meteor.userId()}).count() > 0 ? '/images/icon/share-icon.png' : '/images/icon/share-icon-w.png'
-  }
+  },
+
 })
