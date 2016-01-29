@@ -1,15 +1,43 @@
-var topicData = [
-  'สุนัข',
-  'แมว',
-  'pocket pet',
-  'นก',
-  'สัตว์เลื้อยคลาน',
-  'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ',
-  'สถานพยาบาล',
-  'บริการสัตว์เลี้ยง',
-  'ร้านค้า',
+let topicsData = [
+  {
+    value: 'สุนัข',
+    imgUrl: '/images/object/2-signup/dog.png'
+  },
+  {
+    value: 'แมว',
+    imgUrl: '/images/object/2-signup/cat.png'
+  },
+  {
+    value: 'pocket pet',
+    imgUrl: '/images/object/2-signup/petpocket.png'
+  },
+  {
+    value: 'นก',
+    imgUrl: '/images/object/2-signup/bird.png'
+  },
+  {
+    value: 'สัตว์เลื้อยคลาน',
+    imgUrl: '/images/object/2-signup/turtle.png'
+  },
+  {
+    value: 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ',
+    imgUrl: '/images/object/2-signup/fish.png'
+  },
+  {
+    value: 'สถานพยาบาล',
+    imgUrl: '/images/object/2-signup/clinic.png'
+  },
+  {
+    value: 'บริการสัตว์เลี้ยง',
+    imgUrl: '/images/object/2-signup/grooming.png'
+  },
+  {
+    value: 'ร้านค้า',
+    imgUrl: '/images/object/2-signup/shop-03.png'
+  },
 ]
 var profileImg = {}
+
 
 Meteor.setInterval(function () {
     //Change confrim button state
@@ -36,7 +64,7 @@ Template.register.rendered=function() {
 }
 
 Template.register.helpers({
-  topics : topicData,
+  topics : topicsData,
   isVet : function(){
     return Session.get('isVet')
   }

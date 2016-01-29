@@ -23,8 +23,8 @@
         <br>
         <b>Details </b>:<span class="my-color-brown"> {{info.detail}}</span>
         <br>
-        {{#if localCheckAuthority}}
-          <button class="btn pet-btn my-btn-edit">Edit</button>
+        {{#if localCheckAuthority info.petOwner}}
+          <button id="{{this._id}}" class="btn pet-btn my-btn-edit">Edit</button>
           <button class="btn pet-btn btn-danger my-btn-delete">Delete</button>
         {{/if}}
       </div>

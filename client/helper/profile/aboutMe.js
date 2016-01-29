@@ -31,9 +31,16 @@ Template.aboutMe.helpers({
   }
 })
 Template.aboutMe.events({
-  'click .my-btn-edit' : function (e) {Session.set('aboutMeContainer','editProfile')}
+  'click .my-btn-edit' : function (e) {Session.set('aboutMeContainer','editProfile')},
+  'mouseenter .badge-img': function (e) {
+    console.log("Enter");
+  }
 })
 
+Template.aboutMe.onRendered(function () {
+  $('.head-badge-popup').popup()
+  $('.badge-medal').popup()
+})
 /////////editProfile////////////
 Template.editProfile.rendered=function() {
     $('#birthday').datepicker();
