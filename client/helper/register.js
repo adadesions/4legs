@@ -169,3 +169,17 @@ Template.register.events({
     else birthday.removeClass('input-success').addClass('input-error')
   },
 })
+
+//EditPofile VET
+Template.editProfile.events({
+  'click #vet': function () {
+    if(Session.get('isVet')) Session.set('isVet', false)
+    else Session.set('isVet', true)
+  }
+})
+
+Template.editProfile.helpers({
+  'isVet': function () {
+    return Session.get('isVet')
+  }
+})
