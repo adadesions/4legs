@@ -32,7 +32,7 @@ Template.navigator.events({
 Template.navigator.helpers({
   isActive : function (myLocation) {
     if(myLocation === 'more'){
-      let pathSet = ['profile','favoritePlaces','favoriteTopics', 'addFollow', 'feedback'],
+      let pathSet = ['profile','favoritePlace','FavoriteTopics', 'addFollow', 'feedback'],
           has = _.contains(pathSet, Router.current().route.getName())
       if(has) return 'active'
     }

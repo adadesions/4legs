@@ -1,0 +1,27 @@
+<template name="favoritePlace">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 left-favPlace">
+        <div class="row">
+          <div class="fav-place-header">
+              <h2 class="text-center">Follow new people</h2>
+              <img class="center" src="/images/object/3-news feed/feet-left.png">
+              <input id="fav-place-search" type="text" class="form-control" placeholder=" ค้นหา">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name='now-open'>
+                  ดูเฉพาะสถานที่ที่กำลังให้บริการ
+                </label>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          sfdhg
+        </div>
+      </div>
+      <div class="col-lg-8">
+        {{> googleMap name="exampleMap" options=exampleMapOptions}}
+      </div>
+    </div>
+  </div>
+</template>

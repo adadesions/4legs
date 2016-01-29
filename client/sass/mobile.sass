@@ -175,6 +175,9 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     width: 100%
   .inMobile
     margin-right: 5.5em
+  .container-fluid
+    .navbar-header
+      margin-right: 0
   .navbar-right
     display: flex
     justify-content: space-around
@@ -325,6 +328,37 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
       height: 1.5em
   .ads-card
     margin-left: 0.5em
+  .addfollow-header
+    display: flex
+    flex-flow: column
+    height: 6em
+    input
+      width: 70%
+      margin-left: auto
+      margin-right: auto
+      margin-bottom: 0.6em
+  .addfollow-group-left-text
+    height: 3em
+    display: flex
+    align-items: center
+    h3
+      margin-top: -0.2em
+      margin-left: 0.5em
+  .addfollow-group-right-text
+    height: 3em
+    display: flex
+    align-items: center
+    h3
+      margin-top: -0.2em
+      margin-left: 0.5em
+  .addfollow-button
+    height: 3em
+  .feedback-textarea
+    width: 24em
+    textarea
+      display: flex
+      justify-content: center
+      height: 5em
 @media #{$tablet}
   .loginForm
     width: 70%
