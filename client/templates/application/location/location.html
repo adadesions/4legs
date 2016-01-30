@@ -41,7 +41,7 @@
 <template name="theList">
   <div id={{_id}} data-lat="{{lat}}" data-lng="{{lng}}" class="the-list-block">
     <h4>
-      <img class="location-status" src="/images/object/5-location/open.png" alt="">
+      <img class="location-status" src="{{isOpen _id}}" alt="">
       {{locationName}}
       <i class="fa fa-chevron-right fa-lg pull-right"></i>
     </h4>

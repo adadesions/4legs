@@ -1,5 +1,6 @@
 const MAP_ZOOM = 10
-let markers = {}
+let markers = {},
+    availableList = []
 
 function getIcon(value) {
   let imgUrl = {
@@ -18,6 +19,7 @@ function getIcon(value) {
 
 Template.location.onRendered(function () {
   GoogleMaps.load()
+  Session.set('nowOpen', false)
 })
 
 Template.location.onCreated(function() {
@@ -79,8 +81,10 @@ Template.location.onCreated(function() {
     Markers.find().observe({
       //ADDED MARKER
       added: function (document) {
+        let inList = availableList.map( x => x._id === document._id)
+        let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
         let openImg = {
-          url: '/images/object/5-location/open-marker.png',
+          url: imgStatus,
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0)
         }
@@ -149,13 +153,6 @@ Template.location.onCreated(function() {
 
         markers[document._id] = marker
       },
-      //CHANGEDs MARKER
-      // changed: function (newDocument,oldDocument) {
-      //   markers[oldDocument._id].setPosition({
-      //     lat: parseInt(newDocument.lat,10),
-      //     lng: parseInt(newDocument.lng,10)
-      //   })
-      // },
       //REMOVED MARKER
       removed: function (oldDocument) {
         console.log('right');
@@ -200,7 +197,42 @@ Template.location.events({
 //locationList
 Template.locationList.helpers({
   allLocation: function () {
-    return Markers.find()
+    let onlyOpen = Session.get('nowOpen')
+    let placeList = Markers.find({},{sort: {locationName: 1}}).fetch()
+    placeList = placeList.map(x => {
+      let cTime = moment().format("h:mm A"),
+          open = x.openTime,
+          close = x.closeTime,
+          aTime = [open,close,cTime]
+      aTime = aTime.map(t => {
+        if(t.indexOf('AM') > -1){
+          t = t.replace(':','.')
+          t = t.replace('AM','')
+        }
+        else if(t.indexOf('PM') > -1){
+          t = t.replace(':','.')
+          t = t.replace('PM','')
+          t = Number(t)+12
+        }
+        return Number(t)
+      })
+
+      if(aTime[2]>aTime[0] && aTime[2]<aTime[1]) return x
+      else if(aTime[0] == (aTime[1]-12).toFixed(2)) return x
+    })
+    availableList = _.reject(placeList, x => x === undefined)
+
+    if(onlyOpen){
+      return availableList
+    }
+    else
+      return Markers.find({},{sort: {locationName: 1}})
+  }
+})
+Template.locationList.events({
+  'click [name=now-open]': function (e) {
+    let state = $('[name=now-open]:checked').length > 0 ? true : false
+    Session.set('nowOpen', state)
   }
 })
 
@@ -209,6 +241,11 @@ Template.locationList.helpers({
 Template.theList.helpers({
   locationServices: function (value) {
     return getIcon(value)
+  },
+  isOpen: function (locationId) {
+    let aPlace = Markers.findOne({_id:locationId})
+    let inList = availableList.map( x => x._id === aPlace._id)
+    return _.contains(inList, true) ? '/images/object/5-location/open.png' : '/images/object/5-location/close.png'
   }
 })
 Template.theList.events({
