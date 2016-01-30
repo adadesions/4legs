@@ -2,6 +2,10 @@ let markers = {}
 
 Template.favoritePlace.onRendered(function () {
   GoogleMaps.load()
+  $('.ui.rating').rating({
+    initialRating: 2,
+    maxRating: 4
+  })
 })
 
 Template.favoritePlace.onCreated(function() {
@@ -19,7 +23,7 @@ Template.favoritePlace.onCreated(function() {
       }
       else{
         map.instance.setCenter(new google.maps.LatLng(13.756331, 100.501765))
-        map.instance.setZoom(10)
+        map.instance.setZoom(6)
       }
     })
 
@@ -40,9 +44,13 @@ Template.favoritePlace.onCreated(function() {
           icon: openImg
         })
         google.maps.event.addListener(marker,'click',function (e) {
-          let eLatLng = new google.maps.LatLng(document.lat,document.lng),
-              infoWindow = new google.maps.InfoWindow({map: map.instance}),
-              info = Markers.findOne({_id:marker.id})
+          let info = Markers.findOne({_id:marker.id}),
+              contentForInfo = '<div class="ui card"><div class="image"><img src="'+Images.findOne({_id:info.photos._id}).url()+'"></div><div class="extra ui center aligned container"><h3 class="ui header">'+info.locationName+'</h3></div>',
+              eLatLng = new google.maps.LatLng(document.lat,document.lng),
+              infoWindow = new google.maps.InfoWindow({
+                map: map.instance,
+                content: contentForInfo
+              })
 
           infoWindow.setPosition(eLatLng);
           Session.set('selectedLocationId',document._id)

@@ -93,9 +93,13 @@ Template.location.onCreated(function() {
           icon: openImg
         })
         google.maps.event.addListener(marker,'click',function (e) {
-          let eLatLng = new google.maps.LatLng(document.lat,document.lng),
-              infoWindow = new google.maps.InfoWindow({map: map.instance}),
-              info = Markers.findOne({_id:marker.id})
+          let info = Markers.findOne({_id:marker.id}),
+              contentForInfo = '<br><div class="ui card"><div class="image"><img src="'+Images.findOne({_id:info.photos._id}).url()+'"></div><div class="extra ui center aligned container"><h3 class="ui header">'+info.locationName+'</h3></div>',
+              eLatLng = new google.maps.LatLng(document.lat,document.lng),
+              infoWindow = new google.maps.InfoWindow({
+                map: map.instance,
+                content: contentForInfo
+              })
 
           infoWindow.setPosition(eLatLng);
           Session.set('selectedLocationId',document._id)
@@ -121,7 +125,6 @@ Template.location.onCreated(function() {
               let originList = response.originAddresses,
                   destinationList = response.destinationAddresses,
                   distance = response.rows[0].elements[0].distance.text
-              infoWindow.setContent(info.locationName+" "+distance);
               Session.set('distance', distance)
             }
           })
