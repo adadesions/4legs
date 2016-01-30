@@ -35,3 +35,4 @@ const petImgs = {
     activeUrl: '/images/object/6-topics/other-color.png'
   },
 }
+var availableList = []

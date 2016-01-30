@@ -30,8 +30,10 @@ Template.favoritePlace.onCreated(function() {
     Markers.find({asFavorite: Meteor.userId()}).observe({
       //ADDED MARKER
       added: function (document) {
+        let inList = availableList.map( x => x._id === document._id)
+        let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
         let openImg = {
-          url: '/images/object/5-location/open-marker.png',
+          url: imgStatus,
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0)
         }

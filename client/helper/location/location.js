@@ -1,6 +1,5 @@
 const MAP_ZOOM = 10
-let markers = {},
-    availableList = []
+let markers = {}  
 
 function getIcon(value) {
   let imgUrl = {
