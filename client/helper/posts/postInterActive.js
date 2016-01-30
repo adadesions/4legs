@@ -22,9 +22,6 @@ Template.favoriteBtn.helpers({
   }
 })
 
-UI.registerHelper('shareOnFacebookLink', function() {
-  return 'https://www.facebook.com/sharer/sharer.php?&u=' + 'https://developers.facebook.com/docs/plugins/';
-});
 
 Template.shareBtn.helpers({
   isShare: function (postId) {
@@ -32,3 +29,20 @@ Template.shareBtn.helpers({
   },
 
 })
+Template.shareBtn.events({
+  'click .share-to-timeline': function (e) {
+    let postId = $(e.target).attr('id')
+    Posts.update({_id:postId}, {$addToSet: {
+        shares: {
+          sharedBy: Meteor.userId(),
+          sharedAt: new Date()
+        }
+      }
+    })
+  }
+})
+
+//FB Share
+UI.registerHelper('shareOnFacebookLink', function() {
+  return 'https://www.facebook.com/sharer/sharer.php?&u=' + 'https://developers.facebook.com/docs/plugins/';
+});

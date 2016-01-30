@@ -21,9 +21,8 @@ Template.postFeed.helpers({
     }
 
     if(userId) { //For Profile
-      var byUserId = Posts.find({'info.postOwner': userId}, {sort: {'info.createdAt': -1}})
-      // console.log(byUserId.fetch());
-      return byUserId.count() > 0 ? byUserId : Posts.find({_id:userId})
+      var byUserId = Posts.find({ $or: [{'info.postOwner': userId}, {'shares.sharedBy': Meteor.userId()}] }, {sort: {'info.createdAt': -1}}).fetch()
+      return byUserId.length > 0 ? byUserId : Posts.find({_id:userId})
     }
     else
       return Posts.find({catagory : 'newsfeed', highlight:false}, {sort: {'info.createdAt': -1}})
