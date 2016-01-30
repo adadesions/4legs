@@ -19,13 +19,17 @@
             <div class="ui two column doubling grid container group-addfollow">
               <div class="column item-addfollow">
                 <div class="ui left aligned container">
-                  <img class="ui middle aligned tiny circular image" src="{{findPicture profile.image._id}}">
-                  <span>{{username}}</span>
+                  <a href="{{pathFor 'profile' id=_id}}">
+                    <img class="ui middle aligned mini avatar image" src="{{findPicture profile.image._id}}">
+                    <span>{{username}}</span>
+                  </a>
                 </div>
               </div>
               <div class="column item-addfollow">
                 <div class="ui right aligned">
-                  <button class="ui green button">Follow</button>
+                  <a href="{{pathFor 'profile' id=_id}}">
+                    <button class="ui green right floated button">See profile</button>
+                  </a>
                 </div>
               </div>
             </div>
