@@ -161,23 +161,6 @@
 <!-- Follower section -->
 <div class="row follow follower">
   <h4>Followers ({{profile.followers.length}})</h4>
-  <!-- <div class="follow-block col-lg-12">
-    <table class="table">
-      <tr>
-        {{#each showAllFollowers _id}}
-        <td class="col-lg-4">
-            <a href="{{pathFor 'profile' id=_id}}">
-              <img src="{{profilePicture _id}}" class="img-circle follow-picture" alt="">
-            <span class="my-color-brown follow-text"><b>{{this.username}}</b></span>
-            </a>
-            <i id={{_id}} class="fa fa-minus-circle fa-lg unfollow-btn pull-right"></i>
-        </td>
-        {{/each}}
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
-  </div> -->
   <div class="ui three stackable cards card-following">
     {{#each showAllFollowers _id}}
       <div class="card">
