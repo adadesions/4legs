@@ -23,8 +23,8 @@ Template.favoriteBtn.helpers({
 })
 
 Template.checkinBtn.helpers({
-  isCheckin: function(postId){
-      return Posts.find({_id:postId, checkins:Meteor.userId()}).count() > 0 ? '/images/menu-icon/location.png' : '/images/menu-icon/location-w.png'
+  isCheckin: function(markerId){
+      return Markers.find({_id:markerId, checksin:Meteor.userId()}).count() > 0 ? '/images/object/5-location/checkin.png' : '/images/object/5-location/checkin-gray.png'
   }
 })
 
