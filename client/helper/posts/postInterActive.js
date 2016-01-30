@@ -22,6 +22,12 @@ Template.favoriteBtn.helpers({
   }
 })
 
+Template.checkinBtn.helpers({
+  isCheckin: function(postId){
+      return Posts.find({_id:postId, checkins:Meteor.userId()}).count() > 0 ? '/images/menu-icon/location.png' : '/images/menu-icon/location-w.png'
+  }
+})
+
 
 Template.shareBtn.helpers({
   isShare: function (postId) {
