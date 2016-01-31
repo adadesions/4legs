@@ -1,4 +1,4 @@
-  <template name="postBlock">
+<template name="textEditer">
   <br>
   <div class="post-block-card">
     <div class="ui card centered">
@@ -18,7 +18,7 @@
         </div>
         <br>
         <div class="description">
-          <textarea name="newStatus" id="newStatus" placeholder="แบ่งปันเรื่องราวของคุณ..."></textarea>
+          {{> editableText collection="posts" field="author"}}
         </div>
         <br>
         <div class="ui center aligned container">

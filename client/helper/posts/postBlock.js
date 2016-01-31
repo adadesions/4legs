@@ -1,5 +1,4 @@
 var newPost = {comments : [], likes : [], shares : [], favorites : [], catagory : []}
-
 Template.postBlock.onRendered(function () {
   $('textarea').elastic()
 })
@@ -77,7 +76,7 @@ Template.postBlock.events({
    },
    'click .preview-img' : function (e) {
      $('[name=upload]').click()
-   }
+   },
 })
 
 Template.postBlock.helpers({

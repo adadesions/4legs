@@ -62,12 +62,27 @@ Template.adminNews.onRendered(function () {
   //Session Set
   Session.set('adminPetType', 'dog')
   Session.set('adminNewsContainer','about-pet')
+
 })
 
 Template.adminNews.helpers({
   adminNewsContainer: function () {return Session.get('adminNewsContainer')},
   petImgs: function () {return _.toArray(petImgs)}
 })
+
+Template.textEditer.helpers({
+  optionsHelper : function() {
+    return {
+      collection: "posts",
+      field: "title",
+      removeEmpty: true,
+      acceptEmpty: true,
+      placeholder: "Post title",
+      substitute: '<i class="fa fa-pencil"></i>'
+    }
+  }
+})
+
 Template.adminNews.events({
   'click .admin-catagory-item': function (e) {
     let $target = $(e.target)
