@@ -17,8 +17,8 @@ Template.commentBtn.helpers({
 })
 
 Template.favoriteBtn.helpers({
-  isFavorite: function (postId) {
-      return Posts.find({_id:postId, favorites:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'
+  isFavorite: function (id) {
+      return Posts.find({_id:id, favorites:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'    
   }
 })
 

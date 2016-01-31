@@ -1,5 +1,5 @@
 const MAP_ZOOM = 10
-let markers = {}  
+let markers = {}
 
 function getIcon(value) {
   let imgUrl = {
@@ -80,6 +80,7 @@ Template.location.onCreated(function() {
     Markers.find().observe({
       //ADDED MARKER
       added: function (document) {
+        if(!availableList) availableList = availableListFn()
         let inList = availableList.map( x => x._id === document._id)
         let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
         let openImg = {
@@ -194,44 +195,44 @@ Template.location.events({
 })
 
 //locationList
+Template.locationList.onRendered(function () {
+  Session.set('locationSearch', '')
+})
 Template.locationList.helpers({
   allLocation: function () {
-    let onlyOpen = Session.get('nowOpen')
-    let placeList = Markers.find({},{sort: {locationName: 1}}).fetch()
-    placeList = placeList.map(x => {
-      let cTime = moment().format("h:mm A"),
-          open = x.openTime,
-          close = x.closeTime,
-          aTime = [open,close,cTime]
-      aTime = aTime.map(t => {
-        if(t.indexOf('AM') > -1){
-          t = t.replace(':','.')
-          t = t.replace('AM','')
-        }
-        else if(t.indexOf('PM') > -1){
-          t = t.replace(':','.')
-          t = t.replace('PM','')
-          t = Number(t)+12
-        }
-        return Number(t)
-      })
-
-      if(aTime[2]>aTime[0] && aTime[2]<aTime[1]) return x
-      else if(aTime[0] == (aTime[1]-12).toFixed(2)) return x
-    })
-    availableList = _.reject(placeList, x => x === undefined)
+    let onlyOpen = Session.get('nowOpen'),
+        allMarkers = Markers.find({},{sort: {locationName: 1}})
 
     if(onlyOpen){
       return availableList
     }
-    else
-      return Markers.find({},{sort: {locationName: 1}})
+    else{
+      if(Session.get('locationSearch')){
+        let searchList = allMarkers.map( x => {
+          let keyWord = Session.get('locationSearch').toLowerCase(),
+              name = x.locationName.toLowerCase()
+          if(name.indexOf(keyWord) > -1) return x
+        })
+        return _.reject(searchList, x => x === undefined)
+      }
+      else
+        return allMarkers
+    }
+
   }
 })
+
 Template.locationList.events({
   'click [name=now-open]': function (e) {
     let state = $('[name=now-open]:checked').length > 0 ? true : false
     Session.set('nowOpen', state)
+  },
+  'keypress #location-search': function (e) {
+    if(e.keyCode === 13){
+      e.preventDefault()
+      let keySearch = $('#location-search').val()
+      Session.set('locationSearch', keySearch)
+    }
   }
 })
 
@@ -282,6 +283,9 @@ Template.locationSelected.helpers({
   },
   getDistance: function () {
     return Session.get('distance')
+  },
+  isFavorite: function (id) {
+    return Markers.find({_id:id, asFavorite:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'
   }
 })
 Template.locationSelected.events({
@@ -290,7 +294,15 @@ Template.locationSelected.events({
   },
   'click #locationDetail': function (e) { Session.set('subSelectedLocationContainer','locationDetail')},
   'click #locationAnnouncement': function (e) { Session.set('subSelectedLocationContainer','locationAnnouncement')},
-  'click #locationComment': function (e) { Session.set('subSelectedLocationContainer','locationComment')}
+  'click #locationComment': function (e) { Session.set('subSelectedLocationContainer','locationComment')},
+  'click .icon-favorite': function (e) {
+    let id =$(e.target).attr('id')
+    Markers.upsert({_id:id},{
+      $addToSet: {
+        asFavorite: Meteor.userId()
+      }
+    })
+  }
 })
 
 //locationDetail
