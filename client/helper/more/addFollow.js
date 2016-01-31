@@ -3,11 +3,17 @@ Template.addFollow.helpers({
     let followingList = Meteor.user().profile.following
     followingList = followingList.map( data => data.followingId)
     followingList.push(Meteor.userId())
-    console.log(followingList);
     return Meteor.users.find({
-      'profile.following.followingId' : {
+      '_id' : {
         $nin: followingList
       }
-    })
+    }, {sort: {username: 1}})
   }
+})
+
+Template.addFollow.onRendered(function () {
+  $('img.avatar').css({
+    'width': '6em',
+    'height': '6em'
+  })
 })

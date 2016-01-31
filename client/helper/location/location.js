@@ -18,6 +18,7 @@ function getIcon(value) {
 
 Template.location.onRendered(function () {
   GoogleMaps.load()
+  Session.set('nowOpen', false)
 })
 
 Template.location.onCreated(function() {
@@ -79,8 +80,11 @@ Template.location.onCreated(function() {
     Markers.find().observe({
       //ADDED MARKER
       added: function (document) {
+        if(!availableList) availableList = availableListFn()
+        let inList = availableList.map( x => x._id === document._id)
+        let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
         let openImg = {
-          url: '/images/object/5-location/open-marker.png',
+          url: imgStatus,
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0)
         }
@@ -149,13 +153,6 @@ Template.location.onCreated(function() {
 
         markers[document._id] = marker
       },
-      //CHANGEDs MARKER
-      // changed: function (newDocument,oldDocument) {
-      //   markers[oldDocument._id].setPosition({
-      //     lat: parseInt(newDocument.lat,10),
-      //     lng: parseInt(newDocument.lng,10)
-      //   })
-      // },
       //REMOVED MARKER
       removed: function (oldDocument) {
         console.log('right');
@@ -198,9 +195,44 @@ Template.location.events({
 })
 
 //locationList
+Template.locationList.onRendered(function () {
+  Session.set('locationSearch', '')
+})
 Template.locationList.helpers({
   allLocation: function () {
-    return Markers.find()
+    let onlyOpen = Session.get('nowOpen'),
+        allMarkers = Markers.find({},{sort: {locationName: 1}})
+
+    if(onlyOpen){
+      return availableList
+    }
+    else{
+      if(Session.get('locationSearch')){
+        let searchList = allMarkers.map( x => {
+          let keyWord = Session.get('locationSearch').toLowerCase(),
+              name = x.locationName.toLowerCase()
+          if(name.indexOf(keyWord) > -1) return x
+        })
+        return _.reject(searchList, x => x === undefined)
+      }
+      else
+        return allMarkers
+    }
+
+  }
+})
+
+Template.locationList.events({
+  'click [name=now-open]': function (e) {
+    let state = $('[name=now-open]:checked').length > 0 ? true : false
+    Session.set('nowOpen', state)
+  },
+  'keypress #location-search': function (e) {
+    if(e.keyCode === 13){
+      e.preventDefault()
+      let keySearch = $('#location-search').val()
+      Session.set('locationSearch', keySearch)
+    }
   }
 })
 
@@ -209,6 +241,11 @@ Template.locationList.helpers({
 Template.theList.helpers({
   locationServices: function (value) {
     return getIcon(value)
+  },
+  isOpen: function (locationId) {
+    let aPlace = Markers.findOne({_id:locationId})
+    let inList = availableList.map( x => x._id === aPlace._id)
+    return _.contains(inList, true) ? '/images/object/5-location/open.png' : '/images/object/5-location/close.png'
   }
 })
 Template.theList.events({
@@ -246,6 +283,9 @@ Template.locationSelected.helpers({
   },
   getDistance: function () {
     return Session.get('distance')
+  },
+  isFavorite: function (id) {
+    return Markers.find({_id:id, asFavorite:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'
   }
 })
 Template.locationSelected.events({
@@ -254,7 +294,15 @@ Template.locationSelected.events({
   },
   'click #locationDetail': function (e) { Session.set('subSelectedLocationContainer','locationDetail')},
   'click #locationAnnouncement': function (e) { Session.set('subSelectedLocationContainer','locationAnnouncement')},
-  'click #locationComment': function (e) { Session.set('subSelectedLocationContainer','locationComment')}
+  'click #locationComment': function (e) { Session.set('subSelectedLocationContainer','locationComment')},
+  'click .icon-favorite': function (e) {
+    let id =$(e.target).attr('id')
+    Markers.upsert({_id:id},{
+      $addToSet: {
+        asFavorite: Meteor.userId()
+      }
+    })
+  }
 })
 
 //locationDetail

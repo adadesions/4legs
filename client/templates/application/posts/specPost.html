@@ -28,10 +28,7 @@
           <hr>
           <a href="/post/{{_id}}">
             <p class="font-20">
-              {{limitLength info.postBody}}
-              {{#if checkLen info.postBody}}
-              <br><b>Read more</b>
-              {{/if}}
+              <pre>{{info.postBody}}</pre>              
             </p>
             <br>
           </a>
@@ -42,9 +39,6 @@
           </span>
         </div>
         <div class="extra content">
-          <p class="font-20">
-            {{info.postBody}}
-          </p>
           <br>
           {{#each comments}}
            {{> comment}}

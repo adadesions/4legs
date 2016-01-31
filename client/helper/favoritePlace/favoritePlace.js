@@ -1,11 +1,9 @@
 let markers = {}
 
+
 Template.favoritePlace.onRendered(function () {
+  Session.set('locationSearch', '')
   GoogleMaps.load()
-  $('.ui.rating').rating({
-    initialRating: 2,
-    maxRating: 4
-  })
 })
 
 Template.favoritePlace.onCreated(function() {
@@ -30,8 +28,10 @@ Template.favoritePlace.onCreated(function() {
     Markers.find({asFavorite: Meteor.userId()}).observe({
       //ADDED MARKER
       added: function (document) {
+        let inList = availableList.map( x => x._id === document._id)
+        let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
         let openImg = {
-          url: '/images/object/5-location/open-marker.png',
+          url: imgStatus,
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0)
         }
@@ -81,6 +81,26 @@ Template.favoritePlace.helpers({
     }
   },
   allMyLocation: function () {
-   return Markers.find({asFavorite: Meteor.userId()})
+   let allMarkers = Markers.find({asFavorite: Meteor.userId()})
+   if(Session.get('locationSearch')){
+     let searchList = allMarkers.map( x => {
+       let keyWord = Session.get('locationSearch').toLowerCase(),
+           name = x.locationName.toLowerCase()
+       if(name.indexOf(keyWord) > -1) return x
+     })
+     return _.reject(searchList, x => x === undefined)
+   }
+   else
+     return allMarkers
+  }
+})
+
+Template.favoritePlace.events({
+  'keypress #fav-place-search': function (e) {
+    if(e.keyCode === 13){
+      e.preventDefault()
+      let keySearch = $('#fav-place-search').val()
+      Session.set('locationSearch', keySearch)
+    }
   }
 })

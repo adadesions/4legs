@@ -49,9 +49,7 @@ Template.postBlock.events({
        var img = document.createElement("img")
        img.file = $('[name=upload]')[0].files[0]
        img.classList.add('ui','centered','medium','image')
-
-       console.log(uploadPicture.children().length);
-
+       
        if(uploadPicture.children().length == 0)
         uploadPicture.append(img)
        else
