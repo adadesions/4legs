@@ -12,8 +12,11 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     margin-left: -0.5em
     z-index: 2
   .nav-button-border
-    border: 2px solid #F8A02E
-    margin-top: 1em
+    margin-top: 0.6em
+    margin-right: 0
+    .icon-bar
+      height: 0.3em
+      width: 2em
     &:focus
       background-color: $orange-background
       .icon-bar
@@ -242,6 +245,9 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     margin-left: 8.8em
   .register-form
     margin-top: 1em
+    .register-button
+      display: flex
+      justify-content: center
   .img-footer-reigster
     img
       width: auto
@@ -328,12 +334,17 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     .admin-head-text
       margin-left: -2em
       margin-top: 1em
+  .location-content
+    .justify-icon
+      margin-left: 0
+      padding-left: 1em
+      padding-right: 1.5em
+      margin-top: 0.5em
   .content
     .justify-icon
       margin-left: 0
-      padding-left: 0
-      padding-right: 0
-      margin-left: -1em
+      padding-left: 0em
+      padding-right: 0em
   .justify-icon
     display: flex
     justify-content: space-between
@@ -341,13 +352,15 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     width: 100%
     padding-left: 0
     padding-right: 0
+  .location-photo-detail
+    margin-top: -1em
   .justify-item
     display: flex
     flex-flow: row
-    margin-left: 1.5em
+    margin-left: 0.5em
     img
-      width: 1em
-      height: 1em
+      width: 1.5em
+      height: 1.5em
   .justify-item-comment
     display: flex
     flex-flow: row
@@ -384,6 +397,9 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
       height: 5em
   .location-orders
     margin-top: 2em
+    display: flex
+    flex-flow: row
+    justify-content: center
   .button-card-following
     height: 3em
     display: flex
