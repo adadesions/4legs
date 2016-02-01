@@ -155,6 +155,37 @@
         </div>
       {{/each}}
     </div>
+    <div class="link-seeall-following">
+        <h3><a href="#">See all ({{profile.following.length}})</a></h3>
+    </div>
+    <div class="ui modal following">
+      <i class="close icon"></i>
+        <div class="header">
+          Following
+        </div>
+        <br>
+        <div class="ui three stackable cards card-following">
+          {{#each showAllFollowing _id}}
+            <div class="card">
+              <div class="ui two column doubling grid container group-addfollow">
+                <div class="column item-addfollow">
+                  <div class="ui left aligned container">
+                    <a href="{{pathFor 'profile' id=_id}}" class="profile-card-following">
+                      <img src="{{profilePicture _id}}" class="img-circle follow-picture" alt="">
+                      <span class="my-color-brown follow-text"><b>{{this.username}}</b></span>
+                    </a>
+                  </div>
+                </div>
+                <div class="column item-addfollow">
+                  <div class="button-card-following">
+                    <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+    </div>
   </div>
 <!--  End following section-->
 
@@ -182,6 +213,37 @@
       </div>
     {{/each}}
   </div>
+  <div class="link-seeall-follower">
+      <h3><a href="#">See all ({{profile.followers.length}})</a></h3>
+  </div>
+    <div class="ui modal follower">
+      <i class="close icon"></i>
+        <div class="header">
+          Followers
+        </div>
+        <br>
+        <div class="ui three stackable cards card-following">
+          {{#each showAllFollowers _id}}
+            <div class="card">
+              <div class="ui two column doubling grid container group-addfollow">
+                <div class="column item-addfollow">
+                  <div class="ui left aligned container">
+                    <a href="{{pathFor 'profile' id=_id}}" class="profile-card-following">
+                      <img src="{{profilePicture _id}}" class="img-circle follow-picture" alt="">
+                      <span class="my-color-brown follow-text"><b>{{this.username}}</b></span>
+                    </a>
+                  </div>
+                </div>
+                <div class="column item-addfollow">
+                  <div class="button-card-following">
+                    <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+    </div>
 </div>
 <!--  End Follower section-->
 
