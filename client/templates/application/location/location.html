@@ -121,6 +121,9 @@
 </template>
 
 <template name="locationDetail">
+  <div class="location-edit text-center">
+    <button id="locationEdit" class="ui orange button">แก้ไขรายละเอียด</button>
+  </div>
   <div class="location-photo-detail">
     <img src="{{getImageUrl photos._id}}" alt="">
   </div>
@@ -166,6 +169,9 @@
     <b>Line ID:</b>
     <span>{{line}}</span>
   </div>
+  <div class="announcement-edit text-center">
+    <button id="announcementEdit" class="ui green button">ฉันเป็นเจ้าของสถานประกอบการแห่งนี้</button>
+  </div>
 </template>
 
 <template name="locationAnnouncement">
@@ -186,5 +192,129 @@
     {{/each}}
     <br>
     {{> newCommentLocation}}
+  </div>
+</template>
+
+
+
+<template name="editLocation">
+  <div class="header-edit-location">
+    <br>
+    <h3 class="text-center">แก้ไขรายละเอียดสถานประกอบการ</h3>
+  </div>
+  <div class="body-edit-location">
+    <label for="days-week">วันเปิดทำการ</label>
+    <div class="group-daysweek">
+      <label class="checkbox-inline days-week">
+        <input type="checkbox" name="days-week" value="อา"> อา
+      </label>
+      <label class="checkbox-inline days-week">
+        <input type="checkbox" name="days-week" value="จ"> จ
+      </label>
+      <label class="checkbox-inline days-week">
+        <input type="checkbox" name="days-week" value="อ"> อ
+      </label>
+      <label class="checkbox-inline days-week">
+        <input type="checkbox" name="days-week" value="พ"> พ
+      </label>
+      <label class="checkbox-inline days-week">
+        <input type="checkbox" name="days-week" value="พฤ"> พฤ
+      </label>
+      <label class="checkbox-inline days-week">
+        <input type="checkbox" name="days-week" value="ศ"> ศ
+      </label>
+      <label class="checkbox-inline days-week">
+        <input type="checkbox" name="days-week" value="ส"> ส
+      </label>
+  </div>
+    <br><br>
+    <label for="open-time">เวลาเปิดทำการ</label>
+    <br>
+    <form class="form-inline">
+      <div class="form-group">
+        <label></label>
+        <input type="text" name="open-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาเปิด">
+      </div>
+      <div class="form-group">
+        <label></label>
+        <input type="text" name="close-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาปิด">
+      </div>
+
+    </form>
+    <br><br>
+    <label for="address">ที่อยู่</label>
+    <textarea name="address" class="form-control" rows="5"></textarea>
+    <br><br>
+    <label for="detail">รายละเอียดสถานประกอบการ</label>
+    <textarea name="detail" class="form-control"  rows="5"></textarea>
+    <br><br>
+    <label for="tel">เบอร์โทรศัพท์</label>
+    <input type="text" name="tel" class="form-control">
+    <br>
+    <label for="email">E-mail</label>
+    <input type="text" name="email" class="form-control">
+    <br>
+    <label for="website">Website</label>
+    <input type="text" name="website" class="form-control">
+    <br>
+    <label for="facebook">Facebook</label>
+    <input type="text" name="facebook" class="form-control">
+    <br>
+    <label for="line">Line ID</label>
+    <input type="text" name="line" class="form-control">
+    <br>
+    <label for="instagram">Instagram</label>
+    <input type="text" name="instagram" class="form-control">
+    <br><br>
+    <label for="shop-photo">รูปภาพประกอบ</label>
+    <br>
+    <div class="preview-location-photo"></div>
+    <input type="file" name="upload" id="file" class="upload-img">
+    <label for="file" class="my-color-brown label-upload text-center">
+      <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
+      <u>เพิ่มรูปภาพ</u>
+    </label>
+    <br><br>
+    <div class="col-lg-12 edit-location-button">
+      <button type="button" id="back" class="btn btn-warning col-lg-5">ยกเลิก</button>
+      <div class="col-lg-1"></div>
+      <button type="button" id="next" class="btn btn-success col-lg-5">บันทึก</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</template>
+
+
+
+<template name="editAnnouncementPromotion">
+  <div class="header-edit-announcement">
+    <br>
+    <h3 class="text-center">แก้ไขประกาศและโปรโมชั่น</h3>
+  </div>
+  <div class="body-edit-announcement">
+    <label for="detail">ประกาศ</label>
+    <textarea name="detail" class="form-control"  rows="5"></textarea>
+    <input type="file" name="upload" id="file" class="upload-img">
+    <label for="file" class="my-color-brown label-upload text-center">
+      <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
+      <u>เพิ่มรูปภาพ</u>
+    </label>
+    <br><br>
+    <label for="detail">ประกาศ</label>
+    <textarea name="detail" class="form-control"  rows="5"></textarea>
+    <input type="file" name="upload" id="file" class="upload-img">
+    <label for="file" class="my-color-brown label-upload text-center">
+      <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
+      <u>เพิ่มรูปภาพ</u>
+    </label>
+    <br><br>
+    <div class="col-lg-12 edit-location-button">
+      <button type="button" id="back" class="btn btn-warning col-lg-5">ยกเลิก</button>
+      <div class="col-lg-1"></div>
+      <button type="button" id="next" class="btn btn-success col-lg-5">บันทึก</button>
+      <br>
+      <br>
+    </div>
   </div>
 </template>

@@ -191,6 +191,25 @@ Template.location.helpers({
 Template.location.events({
   'click .add-location': function () {
     Session.set('locationContainer', 'createLocation')
+  },
+  'click #locationEdit': function () {
+    Session.set('locationContainer', 'editLocation')
+  },
+  'click #announcementEdit': function () {
+    Session.set('locationContainer', 'editAnnouncementPromotion')
+  },
+
+})
+
+Template.editLocation.events({
+  'click #back': function (e) {
+    Session.set('locationContainer', 'location')
+  }
+})
+
+Template.editAnnouncementPromotion.events({
+  'click #back': function (e) {
+    Session.set('locationContainer', 'location')
   }
 })
 
