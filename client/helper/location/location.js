@@ -201,15 +201,34 @@ Template.location.events({
 
 })
 
+Template.registerHelper('isChecked', function (day,id) {
+  let dayCheck = Markers.findOne({_id:id}).daysWeek
+  return _.contains(dayCheck, day) ? 'checked' : ''
+})
+
+Template.editLocation.helpers({
+  selectedLocationId: function () { return Session.get('selectedLocationId')},
+  findLocation: function (id) {
+    return Markers.findOne({_id:id})
+  }
+})
+
+Template.editAnnouncementPromotion.helpers({
+  selectedLocationId: function () { return Session.get('selectedLocationId')},
+  findLocation: function (id) {
+    return Markers.findOne({_id:id})
+  },
+})
+
 Template.editLocation.events({
   'click #back': function (e) {
-    Session.set('locationContainer', 'location')
+    Session.set('locationContainer', 'locationSelected')
   }
 })
 
 Template.editAnnouncementPromotion.events({
   'click #back': function (e) {
-    Session.set('locationContainer', 'location')
+    Session.set('locationContainer', 'locationSelected')
   }
 })
 
@@ -322,6 +341,8 @@ Template.locationSelected.events({
       }
     })
   }
+
+
 })
 
 //locationDetail

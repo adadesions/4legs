@@ -198,6 +198,7 @@
 
 
 <template name="editLocation">
+  {{#with findLocation selectedLocationId}}
   <div class="header-edit-location">
     <br>
     <h3 class="text-center">แก้ไขรายละเอียดสถานประกอบการ</h3>
@@ -206,69 +207,71 @@
     <label for="days-week">วันเปิดทำการ</label>
     <div class="group-daysweek">
       <label class="checkbox-inline days-week">
-        <input type="checkbox" name="days-week" value="อา"> อา
+        <input type="checkbox" name="days-week" value="อา" {{isChecked 'อา' _id}}> อา
       </label>
       <label class="checkbox-inline days-week">
-        <input type="checkbox" name="days-week" value="จ"> จ
+        <input type="checkbox" name="days-week" value="จ" {{isChecked 'จ' _id}}> จ
       </label>
       <label class="checkbox-inline days-week">
-        <input type="checkbox" name="days-week" value="อ"> อ
+        <input type="checkbox" name="days-week" value="อ" {{isChecked 'อ' _id}}> อ
       </label>
       <label class="checkbox-inline days-week">
-        <input type="checkbox" name="days-week" value="พ"> พ
+        <input type="checkbox" name="days-week" value="พ" {{isChecked 'พ' _id}}> พ
       </label>
       <label class="checkbox-inline days-week">
-        <input type="checkbox" name="days-week" value="พฤ"> พฤ
+        <input type="checkbox" name="days-week" value="พฤ" {{isChecked 'พฤ' _id}}> พฤ
       </label>
       <label class="checkbox-inline days-week">
-        <input type="checkbox" name="days-week" value="ศ"> ศ
+        <input type="checkbox" name="days-week" value="ศ" {{isChecked 'ศ' _id}}> ศ
       </label>
       <label class="checkbox-inline days-week">
-        <input type="checkbox" name="days-week" value="ส"> ส
+        <input type="checkbox" name="days-week" value="ส" {{isChecked 'ส' _id}}> ส
       </label>
-  </div>
+    </div>
     <br><br>
     <label for="open-time">เวลาเปิดทำการ</label>
     <br>
     <form class="form-inline">
       <div class="form-group">
         <label></label>
-        <input type="text" name="open-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาเปิด">
+        <input type="text" name="open-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาเปิด" value="{{openTime}}">
       </div>
       <div class="form-group">
         <label></label>
-        <input type="text" name="close-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาปิด">
+        <input type="text" name="close-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาปิด" value="{{closeTime}}">
       </div>
 
     </form>
     <br><br>
     <label for="address">ที่อยู่</label>
-    <textarea name="address" class="form-control" rows="5"></textarea>
+    <textarea name="address" class="form-control" rows="5" value="{{address}}"></textarea>
     <br><br>
     <label for="detail">รายละเอียดสถานประกอบการ</label>
-    <textarea name="detail" class="form-control"  rows="5"></textarea>
+    <textarea name="detail" class="form-control"  rows="5" value="{{detail}}"></textarea>
     <br><br>
     <label for="tel">เบอร์โทรศัพท์</label>
-    <input type="text" name="tel" class="form-control">
+    <input type="text" name="tel" class="form-control" value="{{tel}}">
     <br>
     <label for="email">E-mail</label>
-    <input type="text" name="email" class="form-control">
+    <input type="text" name="email" class="form-control" value="{{email}}">
     <br>
     <label for="website">Website</label>
     <input type="text" name="website" class="form-control">
     <br>
     <label for="facebook">Facebook</label>
-    <input type="text" name="facebook" class="form-control">
+    <input type="text" name="facebook" class="form-control" value="{{facebook}}">
     <br>
     <label for="line">Line ID</label>
-    <input type="text" name="line" class="form-control">
+    <input type="text" name="line" class="form-control" value="{{line}}">
     <br>
     <label for="instagram">Instagram</label>
     <input type="text" name="instagram" class="form-control">
     <br><br>
     <label for="shop-photo">รูปภาพประกอบ</label>
     <br>
-    <div class="preview-location-photo"></div>
+    <div class="preview-location-photo-edit">
+      <img src="{{findPicture photos._id}}"/>
+    </div>
     <input type="file" name="upload" id="file" class="upload-img">
     <label for="file" class="my-color-brown label-upload text-center">
       <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
@@ -283,6 +286,7 @@
       <br>
     </div>
   </div>
+  {{/with}}
 </template>
 
 
