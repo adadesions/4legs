@@ -323,3 +323,27 @@
     </div>
   </div>
 </template>
+
+<template name="verifyOwner">
+  <div class="location-owner">
+    <h4>คุณเป็นเจ้าของสถานประกอบการนี้ใช่หรือไม่ ?</h4>
+    <div class="radio">
+      <label>
+        <input type="radio" name="location-owner" value="yes">
+        ใช่ ฉันเป็นเจ้าของสถานที่แห่งนี้
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="location-owner" value="no">
+        ไม่ใช่
+      </label>
+    </div>
+    <br>
+    {{#if showOwnerDialog}}
+      {{> ownerDialog}}
+    {{/if}}
+    <br>
+    <button id="done" type="button" class="btn btn-success" disabled="disabled">ต่อไป</button>
+  </div>
+</template>

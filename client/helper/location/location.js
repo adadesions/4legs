@@ -198,9 +198,28 @@ Template.location.events({
     Session.set('locationContainer', 'editLocation')
   },
   'click #announcementEdit': function () {
-    Session.set('locationContainer', 'editAnnouncementPromotion')
+    Session.set('locationContainer', 'verifyOwner')
   },
 
+})
+
+Template.verifyOwner.onRendered(function () {
+  Session.set('showOwnerDialog', false)
+})
+
+Template.verifyOwner.events({
+  'click #done': function () {
+    Session.set('locationContainer', 'editAnnouncementPromotion')
+  },
+  'click [type=radio]': function (e) {
+    var $val = $(e.target).val()
+    $('#done').prop('disabled','')
+    $val === 'yes' ? Session.set('showOwnerDialog', true) : Session.set('showOwnerDialog', false)
+  },
+})
+
+Template.verifyOwner.helpers({
+  showOwnerDialog: function () { return Session.get('showOwnerDialog') }
 })
 
 Template.registerHelper('isChecked', function (day,id) {
