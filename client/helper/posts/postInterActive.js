@@ -18,7 +18,11 @@ Template.commentBtn.helpers({
 
 Template.favoriteBtn.helpers({
   isFavorite: function (id) {
-      return Posts.find({_id:id, favorites:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'    
+    let  query = Posts.findOne({_id:id})        
+    if(query)
+      return Posts.find({_id:id, favorites:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'
+    else
+      return Markers.find({_id:id, asFavorite:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'
   }
 })
 

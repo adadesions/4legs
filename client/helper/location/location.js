@@ -321,9 +321,6 @@ Template.locationSelected.helpers({
   },
   getDistance: function () {
     return Session.get('distance')
-  },
-  isFavorite: function (id) {
-    return Markers.find({_id:id, asFavorite:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'
   }
 })
 Template.locationSelected.events({

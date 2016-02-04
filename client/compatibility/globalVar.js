@@ -37,5 +37,3 @@ const petImgs = {
 }
 
 var availableList =  availableListFn()
-
-console.log(availableList);
