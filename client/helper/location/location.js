@@ -10,7 +10,7 @@ function getIcon(value) {
     'แมว': '/images/object/2-signup/cat.png',
     'pocket pet': '/images/object/2-signup/petpocket.png',
     'นก': '/images/object/2-signup/bird.png',
-    'สัตว์เลื้อยคลาย': '/images/object/2-signup/turtle.png',
+    'สัตว์เลื้อยคลาน': '/images/object/2-signup/turtle.png',
     'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ': '/images/object/2-signup/fish.png',
   }
   return imgUrl[value]
