@@ -24,3 +24,9 @@ Template.newsfeed.helpers({
     return len === 1 ? true : false
   }
 })
+
+Template.newsfeed.onRendered(function () {
+  $('.ui.sticky').sticky({
+    context: '.feeds-container'
+  })
+})

@@ -1,23 +1,21 @@
 <template name="adsCard">
-  <div class="ads-card">
-    {{#if currentUser.profile.asAdmin.loggedIn}}
-      <div class="card-tools pull-right">
-        <!-- <img src="/images/object/7-profile/edit.png" alt=""> -->
-        <img id="{{_id}}" class="delete-ads" src="/images/object/7-profile/delete.png" alt="">
-      </div>
-    {{/if}}
-    <div class="card-picture">
-      <img src="{{getImage img._id}}" alt="">
-    </div>
-    <div class="card-detail">
-      <h4>{{info.cardHeader}}</h4>
-      <p>{{info.cardDetail}}</p>
-      <p>
-        <b>link :</b>
-        <a href="http://{{info.cardUrl}}">{{info.cardUrl}}</a>
-      </p>
+  <div class="ui card">
+  <div class="image">
+    <img src="{{getImage img._id}}">
+  </div>
+  <div class="content">
+    <a class="header">{{info.cardHeader}}</a>
+    <div class="description">
+      {{info.cardDetail}}
     </div>
   </div>
+  <div class="extra content">
+    <a>
+      <i class="external icon"></i>
+      <a href="http://{{info.cardUrl}}">{{info.cardUrl}}</a>
+    </a>
+  </div>
+</div>
 </template>
 
 <template name="adsCreateCard">

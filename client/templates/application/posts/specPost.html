@@ -1,5 +1,5 @@
 <template name="specPost">
-  <div class="container">
+  <div class="spec-post-container container">
     <br><br>
     <div class="ui one link stackable cards">
       <div class="ui blue card" href="/post/{{_id}}">
@@ -10,7 +10,7 @@
           <img class="ui avatar huge image" src="{{profilePicture info.postOwner}}">
           {{matchUserId info.postOwner}}
         </div>
-        <div class="image">
+        <div class="ui big image">
           <img src="{{findPicture img._id}}" class="thumbnail" alt="" />
         </div>
         <div class="content">
@@ -28,7 +28,7 @@
           <hr>
           <a href="/post/{{_id}}">
             <p class="font-20">
-              <pre>{{info.postBody}}</pre>              
+              <pre>{{info.postBody}}</pre>
             </p>
             <br>
           </a>

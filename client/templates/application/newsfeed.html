@@ -4,14 +4,21 @@
       <div class="col-lg-9 col-xs-12">
         {{> postBlock}}
         <br><br>
-        {{> postFeed col='one'}}
+        <div class="feeds-container">
+          {{> postFeed col='one'}}
+        </div>
       </div>
       <div class="col-lg-3 col-xs-12">
         <br><br>
-        {{#each getAdsLimit '2'}}
-          {{> adsCard}}
-        {{/each}}
+          <div class="ui sticky">
+              {{#each getAdsLimit '2'}}
+                <div class="ui raised segment">
+                  {{> adsCard}}
+                </div>
+              {{/each}}
+          </div>
       </div>
     </div>
   </div>
 </template>
+<!-- \\col-lg-3 col-xs-12 -->
