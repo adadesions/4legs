@@ -1,7 +1,4 @@
 var newPost = {comments : [], likes : [], shares : [], favorites : [], catagory : []}
-Template.postBlock.onRendered(function () {
-  $('textarea').elastic()
-})
 
 Template.postBlock.events({
    'click .btn-post' : function (e) {
@@ -49,7 +46,7 @@ Template.postBlock.events({
        var img = document.createElement("img")
        img.file = $('[name=upload]')[0].files[0]
        img.classList.add('ui','centered','medium','image')
-       
+
        if(uploadPicture.children().length == 0)
         uploadPicture.append(img)
        else
