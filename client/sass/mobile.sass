@@ -340,28 +340,41 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
       padding-left: 1em
       padding-right: 1.5em
       margin-top: 0.5em
+    .justify-item
+      display: flex
+      flex-flow: row
+      margin-left: 0.5em
+      font-size: 12px
+      img
+        width: 1rem
+        height: auto
+      .icon-share-img
+        img
+          width: 1.2rem
+          height: auto
   .content
     .justify-icon
       margin-left: 0
       padding-left: 0em
       padding-right: 0em
       display: flex
-      justify-content: space-between
+      justify-content: space-around
       height: 1em
       width: 100%
     .justify-item
       display: flex
       flex-flow: row
       margin-left: 0.5em
+      font-size: 12px
       img
-        width: 1.5rem
+        width: 1rem
         height: auto
       .icon-share-img
         img
-          width: 1.5rem
+          width: 1.2rem
           height: auto
   .location-photo-detail
-    margin-top: -1em
+    margin-top: 1em
   .justify-item-comment
     display: flex
     flex-flow: row
@@ -387,10 +400,6 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     flex-flow: row
     button
       margin-top: -5em
-
-  .item-addfollow
-
-
   .feedback-textarea
     width: 24em
     textarea
@@ -398,10 +407,15 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
       justify-content: center
       height: 5em
   .location-orders
-    margin-top: 2em
+    margin-top: 1em
     display: flex
     flex-flow: row
     justify-content: center
+    .topics-menu-box
+      font-size: 12px
+  .location-edit
+    margin-top: -1em
+    font-size: 12px
   .button-card-following
     height: 3em
     display: flex
