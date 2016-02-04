@@ -255,7 +255,7 @@ Template.locationList.helpers({
               bizTypes = x.businessTypes,
               otherKeys = animalTypes.concat(bizTypes)
 
-          if(keyWord === 'หมา') keyWord = 'สุนัข'
+          if(keyWord.indexOf('หมา') > -1) keyWord = 'สุนัข'
           if(name.indexOf(keyWord) > -1 || _.indexOf(otherKeys, keyWord) > -1 ) return x
         })
         return _.reject(searchList, x => x === undefined)
@@ -272,12 +272,11 @@ Template.locationList.events({
     let state = $('[name=now-open]:checked').length > 0 ? true : false
     Session.set('nowOpen', state)
   },
-  'keypress #location-search': function (e) {
-    if(e.keyCode === 13){
-      e.preventDefault()
-      let keySearch = $('#location-search').val()
-      Session.set('locationSearch', keySearch)
-    }
+  'keyup #location-search': function (e) {
+    if(e.keyCode === 13) e.preventDefault()
+
+    let keySearch = $('#location-search').val()
+    Session.set('locationSearch', keySearch)
   }
 })
 
@@ -356,6 +355,10 @@ Template.locationDetail.helpers({
   },
   isOpen: function (obj) {
     return _.contains(obj.hash.data, obj.hash.day) ? 'is-open' : ''
+  },
+  canEdit: function (owner) {
+    if(owner)
+      return owner.ownerId === Meteor.userId() && owner.verified ? true : false
   }
 })
 

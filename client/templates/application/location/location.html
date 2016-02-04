@@ -21,7 +21,7 @@
 
 <template name="locationList">
   <div class="location-list-header">
-    <form class=form-group>
+    <!-- <form class=form-group> -->
       <input id="location-search" type="text" class="form-control" placeholder="&#xf002; ค้นหาสถานที่">
       <div class="checkbox">
         <label>
@@ -29,7 +29,7 @@
           ดูเฉพาะสถานที่ที่กำลังให้บริการ
         </label>
       </div>
-    </form>
+    <!-- </form> -->
   </div>
   <div class="location-block">
     {{#each allLocation}}
@@ -122,9 +122,13 @@
 </template>
 
 <template name="locationDetail">
-  <div class="location-edit text-center">
-    <button id="locationEdit" class="ui orange button">แก้ไขรายละเอียด</button>
-  </div>
+  {{#if canEdit owner}}
+    <div class="location-edit text-center">
+      <button id="locationEdit" class="ui orange button">แก้ไขรายละเอียด</button>
+    </div>
+  {{else}}
+    <br>
+  {{/if}}
   <div class="location-photo-detail">
     <img src="{{getImageUrl photos._id}}" alt="">
   </div>
@@ -170,9 +174,11 @@
     <b>Line ID:</b>
     <span>{{line}}</span>
   </div>
-  <div class="announcement-edit text-center">
-    <button id="announcementEdit" class="ui green button">ฉันเป็นเจ้าของสถานประกอบการแห่งนี้</button>
-  </div>
+  {{#unless owner.verified}}
+    <div class="announcement-edit text-center">
+      <button id="announcementEdit" class="ui green button">ฉันเป็นเจ้าของสถานประกอบการแห่งนี้</button>
+    </div>
+  {{/unless}}
 </template>
 
 <template name="locationAnnouncement">

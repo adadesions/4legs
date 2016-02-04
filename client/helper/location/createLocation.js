@@ -176,8 +176,10 @@ Template.createStep4.events({
     if($val === 'yes'){
       let ownerName = $('[name=ownerName]').val(),
           ownerTel = $('[name=ownerTel]').val(),
-          ownerEmail = $('[name=ownerEmail]').val()
+          ownerEmail = $('[name=ownerEmail]').val(),
+          ownerId = Meteor.userId()
       locationObj.owner = {
+        ownerId,
         ownerName,
         ownerTel,
         ownerEmail,
