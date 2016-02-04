@@ -29,7 +29,8 @@ Template.location.onCreated(function() {
   GoogleMaps.ready('4legsMap', function(map) {
     var marker,
         directionsDisplay = new google.maps.DirectionsRenderer,
-        directionsService = new google.maps.DirectionsService
+        directionsService = new google.maps.DirectionsService,
+        infoWindow = null
 
     directionsDisplay.setMap(map.instance)
 
@@ -77,6 +78,7 @@ Template.location.onCreated(function() {
       infoWindow.setContent('You are here');
     })
     //code here
+
     Markers.find().observe({
       //ADDED MARKER
       added: function (document) {
@@ -97,15 +99,17 @@ Template.location.onCreated(function() {
           icon: openImg
         })
         google.maps.event.addListener(marker,'click',function (e) {
+          if(infoWindow) infoWindow.close()
           let info = Markers.findOne({_id:marker.id}),
-              contentForInfo = '<br><div class="ui card"><div class="image"><img src="'+Images.findOne({_id:info.photos._id}).url()+'"></div><div class="extra ui center aligned container"><h3 class="ui header">'+info.locationName+'</h3></div>',
-              eLatLng = new google.maps.LatLng(document.lat,document.lng),
-              infoWindow = new google.maps.InfoWindow({
+              contentForInfo = '<h3 class="ui header">'+info.locationName+'</h3>',
+              eLatLng = new google.maps.LatLng(document.lat,document.lng)
+          infoWindow = new google.maps.InfoWindow({
                 map: map.instance,
                 content: contentForInfo
-              })
-
+          })
+          // infoWindow.close()
           infoWindow.setPosition(eLatLng);
+          // infoWindow.open()
           Session.set('selectedLocationId',document._id)
           Session.set('locationContainer','locationSelected')
 
@@ -145,12 +149,10 @@ Template.location.onCreated(function() {
               directionsDisplay.setDirections(res)
             }
             else{
-              console.log('fail!');
+
             }
           })
         })
-
-
         markers[document._id] = marker
       },
       //REMOVED MARKER
@@ -248,8 +250,13 @@ Template.locationList.helpers({
       if(Session.get('locationSearch')){
         let searchList = allMarkers.map( x => {
           let keyWord = Session.get('locationSearch').toLowerCase(),
-              name = x.locationName.toLowerCase()
-          if(name.indexOf(keyWord) > -1) return x
+              name = x.locationName.toLowerCase(),
+              animalTypes = x.animalTypes,
+              bizTypes = x.businessTypes,
+              otherKeys = animalTypes.concat(bizTypes)
+
+          if(keyWord === 'หมา') keyWord = 'สุนัข'
+          if(name.indexOf(keyWord) > -1 || _.indexOf(otherKeys, keyWord) > -1 ) return x
         })
         return _.reject(searchList, x => x === undefined)
       }
@@ -292,7 +299,6 @@ Template.theList.events({
         id = $ele.attr('id'),
         lat = $ele.data('lat'),
         lng = $ele.data('lng')
-    // console.log('lat: '+lat+' lng: '+lng);
     if(!id){
       id = $ele.closest('.the-list-block').attr('id'),
       lat = $ele.closest('.the-list-block').data('lat'),
