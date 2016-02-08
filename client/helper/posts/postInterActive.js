@@ -18,7 +18,7 @@ Template.commentBtn.helpers({
 
 Template.favoriteBtn.helpers({
   isFavorite: function (id) {
-    let  query = Posts.findOne({_id:id})        
+    let  query = Posts.findOne({_id:id})
     if(query)
       return Posts.find({_id:id, favorites:Meteor.userId()}).count() > 0 ? '/images/icon/favorite-icon.png' : '/images/icon/favorite-icon-w.png'
     else

@@ -60,7 +60,10 @@ Template.register.onRendered(function () {
 })
 
 Template.register.rendered=function() {
-    $('#birthday').datepicker();
+    $('#birthday').datetimepicker({
+      viewMode: 'years',
+      format: 'DD/MM/YYYY'
+    })
 }
 
 Template.register.helpers({

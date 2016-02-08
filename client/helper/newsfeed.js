@@ -27,6 +27,6 @@ Template.newsfeed.helpers({
 
 Template.newsfeed.onRendered(function () {
   $('.ui.sticky').sticky({
-    context: '.feeds-container'
+    context: '.feed-container'
   })
 })
