@@ -47,9 +47,6 @@ Template.postFeed.helpers({
   showHighlightBtn: function () {
     return Session.get('superuserContainer') === 'adminHighlight'
   },
-  // isHighlight: function (postId) {
-  //   return Posts.findOne({_id:postId}).highlight ? 'checked' : ''
-  // },
   postHighlight: function () {
     let highlight = Template.currentData() ? Template.currentData().highlight : false
     return highlight ? 'post-highlight' : ''
@@ -59,6 +56,11 @@ Template.postFeed.helpers({
   },
   limitComment: function (comments) {
     return comments.length > 3 ? comments.slice(comments.length-3,comments.length) : comments
+  },
+  isVet: function (userId) {
+    let user = Meteor.users.findOne({_id:userId})
+    console.log(user.profile.vetInfo.isVet);
+    return user.profile.vetInfo.verified
   }
 })
 

@@ -14,7 +14,9 @@
           </div>
           <a href="{{pathFor 'profile' id=info.postOwner}}">
             <img class="ui avatar big image" src="{{profilePicture info.postOwner}}">
-            <img class="vet-badge" src="/images/object/7-profile/vet.png">
+            {{#if isVet info.postOwner}}
+              <img class="vet-badge" src="/images/object/7-profile/vet.png">
+            {{/if}}
             {{matchUserId info.postOwner}}
           </a>
         </div>

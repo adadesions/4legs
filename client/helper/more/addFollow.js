@@ -27,22 +27,22 @@ Template.addFollow.helpers({
   }
 })
 
-Template.addFollow.onCreated(function () {
+Template.addFollow.onRendered(function () {
+  Session.set('followSearch', '')
   $('img.avatar').css({
     'width': '8em',
     'height': '8em'
   })
 })
 
-Template.addFollow.onRendered(function () {
-  Session.set('followSearch', '')
-})
-
 Template.addFollow.events({
   'keyup #follow-search': function (e) {
       let word = $('#follow-search').val()
       Session.set('followSearch', word)
-      console.log(Session.get('followSearch'));
+      $('img.avatar').css({
+        'width': '8em',
+        'height': '8em'
+      })
   },
   'click .followBtn': function (e) {
     let fid = $(e.target).attr('id'),
