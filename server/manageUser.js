@@ -27,6 +27,13 @@ Meteor.methods({
         }
       }
     })
+    Notify.insert({
+      notifyTo : followingId,
+      notifyFrom: Meteor.userId(),
+      action: 'folowing',      
+      read: false,
+      createdAt: new Date()
+    })
   },
 
   addFollower : function (followingId) {
@@ -103,5 +110,5 @@ Meteor.methods({
 
   updateVetVerify: function (userId,bool) {
     Meteor.users.update({_id:userId}, {$set: {'profile.vetInfo.verified':bool}})
-  }  
+  }
 })

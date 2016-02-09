@@ -21,7 +21,8 @@ Template.notifyItem.helpers({
       comment: "commented on your post",
       share: "shared your post",
       post: "wrote a new post",
-      favorite: "saved your post as favorite"
+      favorite: "saved your post as favorite",
+      following: "are following you"      
     }
     return complete[action]
   },
