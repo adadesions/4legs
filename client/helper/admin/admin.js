@@ -120,7 +120,7 @@ Template.adminVet.events({
         vetId = user.profile.vetInfo.vetId,
         vetName = user.profile.vetInfo.vetName,
         vetLastName = user.profile.vetInfo.vetLastName,
-        msg = `เลขที่ใบอนุญาติประกอบวิชาชีพสัตว์แพทย์ : ${vetId}  ชื่อ-สกุล ภาษาไทย : ${vetName} ${vetLastName}`
+        msg = `เลขที่ใบอนุญาตประกอบวิชาชีพสัตว์แพทย์ : ${vetId}  ชื่อ-สกุล ภาษาไทย : ${vetName} ${vetLastName}`
     let confirm = new Confirmation({
       message: msg,
       title: "Confirmation",
