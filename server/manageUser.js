@@ -3,7 +3,8 @@ Meteor.methods({
       Meteor.users.update({_id:this.userId},{
         $set:{
           "profile.birthday" : newData.birthday,
-          "profile.topics" : newData.topics
+          "profile.topics" : newData.topics,
+          "profile.vetInfo": newData.vetObj
         }
     })
 
@@ -30,7 +31,7 @@ Meteor.methods({
     Notify.insert({
       notifyTo : followingId,
       notifyFrom: Meteor.userId(),
-      action: 'folowing',      
+      action: 'folowing',
       read: false,
       createdAt: new Date()
     })

@@ -85,13 +85,30 @@ Template.editProfile.helpers({
 Template.editProfile.events({
   'click #update-btn': function (e) {
     e.preventDefault()
+    var isVet = $('[name=vet]:checked'),
+        vetObj = {};
+    if(isVet.length > 0){
+        var vetId = $('[name=vet-id]').val(),
+            vetName = $('[name=vet-name]').val(),
+            vetLastName = $('[name=vet-lastname]').val();
+        vetObj = {
+          vetId,
+          vetName,
+          vetLastName,
+          isVet: true,
+          verified: false
+        }
+    }
+    else vetObj = {isVet : false, verified: false}
+
     var username = $('[name=username]').val(),
         birthday = $('[name=birthday]').val(),
         topics = $('[name=topics]:checked').map(function () {return this.value}).get(),
         newData = {
           username : username,
           birthday : birthday,
-          topics : topics
+          topics : topics,
+          vetObj
         }
     Meteor.call('updateProfile',newData)
     Session.set('aboutMeContainer', 'showProfile')
