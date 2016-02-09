@@ -70,19 +70,6 @@ Template.adminNews.helpers({
   petImgs: function () {return _.toArray(petImgs)}
 })
 
-Template.textEditer.helpers({
-  optionsHelper : function() {
-    return {
-      collection: "posts",
-      field: "title",
-      removeEmpty: true,
-      acceptEmpty: true,
-      placeholder: "Post title",
-      substitute: '<i class="fa fa-pencil"></i>'
-    }
-  }
-})
-
 Template.adminNews.events({
   'click .admin-catagory-item': function (e) {
     let $target = $(e.target)

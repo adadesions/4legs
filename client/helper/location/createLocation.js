@@ -31,7 +31,7 @@ Template.createStep1.helpers({
   animalType: function () {
     var data = Topices.findOne()
     return data.animalType
-  }
+  },
 })
 Template.createStep1.events({
   'click #next': function (e) {
@@ -64,6 +64,12 @@ Template.createStep2.onRendered(function () {
   $('[name=close-time]').val(locationObj.closeTime)
   $('[name=address]').val(locationObj.address)
   $('[name=detail]').val(locationObj.detail)
+  $('.add-time .custom.button')
+  .popup({
+    popup : $('.custom.popup'),
+    on    : 'click',
+    position : 'bottom left'
+  })
 })
 Template.createStep2.events({
   'click #next': function (e) {

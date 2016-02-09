@@ -1,6 +1,7 @@
 var newPost = {comments : [], likes : [], shares : [], favorites : [], catagory : []}
-
+var textEdit = ""
 Template.postBlock.events({
+
    'click .btn-post' : function (e) {
      e.preventDefault();
      if(!($('[name=upload]')[0].files[0])){
@@ -72,10 +73,23 @@ Template.postBlock.events({
    'click .preview-img' : function (e) {
      $('[name=upload]').click()
    },
+   'click #toggleBold' : function (e) {
+     $('button#toggleBold').toggleClass("toggle")
+   },
+   'click #toggleItalic' : function (e) {
+     $('button#toggleItalic').toggleClass("toggle")
+   },
+   'click #toggleUnderline' : function (e) {
+     $('button#toggleUnderline').toggleClass("toggle")
+   },
+   'click #toggleHeader' : function (e) {
+     $('button#toggleHeader').toggleClass("toggle")
+   },
 })
 
 Template.postBlock.helpers({
-  isAdminUpload: function () {
+
+    isAdminUpload: function () {
     return isAdminSite('admin-upload-picture')
   },
   isAdminStatus: function () {
@@ -102,7 +116,8 @@ Template.postBlock.helpers({
         console.log(fileInfo);
       }
     }
-  }
+  },
+
 })
 
 function isAdminSite(adminClass) {
