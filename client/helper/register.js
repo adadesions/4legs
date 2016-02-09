@@ -74,6 +74,12 @@ Template.register.helpers({
 })
 
 Template.register.events({
+  'click #term-condition': function (e) {
+    $('.ui.basic.modal').modal('show',
+    {
+      allowMultiple: false
+    })
+  },
   'click #vet': function () {
     if(Session.get('isVet')) Session.set('isVet', false)
     else Session.set('isVet', true)
