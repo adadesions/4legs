@@ -31,7 +31,7 @@ Meteor.methods({
     Notify.insert({
       notifyTo : followingId,
       notifyFrom: Meteor.userId(),
-      action: 'folowing',
+      action: 'following',
       read: false,
       createdAt: new Date()
     })
