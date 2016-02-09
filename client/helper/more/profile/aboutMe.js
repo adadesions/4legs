@@ -13,13 +13,29 @@ Template.aboutMe.helpers({
     }
     return Session.get('aboutMeContainer')
   },
+  show9Following : function (id) {
+    let following = Meteor.users.findOne({_id:id}),
+        ids = following.profile.following,
+        followingSet = _.map(ids, function (data) {
+          return Meteor.users.findOne({_id:data.followingId})
+        })
+    return followingSet.length > 9 ? followingSet.slice(0,9) : followingSet
+  },
+  show9Follower : function (id) {
+    let followers = Meteor.users.findOne({_id:id}),
+        ids = followers.profile.followers,
+        followerSet = _.map(ids, function (data) {
+          return Meteor.users.findOne({_id:data.followerId})
+        })
+    return followerSet.length > 9 ? followerSet.slice(0,9) : followerSet
+  },
   showAllFollowing : function (id) {
     let following = Meteor.users.findOne({_id:id}),
         ids = following.profile.following,
         followingSet = _.map(ids, function (data) {
           return Meteor.users.findOne({_id:data.followingId})
         })
-        return followingSet
+    return followingSet
   },
   showAllFollowers : function (id) {
     let followers = Meteor.users.findOne({_id:id}),
@@ -34,6 +50,15 @@ Template.aboutMe.events({
   'click .my-btn-edit' : function (e) {Session.set('aboutMeContainer','editProfile')},
   'mouseenter .badge-img': function (e) {
     console.log("Enter");
+  },
+  'click .link-seeall-follower': function (e) {
+    $('.ui.modal.follower')
+      .modal('show')
+  },
+
+  'click .link-seeall-following': function (e) {
+    $('.ui.modal.following')
+      .modal('show')
   }
 })
 

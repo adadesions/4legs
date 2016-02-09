@@ -56,6 +56,9 @@ Template.postFeed.helpers({
   },
   numOfCol: function () {
     return Template.currentData().col ? Template.currentData().col : 'one'
+  },
+  limitComment: function (comments) {
+    return comments.length > 3 ? comments.slice(comments.length-3,comments.length) : comments
   }
 })
 
