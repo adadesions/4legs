@@ -197,7 +197,7 @@ Template.location.events({
   'click #locationEdit': function () {
     Session.set('locationContainer', 'editLocation')
   },
-  'click #announcementEdit': function () {
+  'click #verifyOwnerButton': function () {
     Session.set('locationContainer', 'verifyOwner')
   },
 
@@ -208,14 +208,14 @@ Template.verifyOwner.onRendered(function () {
 })
 
 Template.verifyOwner.events({
-  'click #done': function () {
-    Session.set('locationContainer', 'editAnnouncementPromotion')
-  },
   'click [type=radio]': function (e) {
     var $val = $(e.target).val()
     $('#done').prop('disabled','')
     $val === 'yes' ? Session.set('showOwnerDialog', true) : Session.set('showOwnerDialog', false)
   },
+  'click #back': function (e) {
+    Session.set('locationContainer', 'locationSelected')
+  }
 })
 
 Template.verifyOwner.helpers({
@@ -386,4 +386,12 @@ Template.locationComment.helpers({
   feedComment: function (locationId) {
     return Markers.findOne({_id:locationId}).comments || ""
   }
+})
+
+Template.locationAnnouncement.events({
+
+  'click #announcement-button-edit': function () {
+    Session.set('locationContainer', 'editAnnouncementPromotion')
+  },
+
 })

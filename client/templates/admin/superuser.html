@@ -1,6 +1,40 @@
 <template name="superuser">
   {{> Template.dynamic template=superuserContainer}}
 </template>
+<!-- Admin Articla -->
+<template name="adminArticle">
+  <div class="row adminArticle">
+    <div class="col-lg-2 admin-head">
+      <span class="admin-head-text">Article</span>
+    </div>
+    <div id="basic-pet-care" class="topics-menu-box text-center col-lg-4 topics-box-active icon-topic-menubox">
+      <img src="/images/object/6-topics/BasicPetCare.png" alt="Basic Pet Care">Basic Pet Care
+    </div>
+    <div id="disease-and-prevention" class="topics-menu-box text-center col-lg-4 icon-topic-menubox">
+      <img src="/images/object/6-topics/DiseaseAndPrevention.png" alt="Desease and Prevention">Disease and Prevention
+    </div>
+    <div id="disease-and-prevention" class="topics-menu-box text-center col-lg-4 icon-topic-menubox">
+      <img src="/images/object/6-topics/DiseaseAndPrevention.png" alt="Desease and Prevention">Disease and Prevention
+    </div>
+  </div>
+  <div class="row admin-pets-type">
+    <div class="admin-catagory">
+      <div class="admin-pet-text">Pets </div>
+      {{#each petImgs}}
+        <div id="{{label}}" class="admin-catagory-item">
+          <img src="{{passiveUrl}}" name="{{label}}">
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="admin-post-section">
+    <br>
+    {{> postBlockAdmin}}
+    <br>
+    {{> postFeed type=adminNewsContainer col='three'}}
+  </div>
+</template>
+
 
 <!-- AdminNews -->
 <template name="adminNews">

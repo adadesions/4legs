@@ -65,8 +65,14 @@ Template.adminNews.onRendered(function () {
 
 })
 
+
+
 Template.adminNews.helpers({
   adminNewsContainer: function () {return Session.get('adminNewsContainer')},
+  petImgs: function () {return _.toArray(petImgs)}
+})
+
+Template.adminArticle.helpers({
   petImgs: function () {return _.toArray(petImgs)}
 })
 
