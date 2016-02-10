@@ -247,11 +247,7 @@ Template.editLocation.events({
   }
 })
 
-Template.editAnnouncementPromotion.events({
-  'click #back': function (e) {
-    Session.set('locationContainer', 'locationSelected')
-  }
-})
+
 
 //locationList
 Template.locationList.onRendered(function () {
@@ -389,9 +385,30 @@ Template.locationComment.helpers({
 })
 
 Template.locationAnnouncement.events({
-
   'click #announcement-button-edit': function () {
     Session.set('locationContainer', 'editAnnouncementPromotion')
   },
+})
 
+
+//editAnnouncementPromotion
+Template.editAnnouncementPromotion.helpers({
+  myLocation: function () {
+    return Markers.findOne({_id: Session.get('selectedLocationId')})
+  }
+})
+Template.editAnnouncementPromotion.events({
+  'click #submit-promotion': function (e) {
+    let announcement = $('[name=announcement]').val(),
+        promotion = $('[name=promotion]').val()
+    Markers.update({_id: Session.get('selectedLocationId')}, {$set: {
+      announcement,
+      promotion
+    }
+  })
+    Session.set('locationContainer', 'locationSelected')
+  },
+  'click #back': function (e) {
+    Session.set('locationContainer', 'locationSelected')
+  }
 })

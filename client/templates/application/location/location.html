@@ -184,9 +184,15 @@
 <template name="locationAnnouncement">
   <div class="selected-announcement">
     <h3>** ประกาศ **</h3>
+    <p>
+      {{announcement}}
+    </p>
   </div>
   <div class="selected-promotion">
     <h3>** โปรโมชั่น **</h3>
+    <p>
+      {{promotion}}
+    </p>
   </div>
   <br>
   <div class="announcement-edit text-center">
@@ -303,35 +309,37 @@
 
 
 <template name="editAnnouncementPromotion">
-  <div class="header-edit-announcement">
-    <br>
-    <h3 class="text-center">แก้ไขประกาศและโปรโมชั่น</h3>
-  </div>
-  <div class="body-edit-announcement">
-    <label for="detail">ประกาศ</label>
-    <textarea name="detail" class="form-control"  rows="5"></textarea>
-    <input type="file" name="upload" id="file" class="upload-img">
-    <label for="file" class="my-color-brown label-upload text-center">
-      <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
-      <u>เพิ่มรูปภาพ</u>
-    </label>
-    <br><br>
-    <label for="detail">ประกาศ</label>
-    <textarea name="detail" class="form-control"  rows="5"></textarea>
-    <input type="file" name="upload" id="file" class="upload-img">
-    <label for="file" class="my-color-brown label-upload text-center">
-      <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
-      <u>เพิ่มรูปภาพ</u>
-    </label>
-    <br><br>
-    <div class="col-lg-12 edit-location-button">
-      <button type="button" id="back" class="btn btn-warning col-lg-5">ยกเลิก</button>
-      <div class="col-lg-1"></div>
-      <button type="button" id="next" class="btn btn-success col-lg-5">บันทึก</button>
+  {{#with myLocation}}
+    <div class="header-edit-announcement">
       <br>
-      <br>
+      <h3 class="text-center">แก้ไขประกาศและโปรโมชั่น</h3>
     </div>
-  </div>
+    <div class="body-edit-announcement">
+      <label for="annoucement">ประกาศ</label>
+      <textarea name="announcement" class="form-control"  rows="5"></textarea>
+      <input type="file" name="upload" id="file" class="upload-img">
+      <label for="file" class="my-color-brown label-upload text-center">
+        <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
+        <u>เพิ่มรูปภาพ</u>
+      </label>
+      <br><br>
+      <label for="promotion">โปโมชั่น</label>
+      <textarea name="promotion" class="form-control"  rows="5"></textarea>
+      <input type="file" name="upload" id="file" class="upload-img">
+      <label for="file" class="my-color-brown label-upload text-center">
+        <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
+        <u>เพิ่มรูปภาพ</u>
+      </label>
+      <br><br>
+      <div class="col-lg-12 edit-location-button">
+        <button type="button" id="back" class="btn btn-warning col-lg-5">ยกเลิก</button>
+        <div class="col-lg-1"></div>
+        <button type="button" id="submit-promotion" class="btn btn-success col-lg-5">บันทึก</button>
+        <br>
+        <br>
+      </div>
+    </div>
+  {{/with}}
 </template>
 
 <template name="verifyOwner">
