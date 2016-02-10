@@ -87,6 +87,7 @@ localstorage@1.0.5
 logging@1.0.8
 matdutour:popup-confirm@0.1.25
 mdg:geolocation@1.1.0
+mediumeditor:mediumeditor@5.2.0
 meteor@1.1.10
 meteor-base@1.0.1
 meteorhacks:fast-render@2.11.0

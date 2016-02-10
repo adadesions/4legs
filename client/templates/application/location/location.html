@@ -175,8 +175,8 @@
     <span>{{line}}</span>
   </div>
   {{#unless owner.verified}}
-    <div class="announcement-edit text-center">
-      <button id="announcementEdit" class="ui green button">ฉันเป็นเจ้าของสถานประกอบการแห่งนี้</button>
+    <div class="verify-owner-edit text-center">
+      <button id="verifyOwnerButton" class="ui green button">ฉันเป็นเจ้าของสถานประกอบการแห่งนี้</button>
     </div>
   {{/unless}}
 </template>
@@ -187,6 +187,10 @@
   </div>
   <div class="selected-promotion">
     <h3>** โปรโมชั่น **</h3>
+  </div>
+  <br>
+  <div class="announcement-edit text-center">
+    <button id="announcement-button-edit" class="ui orange button">แก้ไขประกาศ/โปรโมชั่น</button>
   </div>
 </template>
 
@@ -350,6 +354,7 @@
       {{> ownerDialog}}
     {{/if}}
     <br>
-    <button id="done" type="button" class="btn btn-success" disabled="disabled">ต่อไป</button>
+    <button id="done" class="ui green button">ยืนยัน</button>
+    <button id="back" class="ui grey button">ย้อนกลับ</button>
   </div>
 </template>
