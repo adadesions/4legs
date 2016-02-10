@@ -82,9 +82,10 @@ Template.location.onCreated(function() {
     Markers.find().observe({
       //ADDED MARKER
       added: function (document) {
-        if(!availableList) availableList = availableListFn()
-        let inList = availableList.map( x => x._id === document._id)
-        let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
+        // if(!availableList) availableList = availableListFn()
+        // let inList = availableList.map( x => x._id === document._id)
+        // let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
+        let imgStatus = '/images/object/5-location/open-marker.png'
         let openImg = {
           url: imgStatus,
           size: new google.maps.Size(32, 32),
@@ -303,8 +304,9 @@ Template.theList.helpers({
   },
   isOpen: function (locationId) {
     let aPlace = Markers.findOne({_id:locationId})
-    let inList = availableList.map( x => x._id === aPlace._id)
-    return _.contains(inList, true) ? '/images/object/5-location/open.png' : '/images/object/5-location/close.png'
+    // let inList = availableList.map( x => x._id === aPlace._id)
+    // return _.contains(inList, true) ? '/images/object/5-location/open.png' : '/images/object/5-location/close.png'
+    return '/images/object/5-location/open.png'
   }
 })
 Template.theList.events({

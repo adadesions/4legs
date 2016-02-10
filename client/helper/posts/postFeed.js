@@ -16,7 +16,7 @@ Template.postFeed.helpers({
       let allPost = Posts.find({},{sort: {'info.createdAt': -1}, limit: 3 }).fetch()
       return allPost
     }
-    else if(type){ //For specific type      
+    else if(type){ //For specific type
       if(Session.get('adminPetType')){
         let petType = Session.get('adminPetType')
         return Posts.find({catagory : type, 'info.petType': petType}, {sort: {'info.createdAt': -1}})
