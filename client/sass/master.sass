@@ -1035,7 +1035,11 @@ input.shop-time
     margin-right: auto
     width: 70%
     height: auto
-
+.add-time-form
+  .open-days
+    font-size: 14px
+  input
+    width: 1.5em
 .open-days
   margin-top: 1em
   font-size: 18px
@@ -1541,9 +1545,7 @@ input.shop-time
   flex-flow: column
 .radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline
   margin-left: 0
-.add-time-form
-  input
-    width: 3em
+
 .group-button-add-time
   display: flex
   justify-content: space-between
@@ -1599,11 +1601,16 @@ input.shop-time
 .new-comment-blog
   input
     width: 35em
-.new-status
-  textarea
-    border: 1px solid $gray
-    border-radius: 5px
-    height: 5em
-    font-size: 16px
-    padding-left: 1em
-    padding-right: 1em
+.create-time
+  height: 2em
+  margin-top: 1em
+.show-day
+  width: 5em
+  text-align: center
+  border: 1px solid $gray
+  border-top-left-radius: 5px
+  border-bottom-left-radius: 5px
+.show-time-td
+  width: 15em
+  text-align: center
+  border: 1px solid $gray

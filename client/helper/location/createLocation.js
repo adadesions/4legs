@@ -99,7 +99,7 @@ Template.createStep2.events({
     //Show Time
     let html = dateSet.map(d => {
       let dayStr = d.days.map(s => s)
-      return `<span>${dayStr}</span> ${d.open} - ${d.close}<br>`
+      return `<table class="create-time"><tr><td class="show-day">${dayStr}</td><td class="show-time-td">${d.open} - ${d.close}<td></tr></table>`
     })
     $('.show-time').empty().append(html)
   },
