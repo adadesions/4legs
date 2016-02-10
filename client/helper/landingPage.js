@@ -1,7 +1,7 @@
 Template.landingPage.onRendered(function () {
   $('#loginLandingPage')
   .popup({
-    popup : $('.custom.popup'),
+    popup : $('.login-landing.popup'),
     on    : 'click',
     position : 'bottom left'
   })

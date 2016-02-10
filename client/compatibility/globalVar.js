@@ -36,4 +36,4 @@ const petImgs = {
   },
 }
 
-var availableList =  availableListFn()
+// var availableList =  availableListFn()
