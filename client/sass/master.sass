@@ -738,7 +738,7 @@ pre
   height: 1em
   background-color: $pink
 .topics-menu
-  margin-top: -1em
+  background-color: $inactive-pink
 .topics-menu-item
   display: flex
   flex-direction: column
@@ -756,8 +756,9 @@ pre
     display: block
     margin-left: auto
     margin-right: auto
-    margin-top: 2em
-
+#vet-article
+  &:hover
+    background-color: $inactive-pink
 .catagory
   margin-top: 2em
   position: fixed
@@ -1640,3 +1641,6 @@ input.shop-time
   border: 1px solid $gray
 #loginLandingPage
   width: 50%
+.selected-announcement
+  p
+    color: #000
