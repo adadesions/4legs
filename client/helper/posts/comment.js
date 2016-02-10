@@ -3,9 +3,11 @@ Template.comment.helpers({
     var adjTime = moment(postTime);
     return adjTime.fromNow();
   },
-  isVet: function (userId) {
+  isVetComment: function (userId) {
     let user = Meteor.users.findOne({_id:userId})
-    console.log(user.profile.vetInfo.isVet);
-    return user.profile.vetInfo.verified
+    if(user){
+      console.log(user.profile.vetInfo.verified)
+      return user.profile.vetInfo.verified
+    }
   }
 })

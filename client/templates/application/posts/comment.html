@@ -3,7 +3,7 @@
     <div class="event">
       <a href="{{pathFor 'profile' id=commentOwnerId}}">
         <img class="ui avatar big image pic-comment" src="{{profilePicture commentOwnerId}}">
-        {{#if isVet info.postOwner}}
+        {{#if isVetComment commentOwnerId}}
           <img class="vet-badge" src="/images/object/7-profile/vet.png">
         {{/if}}
         {{matchUserId info.postOwner}}
