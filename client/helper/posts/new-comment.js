@@ -6,6 +6,7 @@ Template.newComment.helpers({
 
 Template.newComment.events({
   'keypress #newComment' : function (e) {
+    
     if(e.keyCode === 13 && $(e.target).val() !== ''){
       e.preventDefault()
       var postId = $(e.target).attr("name"),

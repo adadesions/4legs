@@ -54,11 +54,13 @@
           </span>
         </div>
         <div id="post-{{_id}}" class="extra content">
-          {{#each limitComment comments}}
-           {{> comment}}
-          {{/each}}
-          <!--  new comment -->
-          {{> newComment}}
+          {{#if currentUser}}
+            {{#each limitComment comments}}
+             {{> comment}}
+            {{/each}}
+            <!--  new comment -->
+              {{> newComment}}
+          {{/if}}
         </div>
       </div>
     {{/each}}

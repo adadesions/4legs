@@ -12,6 +12,10 @@ Template.postFeed.helpers({
     if(type === 'favorite'){ //For favorite
         return Posts.find({'favorites': Meteor.userId()}, {sort: {'info.createdAt': -1}})
     }
+    else if(type === 'pop'){
+      let allPost = Posts.find({},{sort: {'info.createdAt': -1}, limit: 3 }).fetch()
+      return allPost
+    }
     else if(type){ //For specific type
       if(Session.get('adminPetType')){
         let petType = Session.get('adminPetType')
@@ -58,8 +62,7 @@ Template.postFeed.helpers({
     return comments.length > 3 ? comments.slice(comments.length-3,comments.length) : comments
   },
   isVet: function (userId) {
-    let user = Meteor.users.findOne({_id:userId})
-    console.log(user.profile.vetInfo.isVet);
+    let user = Meteor.users.findOne({_id:userId})    
     return user.profile.vetInfo.verified
   }
 })
