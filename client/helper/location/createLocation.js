@@ -1,5 +1,6 @@
 //variable scope
-let locationObj = {}
+let locationObj = {},
+    dateSet = []
 var getChecked = function (name) {
   var sel = '[name='+name+']:checked'
   return $(sel).map(function () { return this.value }).get()
@@ -70,13 +71,44 @@ Template.createStep2.onRendered(function () {
     on    : 'click',
     position : 'bottom left'
   })
+  $('.ui.popup').css('z-index','3')
 })
 Template.createStep2.events({
+  'click #submit-time': function (e) {
+    e.preventDefault()
+    let open = $('[name=open-time]').val(),
+        close = $('[name=close-time]').val(),
+        days = getChecked('days'),
+        logical = (open !== '' && close !== '' && days.length > 0)
+    if(logical)
+    dateSet.push({
+      open,
+      close,
+      days
+    })
+    var clearCheck = function (values) {
+      _.each(values, function (value) {
+        $('[value="'+value+'"]').prop('checked',false)
+      })
+    }
+    $('[name=open-time]').val('')
+    $('[name=close-time]').val('')
+    $('[name=every-days]').prop('checked',false)
+    clearCheck(['อา','จ','อ','พ','พฤ','ศ','ส'])
+
+    //Show Time
+    let html = dateSet.map(d => {
+      let dayStr = d.days.map(s => s)
+      return `<span>${dayStr}</span> ${d.open} - ${d.close}<br>`
+    })
+    $('.show-time').empty().append(html)
+  },
+  'click [name=every-days]': function (e) {
+    setCheck(['อา','จ','อ','พ','พฤ','ศ','ส'])
+  },
   'click #next': function (e) {
     e.preventDefault()
-    locationObj.daysWeek = getChecked('days-week')
-    locationObj.openTime = $('[name=open-time]').val()
-    locationObj.closeTime = $('[name=close-time]').val()
+    locationObj.dateSet = dateSet
     locationObj.address = $('[name=address]').val()
     locationObj.detail = $('[name=detail]').val()
     Session.set('stepsContainer', 'createStep3')
