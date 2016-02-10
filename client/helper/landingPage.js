@@ -3,7 +3,7 @@ Template.landingPage.onRendered(function () {
   .popup({
     popup : $('.custom.popup'),
     on    : 'click',
-    position : 'bottom right'
+    position : 'bottom left'
   })
 })
 
