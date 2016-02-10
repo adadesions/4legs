@@ -477,6 +477,7 @@ pre
 //Comment
 #newComment
   padding-left: 0.5em !important
+
 .comment-block
   margin-top: -1em
 .new-comment
@@ -1447,7 +1448,7 @@ input.shop-time
   @extend #location-search
 
 .feed-container
-  width: 43em
+  width: 90%
   height: auto
   margin: 0 auto
 .text-editable-bar
@@ -1461,7 +1462,9 @@ input.shop-time
     border-bottom:solid 2px  #eaeaea
     border-right: solid 2px #eaeaea
 .head-landing-page
-  background-image: url('images/home/picHome.jpg')
+  background-image: url('images/home/home-bg2.jpeg')
+  background-size: cover
+  repeat: no-repeat
   height: 100vh
   .ui.vertical.segment
     padding-left: 3em
@@ -1516,10 +1519,12 @@ input.shop-time
   justify-content: center
 .content-landing-page
   background-color: #fff
-  opacity: 0.5
-  width: 60%
+  background: rgba(255,255,255,0.7)
+  width: 80%
   border-radius: 10px
   margin-top: 5em
+  h2
+    margin-top: 0.5em
 .button-landing-page
   display: flex
   justify-content: flex-end
@@ -1577,3 +1582,13 @@ input.shop-time
       position: absolute
       margin-top: -0.8em
       margin-left: 1.8em
+.comment-feed
+  width: 70%
+  display: flex
+  word-wrap: break-word
+.pic-comment
+  width: 2em
+  height: 2em
+.new-comment-blog
+  input
+    width: 35em
