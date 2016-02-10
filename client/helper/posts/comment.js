@@ -5,9 +5,6 @@ Template.comment.helpers({
   },
   isVetComment: function (userId) {
     let user = Meteor.users.findOne({_id:userId})
-    if(user){
-      console.log(user.profile.vetInfo.verified)
-      return user.profile.vetInfo.verified
-    }
+    if(user) return user.profile.vetInfo.verified    
   }
 })

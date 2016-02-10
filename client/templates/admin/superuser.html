@@ -7,14 +7,17 @@
     <div class="col-lg-2 admin-head">
       <span class="admin-head-text">Article</span>
     </div>
-    <div id="basic-pet-care" class="topics-menu-box text-center col-lg-4 topics-box-active icon-topic-menubox">
+    <div id="basic-pet-care" class="topics-menu-box text-center col-lg-4 icon-topic-menubox
+    {{isBoxActive container='adminArticleContainer' location='basic-pet-care'}}">
       <img src="/images/object/6-topics/BasicPetCare.png" alt="Basic Pet Care">Basic Pet Care
     </div>
-    <div id="disease-and-prevention" class="topics-menu-box text-center col-lg-4 icon-topic-menubox">
+    <div id="disease-and-prevention" class="topics-menu-box text-center col-lg-4 icon-topic-menubox
+    {{isBoxActive container='adminArticleContainer' location='disease-and-prevention'}}">
       <img src="/images/object/6-topics/DiseaseAndPrevention.png" alt="Desease and Prevention">Disease and Prevention
     </div>
-    <div id="disease-and-prevention" class="topics-menu-box text-center col-lg-4 icon-topic-menubox">
-      <img src="/images/object/6-topics/DiseaseAndPrevention.png" alt="Desease and Prevention">Disease and Prevention
+    <div id="vet-story" class="topics-menu-box text-center col-lg-4 icon-topic-menubox
+    {{isBoxActive container='adminArticleContainer' location='vet-story'}}">
+      <img src="/images/object/6-topics/VetStory.png" alt="Vet Story">Vet Story
     </div>
   </div>
   <div class="row admin-pets-type">
@@ -31,7 +34,7 @@
     <br>
     {{> postBlockAdmin}}
     <br>
-    {{> postFeed type=adminNewsContainer col='three'}}
+    {{> postFeed type=adminArticleContainer col='three'}}
   </div>
 </template>
 

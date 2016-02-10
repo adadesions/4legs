@@ -10,7 +10,10 @@ Template.postBlock.events({
      else{
        var path = Router.current().location.get().path
            path = path.slice(1,path.length)
-       if(path === 'adminsite/superuser') newPost.catagory.push(Session.get('adminNewsContainer'))
+       if(path === 'adminsite/superuser') {
+         let catagory = Session.get('adminNewsContainer') !== null ? Session.get('adminNewsContainer') : Session.get('adminArticleContainer')         
+         newPost.catagory.push(catagory)
+       }
        if(Session.get('identifyContainer') === 'postBlock') newPost.catagory.push(Session.get('sosContainer'))
        newPost.catagory.push(path)
        newPost.highlight = false
@@ -88,8 +91,7 @@ Template.postBlock.events({
 })
 
 Template.postBlock.helpers({
-
-    isAdminUpload: function () {
+  isAdminUpload: function () {
     return isAdminSite('admin-upload-picture')
   },
   isAdminStatus: function () {

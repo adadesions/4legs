@@ -67,15 +67,11 @@ Template.adminNews.onRendered(function () {
 })
 
 
-
 Template.adminNews.helpers({
   adminNewsContainer: function () {return Session.get('adminNewsContainer')},
   petImgs: function () {return _.toArray(petImgs)}
 })
 
-Template.adminArticle.helpers({
-  petImgs: function () {return _.toArray(petImgs)}
-})
 
 Template.adminNews.events({
   'click .admin-catagory-item': function (e) {
@@ -94,6 +90,34 @@ Template.adminNews.events({
   'click .topics-menu-box': function (e) {
     let id = $(e.target).attr('id')
     Session.set('adminNewsContainer',id)
+  }
+})
+Template.adminArticle.onRendered(function () {
+  Session.set('adminNewsContainer', null)
+  Session.set('adminArticleContainer', 'basic-pet-care')
+})
+
+Template.adminArticle.helpers({
+  adminArticleContainer: function () {return Session.get('adminArticleContainer')},
+  petImgs: function () {return _.toArray(petImgs)}
+})
+Template.adminArticle.events({
+  'click .admin-catagory-item': function (e) {
+    let $target = $(e.target)
+    //Reset state
+    $('.admin-catagory-item').filter(function (index) {
+      if($(this).children().hasClass('act-active')){
+        $(this).children().removeClass('act-active')
+        setImgSrc($(this).children(),'passiveUrl')
+      }
+    })
+    //Target
+    $target.addClass('act-active')
+    setImgSrc($target,'activeUrl')
+  },
+  'click .topics-menu-box': function (e) {
+    let id = $(e.target).attr('id')
+    Session.set('adminArticleContainer',id)
   }
 })
 
@@ -173,7 +197,10 @@ Template.postBlockAdmin.events({
     else{
       var path = Router.current().location.get().path
           path = path.slice(1,path.length)
-      if(path === 'adminsite/superuser') newPost.catagory.push(Session.get('adminNewsContainer'))
+      if(path === 'adminsite/superuser'){
+        let catagory = Session.get('adminNewsContainer') !== null ? Session.get('adminNewsContainer') : Session.get('adminArticleContainer')
+        newPost.catagory.push(catagory)
+      }
       if(Session.get('identifyContainer') === 'postBlock') newPost.catagory.push(Session.get('sosContainer'))
       newPost.catagory.push(path)
       newPost.highlight = false
@@ -186,7 +213,8 @@ Template.postBlockAdmin.events({
       Posts.insert(newPost, function (err) {
         if (err) throw err;
         else{
-          $('[name=newStatus]').val('')
+
+          $('[id^="medium-editor"]').empty()
           $('.new-upload-preview').empty()
           newPost.catagory = []
           Session.set('identifyContainer', 'sosIdentify')
