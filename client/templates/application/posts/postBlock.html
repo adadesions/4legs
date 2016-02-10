@@ -52,16 +52,9 @@
         <span class="category">4Legs Member</span>
       </div>
       <br>
-      <div class="description">
-        <div class="text-editable-bar">
-          <div class="ui icon buttons">
-            <button id="toggleBold" class="ui button button-editable"><i class="bold icon"></i></button>
-            <button id="toggleItalic" class="ui button button-editable"><i class="italic icon"></i></button>
-            <button id="toggleUnderline" class="ui button button-editable"><i class="underline icon"></i></button>
-            <button id="toggleHeader" class="ui button button-editable"><i class="header icon"></i></button>
-          </div>
-        </div>
+      <div class="description new-status">
         <textarea name="newStatus" id="newStatus" placeholder="แบ่งปันเรื่องราวของคุณ..." value=""></textarea>
+        <script>var editor = new MediumEditor('#newStatus');</script>
       </div>
       <br>
       <div class="ui center aligned container">
