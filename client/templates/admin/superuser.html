@@ -53,7 +53,7 @@
       <div class="admin-location-body row">
         <div class="col-lg-4 adminVet-verified withOutPadding">
           <div class="admin-location-head-left-topic">
-            <label>ได้รับการยืนยันแล้ว ({{getNumberVerifiedVet}})</label>
+            <label>ได้รับการยืนยันแล้ว ({{getNumberVerifiedLocation}})</label>
           </div>
           {{#each getVerifiedLocation}}
             {{> adminLocationItem}}
@@ -61,7 +61,7 @@
         </div>
         <div class="col-lg-4 admin-location-waiting withOutPadding">
           <div class="admin-location-head-center-topic">
-            <label>รอการอนุมัติ ({{getNumberWaitingVet}})</label>
+            <label>รอการอนุมัติ ({{getNumberWaitingLocation}})</label>
           </div>
           {{#each getWaitingLocation}}
             {{> adminLocationItem}}
@@ -69,7 +69,7 @@
         </div>
         <div class="col-lg-4 adminVet-waiting withOutPadding">
           <div class="admin-location-head-right-topic">
-            <label>การโปรโมท ({{getNumberWaitingVet}})</label>
+            <label>การโปรโมท ({{getNumberPromotingLocation}})</label>
           </div>
           {{#each getPromotingLocation}}
             {{> adminLocationItem}}
@@ -87,8 +87,15 @@
     <img id="{{_id}}" src="{{profilePicture _id}}" class="adminVet-profile-picture img-circle" alt="">
     <div id="{{_id}}" class="adminVet-username">
       {{locationName}}
+      <br>
+      <p>
+        {{owner.ownerName}}
+        <br>
+        {{owner.ownerTel}}
+        <br>
+        {{owner.ownerEmail}}
+      </p>
     </div>
-    <i id="{{_id}}" class="fa fa-chevron-right fa-lg"></i>
   </div>
 </template>
 

@@ -320,5 +320,14 @@ Template.adminLocation.helpers({
   },
   getPromotingLocation: function () {
     return Markers.find({'isPromotimg': true}).fetch()
+  },
+  getNumberVerifiedLocation: function () {
+    return Markers.find({'owner.verified': true}).count()
+  },
+  getNumberWaitingLocation: function () {
+    return Markers.find({'owner.verified': false}).count()
+  },
+  getNumberPromotingLocation: function () {
+    return Markers.find({'isPromotimg': true}).count()
   }
 })
