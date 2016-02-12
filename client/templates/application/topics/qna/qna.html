@@ -3,7 +3,10 @@
   <form class="form-group">
     <input type="text" class="vet-article-search form-control col-lg-12" placeholder="ค้นหา Q&A">
   </form>
-  <br><br><br>
+  <br><br>
+  <div class="post-block-qna">
+    {{> postBlock}}
+  </div>
   <div class='row '>
     {{> postFeed type="qna" col='three'}}
   </div>

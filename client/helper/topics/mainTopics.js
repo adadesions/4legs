@@ -13,7 +13,6 @@ Template.mainTopics.onCreated(function () {
   Session.set('identifyContainer', 'sosIdentify')
   Session.set('newsContainer', 'about-pet')
 })
-
 //mainTopics Helpers
 Template.mainTopics.helpers({
   topicsContainer: function () {return Session.get('topicsContainer')},

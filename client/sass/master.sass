@@ -723,10 +723,12 @@ pre
 
 /* Topics
 .topics-left-panel
-  height: 1em
+
   background-color: $pink
 .topics-menu
   background-color: $inactive-pink
+  position: fixed
+  width: 9%
 .topics-menu-item
   display: flex
   flex-direction: column
@@ -1482,6 +1484,13 @@ input.shop-time
     color: $orange-background
     font-size: 50px
     font-weight: lighter
+.forget-password
+  a
+    font-size: 14px
+    color: #000
+.copyright
+  display: flex
+  align-items: center
 .button-landing-page-group
   width: 50%
   display: flex
@@ -1495,6 +1504,7 @@ input.shop-time
       font-size: 14px
       margin-top: 0
     i
+      border: none
       margin-top: 0.2em
   #btn-signUp
     width: 100%
@@ -1511,6 +1521,9 @@ input.shop-time
     i
       margin-right: 7em
 .foot-landing-page
+  position: relative
+  bottom: 0
+  margin-top: 1em
   background-color: $orange-background
   height: 11em
   display: flex

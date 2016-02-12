@@ -431,7 +431,7 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
   .head-landing-page
     background-image: url('images/home/home-bg2.jpeg')
     background-size: cover
-    height: 80vh
+    height: 70vh
     .ui.vertical.segment
       padding-left: 0
       padding-right: 0
@@ -440,8 +440,8 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     margin-top: 1em
     margin-left: 1em
     img
-      width: 4em
-      height: 4em
+      width: 5em
+      height: 5em
   .login-landing
     border-radius: 10em
   .body-landing-page
@@ -462,11 +462,11 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
       font-size: 14px
       h3
         display: none
-        font-size: 14px
+        font-size: 0
         margin-top: 0
       i
         width: 3em
-        margin-left: -0.2em
+        margin-left: -0.3em
         margin-top: 0.2em
   .foot-landing-page
     background-color: $orange-background
@@ -476,7 +476,7 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
   .nav-landing-page
     display: flex
     flex-flow: row
-    justify-content: space-between
+    justify-content: space-around
   .link-landing-page
     display: flex
     flex-flow: row
@@ -502,11 +502,13 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     justify-content: center
   .content-landing-page
     background: rgba(255,255,255,0.7)
-    width: 80%
+    width: 90%
     border-radius: 10px
     margin-top: 1em
-    h2
-      font-size: 16px
+    h1
+      font-size: 18px
+    p
+      font-size: 14px
   .button-landing-page
     display: flex
     justify-content: flex-end
@@ -525,8 +527,11 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     margin-left: auto
     margin-right: auto
   #loginLandingPage
-    width: 50%
+    width: 100%
     height: 3em
+    text-align: center
+    h3
+      margin-top: -0.1em
   .button-landing-page-group
     width: 100%
     display: flex
@@ -537,18 +542,20 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
     a
       width: 50%
     #btn-signUp
-      width: 90%
+      width: 100%
       background-color: #1b5e20
       color: #FFF
       height: 3em
       font-size: 14px
       margin-top: 1em
+      text-align: center
       &:hover
         background-color: #2e7d32
       h3
         margin-top: 0
-        margin-left: 0
         border: none
+        font-size: 16px
+        margin-left: 0
       i
         display: none
         margin-right: 4em
@@ -558,7 +565,7 @@ $mobile: "(min-width: 310px) and (max-width: 750px)"
   .button-landing-page
     display: flex
     justify-content: flex-end
-    align-items: flex-end
+    align-items: center
 @media #{$tablet}
   .button-card-following
     height: 3em

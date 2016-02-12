@@ -1,7 +1,7 @@
 <template name="landingPage">
   <div class="head-landing-page">
     <div class="ui vertical segment">
-      <div class="ui two column grid nav-landing-page">
+      <div class="nav-landing-page">
         <div class="logo-landing-page">
           <img class="logo" src="/images/object/1-login/logo-login.png" alt="">
         </div>
@@ -15,6 +15,9 @@
               </div>
               <div class="field">
                 <input type="password" name="password" placeholder="Password">
+              </div>
+              <div class="field forget-password">
+                <a href="#">ลืมรหัสผ่าน ?</a>
               </div>
               <div class="field button-accept-login">
                 <button id="loginLandingButton" class="ui orange button">Login</button>
@@ -59,25 +62,5 @@
     </div>
   </div>
   <br><br>
-  <div class="foot-landing-page">
-    <div class="container">
-      <div class="ui two column grid nav-landing-page">
-        <!-- <div class="link-landing-page">
-          <div class="link-landing-page-left">
-            <a href="#">About</a>
-            <a href="#">Location</a>
-            <a href="#">Contact Us</a>
-          </div>
-          <div class="link-landing-page-right">
-            <a href="#">Service</a>
-            <a href="#">FAQ</a>
-            <a href="#">How To Access</a>
-          </div>
-        </div> -->
-        <div class="logo-landing-page">
-          <img class="logo" src="/images/object/1-login/logo-login.png" alt="">
-        </div>
-      </div>
-    </div>
-  </div>
+  {{> footer}}
 </template>
