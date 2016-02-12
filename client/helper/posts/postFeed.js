@@ -13,8 +13,11 @@ Template.postFeed.helpers({
         return Posts.find({'favorites': Meteor.userId()}, {sort: {'info.createdAt': -1}})
     }
     else if(type === 'pop'){
-      let allPost = Posts.find({},{sort: {'info.createdAt': -1}, limit: 3 }).fetch()
+      let allPost = Posts.find({catagory : 'newsfeed'},{sort: {'info.createdAt': -1}, limit: 3 }).fetch()
       return allPost
+    }
+    else if(type === 'publicTopics'){
+      let allPost = Posts.find({},{sort: {'info.createdAt': -1}, limit: 6 }).fetch()
     }
     else if(type){ //For specific type
       if(Session.get('adminPetType')){

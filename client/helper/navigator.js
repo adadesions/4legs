@@ -4,7 +4,7 @@ Template.navigator.onCreated(function () {
   Tracker.autorun(function () {
     query.observe({
       added: function(newDoc){
-        barkSound.play()        
+        barkSound.play()
       }
     })
   })
@@ -16,7 +16,7 @@ Template.navigator.events({
         if (err) {
             throw new Meteor.Error("Logout failed");
         }
-        Router.go('login');
+        Router.go('/');
     })
   },
   'click #notification': function (e) {
