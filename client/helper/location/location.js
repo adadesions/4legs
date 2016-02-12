@@ -201,7 +201,10 @@ Template.location.events({
   'click #verifyOwnerButton': function () {
     Session.set('locationContainer', 'verifyOwner')
   },
-
+  'click #showMap':function () {
+    $('.ui.sidebar')
+    .sidebar('toggle')
+  },
 })
 
 Template.verifyOwner.onRendered(function () {

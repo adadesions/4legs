@@ -1,18 +1,21 @@
 <template name="location">
   <div class="container-fluid withOutPaddind">
     <div class="row">
-      <div id="location-left-side" class="col-lg-4 withOutPadding">
-        {{> Template.dynamic template=locationContainer}}
+      <div class="ui wide sidebar list-location">
+      {{> Template.dynamic template=locationContainer}}
       </div>
-      <div id="location-right-side" class="col-lg-8 withOutPadding mapCenter">
+      <div id="location-right-side" class="col-lg-12 withOutPadding mapCenter">
         {{#unless geolocationError}}
           {{> googleMap name="4legsMap" options=MapOptions}}
         {{else}}
           Geolocation failed: {{geolocationError}}
         {{/unless}}
-        <div class="add-location">
+        <div id="showMap" class="add-location">
           <img src="/images/object/5-location/add.png" alt="">
           <span>เพิ่มสถานที่ใหม่</span>
+        </div>
+        <div class="show-list-location">
+          <button id="showMap" class="ui teal button">แสดงรายการสถานประกอบการ</button>
         </div>
       </div>
     </div>
