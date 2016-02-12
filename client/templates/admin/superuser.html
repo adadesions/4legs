@@ -39,7 +39,7 @@
 
 
 
-<!-- AdminVet -->
+<!-- AdminLocation -->
 <template name="adminLocation">
   <div class="admin-location">
     <div class="admin-head">
@@ -50,18 +50,26 @@
           <input type="text" class="form-control">
         </form>
       </div>
-      <div class="adminVet-body row">
-        <div class="col-lg-6 adminVet-verified withOutPadding">
-          <div class="adminVet-head-left-topic">
+      <div class="admin-location-body row">
+        <div class="col-lg-4 adminVet-verified withOutPadding">
+          <div class="admin-location-head-left-topic">
             <label>ได้รับการยืนยันแล้ว ({{getNumberVerifiedVet}})</label>
           </div>
           {{#each getVerifiedVet}}
             {{> adminVetItem}}
           {{/each}}
         </div>
-        <div class="col-lg-6 adminVet-waiting withOutPadding">
-          <div class="adminVet-head-right-topic">
+        <div class="col-lg-4 admin-location-waiting withOutPadding">
+          <div class="admin-location-head-center-topic">
             <label>รอการอนุมัติ ({{getNumberWaitingVet}})</label>
+          </div>
+          {{#each getVet}}
+            {{> adminLocationItem}}
+          {{/each}}
+        </div>
+        <div class="col-lg-4 adminVet-waiting withOutPadding">
+          <div class="admin-location-head-right-topic">
+            <label>การโปรโมท ({{getNumberWaitingVet}})</label>
           </div>
           {{#each getVet}}
             {{> adminLocationItem}}
@@ -73,6 +81,7 @@
 
 </template>
 
+<!-- Item Admin Location -->
 <template name="adminLocationItem">
   <div id="{{_id}}" class="adminVet-item-block col-lg-12">
     <img id="{{_id}}" src="{{profilePicture _id}}" class="adminVet-profile-picture img-circle" alt="">
