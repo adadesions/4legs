@@ -200,6 +200,7 @@ Template.postBlockAdmin.events({
       if(path === 'adminsite/superuser'){
         let catagory = Session.get('adminNewsContainer') !== null ? Session.get('adminNewsContainer') : Session.get('adminArticleContainer')
         newPost.catagory.push(catagory)
+        newPost.catagory.push('topics')
       }
       if(Session.get('identifyContainer') === 'postBlock') newPost.catagory.push(Session.get('sosContainer'))
       newPost.catagory.push(path)

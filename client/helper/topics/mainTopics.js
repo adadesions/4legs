@@ -100,3 +100,11 @@ Template.news.events({
     Session.set('newsContainer', id)
   }
 })
+
+////////////// qna
+Template.qna.onCreated(function () {
+  Session.set('isQna', true)
+})
+Template.qna.onDestroyed(function () {
+  Session.set('isQna', false)
+})

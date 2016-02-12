@@ -17,7 +17,8 @@ Template.postFeed.helpers({
       return allPost
     }
     else if(type === 'publicTopics'){
-      let allPost = Posts.find({},{sort: {'info.createdAt': -1}, limit: 6 }).fetch()
+      let allPost = Posts.find({catagory : 'topics'},{sort: {'info.createdAt': -1}, limit: 6 }).fetch()
+      return allPost
     }
     else if(type){ //For specific type
       if(Session.get('adminPetType')){
