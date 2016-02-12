@@ -83,18 +83,25 @@
 
 <!-- Item Admin Location -->
 <template name="adminLocationItem">
-  <div id="{{_id}}" class="adminVet-item-block col-lg-12">
-    <img id="{{_id}}" src="{{profilePicture _id}}" class="adminVet-profile-picture img-circle" alt="">
-    <div id="{{_id}}" class="adminVet-username">
-      {{locationName}}
-      <br>
-      <p>
-        {{owner.ownerName}}
-        <br>
-        {{owner.ownerTel}}
-        <br>
-        {{owner.ownerEmail}}
-      </p>
+  <div id="{{_id}}" class="admin-location-item-block col-lg-12">
+    <div class="border-location">
+      <img id="{{_id}}" src="{{profilePicture _id}}" class="adminVet-profile-picture img-circle" alt="">
+      <div class="admin-location-detail-group">
+        <div id="{{_id}}" class="admin-location-name">
+          {{locationName}}
+          <br>
+        </div>
+        <div class="admin-location-detail">
+          <p>
+            {{owner.ownerName}}
+            <br>
+            {{owner.ownerTel}}
+            <br>
+            {{owner.ownerEmail}}
+            <br>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
