@@ -309,3 +309,16 @@ postBlockUpload: function () {
   }
 },
 })
+
+/////adminLocation
+Template.adminLocation.helpers({
+  getVerifiedLocation: function () {
+    return Markers.find({'owner.verified': true}).fetch()
+  },
+  getWaitingLocation: function () {
+    return Markers.find({'owner.verified': false}).fetch()
+  },
+  getPromotingLocation: function () {
+    return Markers.find({'isPromotimg': true}).fetch()
+  }
+})

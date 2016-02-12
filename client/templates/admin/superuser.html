@@ -55,15 +55,15 @@
           <div class="admin-location-head-left-topic">
             <label>ได้รับการยืนยันแล้ว ({{getNumberVerifiedVet}})</label>
           </div>
-          {{#each getVerifiedVet}}
-            {{> adminVetItem}}
+          {{#each getVerifiedLocation}}
+            {{> adminLocationItem}}
           {{/each}}
         </div>
         <div class="col-lg-4 admin-location-waiting withOutPadding">
           <div class="admin-location-head-center-topic">
             <label>รอการอนุมัติ ({{getNumberWaitingVet}})</label>
           </div>
-          {{#each getVet}}
+          {{#each getWaitingLocation}}
             {{> adminLocationItem}}
           {{/each}}
         </div>
@@ -71,7 +71,7 @@
           <div class="admin-location-head-right-topic">
             <label>การโปรโมท ({{getNumberWaitingVet}})</label>
           </div>
-          {{#each getVet}}
+          {{#each getPromotingLocation}}
             {{> adminLocationItem}}
           {{/each}}
         </div>
@@ -86,7 +86,7 @@
   <div id="{{_id}}" class="adminVet-item-block col-lg-12">
     <img id="{{_id}}" src="{{profilePicture _id}}" class="adminVet-profile-picture img-circle" alt="">
     <div id="{{_id}}" class="adminVet-username">
-      {{username}}
+      {{locationName}}
     </div>
     <i id="{{_id}}" class="fa fa-chevron-right fa-lg"></i>
   </div>
