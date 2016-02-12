@@ -11,12 +11,13 @@ Template.postBlock.events({
        var path = Router.current().location.get().path
            path = path.slice(1,path.length)
        if(path === 'adminsite/superuser') {
-         let catagory = Session.get('adminNewsContainer') !== null ? Session.get('adminNewsContainer') : Session.get('adminArticleContainer')         
+         let catagory = Session.get('adminNewsContainer') !== null ? Session.get('adminNewsContainer') : Session.get('adminArticleContainer')
          newPost.catagory.push(catagory)
        }
        if(Session.get('identifyContainer') === 'postBlock') newPost.catagory.push(Session.get('sosContainer'))
+       if(Session.get('isQna')) newPost.catagory.push('qna')
+
        newPost.catagory.push(path)
-       newPost.highlight = false
        newPost.info = {
           postOwner : Meteor.userId(),
           postBody : $('[name=newStatus]').val(),
