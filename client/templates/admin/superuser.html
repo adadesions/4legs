@@ -1,6 +1,89 @@
 <template name="superuser">
   {{> Template.dynamic template=superuserContainer}}
 </template>
+
+
+<!-- AdminVet -->
+<template name="adminVet">
+  <div class="adminVet">
+    <div class="admin-head">
+      <span class="admin-head-text">สัตวแพทย์</span>
+      <div class="adminVet-search pull-right">
+        <form class='form-inline'>
+          <i class="fa fa-search fa-2x"></i>
+          <input type="text" class="form-control">
+        </form>
+      </div>
+      <div class="adminVet-body row">
+        <div class="col-lg-6 adminVet-verified withOutPadding">
+          <div class="adminVet-head-left-topic">
+            <label>ได้รับการยืนยันตัวตนแล้ว ({{getNumberVerifiedVet}})</label>
+          </div>
+          {{#each getVerifiedVet}}
+            {{> adminVetItem}}
+          {{/each}}
+        </div>
+        <div class="col-lg-6 adminVet-waiting withOutPadding">
+          <div class="adminVet-head-right-topic">
+            <label>รอการอนุมัติ ({{getNumberWaitingVet}})</label>
+          </div>
+          {{#each getVet}}
+            {{> adminVetItem}}
+          {{/each}}
+        </div>
+      </div>
+  </div>
+</div>
+
+</template>
+
+
+
+<!-- AdminVet -->
+<template name="adminLocation">
+  <div class="admin-location">
+    <div class="admin-head">
+      <span class="admin-head-text">สถานประกอบการ</span>
+      <div class="adminVet-search pull-right">
+        <form class='form-inline'>
+          <i class="fa fa-search fa-2x"></i>
+          <input type="text" class="form-control">
+        </form>
+      </div>
+      <div class="adminVet-body row">
+        <div class="col-lg-6 adminVet-verified withOutPadding">
+          <div class="adminVet-head-left-topic">
+            <label>ได้รับการยืนยันแล้ว ({{getNumberVerifiedVet}})</label>
+          </div>
+          {{#each getVerifiedVet}}
+            {{> adminVetItem}}
+          {{/each}}
+        </div>
+        <div class="col-lg-6 adminVet-waiting withOutPadding">
+          <div class="adminVet-head-right-topic">
+            <label>รอการอนุมัติ ({{getNumberWaitingVet}})</label>
+          </div>
+          {{#each getVet}}
+            {{> adminLocationItem}}
+          {{/each}}
+        </div>
+      </div>
+  </div>
+</div>
+
+</template>
+
+<template name="adminLocationItem">
+  <div id="{{_id}}" class="adminVet-item-block col-lg-12">
+    <img id="{{_id}}" src="{{profilePicture _id}}" class="adminVet-profile-picture img-circle" alt="">
+    <div id="{{_id}}" class="adminVet-username">
+      {{username}}
+    </div>
+    <i id="{{_id}}" class="fa fa-chevron-right fa-lg"></i>
+  </div>
+</template>
+
+
 <!-- Admin Articla -->
 <template name="adminArticle">
   <div class="row adminArticle">
@@ -79,39 +162,7 @@
   </div>
 </template>
 
-<!-- AdminVet -->
-<template name="adminVet">
-  <div class="adminVet">
-    <div class="admin-head">
-      <span class="admin-head-text">สัตวแพทย์</span>
-      <div class="adminVet-search pull-right">
-        <form class='form-inline'>
-          <i class="fa fa-search fa-2x"></i>
-          <input type="text" class="form-control">
-        </form>
-      </div>
-      <div class="adminVet-body row">
-        <div class="col-lg-6 adminVet-verified withOutPadding">
-          <div class="adminVet-head-left-topic">
-            <label>ได้รับการยืนยันตัวตนแล้ว ({{getNumberVerifiedVet}})</label>
-          </div>
-          {{#each getVerifiedVet}}
-            {{> adminVetItem}}
-          {{/each}}
-        </div>
-        <div class="col-lg-6 adminVet-waiting withOutPadding">
-          <div class="adminVet-head-right-topic">
-            <label>รอการอนุมัติ ({{getNumberWaitingVet}})</label>
-          </div>
-          {{#each getVet}}
-            {{> adminVetItem}}
-          {{/each}}
-        </div>
-      </div>
-  </div>
-</div>
 
-</template>
 
 <template name="adminVetItem">
   <div id="{{_id}}" class="adminVet-item-block col-lg-12">
