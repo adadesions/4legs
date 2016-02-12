@@ -331,3 +331,40 @@ Template.adminLocation.helpers({
     return Markers.find({'isPromotimg': true}).count()
   }
 })
+Template.adminLocation.events({
+  'click .adminVet-item-block': function (e) {
+    let markerId = $(e.target).attr('id'),
+        marker = Markers.findOne({_id:markerId}),
+        locationName = marker.locationName,
+        ownerName = marker.owner.ownerName,
+        ownerEmail = marker.owner.ownerEmail,
+        ownerTel = marker.owner.ownerTel,
+        msg = `กดอนุมัติเพื่อยืนยันว่า ${ownerName} เป็นเจ้าของ ${locationName} นี้จริง`
+    let confirm = new Confirmation({
+      message: msg,
+      title: "Confirmation",
+      cancelText: "ไม่อนุมัติ",
+      okText: "อนุมัติ",
+      success: true
+    }, function (ok) {
+        if(ok) {
+          Meteor.call('updateLocationVerify',markerId,true, function (err) {
+            if(err){
+              throw err
+              toastr.error('Can not verify this location on this time')
+            }
+            else toastr.success("You've verified this location")
+          })
+        }
+        else{
+          Meteor.call('updateLocationVerify',markerId,false, function (err) {
+            if(err){
+              throw err
+              toastr.error('Can not do the action to this location on this time')
+            }
+            else toastr.success("You've unverified this location")
+          })
+        }
+    })
+  }
+})

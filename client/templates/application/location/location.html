@@ -197,9 +197,11 @@
     </p>
   </div>
   <br>
-  <div class="announcement-edit text-center">
-    <button id="announcement-button-edit" class="ui orange button">แก้ไขประกาศ/โปรโมชั่น</button>
-  </div>
+  {{#if canEdit owner}}
+    <div class="announcement-edit text-center">
+      <button id="announcement-button-edit" class="ui orange button">แก้ไขประกาศ/โปรโมชั่น</button>
+    </div>
+  {{/if}}
 </template>
 
 <template name="locationComment">
@@ -364,7 +366,7 @@
       {{> ownerDialog}}
     {{/if}}
     <br>
-    <button id="done" class="ui green button">ยืนยัน</button>
     <button id="back" class="ui grey button">ย้อนกลับ</button>
+    <button id="done" class="ui green button">ยืนยัน</button>
   </div>
 </template>

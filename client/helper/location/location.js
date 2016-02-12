@@ -216,6 +216,28 @@ Template.verifyOwner.events({
   },
   'click #back': function (e) {
     Session.set('locationContainer', 'locationSelected')
+  },
+  'click #done': function (e) {
+    let ownerName = $('[name=ownerName]').val(),
+        ownerTel = $('[name=ownerTel]').val(),
+        ownerEmail = $('[name=ownerEmail]').val()
+        ownerObj = {
+          ownerId: Meteor.userId(),
+          ownerName,
+          ownerTel,
+          ownerEmail,
+          verified: false
+        },
+        markerId = Session.get('selectedLocationId')
+
+    Markers.update({_id:markerId}, {
+      $set:{
+        owner: ownerObj
+      }
+    })
+
+    toastr.success('โปรดรอการตรวจสอบความถูกต้องจากทาง Admin ซักครู่ครับ')
+    Session.set('locationContainer', 'locationSelected')
   }
 })
 
@@ -375,7 +397,7 @@ Template.locationDetail.helpers({
   },
   canEdit: function (owner) {
     if(owner)
-      return owner.ownerId === Meteor.userId() && owner.verified ? true : false
+      return (owner.ownerId === Meteor.userId()) && owner.verified ? true : false
   }
 })
 
@@ -386,10 +408,17 @@ Template.locationComment.helpers({
   }
 })
 
+//locationAnnouncement
 Template.locationAnnouncement.events({
   'click #announcement-button-edit': function () {
     Session.set('locationContainer', 'editAnnouncementPromotion')
   },
+})
+Template.locationAnnouncement.helpers({
+  canEdit: function (owner) {
+    if(owner)
+      return (owner.ownerId === Meteor.userId()) && owner.verified ? true : false
+  }
 })
 
 
