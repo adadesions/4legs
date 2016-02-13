@@ -404,6 +404,13 @@ Template.locationDetail.helpers({
   }
 })
 
+Template.locationDetail.onRendered(function () {
+  $('.ui.rating')
+  .rating({
+    maxRating: 5
+  })
+})
+
 //locationComment
 Template.locationComment.helpers({
   feedComment: function (locationId) {
