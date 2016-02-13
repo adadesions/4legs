@@ -416,9 +416,19 @@ pre
   border: 4px solid #FFD600
 .withPadding
   padding-left: 2em
-.post-info
+.detail-owner-location-comment
+  display: flex
+  flex-flow: row
+.comment-detail
   padding: 0
-
+  display: flex
+  flex-flow: row
+  i
+    margin-left: 1em
+    cursor: pointer
+.post-info
+  padding-left: 1em
+  word-wrap: break-word
 .duration
   color: #AAA
   font-size: 12px
@@ -1762,10 +1772,12 @@ body.pushable
       color: #fff !important
       background-color: #2185D0 !important
   .ui.basic.green.button
-    &:hover 
+    &:hover
       color: #fff !important
       background-color: #21BA45 !important
   .ui.basic.red.button
     &:hover
       color: #fff !important
       background-color: #DB2828 !important
+.img-comment-location
+  margin-right: 1em
