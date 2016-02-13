@@ -68,6 +68,17 @@ Template.postFeed.helpers({
   isVet: function (userId) {
     let user = Meteor.users.findOne({_id:userId})
     return user.profile.vetInfo.verified
+  },
+  isSos: function (catagory) {
+    return _.contains(catagory,'sos')
+  },
+  isHelped: function (obj) {
+    let state = [
+      {color: 'red', content: 'Need Help!'},
+      {color: 'green', content: 'Helped^^'}
+    ]
+    if(!obj.helped) return state[0]
+    else return state[1]
   }
 })
 
@@ -86,27 +97,7 @@ Template.postFeed.events({
   'click .admin-delete-btn': function (e) {
     let id = $(e.target).attr('id'),
         picId = Posts.findOne({_id:id}).img._id
-    let confirm = new Confirmation({
-      message: "Are you sure to delete this post?",
-      title: "Confirmation",
-      cancelText: "Cancel",
-      okText: "Confirm",
-      success: true // wether the button should be green or red
-    }, function (ok) {
-        if(ok) {
-          Posts.remove({_id:id}, function (err) {
-            if(err){
-              throw err
-              toastr.error('Can not delete this post right now')
-            }
-            else{
-              console.log(picId);
-              Meteor.call('removePicture', picId)
-              toastr.success('The post has deleted by admin')
-            }
-          })
-        }
-    })
+
   },
   'click .admin-highlight-btn, click input': function (e) {
     let id = $(e.target).attr('id'),
@@ -117,5 +108,53 @@ Template.postFeed.events({
     else{
       Posts.upsert({_id:id},{$set:{highlight:true}})
     }
+  },
+  'click #deletePost': function (e) {
+    let postId = $(e.target).data('id'),
+        picId = Posts.findOne({_id:postId}).img._id
+
+    let confirm = new Confirmation({
+      message: "Are you sure to delete this post?",
+      title: "Confirmation",
+      cancelText: "Cancel",
+      okText: "Confirm",
+      success: false
+    }, function (ok) {
+        if(ok) {
+          Posts.remove({_id:postId}, function (err) {
+            if(err){
+              throw err
+              toastr.error('Can not delete this post right now')
+            }
+            else{
+              Meteor.call('removePicture', picId)
+              toastr.success('The post has deleted')
+            }
+          })
+        }
+    })
+  },
+  'click #helped': function (e) {
+    let postId = $(e.target).data('id')
+
+    let confirm = new Confirmation({
+      message: "Are you sure this post was helped?",
+      title: "Confirmation",
+      cancelText: "Cancel",
+      okText: "Confirm",
+      success: true
+    }, function (ok) {
+        if(ok) {
+          Posts.update({_id:postId}, {$set: {helped:true}} , function (err) {
+            if(err){
+              throw err
+              toastr.error('Can not confirm on this post right now')
+            }
+            else{
+              toastr.success('The post was helped')
+            }
+          })
+        }
+    })
   }
 })

@@ -14,7 +14,10 @@ Template.postBlock.events({
          let catagory = Session.get('adminNewsContainer') !== null ? Session.get('adminNewsContainer') : Session.get('adminArticleContainer')
          newPost.catagory.push(catagory)
        }
-       if(Session.get('identifyContainer') === 'postBlock') newPost.catagory.push(Session.get('sosContainer'))
+       if(Session.get('identifyContainer') === 'postBlock'){
+         newPost.catagory.push(Session.get('sosContainer'))
+         newPost.catagory.push('sos')
+       }
        if(Session.get('isQna')) newPost.catagory.push('qna')
 
        newPost.catagory.push(path)
