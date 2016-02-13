@@ -5,6 +5,7 @@ Template.landingPage.onRendered(function () {
     on    : 'click',
     position : 'bottom left'
   })
+
 })
 
 Template.landingPage.events({

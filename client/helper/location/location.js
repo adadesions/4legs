@@ -201,7 +201,10 @@ Template.location.events({
   'click #verifyOwnerButton': function () {
     Session.set('locationContainer', 'verifyOwner')
   },
-
+  'click #showMap':function () {
+    $('.ui.sidebar')
+    .sidebar('toggle')
+  },
 })
 
 Template.verifyOwner.onRendered(function () {
@@ -414,6 +417,13 @@ Template.locationDetail.helpers({
     if(owner)
       return (owner.ownerId === Meteor.userId()) && owner.verified ? true : false
   }
+})
+
+Template.locationDetail.onRendered(function () {
+  $('.ui.rating')
+  .rating({
+    maxRating: 5
+  })
 })
 
 //locationComment
