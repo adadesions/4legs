@@ -306,8 +306,18 @@ Template.locationList.helpers({
               animalTypes = x.animalTypes,
               bizTypes = x.businessTypes,
               otherKeys = animalTypes.concat(bizTypes)
-
-          if(keyWord.indexOf('หมา') > -1) keyWord = 'สุนัข'
+          const dog = 'หมา กระดูก ปอม ลาบาดอ',
+                pocket = 'กระต่าย กระรอก หนู',
+                reptil = 'เต่า งู กิ้งก่า',
+                aqu = 'ปลา กบ',
+                service = 'โรงแรม hotal อาบน้ำ ตัดขน กรูมมิ่ง Grooming สระว่ายน้ำ ฝากเลี้ยง คาเฟ่ cafe โรงเรียน ฝึก สนาม playground ฟิตเนส finess เที่ยว',
+                shop = 'อาหาร เพ๊ทช๊อป petshop อุปการณ์ ฟาร์ม farm'
+          if(dog.indexOf(keyWord) > -1) keyWord = 'สุนัข'
+          if(pocket.indexOf(keyWord) > -1) keyWord = 'pocket'
+          if(reptil.indexOf(keyWord) > -1) keyWord = 'สัตว์เลื้อยคลาน'
+          if(aqu.indexOf(keyWord) > -1) keyWord = 'สัตวน้ำ/สัตว์ครึ่งบกครึ่งน้ำ'
+          if(service.indexOf(keyWord) > -1) keyWord = 'บริการสัตว์เลี้ยง'
+          if(shop.indexOf(keyWord) > -1) keyWord = 'ร้านค้า'
           if(name.indexOf(keyWord) > -1 || _.indexOf(otherKeys, keyWord) > -1 ) return x
         })
         return _.reject(searchList, x => x === undefined)
@@ -418,7 +428,7 @@ Template.locationDetail.helpers({
       return (owner.ownerId === Meteor.userId()) && owner.verified ? true : false
   },
   getRating: function (markerId) {
-    let rating = Markers.findOne({_id: markerId}).rating    
+    let rating = Markers.findOne({_id: markerId}).rating
     return Math.floor((rating.reduce( (r,x) => r+x))/(rating.length))
   }
 })
