@@ -11,7 +11,9 @@
               <i class="fa fa-clock-o"></i>
               {{enhanceTime createdAt}}
             </span>
-            <i class="inverted red minus circle icon"></i>
+            {{#if showButton commentOwnerId}}
+              <i id="removeComment" class="inverted red minus circle icon" data-commentId="{{commentOwnerId}}" ></i>
+            {{/if}}
           </div>
           <p>{{commentBody}}</p>
       </div>
