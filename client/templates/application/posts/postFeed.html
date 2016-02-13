@@ -6,7 +6,6 @@
     {{#each posts this._id}}
       <div class="ui blue card">
         <div class="postfeed-card">
-          <!-- <i class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i> -->
         </div>
 
         <div class="content">
@@ -19,19 +18,21 @@
           </a>
           <div class="right floated meta right-post-feed">
             {{enhanceTime info.createdAt}}
-            <div class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="small angle down icon"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a id="deletePost" data-id="{{_id}}" href="#">Delete</a>
-                </li>
-                <li>
-                  <a id="helped" data-id="{{_id}}" href="#">Helped</a>
-                </li>
-              </ul>
-            </div>
+            {{#if showPostOption _id}}
+              <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="small angle down icon"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a id="deletePost" data-id="{{_id}}" href="#">Delete</a>
+                  </li>
+                  <li>
+                    <a id="helped" data-id="{{_id}}" href="#">Helped</a>
+                  </li>
+                </ul>
+              </div>
+            {{/if}}
           </div>
         </div>
         {{#if isSos catagory}}
