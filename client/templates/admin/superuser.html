@@ -83,16 +83,16 @@
 
 <!-- Item Admin Location -->
 <template name="adminLocationItem">
-  <div id="{{_id}}" class="admin-location-item-block col-lg-12">
+  <div id="{{_id}}" class="admin-location-item-block col-lg-12 ui attached segment">
     <div class="border-location">
-      <img id="{{_id}}" src="{{profilePicture _id}}" class="adminVet-profile-picture img-circle" alt="">
+      <img id="{{_id}}" src="{{getImage photos._id}}" class="adminVet-profile-picture img-circle" alt="">
       <div class="admin-location-detail-group">
         <div id="{{_id}}" class="admin-location-name">
           {{locationName}}
           <br>
         </div>
-        <div class="admin-location-detail">
-          <p>
+        <div id="{{_id}}" class="admin-location-detail">
+          <p id="{{_id}}">
             {{owner.ownerName}}
             <br>
             {{owner.ownerTel}}
@@ -104,6 +104,9 @@
       </div>
     </div>
   </div>
+  {{#with buttonState this}}
+    <button data-id="{{_id}}" id="{{idName}}" class="fluid ui bottom attached {{color}} basic button" tabindex="0">{{content}}</button>
+  {{/with}}
 </template>
 
 

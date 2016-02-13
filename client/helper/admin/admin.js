@@ -319,7 +319,7 @@ Template.adminLocation.helpers({
     return Markers.find({'owner.verified': false}).fetch()
   },
   getPromotingLocation: function () {
-    return Markers.find({'isPromotimg': true}).fetch()
+    return Markers.find({'promoting': true}).fetch()
   },
   getNumberVerifiedLocation: function () {
     return Markers.find({'owner.verified': true}).count()
@@ -328,12 +328,12 @@ Template.adminLocation.helpers({
     return Markers.find({'owner.verified': false}).count()
   },
   getNumberPromotingLocation: function () {
-    return Markers.find({'isPromotimg': true}).count()
+    return Markers.find({'promoting': true}).count()
   }
 })
 Template.adminLocation.events({
-  'click .adminVet-item-block': function (e) {
-    let markerId = $(e.target).attr('id'),
+  'click #verifyBtn, click .admin-location-item-block': function (e) {
+    let markerId = $(e.target).data('id') || $(e.target).attr('id'),
         marker = Markers.findOne({_id:markerId}),
         locationName = marker.locationName,
         ownerName = marker.owner.ownerName,
@@ -366,5 +366,32 @@ Template.adminLocation.events({
           })
         }
     })
+  }
+})
+
+
+Template.adminLocationItem.helpers({
+  buttonState: function (obj) {
+    let marker = obj,
+        buttonInfo = [
+          {_id:obj._id, idName:'promoteBtn', color:'blue', content: 'Promote'},
+          {_id:obj._id, idName:'verifyBtn', color:'green', content: 'Verify'},
+          {_id:obj._id, idName:'stopBtn', color:'red', content: 'Stop'},
+        ]
+    if(!marker.owner.verified) return buttonInfo[1]
+    else if(marker.owner.verified && marker.promoting) return buttonInfo[2]
+    else return buttonInfo[0]
+
+  }
+})
+
+Template.adminLocationItem.events({
+  'click #promoteBtn': function (e) {
+    let markerId = $(e.target).data('id')
+    Markers.update({_id:markerId},{$set: {promoting: true}})
+  },
+  'click #stopBtn': function (e) {
+    let markerId = $(e.target).data('id')
+    Markers.update({_id:markerId},{$set: {promoting: false}})
   }
 })
