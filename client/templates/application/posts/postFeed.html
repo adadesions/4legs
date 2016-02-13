@@ -10,19 +10,6 @@
         </div>
 
         <div class="content">
-          <div class="dropdown menu-postfeed">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="big angle down icon"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#">Delete</a>
-              </li>
-              <li>
-                <a href="#">helped</a>
-              </li>
-            </ul>
-          </div>
           <a href="{{pathFor 'profile' id=info.postOwner}}">
             <img class="ui avatar big image" src="{{profilePicture info.postOwner}}">
             {{#if isVet info.postOwner}}
@@ -34,7 +21,7 @@
             {{enhanceTime info.createdAt}}
             <div class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="big angle down icon"></i>
+                <i class="small angle down icon"></i>
               </a>
               <ul class="dropdown-menu">
                 <li>
