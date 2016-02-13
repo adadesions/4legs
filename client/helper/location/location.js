@@ -282,7 +282,18 @@ Template.locationList.onRendered(function () {
 Template.locationList.helpers({
   allLocation: function () {
     let onlyOpen = Session.get('nowOpen'),
-        allMarkers = Markers.find({},{sort: {locationName: 1}})
+        allMarkers = Markers.find({promoting: false},{sort: {locationName: 1}}),
+        today = new Date(),
+        mapDay = ['จ','อ','พ','พฤ','ศ','ส','อา'],
+        day = mapDay[today.getDay()-1]
+
+    let availableList = allMarkers.map(x => {
+      let theDay = x.dateSet.map(y => {
+        return _.contains(y.days,day) ? y : ''
+      })
+      theDay = _.compact(theDay)
+      
+    })
 
     if(onlyOpen){
       return availableList
@@ -304,7 +315,9 @@ Template.locationList.helpers({
       else
         return allMarkers
     }
-
+  },
+  promotingLocation: function () {
+    return Markers.find({promoting:true}).fetch()
   }
 })
 
@@ -327,11 +340,13 @@ Template.theList.helpers({
   locationServices: function (value) {
     return getIcon(value)
   },
-  isOpen: function (locationId) {
-    let aPlace = Markers.findOne({_id:locationId})
+  markerType: function (locationId) {
+    // let aPlace = Markers.findOne({_id:locationId})
     // let inList = availableList.map( x => x._id === aPlace._id)
     // return _.contains(inList, true) ? '/images/object/5-location/open.png' : '/images/object/5-location/close.png'
-    return '/images/object/5-location/open.png'
+    let place = Markers.findOne({_id: locationId})
+    if(place.promoting) return '/images/object/5-location/promoting.png'
+    else return '/images/object/5-location/open.png'
   }
 })
 Template.theList.events({

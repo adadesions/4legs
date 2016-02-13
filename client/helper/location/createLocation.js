@@ -189,6 +189,7 @@ Template.createStep3.events({
       platform: navigator.platform,
       createdAt: new Date()
     }
+    locationObj.promoting = false
     //save to marker
     if(locationObj.locationName) Markers.insert(locationObj)
     Session.set('stepsContainer', 'createStep4')
