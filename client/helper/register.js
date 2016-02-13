@@ -46,7 +46,6 @@ Meteor.setInterval(function () {
       $('[name=email]').hasClass('input-success'),
       $('[name=password]').hasClass('input-success'),
       $('[name=re-password]').hasClass('input-success'),
-      $('[name=birthday]').hasClass('input-success')
     ]
     if(_.indexOf(state, false) > -1) $('#signup-btn').addClass('disabled')
     else $('#signup-btn').removeClass('disabled')
@@ -201,7 +200,8 @@ Template.register.events({
     else email.removeClass('input-success').addClass('input-error')
   },
   'change [name=birthday]' : function (e) {
-    var birthday = $('[name=birthday]')
+    var birthday = $('#birthday')
+    console.log(birthday)
     if(birthday.val().length > 0) birthday.removeClass('input-error').addClass('input-success')
     else birthday.removeClass('input-success').addClass('input-error')
   },
