@@ -65,7 +65,9 @@ Template.adminNews.onRendered(function () {
   Session.set('adminNewsContainer','about-pet')
 
 })
-
+Template.adminNews.onDestroyed(function () {
+  Session.set('adminNewsContainer',null)
+})
 
 Template.adminNews.helpers({
   adminNewsContainer: function () {return Session.get('adminNewsContainer')},
@@ -95,6 +97,10 @@ Template.adminNews.events({
 Template.adminArticle.onRendered(function () {
   Session.set('adminNewsContainer', null)
   Session.set('adminArticleContainer', 'basic-pet-care')
+})
+
+Template.adminArticle.onDestroyed(function () {
+  Session.set('adminArticleContainer', null)
 })
 
 Template.adminArticle.helpers({
@@ -198,7 +204,11 @@ Template.postBlockAdmin.events({
       var path = Router.current().location.get().path
           path = path.slice(1,path.length)
       if(path === 'adminsite/superuser'){
-        let catagory = Session.get('adminNewsContainer') !== null ? Session.get('adminNewsContainer') : Session.get('adminArticleContainer')
+        let catagory = ''
+        if(Session.get('adminNewsContainer')) catagory = Session.get('adminNewsContainer')
+        else if(Session.get('adminArticleContainer')) catagory = Session.get('adminArticleContainer')
+        else catagory = Session.get('story')
+
         newPost.catagory.push(catagory)
         newPost.catagory.push('topics')
       }
@@ -209,7 +219,7 @@ Template.postBlockAdmin.events({
          postOwner : Meteor.userId(),
          postBody : $('[name=newStatus]').val(),
          petType : Session.get('adminPetType'),
-         createdAt : new Date(),
+         createdAt : new Date()
       }
       Posts.insert(newPost, function (err) {
         if (err) throw err;
@@ -394,4 +404,14 @@ Template.adminLocationItem.events({
     let markerId = $(e.target).data('id')
     Markers.update({_id:markerId},{$set: {promoting: false}})
   }
+})
+
+
+//adminStory
+Template.adminStory.onRendered(function () {
+  Session.set('story', 'pet-story')
+})
+
+Template.adminStory.onDestroyed(function () {
+  Session.set('story', null)
 })
