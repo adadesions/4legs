@@ -48,6 +48,7 @@ Template.createStep1.events({
     locationObj.lng = lng
     locationObj.businessTypes = businessTypes
     locationObj.animalTypes = animalTypes
+    locationObj.rating = []
     Session.set('stepsContainer', 'createStep2')
   },
   'click #cancel': function () {

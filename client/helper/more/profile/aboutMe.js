@@ -49,7 +49,7 @@ Template.aboutMe.helpers({
 Template.aboutMe.events({
   'click .my-btn-edit' : function (e) {Session.set('aboutMeContainer','editProfile')},
   'mouseenter .badge-img': function (e) {
-    console.log("Enter");
+    
   },
   'click .link-seeall-follower': function (e) {
     $('.ui.modal.follower')

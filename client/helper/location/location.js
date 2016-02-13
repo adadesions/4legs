@@ -292,7 +292,7 @@ Template.locationList.helpers({
         return _.contains(y.days,day) ? y : ''
       })
       theDay = _.compact(theDay)
-      
+
     })
 
     if(onlyOpen){
@@ -416,6 +416,10 @@ Template.locationDetail.helpers({
   canEdit: function (owner) {
     if(owner)
       return (owner.ownerId === Meteor.userId()) && owner.verified ? true : false
+  },
+  getRating: function (markerId) {
+    let rating = Markers.findOne({_id: markerId}).rating    
+    return Math.floor((rating.reduce( (r,x) => r+x))/(rating.length))
   }
 })
 
@@ -424,6 +428,14 @@ Template.locationDetail.onRendered(function () {
   .rating({
     maxRating: 5
   })
+})
+
+Template.locationDetail.events({
+  'click .rating': function (e) {
+    let rate = $('.ui.rating').rating('get rating'),
+        markerId = Session.get('selectedLocationId')
+    Markers.update({_id: markerId}, {$addToSet: {rating: rate}})
+  }
 })
 
 //locationComment

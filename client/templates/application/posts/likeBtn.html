@@ -1,4 +1,8 @@
 <template name="likeBtn">
   <img id="{{_id}}" class="ui image social-icon icon-like" src="{{isLiked _id}}" alt="" />
   {{likes.length}} likes
+  <div class="ui popup popup-like">
+    <div class="header">Custom Header</div>
+    <div class="ui button">Click Me</div>
+  </div>
 </template>
