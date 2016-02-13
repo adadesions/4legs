@@ -24,16 +24,20 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="#">Delete</a>
+                  <a id="deletePost" data-id="{{_id}}" href="#">Delete</a>
                 </li>
                 <li>
-                  <a href="#">helped</a>
+                  <a id="helped" data-id="{{_id}}" href="#">Helped</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <a class="ui green right ribbon label status-ribbon">Status</a>
+        {{#if isSos catagory}}
+          {{#with isHelped this}}
+            <a class="ui {{color}} right ribbon label status-ribbon">{{content}}</a>
+          {{/with}}
+        {{/if}}
         <p></p>
         <a href="/post/{{_id}}">
           <div class="image">
