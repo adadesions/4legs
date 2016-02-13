@@ -84,6 +84,18 @@ Template.sos.events({
   }
 })
 
+Template.sosIdentify.events({
+  'click #verify-btn':function (e) {
+    var idCard = $('[name=id-card-number]').val(),
+        telNumber = $('[name=tel-number]').val()
+    if(idCard !== "" && telNumber !== ""){
+      Meteor.call('verifyIdCard', idCard, telNumber, function (err, res) {
+        if(res) Session.set('identifyContainer', 'postBlock')
+      })
+    }
+  }
+})
+
 ////////////////  news
 //news helpers
 Template.news.helpers({
