@@ -1550,26 +1550,28 @@ body.pushable
     border-bottom:solid 2px  #eaeaea
     border-right: solid 2px #eaeaea
 .head-landing-page
-  background-image: url('images/home/home-bg2.jpeg')
+  background: url("/images/object/1-login/bg.png")
   background-size: cover
   repeat: no-repeat
-  height: 80vh
   .ui.vertical.segment
     padding-left: 3em
     padding-right: 3em
     border-bottom: none
+.con-landing
+  width: 70%
+  border-bottom: 1px solid #000
 .logo-landing-page
   margin-top: 1em
+  display: flex
+  justify-content: center
   img
     width: 8em
     height: 8em
 .login-landing
   border-radius: 10em
+  width: 21em !important
 .body-landing-page
-  h1
-    color: $orange-background
-    font-size: 50px
-    font-weight: lighter
+
 .forget-password
   a
     font-size: 14px
@@ -1578,8 +1580,9 @@ body.pushable
   display: flex
   align-items: center
 .button-landing-page-group
-  width: 50%
+  width: 100%
   display: flex
+  justify-content: center
   flex-flow: row
   button
     font-size: 20px
@@ -1606,6 +1609,36 @@ body.pushable
       border: none
     i
       margin-right: 7em
+.highlight-head-landing
+  background: $red
+  border-radius: 10px
+  height: 5em
+  h1
+    color: #fff
+    font-size: 50px
+    font-weight: lighter
+    margin-top: 0.5em
+    margin-left: 0.5em
+.topic-head-landing
+  background: $green
+  border-radius: 10px
+  height: 5em
+  h1
+    color: #fff
+    font-size: 50px
+    font-weight: lighter
+    margin-top: 0.5em
+    margin-left: 0.5em
+.location-head-landing
+  background: $orange
+  border-radius: 10px
+  height: 5em
+  h1
+    color: #fff
+    font-size: 50px
+    font-weight: lighter
+    margin-top: 0.5em
+    margin-left: 0.5em
 .foot-landing-page
   position: relative
   bottom: 0
@@ -1615,8 +1648,7 @@ body.pushable
   display: flex
   align-items: center
 .nav-landing-page
-  display: flex
-  justify-content: space-between
+
 .link-landing-page
   display: flex
   flex-flow: row
@@ -1639,14 +1671,15 @@ body.pushable
     color: #fff
     font-weight: bold
 .content-landing-page-group
+  width: 80%
   display: flex
   justify-content: center
 .content-landing-page
-  background-color: #fff
-  background: rgba(255,255,255,0.7)
-  width: 80%
+  background-color: $orange
+  background: rgba(255,152,0,0.4)
+  width: 100%
   border-radius: 10px
-  margin-top: 5em
+  margin-top: 3em
   padding: 1em
   padding-top: 2em
   padding-bottom: 2em
@@ -1656,10 +1689,11 @@ body.pushable
     color: $active-brown
     font-size: 1.5em
 .button-landing-page
-  width: 50%
+  width: 100%
   display: flex
-  justify-content: flex-end
-  align-items: flex-end
+  justify-content: center
+  margin-top: 4em
+  margin-bottom: 4em
 .group-daysweek
   display: flex
   flex-flow: column
@@ -1735,8 +1769,26 @@ body.pushable
   text-align: center
   border: 1px solid $gray
 #loginLandingPage
-  width: 50%
+  width: 11em
   height: 3em
+  margin-right: 3em
+#btn-signUp-landing
+  width: 11em
+  background-color: #1b5e20
+  color: #FFF
+  height: 3em
+  margin-right: 2em
+  font-size: 14px
+  &:hover
+    background-color: #2e7d32
+  h3
+    margin-top: -1.5em
+    margin-left: 0.6em
+    border: none
+  i
+    margin-right: 3em
+    display: flex
+    align-items: center
 .selected-announcement
   p
     color: #000
@@ -1781,3 +1833,12 @@ body.pushable
       background-color: #DB2828 !important
 .img-comment-location
   margin-right: 1em
+.pic-landing
+  position: absolute
+  margin-top: -21em
+  margin-left: 70em
+  width: 20em
+  height: auto
+  img
+    width: 20em
+    height: auto
