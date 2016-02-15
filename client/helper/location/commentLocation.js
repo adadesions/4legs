@@ -16,7 +16,8 @@ Template.commentLocation.helpers({
 Template.commentLocation.events({
   'click #removeComment': function (e) {
     let markerId = Session.get('selectedLocationId'),
-        commentId = $(e.target).data('commentOwnerId')
-    Markers.update({_id: markerId}, {$pull: {comments: {commentOwnerId: commentId}}})
+        commentId = $(e.target).data('commentid')
+    console.log(commentId);
+    Markers.update({_id: markerId}, {$pull: {comments: {commentId: commentId}}})
   }
 })

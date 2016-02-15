@@ -313,7 +313,7 @@ Template.locationList.helpers({
                 service = 'โรงแรม hotal อาบน้ำ ตัดขน กรูมมิ่ง Grooming สระว่ายน้ำ ฝากเลี้ยง คาเฟ่ cafe โรงเรียน ฝึก สนาม playground ฟิตเนส finess เที่ยว',
                 shop = 'อาหาร เพ๊ทช๊อป petshop อุปการณ์ ฟาร์ม farm'
           if(dog.indexOf(keyWord) > -1) keyWord = 'สุนัข'
-          if(pocket.indexOf(keyWord) > -1) keyWord = 'pocket'
+          if(pocket.indexOf(keyWord) > -1) keyWord = 'pocket pet'
           if(reptil.indexOf(keyWord) > -1) keyWord = 'สัตว์เลื้อยคลาน'
           if(aqu.indexOf(keyWord) > -1) keyWord = 'สัตวน้ำ/สัตว์ครึ่งบกครึ่งน้ำ'
           if(service.indexOf(keyWord) > -1) keyWord = 'บริการสัตว์เลี้ยง'

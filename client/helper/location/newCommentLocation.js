@@ -10,6 +10,7 @@ Template.newCommentLocation.events({
       e.preventDefault()
       var locationId = $(e.target).attr("name"),
           comment = {
+            commentId: new Mongo.ObjectID().toString(),
             commentOwnerId : Meteor.user()._id,
             commentOwner: Meteor.user().username || Meteor.user().profile.name,
             commentBody: $(e.target).val(),
