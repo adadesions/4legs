@@ -222,12 +222,12 @@
 <template name="locationComment">
   <div class="location-comment-block">
     <br>
+    {{> newCommentLocation}}
     {{#each feedComment _id}}
       <br>
       {{> commentLocation}}
     {{/each}}
     <br>
-    {{> newCommentLocation}}
   </div>
 </template>
 
