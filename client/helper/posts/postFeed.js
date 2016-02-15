@@ -33,13 +33,23 @@ Template.postFeed.helpers({
       return byUserId.length > 0 ? byUserId : Posts.find({_id:userId})
     }
     else{
-      let rawPost = Posts.find({catagory : 'newsfeed', highlight:false}, {sort: {'info.createdAt': -1}}).fetch()
       let myFollowing = Meteor.user().profile.following
       myFollowing = _.pluck(myFollowing, 'followingId')
       myFollowing.push(Meteor.userId())
-      return _.filter(rawPost, p => {
-        if(_.contains(myFollowing, p.info.postOwner)) return p
+
+      //Got all from same interesting
+      let myInteresting = Meteor.user().profile.topics,
+          allUsers = Meteor.users.find().fetch()
+
+      let sameInteresting = _.filter(allUsers, u => {
+        return _.intersection(u.profile.topics, myInteresting) !== []
       })
+      sameInteresting = _.pluck(sameInteresting, '_id')
+
+      //Merge Ids
+      let readyToUseId = _.uniq(myFollowing.concat(sameInteresting))
+      return Posts.find({'info.postOwner': {$in: readyToUseId}}, {sort: {'info.createdAt': -1}}).fetch()
+
     }
   },
   isNoPosts : function (userId) {
@@ -96,7 +106,7 @@ Template.postFeed.events({
         toastr.error("Please, try again we can't save this post")
       }
       else{
-        toastr.success('Saved this post as favorite')
+        // toastr.success('Saved this post as favorite')
       }
     })
   },
