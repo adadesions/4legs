@@ -1,9 +1,25 @@
 <template name="landingPage">
   <div class="head-landing-page">
-    <div class="ui vertical segment">
-      <div class="nav-landing-page">
-        <div class="logo-landing-page">
-          <img class="logo" src="/images/object/1-login/logo-login.png" alt="">
+    <div class="container con-landing">
+      <div class="ui vertical segment">
+        <div class="nav-landing-page">
+          <div class="logo-landing-page">
+            <img class="logo" src="/images/object/1-login/logo-login.png" alt="">
+          </div>
+
+        </div>
+      </div>
+      <div class="ui vertical segment">
+        <div class="container content-landing-page-group">
+          <div class="content-landing-page text-center">
+            <h1>ยินดีต้อนรับสู่ 4 ขา</h1>
+            <p>
+              สี่ขา "Community และ Location Based Service ของสัตว์เลี้ยง"
+            </p>
+            <p>
+              โดยสัตวแพทย์ เพื่อสัตว์เลี้ยงของคุณ
+            </p>
+          </div>
         </div>
         <div class="button-landing-page">
           <div class="button-landing-page-group">
@@ -27,8 +43,8 @@
             </div>
 
               <a href="{{pathFor 'register'}}">
-                <button id="btn-signUp" class="btn">
-                  <i class="small paw icon"></i>
+                <button id="btn-signUp-landing" class="btn">
+                  <i class="big paw icon"></i>
                   <h3>Sign Up</h3>
                 </button>
               </a>
@@ -37,32 +53,31 @@
         </div>
       </div>
     </div>
-
-    <div class="ui vertical segment">
-      <div class="container content-landing-page-group">
-        <div class="content-landing-page text-center">
-          <h1>ยินดีต้อนรับสู่ 4 ขา</h1>
-          <p>
-            สังคมของคนรักสัตว์เลี้ยงที่เชื่อถือได้
-            มาร่วมเป็นส่วนหนึ่งในคอมมูนิตี้ของคนรักสัตว์เลี้ยงที่เชื่อถือได้โดยสัตวแพทย์ ได้เพื่อนใหม่ ได้ความรู้ ความบันเทิง แบ่งปันความช่วยเหลือ และค้นหาบริการที่เกี่ยวข้องกับสัตว์เลี้ยงครบวงจร
-          </p>
-        </div>
-      </div>
+    <div class="pic-landing">
+      <img src="/images/home/เห็บ.png"/>
     </div>
   </div>
   <div class="body-landing-page">
-    <div class="container">
+    <div class="container container-mobile">
       <br>
-      <h1>HIGHLIGHT</h1>
+      <div class="highlight-head-landing">
+        <h1>HIGHLIGHT</h1>
+      </div>
+      <br>
       {{> postFeed col='three' type="pop"}}
       <br>
     <hr>
       <br>
-      <h1>TOPIC</h1>
+      <div class="topic-head-landing">
+        <h1>TOPIC</h1>
+      </div>
       {{> postFeed col='three' type="publicTopics"}}
       <br>
     <hr>
+    <div class="location-head-landing">
       <h1>LOCATION</h1>
+    </div>
+    <br>
         {{> location}}
     </div>
   </div>
