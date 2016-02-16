@@ -1,5 +1,6 @@
 const MAP_ZOOM = 10
-let markers = {}
+let markers = {},
+    rawDistance
 
 function getIcon(value) {
   let imgUrl = {
@@ -149,9 +150,6 @@ Template.location.onCreated(function() {
             if(status === google.maps.DirectionsStatus.OK){
               directionsDisplay.setDirections(res)
             }
-            else{
-
-            }
           })
         })
         markers[document._id] = marker
@@ -164,6 +162,33 @@ Template.location.onCreated(function() {
         delete markers[oldDocument._id]
       }
     })//END OBSERVE
+    //Distance Services
+    let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
+        destination = Markers.find({promoting: false},{sort: {locationName: 1}}).fetch(),
+        service = new google.maps.DistanceMatrixService
+    let matrixDestination = destination.map( d => new google.maps.LatLng(d.lat,d.lng))
+    service.getDistanceMatrix({
+      origins: [origin],
+      destinations: matrixDestination,
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+      avoidHighways: false,
+      avoidTolls: false
+      }, function(response, status) {
+      if (status !== google.maps.DistanceMatrixStatus.OK) {
+        alert('Error was: ' + status);
+      }
+      else {
+        let originList = response.originAddresses,
+            destinationList = response.destinationAddresses,
+            distance = response.rows[0].elements[0].distance.text
+        rawDistance = response.rows.map( r => { return r.elements.map( (e,index) => {
+              return e.distance.value
+          })
+        })
+        Session.set('rawDistance', rawDistance)
+      }
+    })
   })//END GOOGLE MAPS READY
 })
 
@@ -283,16 +308,22 @@ Template.locationList.helpers({
   allLocation: function () {
     let onlyOpen = Session.get('nowOpen'),
         allMarkers = Markers.find({promoting: false},{sort: {locationName: 1}}),
+        distanceList = _.flatten(Session.get('rawDistance')),
         today = new Date(),
         mapDay = ['จ','อ','พ','พฤ','ศ','ส','อา'],
         day = mapDay[today.getDay()-1]
+    allMarkers = allMarkers.map( (m,index) => {
+      m.distanceValue = distanceList[index]
+      return m
+    })
+    //allMarkers were sorted by distanceValue
+    allMarkers = _.sortBy(allMarkers, 'distanceValue')
 
     let availableList = allMarkers.map(x => {
       let theDay = x.dateSet.map(y => {
         return _.contains(y.days,day) ? y : ''
       })
       theDay = _.compact(theDay)
-
     })
 
     if(onlyOpen){
