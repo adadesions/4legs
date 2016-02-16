@@ -461,6 +461,11 @@ Template.locationDetail.helpers({
   getRating: function (markerId) {
     let rating = Markers.findOne({_id: markerId}).rating
     return Math.floor((rating.reduce( (r,x) => r+x))/(rating.length))
+  },
+  numberOfCheckin: function () {
+    let markerId = Session.get('selectedLocationId')
+    let numberOfCheckin = Markers.findOne({_id: markerId}).checkin
+    return numberOfCheckin ? numberOfCheckin.length : 0
   }
 })
 

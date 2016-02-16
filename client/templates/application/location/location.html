@@ -106,8 +106,6 @@
            {{> checkinBtn}}
          </div>
          <div class="justify-item">
-           <!-- <img id="{{_id}}" class="ui image social-icon icon-favorite" src="{{isFavorite _id}}" alt="" />
-           Favorite -->
            {{> favoriteBtn}}
          </div>
          <div class="justify-item">
@@ -146,7 +144,7 @@
         <div class="ui star rating" data-id="{{_id}}" data-rating="{{getRating _id}}"></div>
     </div>
     <div class="check-checkin">
-      <h4>Checkin number : </h4>
+      <h4>Checkin number : {{numberOfCheckin}}</h4>
     </div>
   </div>
   <div class="open-days">

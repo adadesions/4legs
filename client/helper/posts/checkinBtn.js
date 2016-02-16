@@ -1,7 +1,3 @@
-Template.checkinBtn.helpers({
-
-})
-
 Template.checkinBtn.events({
   'click .icon-checkin': function (e) {
     let markerId = Session.get('selectedLocationId'),
@@ -15,7 +11,7 @@ Template.checkinBtn.events({
           img: {_id: thisLocation.photos._id},
           info: {
             postOwner: Meteor.userId(),
-            postBody: `${Meteor.user().username} has checked in at ${thisLocation.locationName}`,
+            postBody: `<strong>${Meteor.user().username}</strong> has <ins>checked in</ins> at <strong>${thisLocation.locationName}</strong>`,
             createdAt: new Date()
           }
         }
