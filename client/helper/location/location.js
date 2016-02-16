@@ -346,7 +346,7 @@ Template.locationList.helpers({
           if(dog.indexOf(keyWord) > -1) keyWord = 'สุนัข'
           if(pocket.indexOf(keyWord) > -1) keyWord = 'pocket pet'
           if(reptil.indexOf(keyWord) > -1) keyWord = 'สัตว์เลื้อยคลาน'
-          if(aqu.indexOf(keyWord) > -1) keyWord = 'สัตวน้ำ/สัตว์ครึ่งบกครึ่งน้ำ'
+          if(aqu.indexOf(keyWord) > -1) keyWord = 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ'
           if(service.indexOf(keyWord) > -1) keyWord = 'บริการสัตว์เลี้ยง'
           if(shop.indexOf(keyWord) > -1) keyWord = 'ร้านค้า'
           if(name.indexOf(keyWord) > -1 || _.indexOf(otherKeys, keyWord) > -1 ) return x
