@@ -104,6 +104,9 @@ Template.createStep2.events({
     })
     $('.show-time').empty().append(html)
   },
+  'click #cancel-time': function (e) {
+    $('.location-left-container').trigger('click')
+  },
   'click [name=every-days]': function (e) {
     setCheck(['อา','จ','อ','พ','พฤ','ศ','ส'])
   },
