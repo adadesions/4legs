@@ -83,10 +83,16 @@ Template.location.onCreated(function() {
     Markers.find().observe({
       //ADDED MARKER
       added: function (document) {
-        // if(!availableList) availableList = availableListFn()
-        // let inList = availableList.map( x => x._id === document._id)
-        // let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
-        let imgStatus = '/images/object/5-location/open-marker.png'
+        let aPlace = Markers.findOne({_id:document._id})
+        let imgStatus = ((aPlace) => {
+          if(aPlace.promoting) return '/images/object/5-location/promoting.png'
+          else{
+            let avaliableList = Session.get('avaliableList')
+            let inList = avaliableList.map( x => x._id === aPlace._id)
+            return _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close2.png'
+          }
+        })(aPlace)
+                
         let openImg = {
           url: imgStatus,
           size: new google.maps.Size(32, 32),
@@ -319,15 +325,40 @@ Template.locationList.helpers({
     //allMarkers were sorted by distanceValue
     allMarkers = _.sortBy(allMarkers, 'distanceValue')
 
-    let availableList = allMarkers.map(x => {
+    let avaliableList = allMarkers.map(x => {
       let theDay = x.dateSet.map(y => {
         return _.contains(y.days,day) ? y : ''
       })
       theDay = _.compact(theDay)
+      const timeDecision = (time) => {
+        if(time.includes('AM')){
+          time = Number(time.replace('AM','').replace(':','.'))
+        }
+        else if(time.includes('PM')){
+          time = Number(time.replace('PM','').replace(':','.'))+12
+        }
+        return time
+      }
+      const isOpen24 = (open,close) => {
+        let o = timeDecision(open),
+            c = timeDecision(close)
+        if(o >= 13) o = (o-12).toFixed(2)
+        else if (c >= 13) c = (c-12).toFixed(2)
+        return o == c ? true : false
+      }
+      if(isOpen24(theDay[0].open,theDay[0].close)) return x
+      else{
+        let open = timeDecision(theDay[0].open),
+            close = timeDecision(theDay[0].close),
+            cTime = timeDecision(moment().format("h:mm A"))
+        if(cTime > open && cTime < close) return x
+      }
     })
+    avaliableList = _.compact(avaliableList)
+    Session.set('avaliableList', avaliableList)
 
     if(onlyOpen){
-      return availableList
+      return avaliableList
     }
     else{
       if(Session.get('locationSearch')){
@@ -382,12 +413,13 @@ Template.theList.helpers({
     return getIcon(value)
   },
   markerType: function (locationId) {
-    // let aPlace = Markers.findOne({_id:locationId})
-    // let inList = availableList.map( x => x._id === aPlace._id)
-    // return _.contains(inList, true) ? '/images/object/5-location/open.png' : '/images/object/5-location/close.png'
-    let place = Markers.findOne({_id: locationId})
-    if(place.promoting) return '/images/object/5-location/promoting.png'
-    else return '/images/object/5-location/open.png'
+    let aPlace = Markers.findOne({_id:locationId})
+    if(aPlace.promoting) return '/images/object/5-location/promoting.png'
+    else{
+      let avaliableList = Session.get('avaliableList')
+      let inList = avaliableList.map( x => x._id === aPlace._id)
+      return _.contains(inList, true) ? '/images/object/5-location/open.png' : '/images/object/5-location/close2.png'
+    }
   }
 })
 Template.theList.events({
