@@ -18,6 +18,14 @@ Template.mainTopics.helpers({
   topicsContainer: function () {return Session.get('topicsContainer')},
   isMenuActive: function (location) {
     return Session.equals('topicsContainer', location) ? 'topics-menu-active' : ''
+  },
+  petIcon: function () {
+    return _.toArray(petImgs)
+  },
+  catagoryItemId: function (label) {
+    let session = Session.get('adminPetType')
+    if(session === label) return `topics-${label}-active`
+    else return `topics-${label}`
   }
 })
 
@@ -27,7 +35,11 @@ Template.mainTopics.events({
   'click #sos' : function () {Session.set('topicsContainer','sos')},
   'click #news' : function () {Session.set('topicsContainer','news')},
   'click #pet-story' : function () {Session.set('topicsContainer','petStory')},
-  'click #qna' : function () {Session.set('topicsContainer','qna')}
+  'click #qna' : function () {Session.set('topicsContainer','qna')},
+  'click .catagory-item': function (e) {
+    let animalType = $(e.target).data('animaltype')
+    Session.set('adminPetType', animalType)
+  }
 })
 
 

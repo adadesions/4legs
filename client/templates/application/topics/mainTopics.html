@@ -27,13 +27,10 @@
     <div class="col-lg-1 topics-right-panel res-row">
         <div class="catagory">
           <p class="hidden-xs">Pets</p>
-          <div id="topics-dog" class="catagory-item"></div>
-          <div id="topics-cat" class="catagory-item"></div>
-          <div id="topics-pocket" class="catagory-item"></div>
-          <div id="topics-bird" class="catagory-item"></div>
-          <div id="topics-turtle" class="catagory-item"></div>
-          <div id="topics-fish" class="catagory-item"></div>
-          <div id="topics-other" class="catagory-item"></div>
+          {{#each petIcon}}
+            <div id="{{catagoryItemId label}}" class="catagory-item" data-animaltype='{{label}}'>              
+            </div>
+          {{/each}}
         </div>
     </div>
   </div>
