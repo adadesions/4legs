@@ -47,6 +47,6 @@ Template.shareBtn.events({
 })
 
 //FB Share
-UI.registerHelper('shareOnFacebookLink', function() {
-  return 'https://www.facebook.com/sharer/sharer.php?&u=' + 'https://developers.facebook.com/docs/plugins/';
+UI.registerHelper('shareOnFacebookLink', function(postId) {
+  return `https://www.facebook.com/sharer/sharer.php?&u=${window.location.origin}/post/${postId}`
 });
