@@ -95,6 +95,11 @@ Template.postFeed.helpers({
 
     let post = Posts.findOne({_id:postId})
     if(post.info.postOwner === Meteor.userId()) return true
+  },
+  isSosPost: function (postId) {
+    let post = Posts.findOne({_id:postId}).catagory,
+        isSos = _.contains(post, 'sos')
+    return isSos
   }
 })
 

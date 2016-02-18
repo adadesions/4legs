@@ -28,7 +28,9 @@
                     <a id="deletePost" data-id="{{_id}}" href="#">Delete</a>
                   </li>
                   <li>
-                    <a id="helped" data-id="{{_id}}" href="#">Helped</a>
+                    {{#if isSosPost _id}}
+                      <a id="helped" data-id="{{_id}}" href="#">Helped</a>
+                    {{/if}}
                   </li>
                 </ul>
               </div>
