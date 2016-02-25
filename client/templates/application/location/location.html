@@ -194,6 +194,11 @@
       <button id="verifyOwnerButton" class="ui green button">ฉันเป็นเจ้าของสถานประกอบการแห่งนี้</button>
     </div>
   {{/unless}}
+  {{#if currentUser.profile.privileged}}
+    <div class="delete-location-block text-center">
+      <button id="delete-location" class="ui red button">ลบสถานที่นี้</button>
+    </div>
+  {{/if}}
 </template>
 
 <template name="locationAnnouncement">
@@ -202,12 +207,20 @@
     <p>
       {{announcement}}
     </p>
+    <br>
+    <div class="ui center aligned container">
+      <img class="ui centered medium image" src="{{getImage announcementImg}}" alt="">
+    </div>
   </div>
   <div class="selected-promotion">
     <h3>** โปรโมชั่น **</h3>
     <p>
       {{promotion}}
     </p>
+    <br>
+    <div class="ui center aligned container">
+      <img class="ui centered medium image" src="{{getImage promotionImg}}" alt="">
+    </div>
   </div>
   <br>
   {{#if canEdit owner}}
@@ -334,19 +347,27 @@
     <div class="body-edit-announcement">
       <label for="annoucement">ประกาศ</label>
       <textarea name="announcement" class="form-control"  rows="5"></textarea>
-      <input type="file" name="upload" id="file" class="upload-img">
-      <label for="file" class="my-color-brown label-upload text-center">
-        <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
-        <u>เพิ่มรูปภาพ</u>
-      </label>
+      <br>
+      <div class="ui center aligned container">
+        <i id="announcement-photo-upload" class="photo big icon"></i>
+        <input type="file" name='announcement-upload' id="file" class="new-upload">
+      </div>
+      <div class="ui center aligned container">
+        <div class="announcement-upload-preview"></div>
+      </div>
+
       <br><br>
       <label for="promotion">โปโมชั่น</label>
       <textarea name="promotion" class="form-control"  rows="5"></textarea>
-      <input type="file" name="upload" id="file" class="upload-img">
-      <label for="file" class="my-color-brown label-upload text-center">
-        <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
-        <u>เพิ่มรูปภาพ</u>
-      </label>
+      <br>
+      <div class="ui center aligned container">
+        <i id="promotion-photo-upload" class="photo big icon"></i>
+        <input type="file" name='promotion-upload' id="file" class="new-upload">
+      </div>
+      <div class="ui center aligned container">
+        <div class="promotion-upload-preview"></div>
+      </div>
+
       <br><br>
       <div class="col-lg-12 edit-location-button">
         <button type="button" id="back" class="btn btn-warning col-lg-5">ยกเลิก</button>

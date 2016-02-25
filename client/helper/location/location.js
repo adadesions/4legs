@@ -92,7 +92,7 @@ Template.location.onCreated(function() {
             return _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close2.png'
           }
         })(aPlace)
-                
+
         let openImg = {
           url: imgStatus,
           size: new google.maps.Size(32, 32),
@@ -162,7 +162,6 @@ Template.location.onCreated(function() {
       },
       //REMOVED MARKER
       removed: function (oldDocument) {
-        console.log('right');
         markers[oldDocument._id].setMap(null)
         google.maps.event.clearInstanceListeners(markers[oldDocument._id])
         delete markers[oldDocument._id]
@@ -170,7 +169,7 @@ Template.location.onCreated(function() {
     })//END OBSERVE
     //Distance Services
     let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
-        destination = Markers.find({promoting: false},{sort: {locationName: 1}}).fetch(),
+        destination = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}).fetch(),
         service = new google.maps.DistanceMatrixService
     let matrixDestination = destination.map( d => new google.maps.LatLng(d.lat,d.lng))
     service.getDistanceMatrix({
@@ -309,28 +308,18 @@ Template.editLocation.events({
 //locationList
 Template.locationList.onRendered(function () {
   Session.set('locationSearch', '')
-})
-Template.locationList.helpers({
-  allLocation: function () {
-    let onlyOpen = Session.get('nowOpen'),
-        allMarkers = Markers.find({promoting: false},{sort: {locationName: 1}}),
-        distanceList = _.flatten(Session.get('rawDistance')),
-        today = new Date(),
-        mapDay = ['จ','อ','พ','พฤ','ศ','ส','อา'],
-        day = mapDay[today.getDay()-1]
-    allMarkers = allMarkers.map( (m,index) => {
-      m.distanceValue = distanceList[index]
-      return m
-    })
-    //allMarkers were sorted by distanceValue
-    allMarkers = _.sortBy(allMarkers, 'distanceValue')
+  let today = new Date(),
+      mapDay = ['จ','อ','พ','พฤ','ศ','ส','อา'],
+      day = mapDay[today.getDay()-1]
 
-    let avaliableList = allMarkers.map(x => {
-      let theDay = x.dateSet.map(y => {
-        return _.contains(y.days,day) ? y : ''
-      })
-      theDay = _.compact(theDay)
-      const timeDecision = (time) => {
+  let allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}})
+  let avaliableList = allMarkers.map(x => {
+    let theDay = x.dateSet.map(y => {
+      return _.contains(y.days,day) ? y : ''
+    })
+
+    const timeDecision = (time) => {
+      if(time){
         if(time.includes('AM')){
           time = Number(time.replace('AM','').replace(':','.'))
         }
@@ -339,26 +328,42 @@ Template.locationList.helpers({
         }
         return time
       }
-      const isOpen24 = (open,close) => {
+    }
+    const isOpen24 = (open,close) => {
+      if(open && close){
         let o = timeDecision(open),
             c = timeDecision(close)
         if(o >= 13) o = (o-12).toFixed(2)
         else if (c >= 13) c = (c-12).toFixed(2)
         return o == c ? true : false
       }
-      if(isOpen24(theDay[0].open,theDay[0].close)) return x
-      else{
-        let open = timeDecision(theDay[0].open),
-            close = timeDecision(theDay[0].close),
-            cTime = timeDecision(moment().format("h:mm A"))
-        if(cTime > open && cTime < close) return x
-      }
-    })
-    avaliableList = _.compact(avaliableList)
-    Session.set('avaliableList', avaliableList)
+    }
 
+    if(isOpen24(theDay[0].open,theDay[0].close)) return x
+    else{
+      let open = timeDecision(theDay[0].open),
+          close = timeDecision(theDay[0].close),
+          cTime = timeDecision(moment().format("h:mm A"))
+      if(cTime > open && cTime < close) return x
+    }
+  })
+  avaliableList = _.compact(avaliableList)
+  Session.set('avaliableList', avaliableList)
+})
+Template.locationList.helpers({
+  allLocation: function () {
+    let onlyOpen = Session.get('nowOpen'),
+        allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}),
+        distanceList = _.flatten(Session.get('rawDistance'))
+
+    allMarkers = allMarkers.map( (m,index) => {
+      m.distanceValue = distanceList[index]
+      return m
+    })
+    //allMarkers were sorted by distanceValue
+    allMarkers = _.sortBy(allMarkers, 'distanceValue')
     if(onlyOpen){
-      return avaliableList
+      return Session.get('locationList')
     }
     else{
       if(Session.get('locationSearch')){
@@ -513,6 +518,26 @@ Template.locationDetail.events({
     let rate = $('.ui.rating').rating('get rating'),
         markerId = Session.get('selectedLocationId')
     Markers.update({_id: markerId}, {$addToSet: {rating: rate}})
+  },
+  'click #delete-location': function (e) {
+    let markerId = Session.get('selectedLocationId'),
+        location = Markers.findOne({_id:markerId}),
+        msg = `กดลบเพื่อยืนยันคำสั่ง`
+        confirm = new Confirmation({
+        message: msg,
+        title: "Delete this place?",
+        cancelText: "ยกเลิก",
+        okText: "ลบ",
+        success: false
+      }, function (ok) {
+          if(ok) {
+            Markers.remove({_id: markerId}, function (err) {
+              if(err) toastr.error('ไม่สามารถลบสถานที่นี้ได้ในตอนนี้')
+              else toastr.success('ได้ทำการลบสถานที่นี้เรียบร้อยแล้ว')
+            })
+            Session.set('locationContainer', 'locationList')
+          }
+      })
   }
 })
 
@@ -547,14 +572,100 @@ Template.editAnnouncementPromotion.events({
   'click #submit-promotion': function (e) {
     let announcement = $('[name=announcement]').val(),
         promotion = $('[name=promotion]').val()
-    Markers.update({_id: Session.get('selectedLocationId')}, {$set: {
-      announcement,
-      promotion
+    if(announcement && promotion) {
+        Markers.update({_id: Session.get('selectedLocationId')}, {$set: {
+          announcement,
+          promotion
+        }
+      })
     }
-  })
+    else if(announcement){
+      Markers.update({_id: Session.get('selectedLocationId')}, {$set: {
+          announcement
+        }
+      })
+    }
+    else if (promotion) {
+      Markers.update({_id: Session.get('selectedLocationId')}, {$set: {
+          promotion
+        }
+      })
+    }
     Session.set('locationContainer', 'locationSelected')
   },
   'click #back': function (e) {
     Session.set('locationContainer', 'locationSelected')
-  }
+  },
+  'change [name=announcement-upload]' : function (e, template) {
+    FS.Utility.eachFile(e, function (file) {
+      Images.insert(file, function (err, fileObj) {
+        if(err){
+          toastr.error("Upload failed... please try again.")
+        }else{
+          Markers.update({_id: Session.get('selectedLocationId')}, {$set: {
+              announcementImg: fileObj._id,
+            }
+          })
+          toastr.success('Upload succeeded!')
+        }
+      })
+      var uploadPicture = $('.announcement-upload-preview')
+      var img = document.createElement("img")
+      img.file = $('[name=announcement-upload]')[0].files[0]
+      img.classList.add('ui','centered','medium','image')
+
+      if(uploadPicture.children().length == 0)
+       uploadPicture.append(img)
+      else
+       uploadPicture.children().replaceWith(img)
+
+      var reader = new FileReader()
+      reader.onload = (function(aImg) {
+        return function(e) {
+          aImg.src = e.target.result
+        }
+      })(img)
+      reader.readAsDataURL(file)
+    })
+  },
+
+  'change [name=promotion-upload]' : function (e, template) {
+    FS.Utility.eachFile(e, function (file) {
+      Images.insert(file, function (err, fileObj) {
+        if(err){
+          toastr.error("Upload failed... please try again.")
+        }else{
+          Markers.update({_id: Session.get('selectedLocationId')}, {$set: {
+              promotionImg: fileObj._id,
+            }
+          })
+          toastr.success('Upload succeeded!')
+        }
+      })
+      var uploadPicture = $('.promotion-upload-preview')
+      var img = document.createElement("img")
+      img.file = $('[name=promotion-upload]')[0].files[0]
+      img.classList.add('ui','centered','medium','image')
+
+      if(uploadPicture.children().length == 0)
+       uploadPicture.append(img)
+      else
+       uploadPicture.children().replaceWith(img)
+
+      var reader = new FileReader()
+      reader.onload = (function(aImg) {
+        return function(e) {
+          aImg.src = e.target.result
+        }
+      })(img)
+      reader.readAsDataURL(file)
+    })
+  },
+
+  'click #announcement-photo-upload': function (e) {
+    $('[name=announcement-upload]').trigger('click')
+  },
+  'click #promotion-photo-upload': function (e) {
+    $('[name=promotion-upload]').trigger('click')
+  },
 })
