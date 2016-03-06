@@ -26,12 +26,6 @@ Template.favoriteBtn.helpers({
   }
 })
 
-Template.checkinBtn.helpers({
-  isCheckin: function(markerId){
-      return Markers.find({_id:markerId, checksin:Meteor.userId()}).count() > 0 ? '/images/object/5-location/checkin.png' : '/images/object/5-location/checkin-gray.png'
-  }
-})
-
 
 Template.shareBtn.helpers({
   isShare: function (postId) {
@@ -53,6 +47,6 @@ Template.shareBtn.events({
 })
 
 //FB Share
-UI.registerHelper('shareOnFacebookLink', function() {
-  return 'https://www.facebook.com/sharer/sharer.php?&u=' + 'https://developers.facebook.com/docs/plugins/';
+UI.registerHelper('shareOnFacebookLink', function(postId) {
+  return `https://www.facebook.com/sharer/sharer.php?&u=${window.location.origin}/post/${postId}`
 });

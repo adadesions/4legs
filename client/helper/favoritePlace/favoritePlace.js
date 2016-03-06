@@ -28,9 +28,16 @@ Template.favoritePlace.onCreated(function() {
     Markers.find({asFavorite: Meteor.userId()}).observe({
       //ADDED MARKER
       added: function (document) {
-        // let inList = availableList.map( x => x._id === document._id)
-        // let imgStatus =  _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close-marker.png'
-        let imgStatus = '/images/object/5-location/open-marker.png'
+        let aPlace = Markers.findOne({_id:document._id})
+        let imgStatus = ((aPlace) => {
+          if(aPlace.promoting) return '/images/object/5-location/promoting.png'
+          else{
+            let avaliableList = Session.get('avaliableList')
+            let inList = avaliableList.map( x => x._id === aPlace._id)
+            return _.contains(inList, true) ? '/images/object/5-location/open-marker.png' : '/images/object/5-location/close2.png'
+          }
+        })(aPlace)
+
         let openImg = {
           url: imgStatus,
           size: new google.maps.Size(32, 32),
@@ -46,7 +53,7 @@ Template.favoritePlace.onCreated(function() {
         })
         google.maps.event.addListener(marker,'click',function (e) {
           let info = Markers.findOne({_id:marker.id}),
-              contentForInfo = '<div class="ui card"><div class="image"><img src="'+Images.findOne({_id:info.photos._id}).url()+'"></div><div class="extra ui center aligned container"><h3 class="ui header">'+info.locationName+'</h3></div>',
+              contentForInfo = '<h3 class="ui header">'+info.locationName+'</h3>',
               eLatLng = new google.maps.LatLng(document.lat,document.lng),
               infoWindow = new google.maps.InfoWindow({
                 map: map.instance,

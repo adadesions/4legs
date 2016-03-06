@@ -40,16 +40,45 @@ Template.aboutMe.helpers({
   showAllFollowers : function (id) {
     let followers = Meteor.users.findOne({_id:id}),
         ids = followers.profile.followers,
-        followerSet = _.map(ids, function (data) {
-          return Meteor.users.findOne({_id:data.followerId})
-        })
-        return followerSet
+        followerSet = ids.map(data => Meteor.users.findOne({_id:data.followerId}))
+    return followerSet
+  },
+  oneBronzeMedal: function (label) {
+    return getBronzeMedal(label, 1)
+  },
+  tenBronzeMedal: function (label) {
+    return getBronzeMedal(label, 10)
+  },
+  goldMedal: function (label) {
+    return getGoldMedal(label, 100)
+  },
+  getCheckinMedal: function (position) {
+    let numberOfCheckin = Markers.find({checkin: Meteor.userId()}).count()
+    if(numberOfCheckin >= 5 && numberOfCheckin < 20 && position === 0) return activityBadge.checkin.goldUrl
+    else if(numberOfCheckin >= 20 && numberOfCheckin < 50 && position === 1) return activityBadge.checkin.goldUrl
+    else if(numberOfCheckin >= 50 && position === 2) return activityBadge.checkin.goldUrl
+    else return activityBadge.checkin.blankUrl
+  },
+  getNewLocationMedal: function (position) {
+    let numberOfNewLocation = Markers.find({'creator.user': Meteor.userId()}).count()
+    if(numberOfNewLocation >= 5 && numberOfNewLocation < 20 && position === 0) return activityBadge.newLocation.goldUrl
+    else if(numberOfNewLocation >= 20 && numberOfNewLocation < 50 && position === 1) return activityBadge.newLocation.goldUrl
+    else if(numberOfNewLocation >= 50 && position === 2) return activityBadge.newLocation.goldUrl
+    else return activityBadge.newLocation.blankUrl
+  },
+  getSosMedal: function (position) {
+    let numberOfSos = Posts.find({'info.postOwner':Meteor.userId(), catagory:'sos'})
+    if(numberOfSos >= 5 && numberOfSos < 20 && position === 0) return activityBadge.sos.goldUrl
+    else if(numberOfSos >= 20 && numberOfSos < 50 && position === 1) return activityBadge.sos.goldUrl
+    else if(numberOfSos >= 50 && position === 2) return activityBadge.sos.goldUrl
+    else return activityBadge.sos.blankUrl
   }
+
 })
 Template.aboutMe.events({
   'click .my-btn-edit' : function (e) {Session.set('aboutMeContainer','editProfile')},
   'mouseenter .badge-img': function (e) {
-    
+
   },
   'click .link-seeall-follower': function (e) {
     $('.ui.modal.follower')
@@ -132,3 +161,38 @@ Template.editProfile.events({
   }
 
 })
+
+
+function getMedal(label, numberOfFollowing) {
+  let followingIds = Meteor.user().profile.following,
+      followingSet = followingIds.map(fid => Meteor.users.findOne({_id:fid})),
+      calObj = {'สุนัข': 0, 'แมว': 0, 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ': 0, 'นก': 0, 'สัตว์เลื้อยคลาน': 0, 'pocket': 0}
+  followingSet.map( f => {
+    let interesting = f.profile.topics
+    if(_.contains(interesting, label)) calObj[label] += 1
+  })
+  let transferLabel = {
+    'สุนัข': 'dog', 'แมว': 'cat', 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ': 'fish', 'นก': 'bird', 'สัตว์เลื้อยคลาน': 'turtle', 'pocket': 'pocket'
+  }
+  let newLabel = transferLabel[label]
+
+  return {calObj,newLabel}
+}
+
+function getBronzeMedal(label, numberOfFollowing) {
+  let res = getMedal(label,numberOfFollowing),
+      calObj = res.calObj,
+      newLabel = res.newLabel
+
+  if(calObj[label] === numberOfFollowing) return petImgs[newLabel].bronzeUrl
+  else return petImgs[newLabel].blankUrl
+}
+
+function getGoldMedal(label, numberOfFollowing) {
+  let res = getMedal(label,numberOfFollowing),
+      calObj = res.calObj,
+      newLabel = res.newLabel
+
+  if(calObj[label] === numberOfFollowing) return petImgs[newLabel].goldUrl
+  else return petImgs[newLabel].blankUrl
+}
