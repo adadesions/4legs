@@ -61,6 +61,7 @@ fastclick@1.0.7
 flemay:less-autoprefixer@1.2.0
 fortawesome:fontawesome@4.4.0
 fourseven:scss@3.4.1
+gadicohen:phantomjs@0.0.2
 geojson-utils@1.0.4
 gwendall:body-events@0.1.6
 hot-code-push@1.0.0
@@ -125,6 +126,7 @@ session@1.1.1
 sha@1.0.4
 spacebars@1.0.7
 spacebars-compiler@1.0.7
+spiderable@1.0.9
 srp@1.0.4
 standard-minifiers@1.0.2
 tanis:bootstrap-social@0.1.1
@@ -142,3 +144,4 @@ underscore@1.0.4
 url@1.0.5
 webapp@1.2.3
 webapp-hashing@1.0.5
+yasinuslu:blaze-meta@0.3.3

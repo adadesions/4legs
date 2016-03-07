@@ -26,6 +26,9 @@ Template.newsfeed.helpers({
 })
 
 Template.newsfeed.onRendered(function () {
+  //SEO
+  Meta.setTitle("Newsfeed")
+
   $('.ui.sticky').sticky({
     context: '.feed-container'
   })

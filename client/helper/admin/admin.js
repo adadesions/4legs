@@ -31,6 +31,11 @@ Template.admin.events({
 
 })
 
+Template.admin.onRendered(function () {
+  //SEO
+  Meta.setTitle("AdminSite")
+})
+
 //adminLayout
 Template.adminLayout.events({
   'click #adminLogOut': function () {

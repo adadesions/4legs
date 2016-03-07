@@ -44,3 +44,8 @@ Template.profile.events({
     })
   }
 })
+
+Template.profile.onRendered(function () {
+  //SEO
+  Meta.setTitle("Profile")
+})

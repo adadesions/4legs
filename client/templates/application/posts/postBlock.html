@@ -12,7 +12,12 @@
             <input type="file" name='upload' id="file" class="new-upload">
           </div>
         </div>
-        <div class="header">{{currentUser.username}}</div>
+        {{#if currentUser.username}}
+          <div class="header">{{currentUser.username}}</div>
+        {{else}}
+          <div class="header">{{currentUser.services.facebook.name}}</div>
+        {{/if}}
+
         <div class="meta">
           <span class="category">4Legs Member</span>
         </div>

@@ -18,6 +18,9 @@ function getIcon(value) {
 }
 
 Template.location.onRendered(function () {
+  //SEO
+  Meta.setTitle("Location")
+
   GoogleMaps.load()
   Session.set('nowOpen', false)
 })
@@ -228,9 +231,6 @@ Template.location.events({
   'click #locationEdit': function () {
     Session.set('locationContainer', 'editLocation')
   },
-  'click #verifyOwnerButton': function () {
-    Session.set('locationContainer', 'verifyOwner')
-  },
   'click #showMap':function () {
     $('.ui.sidebar')
     .sidebar('toggle')
@@ -363,7 +363,7 @@ Template.locationList.helpers({
     //allMarkers were sorted by distanceValue
     allMarkers = _.sortBy(allMarkers, 'distanceValue')
     if(onlyOpen){
-      return Session.get('locationList')
+      return Session.get('avaliableList')      
     }
     else{
       if(Session.get('locationSearch')){
@@ -538,6 +538,9 @@ Template.locationDetail.events({
             Session.set('locationContainer', 'locationList')
           }
       })
+  },
+  'click #verifyOwnerButton': function () {
+    Session.set('locationContainer', 'verifyOwner')
   }
 })
 

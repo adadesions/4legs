@@ -29,6 +29,11 @@ Template.mainTopics.helpers({
   }
 })
 
+Template.mainTopics.onRendered(function () {
+  //SEO
+  Meta.setTitle("Topics")
+})
+
 //mainTopics Events
 Template.mainTopics.events({
   'click #vet-article' : function () {Session.set('topicsContainer','vetArticle')},

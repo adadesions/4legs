@@ -2,6 +2,9 @@ let markers = {}
 
 
 Template.favoritePlace.onRendered(function () {
+  //SEO
+  Meta.setTitle("Favorite Places")
+
   Session.set('locationSearch', '')
   GoogleMaps.load()
 })

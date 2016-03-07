@@ -13,6 +13,11 @@ Template.notification.events({
   }
 })
 
+Template.notification.onRendered(function () {
+  //SEO
+  Meta.setTitle("Notification")
+})
+
 ///////////// notifyItem
 Template.notifyItem.helpers({
   takeAction: function (action) {
@@ -22,7 +27,7 @@ Template.notifyItem.helpers({
       share: "shared your post",
       post: "wrote a new post",
       favorite: "saved your post as favorite",
-      following: "are following you"      
+      following: "are following you"
     }
     return complete[action]
   },
