@@ -22,6 +22,12 @@ Template.newsfeed.helpers({
   hasHighlight: function () {
     let len = Posts.find({highlight:true}).count()
     return len === 1 ? true : false
+  },
+  isMobile: function () {
+    const ratio = window.devicePixelRatio
+    let width = window.screen.width*ratio,
+        height = window.screen.heigh*ratio
+    return width < 800 ? true : false
   }
 })
 
