@@ -1,7 +1,7 @@
 @import "colors"
 
-$tablet: "(min-width: 751px) and (max-width: 992px)"
-$mobile: "(min-width: 100px) and (max-width: 750px)"
+$tablet: "(min-width: 800px) and (max-width: 992px)"
+$mobile: "(min-width: 100px) and (max-width: 800px)"
 
 @media #{$mobile}
   .mynav-main
@@ -43,7 +43,7 @@ $mobile: "(min-width: 100px) and (max-width: 750px)"
     display: flex
     flex-flow: row
     background-color: #FFF
-  
+
   .menu-icon
     width: 100%
     height: auto
@@ -206,7 +206,7 @@ $mobile: "(min-width: 100px) and (max-width: 750px)"
   .nav-signup
     h3
       margin-top: 1em
-      margin-left: -15em
+      margin-left: -14em
     a
       margin-top: 0
       margin-right: 13em
@@ -477,9 +477,9 @@ $mobile: "(min-width: 100px) and (max-width: 750px)"
         margin-top: 0.2em
   .pic-landing
     position: absolute
-    margin-top: -15em
+    margin-top: 0em
     margin-left: 0em
-    width: 8.8em
+    width: 0em
     height: auto
     img
       width: 0
@@ -617,7 +617,22 @@ $mobile: "(min-width: 100px) and (max-width: 750px)"
     display: flex
     flex-flow: row
     justify-content: flex-start !important
+  .spec-post-container
+    width: 10  0%
+    height: auto
+    margin: 0 auto
+  .term-condition-content
+    overflow-y: auto
 @media #{$tablet}
+  .pic-landing
+    position: absolute
+    margin-top: 0em
+    margin-left: 0em
+    width: 0em
+    height: auto
+    img
+      width: 0
+      height: auto
   .button-card-following
     height: 3em
     display: flex
