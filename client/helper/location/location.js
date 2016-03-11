@@ -1,4 +1,4 @@
-const MAP_ZOOM = 10
+Session.set('zoom',10)
 let markers = {},
     rawDistance
 
@@ -40,6 +40,7 @@ Template.location.onCreated(function() {
 
     self.autorun(function () {
       latLng = Geolocation.latLng()
+
       if (!latLng)
         return
 
@@ -63,7 +64,7 @@ Template.location.onCreated(function() {
             centerLng = Session.get('centerLng'),
             newPosition = new google.maps.LatLng(centerLat,centerLng)
         map.instance.setCenter(newPosition)
-        map.instance.setZoom(15)
+        map.instance.setZoom(Session.get('zoom'))
       }
       else{
         map.instance.setCenter(marker.position)
@@ -74,6 +75,16 @@ Template.location.onCreated(function() {
     google.maps.event.addListener(map.instance, 'click', function (e) {
       $('#lat').val(e.latLng.lat())
       $('#lng').val(e.latLng.lng())
+    })
+    google.maps.event.addListener(map.instance, 'dragend', function (e) {
+      let lat = map.instance.getCenter().lat(),
+          lng = map.instance.getCenter().lng(),
+          newPosition = new google.maps.LatLng(lat,lng)
+      Session.set('centerLat',lat)
+      Session.set('centerLng',lng)
+    })
+    google.maps.event.addListener(map.instance, 'zoom_changed', function (e) {
+      Session.set('zoom', map.instance.getZoom())
     })
     google.maps.event.addListener(marker,'click',function (e) {
       let latLng = e.latLng,
