@@ -25,9 +25,8 @@ Template.newsfeed.helpers({
   },
   isMobile: function () {
     const ratio = window.devicePixelRatio
-    let width = window.screen.width*ratio,
-        height = window.screen.heigh*ratio
-    return width < 800 ? true : false
+    let width = window.screen.width*ratio    
+    return width < 1260 ? true : false
   }
 })
 
