@@ -231,8 +231,20 @@ Template.location.events({
   'click #locationEdit': function () {
     Session.set('locationContainer', 'editLocation')
   },
-  'click #showMap':function () {
+  'click #sidebar-add-location':function () {
     $('.ui.sidebar')
+    .sidebar({
+      dimPage: false,
+      closable: false
+    })
+    .sidebar('show')
+  },
+  'click #sidebar-location-list':function () {
+    $('.ui.sidebar')
+    .sidebar({
+      dimPage: true,
+      closable: true
+    })
     .sidebar('toggle')
   },
 })
@@ -363,7 +375,7 @@ Template.locationList.helpers({
     //allMarkers were sorted by distanceValue
     allMarkers = _.sortBy(allMarkers, 'distanceValue')
     if(onlyOpen){
-      return Session.get('avaliableList')      
+      return Session.get('avaliableList')
     }
     else{
       if(Session.get('locationSearch')){

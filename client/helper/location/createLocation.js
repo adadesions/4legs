@@ -53,6 +53,8 @@ Template.createStep1.events({
   },
   'click #cancel': function () {
     Session.set('locationContainer', 'location')
+    $('.ui.sidebar')
+    .sidebar('hide')
   }
 })
 
@@ -231,6 +233,7 @@ Template.createStep4.events({
     }
     Meteor.call('markersUpdateByLocation',locationObj.lat, locationObj.lng, locationObj.owner)
     Session.set('locationContainer', 'location')
+    $('.ui.sidebar').sidebar('hide')
   }
 })
 Template.createStep4.helpers({
