@@ -119,7 +119,7 @@ Template.postBlock.helpers({
         }
       },
       finished: function(index,fileInfo,formFields) {
-        console.log(fileInfo);
+                
       }
     }
   },

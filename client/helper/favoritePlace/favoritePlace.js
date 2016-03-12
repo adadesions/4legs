@@ -70,8 +70,7 @@ Template.favoritePlace.onCreated(function() {
         markers[document._id] = marker
       },
       //REMOVED MARKER
-      removed: function (oldDocument) {
-        console.log('right');
+      removed: function (oldDocument) {        
         markers[oldDocument._id].setMap(null)
         google.maps.event.clearInstanceListeners(markers[oldDocument._id])
         delete markers[oldDocument._id]

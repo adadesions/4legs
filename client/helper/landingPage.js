@@ -40,13 +40,10 @@ Template.landingPage.events({
     let loginId = $('[name=usernameForget]').val();
     let emailId = $('[name=emailForget]').val();
     let users = Meteor.users.find().fetch()
-    console.log(users)
     users.map( u => {
       if (loginId === u.username) {
         Accounts.forgotPassword(emailId)
-        console.log(check)
-      }else{
-        console.log(u.username)
+      }else{        
         toastr.error("Your Username or Email is incorrect")
         throw new Meteor.Error("no data");
       }

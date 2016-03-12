@@ -85,7 +85,6 @@ Meteor.methods({
     let user = Meteor.user()
     if(user.profile.idCardNo){
       if(user.profile.idCardNo === idCardNo){
-        console.log(typeof user.profile.idCardNo+" == "+typeof idCardNo);
         Meteor.users.upsert({_id:user._id}, {
           $set: {
             'profile.tel' : tel
@@ -93,8 +92,7 @@ Meteor.methods({
         })
         return true
       }
-      else{
-        console.log('here');
+      else{        
         return false
       }
     }

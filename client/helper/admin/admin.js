@@ -319,7 +319,7 @@ postBlockUpload: function () {
       }
     },
     finished: function(index,fileInfo,formFields) {
-      console.log(fileInfo);
+      
     }
   }
 },

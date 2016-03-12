@@ -201,7 +201,7 @@ Template.register.events({
   },
   'change [name=birthday]' : function (e) {
     var birthday = $('#birthday')
-    console.log(birthday)
+    
     if(birthday.val().length > 0) birthday.removeClass('input-error').addClass('input-success')
     else birthday.removeClass('input-success').addClass('input-error')
   },

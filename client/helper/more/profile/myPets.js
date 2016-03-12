@@ -168,8 +168,7 @@ Template.editPet.events({
           detail : petDetails,
         }
     let imgId = Pets.findOne({_id: Session.get('editMyPetId')}).img._id
-    if(myPet.img == '') myPet.img = imgId
-    console.log(myPet);
+    if(myPet.img == '') myPet.img = imgId    
     Meteor.call('updatePet',myPetId, myPet, function (err) {
       if(err) toastr.error("Add new pet error... please try again.")
       else{

@@ -1,3 +1,3 @@
 Meteor.onConnection(function (conn) {
-  console.log(conn.clientAddress);
+  // console.log(conn.clientAddress);
 })
