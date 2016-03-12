@@ -13,19 +13,20 @@
             {{/each}}
         </div>
         <br><br>
+
         <div class="feed-container">
           {{> postFeed col='one'}}
         </div>
       </div>
       {{else}}
-      <div class="col-lg-9 col-xs-12">
+      <div class="col-lg-9 col-xs-9">
         {{> postBlock}}
         <br><br>
         <div class="feed-container">
           {{> postFeed col='one'}}
         </div>
       </div>
-      <div class="col-lg-3 col-xs-12">
+      <div class="col-lg-3 col-xs-3">
         <br><br>
           <div class="ui sticky card-mobile">
               {{#each getAdsLimit '2'}}
