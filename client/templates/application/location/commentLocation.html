@@ -1,15 +1,22 @@
 <template name="commentLocation">
   <div class="row comment withPadding comment-location">
-    <div class="col-lg-2">
-      <img  class="profile-picture img-circle" src="{{profilePicture commentOwnerId}}" alt="">
+    <div class="detail-owner-location-comment">
+      <div class="col-lg-2 img-comment-location">
+        <img  class="profile-picture img-circle" src="{{profilePicture commentOwnerId}}" alt="">
+      </div>
+        <div class="col-lg-10 post-info">
+          <div class="comment-detail">
+            <span class="my-color-brown">{{commentOwner}}</span>
+            <span class="duration">
+              <i class="fa fa-clock-o"></i>
+              {{enhanceTime createdAt}}
+            </span>
+            {{#if showButton commentOwnerId}}
+              <i id="removeComment" class="inverted red minus circle icon" data-commentid="{{commentId}}" ></i>
+            {{/if}}
+          </div>
+          <p>{{commentBody}}</p>
+      </div>
     </div>
-    <div class="col-lg-10 post-info">
-      <span class="my-color-brown">{{commentOwner}}</span>
-      <span class="duration">
-        <i class="fa fa-clock-o"></i>
-        {{enhanceTime createdAt}}
-      </span>
-    </div>
-    <p>{{commentBody}}</p>
   </div>
 </template>

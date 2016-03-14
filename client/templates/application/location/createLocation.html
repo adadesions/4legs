@@ -47,51 +47,76 @@
       </div>
     {{/each}}
   <br>
-  <button type="button" id="cancel" class="btn btn-danger col-lg-5">ยกเลิก</button>
-  <div class="col-lg-1"></div>
-  <button type="button" id="next" class="btn btn-success col-lg-5">ต่อไป</button>
+  <div class="col-lg-12 location-button">
+    <button type="button" id="cancel" class="btn btn-danger col-lg-5">ยกเลิก</button>
+    <div class="col-lg-1"></div>
+    <button type="button" id="next" class="btn btn-success col-lg-5">ต่อไป</button>
+  </div>
   </form>
 </template>
 
 <!-- STEP 2 -->
 <template name="createStep2">
   <label for="days-week">วันเปิดทำการ</label>
-  <br>
-  <label class="checkbox-inline days-week">
-    <input type="checkbox" name="days-week" value="อา"> อา
-  </label>
-  <label class="checkbox-inline days-week">
-    <input type="checkbox" name="days-week" value="จ"> จ
-  </label>
-  <label class="checkbox-inline days-week">
-    <input type="checkbox" name="days-week" value="อ"> อ
-  </label>
-  <label class="checkbox-inline days-week">
-    <input type="checkbox" name="days-week" value="พ"> พ
-  </label>
-  <label class="checkbox-inline days-week">
-    <input type="checkbox" name="days-week" value="พฤ"> พฤ
-  </label>
-  <label class="checkbox-inline days-week">
-    <input type="checkbox" name="days-week" value="ศ"> ศ
-  </label>
-  <label class="checkbox-inline days-week">
-    <input type="checkbox" name="days-week" value="ส"> ส
-  </label>
-  <br><br>
-  <label for="open-time">เวลาเปิดทำการ</label>
-  <br>
-  <form class="form-inline">
-    <div class="form-group">
-      <label></label>
-      <input type="text" name="open-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาเปิด">
+  <div class="group-daysweek">    
+    <div class="add-time">
+    <div class="ui custom button"><b>+</b> เพิ่มเวลาทำการ</div>
     </div>
-    <div class="form-group">
-      <label></label>
-      <input type="text" name="close-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาปิด">
+    <div class="ui fluid custom popup bottomx transition hidden">
+      <form class="ui form add-time-form">
+        <div class="field">
+          <label>เวลาทำการ</label>
+          <div class="two fields">
+            <div class="field">
+              <input type="text" class='timepicker' name="open-time" placeholder="เวลาเปิด">
+            </div>
+            <div class="field">
+              <input type="text" class='timepicker' name="close-time" placeholder="เวลาปิด">
+            </div>
+          </div>
+        </div>
+        <div class="open-days">
+          วันเปิดทำการ :
+            <label>
+            <input type="checkbox" name="days" value="อา">
+            อา</label>
+            <label>
+            <input type="checkbox" name="days" value="จ">
+            จ</label>
+            <label>
+            <input type="checkbox" name="days" value="อ">
+            อ</label>
+            <label>
+            <input type="checkbox" name="days" value="พ">
+            พ</label>
+            <label>
+            <input type="checkbox" name="days" value="พฤ">
+            พฤ</label>
+            <label>
+            <input type="checkbox" name="days" value="ศ">
+            ศ</label>
+            <label>
+            <input type="checkbox" name="days" value="ส">
+            ส</label>
+        </div>
+        <br>
+        <div class="group-button-add-time">
+          <div class="group-daysweek">
+            <label class="checkbox-inline">
+              <input type="checkbox" name="every-days" value="choose-day"> นำไปใช้กับทุกวัน
+            </label>
+          </div>
+          <div class="button-add-time">
+            <button type="button" id="submit-time" class="ui blue button">ตกลง</button>
+            <button type="button" id="cancel-time" class="ui grey button">ยกเลิก</button>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
+  <div class="show-time">
 
-  </form>
+  </div>
   <br><br>
   <label for="address">ที่อยู่</label>
   <textarea name="address" class="form-control" rows="5"></textarea>
@@ -108,9 +133,12 @@
     <u>เพิ่มรูปภาพ</u>
   </label>
   <br><br>
-  <button type="button" id="back" class="btn btn-warning col-lg-5">ย้อนกลับ</button>
-  <div class="col-lg-1"></div>
-  <button type="button" id="next" class="btn btn-success col-lg-5">ต่อไป</button>
+  <div class="col-lg-12 location-button">
+    <button type="button" id="back" class="btn btn-warning col-lg-5">ย้อนกลับ</button>
+    <div class="col-lg-1"></div>
+    <button type="button" id="next" class="btn btn-success col-lg-5">ต่อไป</button>
+  </div>
+
 </template>
 
 <!-- createStep3 -->
@@ -133,9 +161,11 @@
   <label for="instagram">Instagram</label>
   <input type="text" name="instagram" class="form-control">
   <br><br>
-  <button type="button" id="back" class="btn btn-warning col-lg-5">ย้อนกลับ</button>
-  <div class="col-lg-1"></div>
-  <button type="button" id="save" class="btn btn-success col-lg-5">บันทึก</button>
+  <div class="col-lg-12 location-button">
+    <button type="button" id="back" class="btn btn-warning col-lg-5">ย้อนกลับ</button>
+    <div class="col-lg-1"></div>
+    <button type="button" id="save" class="btn btn-success col-lg-5">บันทึก</button>
+  </div>
 </template>
 
 <!-- createStep4 -->

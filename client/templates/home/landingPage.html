@@ -1,0 +1,98 @@
+<template name="landingPage">
+  <div class="head-landing-page">
+    <div class="container con-landing">
+      <div class="ui vertical segment">
+        <div class="nav-landing-page">
+          <div class="logo-landing-page">
+            <img class="logo" src="/images/object/1-login/logo-login.png" alt="">
+          </div>
+
+        </div>
+      </div>
+      <div class="ui vertical segment">
+        <div class="container content-landing-page-group">
+          <div class="content-landing-page text-center">
+            <h1>ยินดีต้อนรับสู่ 4 ขา</h1>
+            <p>
+              สี่ขา "Community และ Location Based Service ของสัตว์เลี้ยง"
+            </p>
+            <p>
+              โดยสัตวแพทย์ เพื่อสัตว์เลี้ยงของคุณ
+            </p>
+          </div>
+          <div class="pic-landing">
+            <img src="/images/home/เห็บ.png"/>
+          </div>
+        </div>
+        <div class="button-landing-page">
+          <div class="button-landing-page-group">
+            <button id="loginLandingPage" class="ui orange button"><h3>Login</h3></button>
+            <div class="ui fluid custom popup bottomx transition hidden login-landing">
+            <form class="ui form login-landing-form">
+              <div class="field">
+                <input type="text" name="username" placeholder="Username">
+              </div>
+              <div class="field">
+                <input type="password" name="password" placeholder="Password">
+              </div>
+              <!-- <div class="field forget-password">
+                <a href="#">ลืมรหัสผ่าน ?</a>
+              </div> -->
+              <div class="field button-accept-login">
+                <button id="loginLandingButton" class="ui orange button">Login</button>
+                <div class="login-landing-facebook">{{> loginFb}}</div>
+              </div>
+            </form>
+            </div>
+
+              <a href="{{pathFor 'register'}}">
+                <button id="btn-signUp-landing" class="btn">
+                  <i class="big paw icon"></i>
+                  <h3>Sign Up</h3>
+                </button>
+              </a>
+
+          </div>
+          <div class="ui fluid custom popup bottomx transition hidden forget-password-landing">
+          <form class="ui form forget-password-form">
+            <div class="field">
+              <input type="text" name="usernameForget" placeholder="Username">
+            </div>
+            <div class="field">
+              <input type="text" name="emailForget" placeholder="Email">
+            </div>
+            <p>ระบบจะส่ง Password ไปที่ Email ของคุณ</p>
+            <button id="forgetPasswordLandingButton" class="ui orange button">Send</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body-landing-page">
+    <div class="container container-mobile">
+      <br>
+      <div class="highlight-head-landing">
+        <h1>HIGHLIGHT</h1>
+      </div>
+      <br>
+      {{> postFeed col='three' type="pop"}}
+      <br>
+    <hr>
+      <br>
+      <div class="topic-head-landing">
+        <h1>TOPIC</h1>
+      </div>
+      {{> postFeed col='three' type="publicTopics"}}
+      <br>
+    <hr>
+    <div class="location-head-landing">
+      <h1>LOCATION</h1>
+    </div>
+    <br>
+        {{> location}}
+    </div>
+  </div>
+  <br><br>
+  {{> footer}}
+</template>

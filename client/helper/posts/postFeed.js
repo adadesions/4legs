@@ -2,29 +2,23 @@ Template.postFeed.helpers({
   username : function () {
     return Meteor.user().username || Meteor.user().profile.name
   },
-  checkLen : function (ele) {
-    return ele.length > 100 ? true : false;
-  },
-  matchUserId : function (userId) {
-    var user = Meteor.users.findOne({_id:userId})
-    return user.username || user.profile.name
-  },
-  enhanceTime : function (postTime) {
-    var adjTime = moment(postTime);
-    return adjTime.fromNow();
-  },
-  findPicture : function (id) {
-    var img = Images.findOne({_id:id})
-    return img.url()
-  },
-  posts : function (userId) {
+  posts : function () {
     let type = Template.currentData() ? Template.currentData().type : false,
-        highlight = Template.currentData() ? Template.currentData().highlight : false
+        highlight = Template.currentData() ? Template.currentData().highlight : false,
+        userId = Template.currentData() ? Template.currentData().userId : false
 
     if(highlight) return Posts.find({highlight:true})
 
     if(type === 'favorite'){ //For favorite
         return Posts.find({'favorites': Meteor.userId()}, {sort: {'info.createdAt': -1}})
+    }
+    else if(type === 'pop'){
+      let allPost = Posts.find({catagory : 'newsfeed'},{sort: {'info.createdAt': -1}, limit: 3 }).fetch()
+      return allPost
+    }
+    else if(type === 'publicTopics'){
+      let allPost = Posts.find({catagory : 'topics'},{sort: {'info.createdAt': -1}, limit: 6 }).fetch()
+      return allPost
     }
     else if(type){ //For specific type
       if(Session.get('adminPetType')){
@@ -35,12 +29,28 @@ Template.postFeed.helpers({
     }
 
     if(userId) { //For Profile
-      var byUserId = Posts.find({'info.postOwner': userId}, {sort: {'info.createdAt': -1}})
-      // console.log(byUserId.fetch());
-      return byUserId.count() > 0 ? byUserId : Posts.find({_id:userId})
+      var byUserId = Posts.find({ $or: [{'info.postOwner': userId}, {'shares.sharedBy': Meteor.userId()}] }, {sort: {'info.createdAt': -1}}).fetch()
+      return byUserId.length > 0 ? byUserId : Posts.find({_id:userId})
     }
-    else
-      return Posts.find({catagory : 'newsfeed', highlight:false}, {sort: {'info.createdAt': -1}})
+    else{
+      let myFollowing = Meteor.user().profile.following
+      myFollowing = _.pluck(myFollowing, 'followingId')
+      myFollowing.push(Meteor.userId())
+
+      //Got all from same interesting
+      let myInteresting = Meteor.user().profile.topics,
+          allUsers = Meteor.users.find().fetch()
+
+      let sameInteresting = _.filter(allUsers, u => {
+        return _.intersection(u.profile.topics, myInteresting) !== []
+      })
+      sameInteresting = _.pluck(sameInteresting, '_id')
+
+      //Merge Ids
+      let readyToUseId = _.uniq(myFollowing.concat(sameInteresting))
+      return Posts.find({'info.postOwner': {$in: readyToUseId}}, {sort: {'info.createdAt': -1}}).fetch()
+
+    }
   },
   isNoPosts : function (userId) {
     if(userId)
@@ -55,36 +65,45 @@ Template.postFeed.helpers({
   showHighlightBtn: function () {
     return Session.get('superuserContainer') === 'adminHighlight'
   },
-  isHighlight: function (postId) {
-    return Posts.findOne({_id:postId}).highlight ? 'checked' : ''
-  },
   postHighlight: function () {
     let highlight = Template.currentData() ? Template.currentData().highlight : false
     return highlight ? 'post-highlight' : ''
+  },
+  numOfCol: function () {
+    return Template.currentData().col ? Template.currentData().col : 'one'
+  },
+  limitComment: function (comments) {
+    return comments.length > 3 ? comments.slice(comments.length-3,comments.length) : comments
+  },
+  isVet: function (userId) {
+    let user = Meteor.users.findOne({_id:userId})
+    return user.profile.vetInfo.verified
+  },
+  isSos: function (catagory) {
+    return _.contains(catagory,'sos')
+  },
+  isHelped: function (obj) {
+    let state = [
+      {color: 'red', content: 'Need Help!'},
+      {color: 'green', content: 'Helped^^'}
+    ]
+    if(!obj.helped) return state[0]
+    else return state[1]
+  },
+  showPostOption: function (postId) {
+    if(Meteor.user().profile.privileged) return true
+
+    let post = Posts.findOne({_id:postId})
+    if(post.info.postOwner === Meteor.userId()) return true
+  },
+  isSosPost: function (postId) {
+    let post = Posts.findOne({_id:postId}).catagory,
+        isSos = _.contains(post, 'sos')
+    return isSos
   }
 })
 
 Template.postFeed.events({
-  'click .icon-comment' : function (e) {
-    var postId = '#cs-'+$(e.target).attr('id'),
-        section = $(postId+'.comment-section')
-    if(section.hasClass("hidden")){
-      section.slideDown(300, function () {
-        section.removeClass('hidden')
-      })
-    }
-    else{
-      section.slideUp(500, function () {
-        section.addClass('hidden')
-      })
-    }
-  },
-
-  'click .icon-like' : function (e) {
-    var id = $(e.target).attr('id')
-    Meteor.call("clickLike", id)
-  },
-
   'click .icon-favorite' : function (e) {
     var id = $(e.target).attr('id')
     Meteor.call("saveFavorite", id, function (err) {
@@ -92,34 +111,14 @@ Template.postFeed.events({
         toastr.error("Please, try again we can't save this post")
       }
       else{
-        toastr.success('Saved this post as favorite')
+        // toastr.success('Saved this post as favorite')
       }
     })
   },
   'click .admin-delete-btn': function (e) {
     let id = $(e.target).attr('id'),
         picId = Posts.findOne({_id:id}).img._id
-    let confirm = new Confirmation({
-      message: "Are you sure to delete this post?",
-      title: "Confirmation",
-      cancelText: "Cancel",
-      okText: "Confirm",
-      success: true // wether the button should be green or red
-    }, function (ok) {
-        if(ok) {
-          Posts.remove({_id:id}, function (err) {
-            if(err){
-              throw err
-              toastr.error('Can not delete this post right now')
-            }
-            else{
-              console.log(picId);
-              Meteor.call('removePicture', picId)
-              toastr.success('The post has deleted by admin')
-            }
-          })
-        }
-    })
+
   },
   'click .admin-highlight-btn, click input': function (e) {
     let id = $(e.target).attr('id'),
@@ -130,5 +129,53 @@ Template.postFeed.events({
     else{
       Posts.upsert({_id:id},{$set:{highlight:true}})
     }
+  },
+  'click #deletePost': function (e) {
+    let postId = $(e.target).data('id'),
+        picId = Posts.findOne({_id:postId}).img._id
+
+    let confirm = new Confirmation({
+      message: "Are you sure to delete this post?",
+      title: "Confirmation",
+      cancelText: "Cancel",
+      okText: "Confirm",
+      success: false
+    }, function (ok) {
+        if(ok) {
+          Posts.remove({_id:postId}, function (err) {
+            if(err){
+              throw err
+              toastr.error('Can not delete this post right now')
+            }
+            else{
+              Meteor.call('removePicture', picId)
+              toastr.success('The post has deleted')
+            }
+          })
+        }
+    })
+  },
+  'click #helped': function (e) {
+    let postId = $(e.target).data('id')
+
+    let confirm = new Confirmation({
+      message: "Are you sure this post was helped?",
+      title: "Confirmation",
+      cancelText: "Cancel",
+      okText: "Confirm",
+      success: true
+    }, function (ok) {
+        if(ok) {
+          Posts.update({_id:postId}, {$set: {helped:true}} , function (err) {
+            if(err){
+              throw err
+              toastr.error('Can not confirm on this post right now')
+            }
+            else{
+              toastr.success('The post was helped')
+            }
+          })
+        }
+    })
   }
 })

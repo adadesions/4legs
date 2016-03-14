@@ -1,27 +1,44 @@
 <template name="register">
   <nav class="navbar mynav-signup">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+    <div class="container-fluid nav-signup">
+      <div class="navbar-header signup-flex">
+        <h3 class="text-center">ลงทะเบียนเพื่อเข้าใช้งาน</h3>
         <a class="navbar-brand" href="{{pathFor 'newsfeed'}}">
-          <img class="logo" src="/images/object/logo.png" alt="">
+          <img class="logo" src="/images/object/1-login/logo-login.png" alt="">
         </a>
     </div>
-    <h3 class="text-center">ลงทะเบียนเพื่อเข้าใช้งาน</h3>
   </div>
   </nav>
-
+  <div class="ui basic modal term-condition-modal">
+  <i class="close icon"></i>
+  <div class="header">
+    <h2>Term and condition</h2>
+  </div>
+  <div class="content term-condition-content">
+    <li><h4>จุดประสงค์ของการทำเว็บไซต์แอพลิเคชั่นดังกล่าว มีไว้เพื่อประโยชน์สาธารณะ </h4></li>
+    <li><h4>ผู้ที่ต้องการสมัครสมาชิก จะต้องกรอกข้อมูลที่เป็นจริงให้ครบทุกข้อเพื่อสิทธิประโยชน์ของท่าน หากตรวจสอบพบว่าท่านให้ข้อมูลเท็จ ทีมงานสี่ขามีสิทธิ์ยกเลิกการเป็นสมาชิกได้</h4></li>
+    <li><h4>ผู้ใดแอบอ้างหรือกระทำการใดๆอันเป็นการละเมิดสิทธิ์ส่วนบุคคลโดยใช้ข้อมูลของผู้อื่นมาแอบอ้างสมัครสมาชิกเป็นความผิดต้องรับโทษตามที่กฎหมายกำหนดไว้</h4></li>
+    <li><h4>สมาชิกจะต้องใช้นามแฝงที่เหมาะสม ไม่หยาบคาย หรือส่อไปในทางลามกอนาจาร มิฉะนั้นทีมงานมีสิทธิ์ ยกเลิกการเป็นสมาชิกได้</h4></li>
+    <li><h4>ผู้สมัครต้องยินยอมให้สี่ขาตรวจสอบความเป็นจริงของข้อมูลการสมัครหากตรวจสอบพบว่าท่านให้ข้อมูลเท็จหรือไม่ชัดเจน ทีมงานมีสิทธิ์ยกเลิกการเป็นสมาชิกได้</h4></li>
+    <li><h4>สมาชิกต้องปฏิบัติตามกฎกติกามารยาทที่ทางสี่ขาตั้งขึ้นมาอย่างเคร่งครัดเพื่อความสงบเรียบร้อย หากท่านละเมิดทีมงานสี่ขามีสิทธิ์ยกเลิกการเป็นสมาชิกได้</h4></li>
+    <li><h4>ข้อมูลของสมาชิกจะถูกเก็บเป็นความลับทางสี่ขาจะไม่เปิดเผยข้อมูลของท่านก่อนได้รับอนุญาต นอกจากจะได้รับหมายศาลหรือหนังสือราชการจากหน่วยงานสำนักงานตำรวจแห่งชาติ</h4></li>
+    <li><h4>ทีมงานสี่ขาขอสงวนสิทธิ์ในการยกเลิกความเป็นสมาชิกได้ โดยไม่ต้องบอกกล่าวให้ทราบล่วงหน้า</h4></li>
+    <li><h4>การประกาศขอความช่วยเหลือทางช่องทางของสี่ขาอาจมีความเสี่ยงของมิจฉาชีพ ทางสี่ขาจะช่วยคัดกรองและตรวจสอบเป็นระยะ แต่หากเกิดความเสียหายจากมิจฉาชีพเกิดขึ้น ทางสี่ขาไม่รับผิดชอบทุกกรณี และอาจปิดช่องทางการประกาศขอความช่วยเหลืออย่างถาวร</h4></li>
+    <li><h4>ผู้ที่ประกาศขอความช่วยเหลือผ่านทางเว็บไซต์แอพลิเคชั่นสี่ขาจะต้องลงข้อมูลที่เป็นจริงและสามารถติดต่อได้ หากทางแอดมินสี่ขาไม่สามารถติดต่อผู้ลงประกาศได้ ทางสี่ขาจะดำเนินการลบข้อมูลประกาศขอความช่วยเหลือทันที</h4></li>
+  </div>
+  <div class="actions">
+    <div class="ui positive right labeled icon button">
+      ตกลง
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
   <div class="container">
     <div class="row">
       <div class="col-lg-1"></div>
       <div class="col-lg-2">
         <div class="upload-profile">
-
+          <img src="/images/object/2-signup/profile-img.png">
         </div>
         <br>
         <div class="upload-group-profile">
@@ -35,13 +52,16 @@
         <div class="register-form">
           <form clsss="form-horizontal" action="">
             <div class="vet-block">
-              คุณเป็นสัตวแพทย์ใช่หรือไม่?
-                <input type="checkbox" value="vet" name="vet" id="vet">
-                <span class="my-color-brown">ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
+              คุณเป็นสัตวแพทย์ใช่หรือไม่?&nbsp;&nbsp;&nbsp;&nbsp;
+              <label>
+                <input class="img-check" type="checkbox" value="vet" name="vet" id="vet">
+                <img src="/images/icon/check.png"/>
+              </label>
+                <span class="my-color-brown">&nbsp;&nbsp;ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
                 {{#if isVet}}
                   <br><br>
                   <div class="form-group">
-                    <label for="vet-id" class="col-lg-5 control-label "><span class="reduce-font-size">เลขใบอนุญาติประกอบวิชาชีพสัตวแพทย์</span><span class="my-color-red">*</span><span class="pull-right">:</span></label>
+                    <label for="vet-id" class="col-lg-5 control-label "><span class="reduce-font-size">เลขใบอนุญาตประกอบวิชาชีพสัตวแพทย์</span><span class="my-color-red">*</span><span class="pull-right">:</span></label>
                     <div class="col-lg-7">
                       <input type="text" class="form-control" id="vet-id" name="vet-id" placeholder="01-xxxx/2xxx" required>
                     </div>
@@ -98,7 +118,7 @@
             <div class="form-group">
               <label for="birthday" class="col-lg-3 control-label">Birthday<span class="my-color-red">*</span><span class="pull-right">:</span></label>
               <div class="col-lg-9">
-                <input type="text" class="form-control" id="birthday" name="birthday" required>
+                <input type="text" class="form-control" id="birthday" name="birthday" placeholder="mm/dd/yyyy" required>
               </div>
             </div>
             <br><br>
@@ -107,19 +127,28 @@
               {{#each topics}}
               <div class="form-group col-lg-4">
                 <label class="checkbox-inline">
-                  <input type="checkbox" id="inlineCheckbox1" name="topics" value="{{this}}"> {{this}}
+                  <input type="checkbox" id="inlineCheckbox1" name="topics" value="{{value}}">
+                  <img class="ui middle aligned mini image" src="{{imgUrl}}" alt="" />
+                  <span>{{value}}</span>
                 </label>
               </div>
               {{/each}}
-          </form><br><br>
-          <a href="{{pathFor 'login'}}">
-            <button id="cancel-btn" type="button" class="btn btn-danger">ยกเลิก</button>
-          </a>
-          <button id="signup-btn" type="submit" class="btn my-btn-confrim disabled">ยืนยัน</button>
+          </form><br><br><br>
+          <a id="term-condition" href="#"><label class="red-star">* </label>หากท่านทำการสมัคร ถือว่าท่านได้ยอมรับเงื่อนไขของทางสี่ขาแล้ว</a>
+          <br>
+          <div class="register-button">
+            <a href="{{pathFor 'landingPage'}}">
+              <button id="cancel-btn" type="button" class="btn btn-danger">ยกเลิก</button>
+            </a>
+            <button id="signup-btn" type="submit" class="btn my-btn-confrim disabled">ยืนยัน</button>
+          </div>
         </div>
       </div>
       <div class="col-lg-1"></div>
 
     </div>
+  </div>
+  <div class="img-footer-reigster">
+    <img src="/images/object/2-signup/dog-word.png">
   </div>
 </template>

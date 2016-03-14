@@ -1,44 +1,37 @@
 <template name="mainTopics">
+  <div class="main-topic">
     <div class="col-lg-1 topics-left-panel">
       <div class="row">
-        <div class="topics-menu">
+        <div class="topics-menu margin-topic">
             <div id="vet-article" class="topics-menu-item text-center {{isMenuActive 'vetArticle'}}">
-              <img src="/images/object/6-topics/bone.png" alt="vet article">
-              <h4>Vet Article</h4>
+              <img src="/images/object/6-topics/article-hover.png" alt="vet article">
             </div>
             <div id="sos" class="topics-menu-item text-center {{isMenuActive 'sos'}}" >
-              <img src="/images/object/6-topics/bone.png" alt="sos">
-              <h4>SOS</h4>
+              <img src="/images/object/6-topics/sos-hover.png" alt="sos">
             </div>
             <div id="news" class="topics-menu-item text-center {{isMenuActive 'news'}}">
-              <img src="/images/object/6-topics/bone.png" alt="news">
-              <h4>News</h4>
+              <img src="/images/object/6-topics/news-hover.png" alt="news">
             </div>
             <div id="pet-story" class="topics-menu-item text-center {{isMenuActive 'petStory'}}">
-              <img src="/images/object/6-topics/bone.png" alt="petStory">
-              <h4>Pet Story</h4>
+              <img src="/images/object/6-topics/story-hover.png" alt="petStory">
             </div>
             <div id="qna" class="topics-menu-item text-center {{isMenuActive 'qna'}}">
-              <img src="/images/object/6-topics/bone.png" alt="qna">
-              <h4>Q&A</h4>
+              <img src="/images/object/6-topics/q&a-hover.png" alt="qna">
             </div>
-
         </div>
       </div>
     </div>
     <div class="col-lg-10 topics-center-panel">
       {{> Template.dynamic template=topicsContainer }}
     </div>
-    <div class="col-lg-1 topics-right-panel">
+    <div class="col-lg-1 topics-right-panel res-row">
         <div class="catagory">
-          <p class="">Pets</p>
-          <div id="topics-dog" class="catagory-item"></div>
-          <div id="topics-cat" class="catagory-item"></div>
-          <div id="topics-pocket" class="catagory-item"></div>
-          <div id="topics-bird" class="catagory-item"></div>
-          <div id="topics-turtle" class="catagory-item"></div>
-          <div id="topics-fish" class="catagory-item"></div>
-          <div id="topics-other" class="catagory-item"></div>
+          <p class="hidden-xs">Pets</p>
+          {{#each petIcon}}
+            <div id="{{catagoryItemId label}}" class="catagory-item" data-animaltype='{{label}}'>              
+            </div>
+          {{/each}}
         </div>
     </div>
+  </div>
 </template>

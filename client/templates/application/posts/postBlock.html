@@ -1,34 +1,74 @@
-<template name="postBlock">
-  <div class="post-block">
-    <div class="row profile-center">
-      <div class="col-lg-12 post-info profile-name">
-        <p class="text-center">
-          <img  class="profile-picture img-circle" src="{{profilePicture currentUser._id}}" alt="">
-          <a href="{{pathFor 'profile' id=currentUser._id}}">
-            <span class="my-color-brown">{{currentUser.username}}</span>
-          </a>
-      </p>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-lg-6 text-center upload-picture {{isAdminUpload}}">
-          <div class="col-lg-4 text-bottom upload-group">
-            <input type="file" name="upload" id="file" class="upload-img">
-            <label for="file" class="my-color-brown label-upload text-center">
-            </label>
+  <template name="postBlock">
+  <br>
+  <div class="post-block-card">
+    <div class="ui card centered">
+      <div class="content">
+        <div class="extra content">
+          <div class="left floated author">
+            <img class="ui avatar big image" src="{{profilePicture currentUser._id}}">
           </div>
-          <div class="add-more-pic {{isAdminMorePic}} col-lg-6 text-center">
-            <i class="fa fa-plus fa-5x"></i>
+          <div class="right floated">
+            <i id="photo-upload" class="photo big icon"></i>
+            <input type="file" name='upload' id="file" class="new-upload">
           </div>
         </div>
-      <div class="status-row col-lg-6">
-        <textarea type="text" class="status-form {{isAdminStatus}}" name="newStatus" placeholder="รายละเอียด..."></textarea>
+        {{#if currentUser.username}}
+          <div class="header">{{currentUser.username}}</div>
+        {{else}}
+          <div class="header">{{currentUser.services.facebook.name}}</div>
+        {{/if}}
+
+        <div class="meta">
+          <span class="category">4Legs Member</span>
+        </div>
+        <br>
+        <div class="description">
+          <textarea name="newStatus" id="newStatus" placeholder="แบ่งปันเรื่องราวของคุณ..." value=""></textarea>
+        </div>
+        <br>
+        <div class="ui center aligned container">
+          <div class="new-upload-preview"></div>
+        </div>
+        <div class="right floated">
+          <button class="ui blue basic right floated medium button btn-post">Post</button>
+        </div>
       </div>
     </div>
-    <br>
-    <div class="row pull-right">
-      <button class="btn btn-post">โพสต์</button>
+  </div>
+</template>
+
+
+<template name="postBlockAdmin">
+<br>
+<div class="post-block-card">
+  <div class="ui card centered">
+    <div class="content">
+      <div class="extra content">
+        <div class="left floated author">
+          <img class="ui avatar big image" src="{{profilePicture currentUser._id}}">
+        </div>
+        <div class="right floated">
+          <i id="photo-upload" class="photo big icon"></i>
+          <input type="file" name='upload' id="file" class="new-upload">
+        </div>
+      </div>
+      <div class="header">{{currentUser.username}}</div>
+      <div class="meta">
+        <span class="category">4Legs Member</span>
+      </div>
+      <br>
+      <div class="description new-status">
+        <textarea name="newStatus" id="newStatus" placeholder="แบ่งปันเรื่องราวของคุณ..." value=""></textarea>
+        <script>var editor = new MediumEditor('#newStatus');</script>
+      </div>
+      <br>
+      <div class="ui center aligned container">
+        <div class="new-upload-preview"></div>
+      </div>
+      <div class="right floated">
+        <button class="ui blue basic right floated medium button btn-post">Post</button>
+      </div>
     </div>
   </div>
+</div>
 </template>

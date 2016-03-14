@@ -1,5 +1,6 @@
 //variable scope
-let locationObj = {}
+let locationObj = {},
+    dateSet = []
 var getChecked = function (name) {
   var sel = '[name='+name+']:checked'
   return $(sel).map(function () { return this.value }).get()
@@ -31,7 +32,7 @@ Template.createStep1.helpers({
   animalType: function () {
     var data = Topices.findOne()
     return data.animalType
-  }
+  },
 })
 Template.createStep1.events({
   'click #next': function (e) {
@@ -47,10 +48,13 @@ Template.createStep1.events({
     locationObj.lng = lng
     locationObj.businessTypes = businessTypes
     locationObj.animalTypes = animalTypes
+    locationObj.rating = []
     Session.set('stepsContainer', 'createStep2')
   },
   'click #cancel': function () {
     Session.set('locationContainer', 'location')
+    $('.ui.sidebar')
+    .sidebar('hide')
   }
 })
 
@@ -64,13 +68,53 @@ Template.createStep2.onRendered(function () {
   $('[name=close-time]').val(locationObj.closeTime)
   $('[name=address]').val(locationObj.address)
   $('[name=detail]').val(locationObj.detail)
+  $('.add-time .custom.button')
+  .popup({
+    popup : $('.custom.popup'),
+    on    : 'click',
+    position : 'bottom left'
+  })
+  $('.ui.popup').css('z-index','3')
 })
 Template.createStep2.events({
+  'click #submit-time': function (e) {
+    e.preventDefault()
+    let open = $('[name=open-time]').val(),
+        close = $('[name=close-time]').val(),
+        days = getChecked('days'),
+        logical = (open !== '' && close !== '' && days.length > 0)
+    if(logical)
+    dateSet.push({
+      open,
+      close,
+      days
+    })
+    var clearCheck = function (values) {
+      _.each(values, function (value) {
+        $('[value="'+value+'"]').prop('checked',false)
+      })
+    }
+    $('[name=open-time]').val('')
+    $('[name=close-time]').val('')
+    $('[name=every-days]').prop('checked',false)
+    clearCheck(['อา','จ','อ','พ','พฤ','ศ','ส'])
+
+    //Show Time
+    let html = dateSet.map(d => {
+      let dayStr = d.days.map(s => s)
+      return `<table class="create-time"><tr><td class="show-day">${dayStr}</td><td class="show-time-td">${d.open} - ${d.close}<td></tr></table>`
+    })
+    $('.show-time').empty().append(html)
+  },
+  'click #cancel-time': function (e) {
+    $('.location-left-container').trigger('click')
+  },
+  'click [name=every-days]': function (e) {
+    setCheck(['อา','จ','อ','พ','พฤ','ศ','ส'])
+  },
   'click #next': function (e) {
     e.preventDefault()
-    locationObj.daysWeek = getChecked('days-week')
-    locationObj.openTime = $('[name=open-time]').val()
-    locationObj.closeTime = $('[name=close-time]').val()
+    locationObj.dateSet = dateSet
     locationObj.address = $('[name=address]').val()
     locationObj.detail = $('[name=detail]').val()
     Session.set('stepsContainer', 'createStep3')
@@ -151,6 +195,7 @@ Template.createStep3.events({
       platform: navigator.platform,
       createdAt: new Date()
     }
+    locationObj.promoting = false
     //save to marker
     if(locationObj.locationName) Markers.insert(locationObj)
     Session.set('stepsContainer', 'createStep4')
@@ -176,8 +221,10 @@ Template.createStep4.events({
     if($val === 'yes'){
       let ownerName = $('[name=ownerName]').val(),
           ownerTel = $('[name=ownerTel]').val(),
-          ownerEmail = $('[name=ownerEmail]').val()
+          ownerEmail = $('[name=ownerEmail]').val(),
+          ownerId = Meteor.userId()
       locationObj.owner = {
+        ownerId,
         ownerName,
         ownerTel,
         ownerEmail,
@@ -186,6 +233,7 @@ Template.createStep4.events({
     }
     Meteor.call('markersUpdateByLocation',locationObj.lat, locationObj.lng, locationObj.owner)
     Session.set('locationContainer', 'location')
+    $('.ui.sidebar').sidebar('hide')
   }
 })
 Template.createStep4.helpers({

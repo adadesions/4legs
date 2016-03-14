@@ -1,15 +1,15 @@
 <template name="notifyItem">
   <a href="{{pathFor 'specPost' id=postId}}">
     <div id="{{_id}}" class="row notify-item {{isRead read}}">
-        <div class="col-lg-1 text-center notify-body withOutPadding">
+        <div class="col-lg-1 notify-body withOutPadding">
           <img  class="notify-profile img-circle" src="{{profilePicture notifyFrom}}" alt="">
         </div>
         <div id="{{_id}}" class="col-lg-11 notify-body withOutPadding">
           <span class="notify-from my-color-brown">{{getUsername notifyFrom}} </span>
-          <span class="notify-action"> {{takeAction action}}</span>
+          <span class="notify-action my-color-dark-brown"> {{takeAction action}}</span>
           <br>
           <span class="notify-duration notify-body">
-            <i class="fa fa-clock-o"></i>
+            <i class="fa fa-clock-o my-color-orange"></i>
             {{enhanceTime createdAt}}
           </span>
         </div>

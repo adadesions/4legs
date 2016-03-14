@@ -1,7 +1,7 @@
 @import "colors"
 
-$tablet: "(min-width: 768px) and (max-width: 1023px)";
-$mobile: "(max-width: 768px)";
+$tablet: "(min-width: 800px) and (max-width: 992px)"
+$mobile: "(min-width: 100px) and (max-width: 800px)"
 
 @media #{$mobile}
   .mynav-main
@@ -12,15 +12,23 @@ $mobile: "(max-width: 768px)";
     margin-left: -0.5em
     z-index: 2
   .nav-button-border
-    border: 2px solid $orange-background
+    margin-top: 0.6em
+    margin-right: 0
+    .icon-bar
+      height: 0.3em
+      width: 2em
     &:focus
       background-color: $orange-background
       .icon-bar
-        background-color: #FFF
+        background-color: #fff
   .icon-bar
-    background-color: $orange-background
+    background-color: #F8A02E
   .navbar-brand
-    width: 12em
+    display: flex
+    align-items: center
+    img
+      margin-top: 0
+      width: 2.5em
   .nav-layer
     width: 70%
     font-size: 50px
@@ -34,8 +42,6 @@ $mobile: "(max-width: 768px)";
   ul.nav
     display: flex
     flex-flow: row
-    padding-top: 0.5em
-    padding-bottom: 0.5em
     background-color: #FFF
 
   .menu-icon
@@ -49,3 +55,686 @@ $mobile: "(max-width: 768px)";
     height: 1em
   .navbar-nav
     margin-top: 0
+  #location-right-side
+    width: 100%
+  .topics-left-panel
+    width: 100%
+    height: 5em
+    margin-left: 0.1em
+  .topics-menu-item
+    width: 20%
+    height: 5em
+    img
+      width: 100%
+      height: 100%
+      margin-top: 0em
+  .topics-menu
+    position: inherit
+    width: 100%
+  .topics-center-panel
+    height: 0em
+    margin-top: 4.5em
+  .margin-topic
+    margin-top: 0em
+    display: flex
+    flex-direction: row
+  .resizeFont
+    font-size: 13px
+    line-height: 15px
+  .sos-identify
+    margin-top: 1em
+    margin-bottom: 6em
+  .sos-form
+    .form-control
+      width: 100%
+      margin-bottom: 0.5em
+    .btn-success
+      width: 80%
+      margin-left: 1.5em
+  .topics-menu-box
+    margin-top: 0.5em
+  .menu-item-mobile
+    width: 4.5em
+    .active
+      background-color: #F8A02E
+  .catagory
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    margin-top: -4em
+    margin-left: 0
+    position: relative
+  .catagory-item
+    width: 4em
+    margin-right: -0.8em
+  .dropdown-menu
+    min-width: 8em
+    margin-left: -3.5em
+    li
+      a
+        margin-left: -1em
+  .navbar-nav
+    .open
+      .dropdown-menu
+        background-color: #fff
+        &:focus
+          background-color: #F8A02E
+  .admin-nav-item
+    .admin-nav-label
+      color: #000
+  .admin-navigator
+    .colorSpan
+      .icon-bar
+        border: 2px solid #fff
+    &:focus
+      background-color: $orange-background
+      .icon-bar
+        background-color: #fff
+  .adminVet-head-left-topic
+    margin-top: 6em
+    label
+      font-size: 18px
+  .adminVet-head-right-topic
+    label
+      font-size: 18px
+  .adminNews
+    margin-left: 1.1em
+  .admin-pets-type
+    height: 3em
+    display: flex
+    justify-content: space-around
+  .admin-catagory
+    .admin-pet-text
+      visibility: hidden
+      margin-left: -2em
+    .admin-catagory-item
+      img
+        width: auto
+        height: 3em
+        margin-left: 0.2em
+  .adminVet-search
+    margin-right: 0.5em
+    visibility: hidden
+    .form-control
+      width: 18em
+  .adminAds-body
+    display: flex
+    flex-direction: column
+    .ui.card
+      width: 100%
+  .adminAds-card-create
+    margin-top: 1em
+    margin-left: 2.5em
+    height: 8em
+    img
+      margin-top: 0
+  .ads-card
+    margin-left: 2.5em
+  .public-login
+     .btn-myLogin
+        margin-left: 0
+        width: 90%
+  #btn-signUp
+    margin-top: -5.2em
+    width: 90%
+    margin-right: 1.1em
+  .inMobile
+    margin-right: 5.5em
+  .container-fluid
+    .navbar-header
+      margin-right: 0
+  .navbar-right
+    display: flex
+    justify-content: space-around
+    .active
+      height: 5.7em
+    li
+      a
+        &:focus
+          color: #fff
+          background-color: #F8A02E
+  .profile-picture-large
+    margin-left: 3em
+  .col-login
+    padding-top: 0em
+    margin-left: 0em
+  .col-login-admin
+    padding-top: 0em
+    margin-left: 0em
+  .btn-myLogin
+    margin-left: 0
+  .nav-signup
+    h3
+      margin-top: 1em
+      margin-left: -14em
+    a
+      margin-top: 0
+      margin-right: 13em
+  .upload-profile
+    margin-left: auto
+    margin-right: auto
+    width: 6em
+    height: 6em
+    border: 1px solid #AAA
+    img
+      width: auto
+      height: 6em
+    .preview-img
+      border: 1px solid #AAA
+      width: 6em
+      height: 6em
+      margin-left: 10.5em
+  .edit-upload-profile
+    margin-left: auto
+    margin-right: auto
+    width: 10em
+    height: 10em
+    border: 1px solid #AAA
+    img
+      width: 10em
+      height: 10em
+    .preview-img
+      border: 1px solid #AAA
+      width: 10em
+      height: 10em
+      margin-left: 10.5em
+  .upload-group-profile
+    margin-left: 8.8em
+  .register-form
+    margin-top: 1em
+    .register-button
+      display: flex
+      justify-content: center
+  .img-footer-reigster
+    img
+      width: auto
+      height: 8em
+      position: absolute
+      margin-top: -120em
+  .topics-container
+    margin-top: 1em
+  .news-mobile
+    margin-bottom: 7em
+  .back-margin
+    margin-left: 0
+  .direct-margin
+    margin-right: 0
+  .head-selected-location
+    width: 100%
+    display: flex
+    justify-content:space-between
+    padding-left: 1em
+    padding-right: 1em
+  .text-nav
+    margin-left: -1em
+  .location-button
+    display: flex
+    justify-content: center
+    flex-flow: row-reverse
+  .sos-form
+    display: flex
+    flex-flow: column
+    justify-content: center
+  .img-sos
+    display: flex
+    justify-content: center
+  .notify-item
+    display: flex
+    flex-flow: row
+  .notify-body
+    margin-right: 1em
+    span
+      font-size: 18px
+  .profile-left-panel
+    background-color: #FFF3E0
+    height: 60vh
+  .edit-profile-picture
+    padding-left: 1em
+    margin-top: -6em
+  .edit-profile
+    button
+      width: 100%
+  .profile-picture-large
+    width: 10em
+    height: 10em
+  .badges
+    margin-top: -5em
+  .badge-item
+    display: flex
+    flex-flow: column-reverse
+    .badge-img
+      width: auto
+      height: 3em
+    span
+      margin-left: auto
+      margin-right: auto
+  #dog
+    span
+      margin-left: auto
+      margin-right: auto
+  #bird
+    span
+      margin-left: auto
+      margin-right: auto
+  .img-badge-group
+    display: flex
+    flex-flow: row
+  .logo-login
+    margin-left: 3.5em
+    margin-top: 1em
+  .admin-head-text
+    margin-left: -1em
+    margin-top: 1em
+  .adminVet-body
+    margin-top: -5em
+  .adminNews
+    .admin-head-text
+      margin-left: -2em
+      margin-top: 1em
+  .location-content
+    .justify-icon
+      margin-left: 0
+      padding-left: 1em
+      padding-right: 1.5em
+      margin-top: 0.5em
+    .justify-item
+      display: flex
+      flex-flow: row
+      margin-left: 0.5em
+      font-size: 12px
+      img
+        width: 1rem
+        height: auto
+      .icon-share-img
+        img
+          width: 1.2rem
+          height: auto
+  .content
+    .justify-icon
+      margin-left: 0
+      padding-left: 0em
+      padding-right: 0em
+      display: flex
+      justify-content: space-around
+      height: 1em
+      width: 100%
+    .justify-item
+      display: flex
+      flex-flow: row
+      margin-left: 0.5em
+      font-size: 12px
+      img
+        width: 1rem
+        height: auto
+      .icon-share-img
+        img
+          width: 1.2rem
+          height: auto
+  .location-photo-detail
+    margin-top: 1em
+  .justify-item-comment
+    display: flex
+    flex-flow: row
+    margin-left: 0
+    img
+      margin-right: 0.5em
+      width: 1.5em
+      height: 1.5em
+  .ads-card
+    margin-left: 0.5em
+  .addfollow-header
+    display: flex
+    flex-flow: column
+    height: 6em
+    input
+      width: 70%
+      margin-left: auto
+      margin-right: auto
+      margin-bottom: 0.6em
+  .group-addfollow
+    height: 6em
+    display: flex
+    flex-flow: row
+    button
+      margin-top: -5em
+  .feedback-textarea
+    width: 24em
+    textarea
+      display: flex
+      justify-content: center
+      height: 5em
+  .location-orders
+    margin-top: 1em
+    display: flex
+    flex-flow: row
+    justify-content: center
+    .topics-menu-box
+      font-size: 12px
+  .location-edit
+    margin-top: -1em
+    font-size: 12px
+  .button-card-following
+    height: 3em
+    display: flex
+    justify-content: flex-end
+    i
+      margin-top: -4em
+  .card-following
+    width: 100%
+    display: flex
+    justify-content: center
+  .add-more-pic
+    margin-top: -12.5em
+    .preview-img
+      height: 14em
+      width: 100%
+  .pet-profile
+    img
+      height: 14em
+      width: 100%
+  .head-landing-page
+    .ui.vertical.segment
+      padding-left: 0
+      padding-right: 0
+      border-bottom: none
+  .logo-landing-page
+    margin-top: 1em
+    margin-left: 1em
+    img
+      width: 5em
+      height: 5em
+  .login-landing
+    border-radius: 10em
+  .body-landing-page
+    margin-top: -3em
+    h1
+      color: #fff
+      font-size: 30px
+      font-weight: lighter
+    .highlight-head-landing
+      height: 3em
+      border-radius: 5px
+    .topic-head-landing
+      height: 3em
+      border-radius: 5px
+    .location-head-landing
+      height: 3em
+      border-radius: 5px
+  .button-accept-login
+    .loginLandingButton
+      width: 20%
+    .btn-facebook
+      height: 3em
+      width: 1em
+      font-size: 14px
+      h3
+        display: none
+        font-size: 0
+        margin-top: 0
+      i
+        width: 3em
+        margin-left: -0.3em
+        margin-top: 0.2em
+  .pic-landing
+    position: absolute
+    margin-top: 0em
+    margin-left: 0em
+    width: 0em
+    height: auto
+    img
+      width: 0
+      height: auto
+  .foot-landing-page
+    background-color: $orange-background
+    height: 11em
+    display: flex
+    align-items: center
+  .nav-landing-page
+    display: flex
+    flex-flow: row
+    justify-content: space-around
+  .link-landing-page
+    display: flex
+    flex-flow: row
+  .link-landing-page-left
+    display: flex
+    flex-flow: column
+    line-height: 2em
+    a
+      font-size: 14px
+      color: #fff
+      font-weight: bold
+  .link-landing-page-right
+    display: flex
+    flex-flow: column
+    line-height: 2em
+    margin-left: 2em
+    a
+      font-size: 14px
+      color: #fff
+      font-weight: bold
+  .content-landing-page-group
+    display: flex
+    justify-content: center
+  .container-mobile
+    margin-top: 2em
+  .con-landing
+    .container
+      width: 100%
+  .content-landing-page
+    background: rgba(255,142,0,0.4)
+    width: 100%
+    border-radius: 10px
+    margin-top: 0
+    h1
+      font-size: 18px
+    p
+      font-size: 14px
+  .new-comment-blog
+    input
+      width: 17em
+  .edit-location-button
+    display: flex
+    flex-flow: row-reverse
+    justify-content: center
+  .header-edit-announcement
+    width: 100%
+  .timeline-container
+    width: 100%
+    margin-left: auto
+    margin-right: auto
+  #loginLandingPage
+    width: 10em
+    height: 3em
+    text-align: center
+    margin-right: 1em
+    h3
+      margin-top: -0.1em
+  .button-landing-page-group
+    width: 80%
+    display: flex
+    flex-flow: row
+    justify-content: center
+    button
+      font-size: 20px
+    a
+      width: 10em
+    #btn-signUp
+      width: 10em
+      background-color: #1b5e20
+      color: #FFF
+      height: 3em
+      font-size: 14px
+      margin-top: 1em
+      text-align: center
+      &:hover
+        background-color: #2e7d32
+      h3
+        margin-top: 0
+        border: none
+        font-size: 16px
+        margin-left: 0
+      i
+        display: none
+        margin-right: 4em
+  .button-landing-page
+    display: flex
+    justify-content: center
+    margin-top: 1em
+    margin-bottom: 1em
+    #btn-signUp-landing
+      width: 10em
+      margin-right: 0
+      text-align: center
+      h3
+        margin-left: 1.5em
+  .adminArticle
+    .topics-menu-box
+      margin-left: 3em
+  .admin-location-body
+    display: flex
+    flex-flow: column
+    margin-left: 0.08em
+    margin-top: 2em
+    width: 100%
+  .show-list-location
+    position: absolute
+    top: 1.2em
+    left: 9em
+  .right-post-feed
+    align-items: center
+    margin-top: 0.3em
+  .menu-postfeed
+    display: flex
+    justify-content: flex-end
+    border: none
+    .dropdown-menu
+      top: 1.5em
+      left: 13em
+  .comment-block
+    margin-top: 0
+    padding: 0
+    display: flex
+    flex-flow: row
+    justify-content: flex-start !important
+  .spec-post-container
+    width: 100%
+    height: auto
+    margin: 0 auto
+  .term-condition-content
+    overflow-y: auto
+@media #{$tablet}
+  .pic-landing
+    position: absolute
+    margin-top: 0em
+    margin-left: 0em
+    width: 0em
+    height: auto
+    img
+      width: 0
+      height: auto
+  .button-card-following
+    height: 3em
+    display: flex
+    justify-content: flex-end
+    i
+      margin-top: -3em
+    img
+      margin-top: 1em
+  .loginForm
+    width: 70%
+    margin-left: auto
+    margin-right: auto
+    input[type=checkbox]
+      width: 1.5em
+      height: 1.5em
+      margin-left: 1.8em
+    input[type=checkbox]+label
+      font-size: 24px
+  .public-login
+     .btn-myLogin
+        margin-left: 0
+  .col-login
+    margin-left: 0
+    hr
+      margin-top: -4em
+    h1
+      margin-top: 2em
+
+    h4
+      margin-top: 3em
+    a
+      margin-right: 1em
+  .col-login-admin
+    margin-left: 0
+    hr
+      margin-top: -4em
+    h1
+      margin-top: 2em
+
+    h4
+      margin-top: 3em
+    a
+      margin-right: 1em
+  #btn-signUp
+    margin-right: 9.5em
+    width: 10em
+    h3
+      margin-left: 1em
+  #location-right-side
+    width: 100%
+  .back-margin
+    margin-left: 1em
+  .upload-profile
+    margin-left: auto
+    margin-right: auto
+    width: 12em
+    height: 12em
+    border: 1px solid #AAA
+    img
+      width: auto
+      height: 12em
+    .preview-img
+      border: 1px solid #AAA
+      width: 12em
+      height: 12em
+      margin-left: 20.8em
+  .topics-menu
+    width: 100%
+    display: flex
+    flex-flow: row
+    align-items: flex-start
+  .topics-menu-item
+    img
+      height: 8em
+      margin-top: 0
+  .topics-center-panel
+    margin-top: 13em
+  .catagory
+    display: flex
+    flex-flow: row
+    position: sticky
+    top: 13em
+  .catagory-item
+    margin-left: 1em
+  .profile-left-panel
+    background-color: #FFF3E0
+    height: 50vh
+  .edit-profile-picture
+    padding-left: 1em
+  .profile-picture-large
+    width: 20em
+    height: 20em
+  .justify-icon
+    display: flex
+    justify-content: space-between
+    height: 1.5em
+    width: 100%
+    padding-left: 3em
+    padding-right: 3em
+  .justify-item
+    display: flex
+    flex-flow: row
+    img
+      width: 2em
+      height: 2em

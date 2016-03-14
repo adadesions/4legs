@@ -1,8 +1,52 @@
 <template name="specPost">
-  <div class='container'>
-    <br>
-    {{#with this}}
-      {{> postFeed}}
-    {{/with}}
+  <div class="spec-post-container container">
+    <br><br>
+    <div class="ui one link stackable cards">
+      <div class="ui blue card" href="/post/{{_id}}">
+        <div class="content">
+          <div class="right floated meta">
+            {{enhanceTime info.createdAt}}
+          </div>
+          <img class="ui avatar huge image" src="{{profilePicture info.postOwner}}">
+          {{matchUserId info.postOwner}}
+        </div>
+        <div class="ui big image">
+          <img src="{{findPicture img._id}}" class="thumbnail" alt="" />
+        </div>
+        <div class="content">
+          <span class="left justify-icon">
+            <div class="justify-item">
+              {{> likeBtn}}
+            </div>
+            <div class="justify-item">
+              {{> favoriteBtn}}
+            </div>
+            <div class="justify-item">
+              {{> shareBtn}}
+            </div>
+          </span>
+          <hr>
+          <a href="/post/{{_id}}">
+            <p class="font-20">
+              <pre>{{{info.postBody}}}</pre>
+            </p>
+            <br>
+          </a>
+          <span>
+            <div class="justify-item">
+              {{> commentBtn}}
+            </div>
+          </span>
+        </div>
+        <div class="extra content">
+          <br>
+          {{#each comments}}
+           {{> comment}}
+          {{/each}}
+          <!--  new comment -->
+          {{> newComment}}
+        </div>
+      </div>
+    </div>
   </div>
 </template>

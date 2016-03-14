@@ -1,23 +1,28 @@
 <template name="news">
   <div class="row">
     <div id="about-pet" class="topics-menu-box text-center col-lg-2
-    {{isBoxActive container='newsContainer' location='about-pet'}}">About Pet</div>
+    {{isBoxActive container='newsContainer' location='about-pet'}} icon-topic-menubox">
+    <img src="/images/object/6-topics/AboutPet.png" alt="About Pet">About Pet</div>
     <div id="pet-technology" class="topics-menu-box text-center col-lg-3
-    {{isBoxActive container='newsContainer' location='pet-technology'}}">Pet Technology</div>
+    {{isBoxActive container='newsContainer' location='pet-technology'}} icon-topic-menubox">
+    <img src="/images/object/6-topics/PetTechnology.png" alt="Pet Technology">Pet Technology</div>
     <div id="pet-event" class="topics-menu-box text-center col-lg-2
-    {{isBoxActive container='newsContainer' location='pet-event'}}">Pet Event</div>
+    {{isBoxActive container='newsContainer' location='pet-event'}} icon-topic-menubox">
+    <img src="/images/object/6-topics/PetEvent.png" alt="Pet Event">Pet Event</div>
     <div id="review" class="topics-menu-box text-center col-lg-2
-    {{isBoxActive container='newsContainer' location='review'}}">Review</div>
+    {{isBoxActive container='newsContainer' location='review'}} icon-topic-menubox">
+    <img src="/images/object/6-topics/Review.png" alt="Review">Review</div>
     <div id="pet-health" class="topics-menu-box text-center col-lg-3
-    {{isBoxActive container='newsContainer' location='pet-health'}}">Pet Health</div>
+    {{isBoxActive container='newsContainer' location='pet-health'}} icon-topic-menubox">
+    <img src="/images/object/6-topics/PetHealth.png" alt="Pet Health">Pet Health</div>
   </div>
-  <div class="row">
+  <div class="news news-mobile row">
     <form class="form-group">
       <input type="text" class="vet-article-search form-control col-lg-12" placeholder="ค้นหา {{newsCurrentLocation}}">
     </form>
   </div>
   <br>
-  <div class="topics-container">
+  <div class="topics-container row">
     {{> Template.dynamic template=newsContainer }}
   </div>
 </template>

@@ -1,0 +1,20 @@
+<template name="shareBtn">
+  <div class="dropdown">
+    <a href="#" class="dropdown-toggle icon-share-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <img src="/images/icon/share-icon.png"/>Share<span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu share-dropdown">
+      <li>
+        <a id="{{_id}}" class="share-to-timeline" href="#">
+          <img id="{{_id}}" class="social-icon icon-share" src="{{isShare _id}}" alt="" />
+          To timeline
+        </a>
+      </li>
+      <li>
+        <a href="{{shareOnFacebookLink _id}}" target="_blank">
+          <i class="large facebook square icon"></i>To facebook
+        </a>
+      </li>
+    </ul>
+  </div>
+</template>

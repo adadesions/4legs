@@ -1,0 +1,13 @@
+<template name="likeBtn">
+  <div id="{{_id}}" class="like-hover">
+    <img id="{{_id}}" class="ui image social-icon icon-like" src="{{isLiked _id}}" alt="" />
+    {{likes.length}} likes
+  </div>
+  <div class="ui popup popup-like">
+    <ul class="list-unstyled">
+      {{#each queryLiked likes}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

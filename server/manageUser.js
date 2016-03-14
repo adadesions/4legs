@@ -3,7 +3,8 @@ Meteor.methods({
       Meteor.users.update({_id:this.userId},{
         $set:{
           "profile.birthday" : newData.birthday,
-          "profile.topics" : newData.topics
+          "profile.topics" : newData.topics,
+          "profile.vetInfo": newData.vetObj
         }
     })
 
@@ -26,6 +27,13 @@ Meteor.methods({
           followAt : new Date()
         }
       }
+    })
+    Notify.insert({
+      notifyTo : followingId,
+      notifyFrom: Meteor.userId(),
+      action: 'following',
+      read: false,
+      createdAt: new Date()
     })
   },
 
@@ -77,7 +85,6 @@ Meteor.methods({
     let user = Meteor.user()
     if(user.profile.idCardNo){
       if(user.profile.idCardNo === idCardNo){
-        console.log(typeof user.profile.idCardNo+" == "+typeof idCardNo);
         Meteor.users.upsert({_id:user._id}, {
           $set: {
             'profile.tel' : tel
@@ -85,8 +92,7 @@ Meteor.methods({
         })
         return true
       }
-      else{
-        console.log('here');
+      else{        
         return false
       }
     }

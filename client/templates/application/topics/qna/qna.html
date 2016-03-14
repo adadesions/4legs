@@ -3,6 +3,12 @@
   <form class="form-group">
     <input type="text" class="vet-article-search form-control col-lg-12" placeholder="ค้นหา Q&A">
   </form>
-  <br><br><br>
-  {{> postFeed type="qna"}}
+  <br><br>
+  <div class="post-block-qna">
+    {{> postBlock}}
+  </div>
+  <br>
+  <div class='row container'>
+    {{> postFeed type="qna" col='three'}}
+  </div>
 </template>

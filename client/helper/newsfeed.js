@@ -22,5 +22,19 @@ Template.newsfeed.helpers({
   hasHighlight: function () {
     let len = Posts.find({highlight:true}).count()
     return len === 1 ? true : false
+  },
+  isMobile: function () {
+    const ratio = window.devicePixelRatio
+    let width = window.screen.width*ratio    
+    return width <= 1500 ? true : false
   }
+})
+
+Template.newsfeed.onRendered(function () {
+  //SEO
+  Meta.setTitle("Newsfeed")
+
+  $('.ui.sticky').sticky({
+    context: '.feed-container'
+  })
 })

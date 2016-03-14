@@ -1,26 +1,31 @@
 @import "colors"
 
+
 body
   padding: 0
   margin: 0
-
+  height: 100vh
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
 a
   color: $gray
   &:hover
     text-decoration: none
   &:focus
     text-decoration: none
+pre
+  border: none
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+  font-size: 16px
+  background-color: #FFF
 
-li
-  &:hover
-    background-color: $orange-background
-    color: #FFF
 .my-color-brown
   color: $brown
 .my-color-active-brown
   color: $active-brown
 .my-color-dark-brown
   color: $dark-brown
+.my-color-black
+  color: #000
 
 .my-color-red
   color: red
@@ -35,8 +40,9 @@ li
   margin-top: -0.5em
 
 .logo-login
-  width: 10em
-  height: 10em
+  margin-top: 2em
+  width: auto
+  height: 15em
 
 .reduce-font-size
   font-size: 0.8em
@@ -44,28 +50,74 @@ li
 /*LogIn
 
 .col-login
-  padding-top: 5em
-
+  padding-top: 2em
+  margin-left: 0
+  input
+    margin-left: auto
+    margin-right: auto
+    margin-bottom: 0.5em
+    width: 90%
+    height: 3em
+.col-login-admin
+  padding-top: 2em
+  margin-left: 28em
+  input
+    margin-left: auto
+    margin-right: auto
+    margin-bottom: 0.5em
+    width: 90%
+    height: 3em
 .bg-login
   background: url('/images/object/1-login/bg.png')
   background-size: cover
   background-repeat: repeat-y
-
+.footer
+  color: $gray
+  background-color: #fff
+  width: 100%
+  height: 2em
+  position: fixed
+  bottom: 0
+  display: flex
+  align-items: center
+.public-login
+  .btn-myLogin
+    margin-bottom: 1em
+    background-color: $orange
+    color: #FFF
+    margin-left: 1.9em
+    width: 90%
+    height: 3em
+    &:hover
+      color: #FFF
+      background-color: $orange-hover
+    &:focus
+      color: #FFF
 .btn-myLogin
   margin-bottom: 1em
   background-color: $orange
   color: #FFF
+  margin-left: 1.3em
+  width: 90%
+  height: 3em
   &:hover
     color: #FFF
     background-color: $orange-hover
   &:focus
     color: #FFF
-
+.loginForm
+  .pull-left
+    margin-left: 1.3em
+  .pull-right
+    margin-right: 1.3em
 .col-login a
   color: #795548
 
 .loginForm
   margin-bottom: 6em
+  input[type=checkbox]
+    width: 1em
+    height: 1em
 
 .btn-logout
   font-size: 0.8em
@@ -74,12 +126,20 @@ li
 /*Sign Up
 
 #btn-signUp
-  width: 11em
+  width: 15em
   background-color: #1b5e20
   color: #FFF
+  height: 3em
+  margin-right: 2em
+  font-size: 14px
   &:hover
     background-color: #2e7d32
-
+  h3
+    margin-top: -1.5em
+    margin-left: 0.6em
+    border: none
+  i
+    margin-right: 3em
 .mynav-signup
   background-color: #ffab40
   border-radius: 0
@@ -87,7 +147,13 @@ li
   color: #FFF
   a
     color: #FFF
-
+.signup-flex
+  display: flex
+  flex-flow: row-reverse
+  justify-content: space-around
+  h3
+    margin-left: 25em
+    margin-top: 1em
 .mynav-main
   background-color: #FFF
   border-radius: 0
@@ -96,11 +162,26 @@ li
   margin-bottom: 0
   z-index: 100
   height: 6em
+  .container-fluid
+    padding-left: 1em
+    padding-right: 0
 
 .upload-profile
   width: 12em
   height: 12em
   border: 1px solid #AAA
+  img
+    width: 12em
+    height: 12em
+  .preview-img
+    border: 1px solid #AAA
+    width: 12em
+    height: 12em
+    margin-left: 1.11em
+    margin-top: 0.1em
+.upload-promotion
+  @extend .upload-profile
+  border: none
 
 .upload-group-profile
   margin-left: 2.8em
@@ -116,10 +197,12 @@ li
   padding: 1em
   b
     margin-right: 1em
-
-.register-form label
-  font-size: 1.2em
-  font-weight: normal
+.register-form
+  label
+    font-size: 1.2em
+    font-weight: normal
+    span
+      font-size: 0.9em
 .input-success
   background-color: $success
 .input-error
@@ -177,8 +260,12 @@ li
   color: $orange-background
 .nav
   li
-    &:hover
-      background-color: $orange-background
+     a
+      &:hover
+        background-color: $orange-background
+        color: #FFF
+      &:focus
+        background-color: $orange-background
 
 .highlight-block
   img
@@ -188,7 +275,7 @@ li
 
 .anchor-navbar
   height: 6em
-
+  margin-top: -0.1em
 .anchor-btn-navbar
   height: 6.4em
   padding-bottom: 1.8em
@@ -197,7 +284,22 @@ li
   margin-right: 1em
 
 /*PostBlock
-
+.post-block-card
+  margin-top: 1em
+  .card
+    width: 100%
+  textarea
+    width: 100%
+    height: auto
+    border: 1px solid $light-gray
+    border-radius: 0.5em
+    resize: none
+    font-size: 16px
+    line-height: 1em
+    padding-top: 1em
+    padding-left: 1em
+    &:focus
+      padding-bottom: 1em
 .post-block
   background-color: #fff3e0
   border-radius: 0.5em
@@ -228,6 +330,9 @@ li
   a:hover
     color: #4e342e
 
+.upload-zone
+  padding: 1em
+  padding-top: 0
 .text-bottom
   padding-top: 11em
 
@@ -244,13 +349,9 @@ li
   border-left: 0
 
 .btn-post
-  background-color: #ff7043
-  color: #FFF
-  width: 6em
-  margin-right: 2em
   &:hover
     color: #FFF
-    background-color: #ff8a65
+    background-color: blue
   &:focus
     color: #FFF
     background-color: #ff8a65
@@ -295,6 +396,8 @@ li
 .preview-for-profile
   left: 0
 
+.preview-promotion
+  margin-top: 17em
 .add-more-pic
   width: 100%
   height: 14em
@@ -319,9 +422,21 @@ li
   border: 4px solid #FFD600
 .withPadding
   padding-left: 2em
-.post-info
+.detail-owner-location-comment
+  display: flex
+  flex-flow: row
+  padding-right: 1em
+.comment-detail
   padding: 0
-
+  display: flex
+  flex-flow: row
+  i
+    margin-left: 1em
+    cursor: pointer
+.post-info
+  width: 80%
+  padding-left: 1em
+  word-wrap: break-word
 .duration
   color: #AAA
   font-size: 12px
@@ -361,16 +476,22 @@ li
   padding-top: 0.5em
 
 .social-icon
-  width: 2em
-  height: 1.5em
+  width: auto
+  height: 2rem
+  margin-right: 3px
 
 //Comment
+#newComment
+  padding-left: 0.5em !important
+
 .comment-block
   margin-top: -1em
 .new-comment
   margin-left: -1.5em
   margin-top: 0.5em
 
+.icon-checkin
+  cursor: pointer
 .icon-like
   cursor: pointer
 .icon-comment
@@ -425,6 +546,10 @@ li
   background-color: $brown
 .profile-container
   margin-top: 8em
+.timeline-container
+  width: 60%
+  margin-left: auto
+  margin-right: auto
 .my-btn-follow
   margin-top: 1em
 .my-btn-unfollow
@@ -562,13 +687,66 @@ li
   padding-left: 2em
   padding-top: 1.8em
   background-color: $light-pink
+/* Feedback
+.feedback-header
+  height: 8em
+  width: 100%
+  color: #FFF
+  margin-bottom: 3em
+  margin-top: -1.3em
+  padding-left: 2em
+  padding-top: 1.8em
+  background-color: $light-pink
+/* Add follow
+.addfollow-header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  height: 6em
+  width: 100%
+  color: #FFF
+  padding-left: 2em
+  padding-right: 2em
+  background-color: $light-pink
+.addfollow-header-search
+  width: 30em
+.group-addfollow
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+  padding-left: 3em
+  padding-right: 3em
+  height: 7em
+.item-addfollow
+  display: flex
+  align-self: center
+/*Favorite Place
+#fav-place-search
+  font-family: FontAwesome
+.fav-place-header
+  background-color: $light-pink
+  padding-top: 1em
+  padding-bottom: 1em
+  img
+    width: 15em
+    margin-left: 8em
+    margin-bottom: 1em
+  input[type='text']
+    width: 90%
+    margin-left: auto
+    margin-right: auto
+  .checkbox
+    margin-left: 1.5em
+
 
 /* Topics
 .topics-left-panel
-  height: 100vh
+
   background-color: $pink
 .topics-menu
-  margin-top: 1.5em
+  background-color: $inactive-pink
+  position: fixed
+  width: 9%
 .topics-menu-item
   display: flex
   flex-direction: column
@@ -581,15 +759,16 @@ li
   &:hover
     background-color: $active-pink
   img
-    width: 25%
-    height: 25%
+    width: 100%
+    height: 100%
     display: block
     margin-left: auto
     margin-right: auto
-    margin-top: 2em
-
+#vet-article
+  &:hover
+    background-color: $inactive-pink
 .catagory
-  margin-top: 5em
+  margin-top: 2em
   position: fixed
   p
     font-size: 16px
@@ -632,11 +811,27 @@ li
   background-image: url('/images/object/6-topics/bird-gray.png')
   &:hover
     background-image: url('/images/object/6-topics/bird-color.png')
+
+#topics-dog-active
+  background-image: url('/images/object/6-topics/dog-color.png')
+#topics-cat-active
+  background-image: url('/images/object/6-topics/cat-color.png')
+#topics-pocket-active
+  background-image: url('/images/object/6-topics/pocket-color.png')
+#topics-turtle-active
+  background-image: url('/images/object/6-topics/turtle-color.png')
+#topics-fish-active
+  background-image: url('/images/object/6-topics/fish-color.png')
+#topics-bird-active
+  background-image: url('/images/object/6-topics/bird-color.png')
+#topics-other-active
+  background-image: url('/images/object/6-topics/other-color.png')
+
 .topics-center-panel
   padding-left: 3em
   padding-right: 3em
 .topics-container
-  margin-top: 8em
+  margin-top: 1em
   .status-post
     width: 100%
     margin-left: 1em
@@ -659,6 +854,7 @@ li
   padding-right: 2em
   font-size: 17px
   line-height: 2em
+  margin-bottom: 5em
 
 .sos-form
   margin-right: auto
@@ -675,6 +871,8 @@ li
   margin-top: -6em
 
 //news
+.news
+  margin-bottom: 6em
 .news-sub-container
   margin-top: -8em
 
@@ -717,13 +915,22 @@ li
 
 //Location
 #location-right-side
-  width: 66%
+  width: 100%
   max-width: 100%
-  height: 93vh
-
+  height: 90vh
+#location-right-side-favorite-place
+  width: 66.4%
+  max-width: 100%
+  height: 100vh
 .withOutPaddind-right
   padding-right: 0
-
+.direct-margin
+  margin-top: 1em
+.back-margin
+  margin-left: 1em
+  margin-top: 1.8em
+.locaiton-name-margin
+  margin-top: 1em
 .location-header
   background-color: $active-brown
   color: #FFF
@@ -747,8 +954,6 @@ input.shop-time
   font-family: FontAwesome
   font-size: 12px
   margin-right: 1em
-
-
 
 .head-step4
   img
@@ -816,6 +1021,12 @@ input.shop-time
 .location-block
   overflow-y: scroll
   height: 78vh
+body.pushable
+  background: #fff !important
+.show-list-location
+  position: absolute
+  top: 0.8em
+  left: 9em
 .add-location
   position: absolute
   bottom: 2em
@@ -834,15 +1045,11 @@ input.shop-time
     margin-left: -2em
     border-radius: 0.5em
     z-index: 1
-
+  button
+    position: absolute
+    bottom: 2em
+    left: 1em
 .location-selected-header
-  padding: 1em
-  padding-left: 0.5em
-  padding-right: 0.5em
-  img
-    width: 9%
-  p
-    font-size: 16px
   #back
     cursor: pointer
 #location-name
@@ -851,21 +1058,25 @@ input.shop-time
 
 .location-orders
   .topics-menu-box
-    font-size: 13px
+    font-size: 10px
     font-weight: bold
 .location-selected-body
   padding: 1em
   padding-left: 0.8em
   padding-right: 0.8em
 .location-photo-detail
-  margin-top: 3em
+  margin-top: 1em
   img
     display: block
     margin-left: auto
     margin-right: auto
     width: 70%
     height: auto
-
+.add-time-form
+  .open-days
+    font-size: 14px
+  input
+    width: 1.5em
 .open-days
   margin-top: 1em
   font-size: 18px
@@ -906,6 +1117,9 @@ input.shop-time
   .comment-block
     margin-top: 0
     padding: 0
+    display: flex
+    flex-flow: row
+    justify-content: space-between
   .form-group
     margin-left: 0
     padding-left: 2em
@@ -946,6 +1160,10 @@ input.shop-time
   padding-right: 2em
   .topics-menu-box
     margin-top: 1em
+.adminArticle
+  width: 100%
+  .topics-menu-box
+    width: 15em
 .admin-pets-type
   margin-top: 1em
   height: 4.5em
@@ -967,8 +1185,8 @@ input.shop-time
     margin-left: 1em
 
 .admin-post-section
-  padding-left: 13em
-  padding-right: 13em
+  padding-left: 0
+  padding-right: 0
 
 .admin-upload-picture
   @extend .upload-picture
@@ -1017,6 +1235,67 @@ input.shop-time
 .adminVet-head-right-topic
   @extend .adminVet-head-left-topic
   background-color: #EDE6DE
+.admin-location-body
+  display: flex
+  flex-flow: row
+  margin-top: 2em
+.admin-location-item-block
+  @extend .adminVet-item-block
+  width: 100%
+  margin-top: 1em
+  margin-bottom: 1em
+  border-bottom: thick dotted $gray
+  img
+    width: 20%
+.border-location
+  display: flex
+  flex-flow: row
+  margin-bottom: 1em
+.admin-location-detail-group
+  width: 70%
+  display: flex
+  flex-flow: row
+  align-items: center
+  justify-content: space-between
+.admin-location-name
+  font-size: 24px
+  color: $brown
+  margin-left: 1em
+  display: flex
+  align-items: center
+  justify-content: space-between
+.admin-location-detail
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  p
+    font-size: 16px
+    text-align: right
+
+.admin-location-head-left-topic
+  height: 6em
+  padding: 2em
+  padding-left: 3em
+  background-color: $dark-brown
+  label
+    font-size: 20px
+    color: #fff
+.admin-location-head-center-topic
+  height: 6em
+  padding: 2em
+  padding-left: 3em
+  background-color: $brown
+  label
+    font-size: 20px
+    color: #fff
+.admin-location-head-right-topic
+  height: 6em
+  padding: 2em
+  padding-left: 3em
+  background-color: $light-brown
+  label
+    font-size: 20px
+    color: #fff
 .adminVet-item-block
   display: flex
   flex-direction: row
@@ -1101,3 +1380,514 @@ input.shop-time
 .btn-section
   button
     width: 8em
+.icon-topic-menubox
+  img
+    width: auto
+    height: 2.5em
+    margin-top: -0.6em
+    margin-left: -1em
+.img-footer-reigster
+  img
+    width: auto
+    height: 20em
+    position: absolute
+    margin-top: -20em
+.font-20
+  font-size: 20px
+.font-18
+  font-size: 18px
+.font-16
+  font-size: 16px
+
+.event
+  .content
+    padding-left: 0.5em
+.new-upload
+  width: 0
+  height: 0
+  overflow: hidden
+  position: absolute
+.new-upload-preview
+  margin-bottom: 0.5em
+.head-selected-location
+  width: 100%
+  margin-top: 1em
+  padding-left: 1em
+  padding-right: 1em
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+
+.vet-block
+  img
+    height: 20px
+    width: 20px
+  span
+    font-weight: bold
+.img-check
+  display: none
+.img-check + img
+  opacity: 0.3
+  cursor: pointer
+.img-check:checked + img
+  opacity: 1.0
+.justify-icon
+  display: flex
+  justify-content: space-between
+  height: 1.5em
+  margin-top: 0.1em
+.justify-item
+  img
+    margin-right: 0.5em
+  .icon-share-img
+    img
+      width: 2em
+      height: 2em
+.location-content
+  .justify-icon
+    display: flex
+    justify-content: space-between
+    height: 1.5em
+    padding-left: 2em
+    padding-right: 2.5em
+  .justify-item
+    display: flex
+    flex-flow: row
+    img
+      margin-right: 0.5em
+    p
+      margin-top: 0.3rem
+    .icon-share-img
+      img
+        width: 2em
+        height: 2em
+.content
+  .justify-icon
+    width: 100%
+    display: flex
+    justify-content: space-around
+    height: 1.5em
+    margin-top: -0.4em
+    margin-bottom: -1em
+  .justify-item
+    display: flex
+    flex-flow: row
+    align-items: center
+    img
+      margin-right: 0.5em
+    .icon-share-img
+      img
+        width: 2rem
+        height: auto
+.feedback-textarea
+  width: 65em
+.profile-card-following
+  display: flex
+  flex-flow: row
+  align-items: center
+.button-card-following
+  height: 5em
+  display: flex
+  justify-content: flex-end
+  i
+    margin-top: 0
+.card-following
+  width: 100%
+.link-seeall-following
+  margin-top: 1em
+.link-seeall-follower
+  margin-top: 1em
+.ui.modal.following
+  padding-left: 2em
+  padding-right: 2em
+  height: 80vh
+  bottom: 25%
+  overflow-y: scroll
+.ui.modal.follower
+  padding-left: 2em
+  padding-right: 2em
+  height: 80vh
+  bottom: 25%
+  overflow-y: scroll
+.location-edit
+  margin-top: 2.7em
+.verify-owner-edit
+  margin-top: 2em
+.header-edit-location
+  display: flex
+  align-items: center
+  justify-content: flex-start
+  background-color: $active-brown
+  height: 5em
+  color: #FFF
+.body-edit-location
+  padding-left: 1em
+  padding-right: 1em
+  margin-top: 1em
+  margin-bottom: 1em
+  .edit-location-button
+    display: flex
+    justify-content: center
+    margin-bottom: 0.5em
+.header-edit-announcement
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: $active-brown
+  height: 5em
+  color: #FFF
+.body-edit-announcement
+  padding-left: 1em
+  padding-right: 1em
+  margin-top: 1em
+  margin-bottom: 1em
+.preview-location-photo-edit
+  width: 100%
+  height: 15em
+  display: flex
+  justify-content: center
+  img
+    width: 100%em
+    height: 15em
+.postfeed-card
+  i
+    display: flex
+    justify-content: flex-end
+    margin-top: -0.1em
+
+.spec-post-container
+  width: 46em
+  height: auto
+
+#follow-search
+  @extend #location-search
+
+.feed-container
+  width: 90%
+  height: auto
+  margin: 0 auto
+.text-editable-bar
+  margin-bottom: 0.5em
+  display: flex
+  flex-flow: row
+  .toggle
+    background: #bbb
+    border-top: solid 2px #777
+    border-left: solid 2px #777
+    border-bottom:solid 2px  #eaeaea
+    border-right: solid 2px #eaeaea
+.head-landing-page
+  background: url("/images/object/1-login/bg.png")
+  background-size: cover
+  repeat: no-repeat
+  .ui.vertical.segment
+    padding-left: 3em
+    padding-right: 3em
+    border-bottom: none
+.con-landing
+  width: 70%
+  border-bottom: 1px solid #000
+.logo-landing-page
+  margin-top: 1em
+  display: flex
+  justify-content: center
+  img
+    width: 12em
+    height: 12em
+.logo-landing-page-foot
+  margin-top: 1em
+  display: flex
+  justify-content: center
+  align-items: center
+  img
+    width: 8em
+    height: 8em
+.foot-landing-page
+  display: flex
+  justify-content: space-between
+  align-items: center
+.login-landing
+  border-radius: 10em
+  width: 21em !important
+.body-landing-page
+
+.forget-password
+  a
+    font-size: 14px
+    color: #000
+.copyright
+  display: flex
+  align-items: center
+.button-landing-page-group
+  width: 100%
+  display: flex
+  justify-content: center
+  flex-flow: row
+  button
+    font-size: 20px
+  .btn-facebook
+    height: 3em
+    font-size: 14px
+    h3
+      font-size: 14px
+      margin-top: 0
+    i
+      border: none
+      margin-top: 0.2em
+  #btn-signUp
+    width: 100%
+    background-color: #1b5e20
+    color: #FFF
+    height: 3em
+    font-size: 14px
+    &:hover
+      background-color: #2e7d32
+    h3
+      margin-top: -1.2em
+      margin-left: 0.6em
+      border: none
+    i
+      margin-right: 7em
+.highlight-head-landing
+  background: $red
+  border-radius: 10px
+  height: 5em
+  h1
+    color: #fff
+    font-size: 50px
+    font-weight: lighter
+    margin-top: 0.5em
+    margin-left: 0.5em
+.topic-head-landing
+  background: $green
+  border-radius: 10px
+  height: 5em
+  h1
+    color: #fff
+    font-size: 50px
+    font-weight: lighter
+    margin-top: 0.5em
+    margin-left: 0.5em
+.location-head-landing
+  background: $orange
+  border-radius: 10px
+  height: 5em
+  h1
+    color: #fff
+    font-size: 50px
+    font-weight: lighter
+    margin-top: 0.5em
+    margin-left: 0.5em
+.foot-landing-page
+  position: relative
+  bottom: 0
+  margin-top: 1em
+  background-color: $orange-background
+  height: 11em
+  display: flex
+  align-items: center
+.nav-landing-page
+
+.link-landing-page
+  display: flex
+  flex-flow: row
+  margin-top: 1em
+.link-landing-page-left
+  display: flex
+  flex-flow: column
+  line-height: 2em
+  a
+    font-size: 18px
+    color: #fff
+    font-weight: bold
+.link-landing-page-right
+  display: flex
+  flex-flow: column
+  line-height: 2em
+  margin-left: 5em
+  a
+    font-size: 18px
+    color: #fff
+    font-weight: bold
+.content-landing-page-group
+  width: 80%
+  display: flex
+  justify-content: center
+.content-landing-page
+  background-color: $orange
+  background: rgba(255,152,0,0.1)
+  width: 100%
+  border-radius: 10px
+  margin-top: 1em
+  padding: 1em
+  padding-top: 2.5em
+  padding-bottom: 2.5em
+  h1
+    color: $active-brown
+    font-size: 40px
+  p
+    color: $active-brown
+    font-size: 1.5em
+.button-landing-page
+  width: 100%
+  display: flex
+  justify-content: center
+  margin-top: 4em
+  margin-bottom: 4em
+.group-daysweek
+  display: flex
+  flex-flow: column
+.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline
+  margin-left: 0
+
+.group-button-add-time
+  display: flex
+  justify-content: space-between
+.red-star
+  color: $red
+.term-condition-content
+  overflow-y: auto
+  li
+    line-height: 3em
+.ui.modal.term-condition-modal
+  top: 35%
+  bottom: 5%
+  background-color: rgba(0,0,0,0.6)
+  border-radius: 10px
+.nav-layer
+  width: 40%
+  font-size: 50px
+  line-height: 0
+  border-bottom: 85px solid $orange-background
+  border-right: 140px solid #FFF
+  z-index: -100
+  margin-top: -1px
+  margin-left: -1px
+  position: absolute
+  margin-left: -1em
+.navbar-brand
+  img
+    margin-top: -0.8em
+    width: 4.5em
+    height: auto
+.vet-badge
+  width: 1em
+  height: 1em
+  border-radius: 500rem
+  position: absolute
+  margin-top: 1.8em
+  margin-left: -1.3em
+.feed
+  .event
+    .vet-badge
+      width: 1em
+      height: 1em
+      border-radius: 500rem
+      position: absolute
+      margin-top: -0.8em
+      margin-left: 1.8em
+.comment-feed
+  width: 70%
+  display: flex
+  word-wrap: break-word
+.pic-comment
+  width: 2em
+  height: 2em
+.new-comment-blog
+  input
+    width: 35em
+.create-time
+  height: 2em
+  margin-top: 1em
+.show-day
+  width: 5em
+  text-align: center
+  border: 1px solid $gray
+  border-top-left-radius: 5px
+  border-bottom-left-radius: 5px
+.show-time-td
+  width: 15em
+  text-align: center
+  border: 1px solid $gray
+#loginLandingPage
+  width: 11em
+  height: 3em
+  margin-right: 3em
+#btn-signUp-landing
+  width: 11em
+  background-color: #1b5e20
+  color: #FFF
+  height: 3em
+  margin-right: 2em
+  font-size: 14px
+  &:hover
+    background-color: #2e7d32
+  h3
+    margin-top: -1.5em
+    margin-left: 1.5em
+    border: none
+  i
+    margin-right: 2em
+    display: flex
+    align-items: center
+.selected-announcement
+  p
+    color: #000
+.button-accept-login
+  display: flex
+  flex-flow: row
+.text-copyright
+  color: #fff
+.detail-location-review
+  display: flex
+  flex-flow: row
+  margin-top: 1em
+  .extra
+    margin-right: 1em
+.right-post-feed
+  display: flex
+  flex-flow: row
+  align-items: center
+  margin-top: 0.5em
+
+.ui.ribbon.label.status-ribbon
+  margin-left: -1.1em
+.menu-postfeed
+  display: flex
+  justify-content: flex-end
+  border: none
+  .dropdown-menu
+    top: 1.5em
+    left: 39.5em
+.btn-verify-location
+  .ui.basic.blue.button
+    &:hover
+      color: #fff !important
+      background-color: #2185D0 !important
+  .ui.basic.green.button
+    &:hover
+      color: #fff !important
+      background-color: #21BA45 !important
+  .ui.basic.red.button
+    &:hover
+      color: #fff !important
+      background-color: #DB2828 !important
+.img-comment-location
+  margin-right: 1em
+.pic-landing
+  position: absolute
+  margin-top: 8em
+  margin-left: -5em
+  width: 20em
+  height: auto
+  img
+    width: 20em
+    height: auto
+.forget-password-form
+  p
+    color: $gray
+    font-size: 12px
+#delete-location
+  width: 18.5em
+.delete-location-block
+  margin-top: 1em

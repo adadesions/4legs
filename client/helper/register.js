@@ -1,15 +1,43 @@
-var topicData = [
-  'สุนัข',
-  'แมว',
-  'pocket pet',
-  'นก',
-  'สัตว์เลื้อยคลาย',
-  'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ',
-  'สถานพยาบาล',
-  'บริการสัตว์เลี้ยง',
-  'ร้านค้า',
+let topicsData = [
+  {
+    value: 'สุนัข',
+    imgUrl: '/images/object/2-signup/dog.png'
+  },
+  {
+    value: 'แมว',
+    imgUrl: '/images/object/2-signup/cat.png'
+  },
+  {
+    value: 'pocket pet',
+    imgUrl: '/images/object/2-signup/petpocket.png'
+  },
+  {
+    value: 'นก',
+    imgUrl: '/images/object/2-signup/bird.png'
+  },
+  {
+    value: 'สัตว์เลื้อยคลาน',
+    imgUrl: '/images/object/2-signup/turtle.png'
+  },
+  {
+    value: 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ',
+    imgUrl: '/images/object/2-signup/fish.png'
+  },
+  {
+    value: 'สถานพยาบาล',
+    imgUrl: '/images/object/2-signup/clinic.png'
+  },
+  {
+    value: 'บริการสัตว์เลี้ยง',
+    imgUrl: '/images/object/2-signup/grooming.png'
+  },
+  {
+    value: 'ร้านค้า',
+    imgUrl: '/images/object/2-signup/shop-03.png'
+  },
 ]
 var profileImg = {}
+
 
 Meteor.setInterval(function () {
     //Change confrim button state
@@ -18,7 +46,6 @@ Meteor.setInterval(function () {
       $('[name=email]').hasClass('input-success'),
       $('[name=password]').hasClass('input-success'),
       $('[name=re-password]').hasClass('input-success'),
-      $('[name=birthday]').hasClass('input-success')
     ]
     if(_.indexOf(state, false) > -1) $('#signup-btn').addClass('disabled')
     else $('#signup-btn').removeClass('disabled')
@@ -32,17 +59,26 @@ Template.register.onRendered(function () {
 })
 
 Template.register.rendered=function() {
-    $('#birthday').datepicker();
+    $('#birthday').datetimepicker({
+      viewMode: 'years',
+      format: 'DD/MM/YYYY'
+    })
 }
 
 Template.register.helpers({
-  topics : topicData,
+  topics : topicsData,
   isVet : function(){
     return Session.get('isVet')
   }
 })
 
 Template.register.events({
+  'click #term-condition': function (e) {
+    $('.ui.basic.modal').modal('show',
+    {
+      allowMultiple: false
+    })
+  },
   'click #vet': function () {
     if(Session.get('isVet')) Session.set('isVet', false)
     else Session.set('isVet', true)
@@ -119,7 +155,7 @@ Template.register.events({
                }
                else{
                  img.classList.add('preview-img-gtheight-profile')
-                 $('.upload-group-profile').css({"margin-top":"4em","position":"absolute"})
+                 $('.upload-group-profile').css({"margin-top":"1em","position":"absolute"})
                }
            };
       img.classList.add('preview-img')
@@ -164,8 +200,23 @@ Template.register.events({
     else email.removeClass('input-success').addClass('input-error')
   },
   'change [name=birthday]' : function (e) {
-    var birthday = $('[name=birthday]')
+    var birthday = $('#birthday')
+    
     if(birthday.val().length > 0) birthday.removeClass('input-error').addClass('input-success')
     else birthday.removeClass('input-success').addClass('input-error')
   },
+})
+
+//EditPofile VET
+Template.editProfile.events({
+  'click #vet': function () {
+    if(Session.get('isVet')) Session.set('isVet', false)
+    else Session.set('isVet', true)
+  }
+})
+
+Template.editProfile.helpers({
+  'isVet': function () {
+    return Session.get('isVet')
+  }
 })

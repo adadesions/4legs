@@ -13,13 +13,25 @@ Template.mainTopics.onCreated(function () {
   Session.set('identifyContainer', 'sosIdentify')
   Session.set('newsContainer', 'about-pet')
 })
-
 //mainTopics Helpers
 Template.mainTopics.helpers({
   topicsContainer: function () {return Session.get('topicsContainer')},
   isMenuActive: function (location) {
     return Session.equals('topicsContainer', location) ? 'topics-menu-active' : ''
+  },
+  petIcon: function () {
+    return _.toArray(petImgs)
+  },
+  catagoryItemId: function (label) {
+    let session = Session.get('adminPetType')
+    if(session === label) return `topics-${label}-active`
+    else return `topics-${label}`
   }
+})
+
+Template.mainTopics.onRendered(function () {
+  //SEO
+  Meta.setTitle("Topics")
 })
 
 //mainTopics Events
@@ -28,7 +40,11 @@ Template.mainTopics.events({
   'click #sos' : function () {Session.set('topicsContainer','sos')},
   'click #news' : function () {Session.set('topicsContainer','news')},
   'click #pet-story' : function () {Session.set('topicsContainer','petStory')},
-  'click #qna' : function () {Session.set('topicsContainer','qna')}
+  'click #qna' : function () {Session.set('topicsContainer','qna')},
+  'click .catagory-item': function (e) {
+    let animalType = $(e.target).data('animaltype')
+    Session.set('adminPetType', animalType)
+  }
 })
 
 
@@ -85,6 +101,18 @@ Template.sos.events({
   }
 })
 
+Template.sosIdentify.events({
+  'click #verify-btn':function (e) {
+    var idCard = $('[name=id-card-number]').val(),
+        telNumber = $('[name=tel-number]').val()
+    if(idCard !== "" && telNumber !== ""){
+      Meteor.call('verifyIdCard', idCard, telNumber, function (err, res) {
+        if(res) Session.set('identifyContainer', 'postBlock')
+      })
+    }
+  }
+})
+
 ////////////////  news
 //news helpers
 Template.news.helpers({
@@ -100,4 +128,12 @@ Template.news.events({
     var id = $(e.target).attr('id')
     Session.set('newsContainer', id)
   }
+})
+
+////////////// qna
+Template.qna.onCreated(function () {
+  Session.set('isQna', true)
+})
+Template.qna.onDestroyed(function () {
+  Session.set('isQna', false)
 })

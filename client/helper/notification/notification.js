@@ -13,15 +13,21 @@ Template.notification.events({
   }
 })
 
+Template.notification.onRendered(function () {
+  //SEO
+  Meta.setTitle("Notification")
+})
+
 ///////////// notifyItem
 Template.notifyItem.helpers({
   takeAction: function (action) {
     var complete = {
-      like : "like your post",
+      like : "likes your post",
       comment: "commented on your post",
       share: "shared your post",
       post: "wrote a new post",
-      favorite: "save your post as favorite"
+      favorite: "saved your post as favorite",
+      following: "are following you"
     }
     return complete[action]
   },

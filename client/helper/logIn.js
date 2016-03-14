@@ -12,7 +12,10 @@ Template.login.events({
         Router.go('newsfeed');
       }
     });
+  },
 
+  'keypress .loginForm': function (e) {
+    e.keyCode === 13 ? $('.btn-myLogin').trigger('click') : ''
   }
 
-})
+}) 

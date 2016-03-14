@@ -1,23 +1,42 @@
 <template name="newsfeed">
   <div class="container">
     <div class="row">
-      <div class="col-lg-9">
+      {{#if isMobile}}
+      <div class="col-lg-9 col-xs-12">
         {{> postBlock}}
         <br><br>
-        {{#if hasHighlight}}
-          <div class="highlight-block">
-            <img src="/images/object/8-highlight/highlight.png" alt="">
-          </div>
-          {{> postFeed highlight=true}}
-        {{/if}}
-        {{> postFeed}}
-      </div>
-      <div class="col-lg-3">
+        <div class="ui card-mobile">
+            {{#each getAdsLimit '2'}}
+              <div class="ui raised padded text container segment">
+                {{> adsCard}}
+              </div>
+            {{/each}}
+        </div>
         <br><br>
-        {{#each getAdsLimit '2'}}
-          {{> adsCard}}
-        {{/each}}
+
+        <div class="feed-container">
+          {{> postFeed col='one'}}
+        </div>
       </div>
+      {{else}}
+      <div class="col-lg-9 col-xs-9">
+        {{> postBlock}}
+        <br><br>
+        <div class="feed-container">
+          {{> postFeed col='one'}}
+        </div>
+      </div>
+      <div class="col-lg-3 col-xs-3">
+        <br><br>
+          <div class="ui sticky card-mobile">
+              {{#each getAdsLimit '2'}}
+                <div class="ui raised segment">
+                  {{> adsCard}}
+                </div>
+              {{/each}}
+          </div>
+      </div>
+      {{/if}}
     </div>
   </div>
 </template>

@@ -17,13 +17,16 @@
         <div class="register-form">
           <form clsss="form-horizontal" action="">
             <div class="vet-block">
-              คุณเป็นสัตวแพทย์ใช่หรือไม่?
-                <input type="checkbox" value="vet" name="vet" id="vet">
-                <span class="my-color-brown">ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
+              คุณเป็นสัตวแพทย์ใช่หรือไม่?&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>
+                  <input class="img-check" type="checkbox" value="vet" name="vet" id="vet">
+                  <img src="/images/icon/check.png"/>
+                </label>
+                <span class="my-color-brown">&nbsp;&nbsp;ใช่แล้ว ฉันเป็นสัตวแพทย์</span>
                 {{#if isVet}}
                   <br><br>
                   <div class="form-group">
-                    <label for="vet-id" class="col-lg-5 control-label "><span class="reduce-font-size">เลขใบอนุญาติประกอบวิชาชีพสัตวแพทย์</span><span class="my-color-red">*</span><span class="pull-right">:</span></label>
+                    <label for="vet-id" class="col-lg-5 control-label "><span class="reduce-font-size">เลขใบอนุญาตประกอบวิชาชีพสัตวแพทย์</span><span class="my-color-red">*</span><span class="pull-right">:</span></label>
                     <div class="col-lg-7">
                       <input type="text" class="form-control" id="vet-id" name="vet-id" placeholder="01-xxxx/2xxx" required>
                     </div>
