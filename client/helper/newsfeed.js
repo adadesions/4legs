@@ -23,10 +23,8 @@ Template.newsfeed.helpers({
     let len = Posts.find({highlight:true}).count()
     return len === 1 ? true : false
   },
-  isMobile: function () {
-    const ratio = window.devicePixelRatio
-    let width = window.screen.width*ratio    
-    return width <= 1500 ? true : false
+  isMobile: function () {    
+    return Meteor.isMobile
   }
 })
 
