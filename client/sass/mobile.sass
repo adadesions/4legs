@@ -13,7 +13,7 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
     z-index: 2
   .nav-button-border
     margin-top: 0.6em
-    margin-right: 0
+    margin-right: 0.5em
     .icon-bar
       height: 0.3em
       width: 2em
@@ -39,18 +39,32 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
     margin-top: -1px
     margin-left: -1px
     position: absolute
+  .navbar-toggle
+    padding: 7px 10px
   ul.nav
     display: flex
     flex-flow: row
     background-color: #FFF
-
+  .notify-badge
+    width: 1.7em
+  .menu-icon-dropdown
+    width: 100%
+    height: auto
+    padding-top: 1.3em
+    font-size: 11px
+    display: flex
+    justify-content: center
+    flex-flow: column
   .menu-icon
     width: 100%
     height: auto
-    padding-top: 1em
+    padding-top: 0.6em
     font-size: 11px
+    display: flex
+    justify-content: center
+    flex-flow: column
   .icon
-    height: 2em
+    height: 4em
   .anchor-navbar
     height: 1em
   .navbar-nav
@@ -94,7 +108,8 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
   .topics-menu-box
     margin-top: 0.5em
   .menu-item-mobile
-    width: 4.5em
+    width: 5.5em
+    text-align: center
     .active
       background-color: #F8A02E
   .catagory
@@ -117,6 +132,7 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
     .open
       .dropdown-menu
         background-color: #fff
+        margin-top: 0.2em
         &:focus
           background-color: #F8A02E
   .admin-nav-item
@@ -183,11 +199,15 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
   .container-fluid
     .navbar-header
       margin-right: 0
+  .container-fluid > .navbar-collapse
+    margin-right: 0
+  .navbar-collapse.in
+      overflow-y: hidden
   .navbar-right
     display: flex
     justify-content: space-around
     .active
-      height: 5.7em
+      height: 6em
     li
       a
         &:focus
@@ -210,6 +230,8 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
     a
       margin-top: 0
       margin-right: 13em
+  #location-right-side-favorite-place
+    width: 100%
   .upload-profile
     margin-left: auto
     margin-right: auto
@@ -320,7 +342,7 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
     display: flex
     flex-flow: row
   .logo-login
-    margin-left: 3.5em
+    margin-left: 0
     margin-top: 1em
   .admin-head-text
     margin-left: -1em

@@ -19,7 +19,6 @@
           <a class="anchor-navbar" href="{{pathFor 'newsfeed'}}">
               <div class="menu-icon text-center" id="newsfeed">
                 <img class="icon" src="/images/menu-icon/news feed.png" alt="">
-                <br>
                 <p>News Feed</p>
               </div>
           </a>
@@ -28,7 +27,6 @@
           <a class="anchor-navbar" href="{{pathFor 'location'}}">
             <div class="menu-icon text-center" id="location">
               <img class="icon" src="/images/menu-icon/location.png" alt="">
-              <br>
               <p>Location</p>
             </div>
           </a>
@@ -37,26 +35,23 @@
           <a class="anchor-navbar" href="{{pathFor 'mainTopics'}}">
             <div class="menu-icon text-center" id="topics">
               <img class="icon" src="/images/menu-icon/topics.png" alt="">
-              <br>
-              <span class="nav-text-topic text-center">Topics</span>
+              <p>Topics</p>
             </div>
           </a>
         </li>
         <li class="{{isActive 'notification'}} menu-item-mobile">
           <a class="anchor-navbar" href="{{pathFor 'notification'}}">
-            <div class="menu-icon" id="notification">
+            <div class="menu-icon text-center" id="notification">
               <img class="icon" src="/images/menu-icon/notification.png" alt="">
                <span class="badge notify-badge">{{notifyBadge}}</span>
-              <br>
-              <p class="text-nav">Notification</p>
+              <p>Notification</p>
             </div>
           </a>
         </li>
         <li class="dropdow menu-item-mobile">
           <button class="menu-item-mobile anchor-btn-navbar dropdown-toggle btn my-btn-more {{isActive 'more'}}" type="button" id="more-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <div class="menu-icon text-center" id="more">
+            <div class="menu-icon-dropdown text-center" id="more">
               <img class="icon" src="/images/menu-icon/more.png" alt="">
-              <br>
               <p>More</p>
             </div>
           </button>
