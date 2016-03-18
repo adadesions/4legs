@@ -41,6 +41,7 @@ cfs:worker@0.1.4
 check@1.1.0
 chrismbeckett:toastr@2.1.2_1
 chuangbo:cookie@1.1.0
+coffeescript@1.0.11
 dburles:google-maps@1.1.5
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
@@ -79,6 +80,7 @@ iron:location@1.0.11
 iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
+jazeee:spiderable-longer-timeout@1.2.13
 jplack:bootstrap-timepicker@0.2.1
 jquery@1.11.4
 lai:collection-extensions@0.1.4
@@ -110,6 +112,7 @@ oauth@1.1.6
 oauth2@1.1.5
 observe-sequence@1.0.7
 ordered-dict@1.0.4
+ostrio:meteor-root@1.0.2
 promise@0.5.1
 raix:eventemitter@0.1.3
 rajit:bootstrap3-datepicker@1.4.1
