@@ -72,6 +72,9 @@ Template.aboutMe.helpers({
     else if(numberOfSos >= 20 && numberOfSos < 50 && position === 1) return activityBadge.sos.goldUrl
     else if(numberOfSos >= 50 && position === 2) return activityBadge.sos.goldUrl
     else return activityBadge.sos.blankUrl
+  },
+  isOwnProfile: function () {
+    return Router.current().params.id === Meteor.userId()
   }
 
 })
@@ -164,15 +167,21 @@ Template.editProfile.events({
 
 
 function getMedal(label, numberOfFollowing) {
-  let followingIds = Meteor.user().profile.following,
-      followingSet = followingIds.map(fid => Meteor.users.findOne({_id:fid})),
-      calObj = {'สุนัข': 0, 'แมว': 0, 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ': 0, 'นก': 0, 'สัตว์เลื้อยคลาน': 0, 'pocket': 0}
-  followingSet.map( f => {
-    let interesting = f.profile.topics
-    if(_.contains(interesting, label)) calObj[label] += 1
-  })
+  let followingIds = Meteor.users.findOne({_id:Router.current().params.id}).profile.following,
+      followingSet = followingIds.map(fid => {
+        let user = Meteor.users.findOne({_id:fid.followingId})
+        if(user) return user
+      }),
+      calObj = {'สุนัข': 0, 'แมว': 0, 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ': 0, 'นก': 0, 'สัตว์เลื้อยคลาน': 0, 'pocket pet': 0}
+  if(followingSet.length > 0){
+    followingSet.map( f => {
+      let interesting = f.profile.topics
+      if(_.contains(interesting, label)) calObj[label] += 1
+    })
+  }
+
   let transferLabel = {
-    'สุนัข': 'dog', 'แมว': 'cat', 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ': 'fish', 'นก': 'bird', 'สัตว์เลื้อยคลาน': 'turtle', 'pocket': 'pocket'
+    'สุนัข': 'dog', 'แมว': 'cat', 'สัตว์น้ำ/สัตว์ครึ่งบกครึ่งน้ำ': 'fish', 'นก': 'bird', 'สัตว์เลื้อยคลาน': 'turtle', 'pocket pet': 'pocket'
   }
   let newLabel = transferLabel[label]
 
@@ -184,7 +193,7 @@ function getBronzeMedal(label, numberOfFollowing) {
       calObj = res.calObj,
       newLabel = res.newLabel
 
-  if(calObj[label] === numberOfFollowing) return petImgs[newLabel].bronzeUrl
+  if(calObj[label] >= numberOfFollowing) return petImgs[newLabel].bronzeUrl
   else return petImgs[newLabel].blankUrl
 }
 

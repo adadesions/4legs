@@ -22,9 +22,9 @@
       <div class="badge-item" id="pocket">
         <div class="img-badge-group">
           <img data-content="Badge Follow เพื่อนที่เลี้ยงสัตว์เลี้ยงประเภท Pocket pets" data-position="left center" class="badge-img head-badge-popup head-badge-popup custome-badge" src="/images/object/2-signup/petpocket.png" alt="" />
-          <img data-content="Follow 1 คน" data-position="left center" data-variation="inverted" src="{{oneBronzeMedal 'pocket'}}" alt="" class="img-circle badge-img badge-medal">
-          <img data-content="Follow 10 คน" data-position="top center" data-variation="inverted" src="{{tenBronzeMedal 'pocket'}}" alt="" class="img-circle badge-img badge-medal">
-          <img data-content="Follow 100 คน" data-position="right center" data-variation="inverted" src="{{goldMedal 'pocket'}}" alt="" class="img-circle badge-img badge-medal">
+          <img data-content="Follow 1 คน" data-position="left center" data-variation="inverted" src="{{oneBronzeMedal 'pocket pet'}}" alt="" class="img-circle badge-img badge-medal">
+          <img data-content="Follow 10 คน" data-position="top center" data-variation="inverted" src="{{tenBronzeMedal 'pocket pet'}}" alt="" class="img-circle badge-img badge-medal">
+          <img data-content="Follow 100 คน" data-position="right center" data-variation="inverted" src="{{goldMedal 'pocket pet'}}" alt="" class="img-circle badge-img badge-medal">
         </div>
         <br>
         <span class="badge-text">Pocket Pets</span>
@@ -147,9 +147,11 @@
               </div>
             </div>
             <div class="column item-addfollow">
-              <div class="button-card-following">
-                <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
-              </div>
+              {{#if isOwnProfile}}
+                <div class="button-card-following">
+                  <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
+                </div>
+              {{/if}}
             </div>
           </div>
         </div>
@@ -177,9 +179,11 @@
                   </div>
                 </div>
                 <div class="column item-addfollow">
-                  <div class="button-card-following">
-                    <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
-                  </div>
+                  {{#if isOwnProfile}}
+                    <div class="button-card-following">
+                      <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
+                    </div>
+                  {{/if}}
                 </div>
               </div>
             </div>
@@ -205,9 +209,11 @@
             </div>
           </div>
           <div class="column item-addfollow">
-            <div class="button-card-following">
-              <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
-            </div>
+            {{#if isOwnProfile}}
+              <div class="button-card-following">
+                <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
+              </div>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -235,9 +241,11 @@
                   </div>
                 </div>
                 <div class="column item-addfollow">
-                  <div class="button-card-following">
-                    <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
-                  </div>
+                  {{#if isOwnProfile}}
+                    <div class="button-card-following">
+                      <i id={{_id}} class="fa fa-minus-circle fa-lg my-btn-unfollow unfollow-btn pull-right"></i>
+                    </div>
+                  {{/if}}
                 </div>
               </div>
             </div>

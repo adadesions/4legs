@@ -23,7 +23,7 @@ Template.newsfeed.helpers({
     let len = Posts.find({highlight:true}).count()
     return len === 1 ? true : false
   },
-  isMobile: function () {    
+  isMobile: function () {
     return Meteor.isMobile
   }
 })
@@ -31,6 +31,10 @@ Template.newsfeed.helpers({
 Template.newsfeed.onRendered(function () {
   //SEO
   Meta.setTitle("Newsfeed")
+
+  //Restructure FB account
+  if(Meteor.user().profile.name && !Meteor.user().profile.username)
+    Meteor.call('upsertFbAccount', Meteor.userId())
 
   $('.ui.sticky').sticky({
     context: '.feed-container'

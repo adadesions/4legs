@@ -2,8 +2,8 @@ Template.loginFb.events({
     'click #facebook-login': function(event) {
       Meteor.loginWithFacebook({}, function(err){
           if(err) throw new Meteor.Error("Facebook login failed");
-      });
-      Router.go('register');
+      });      
+      Router.go('newsfeed');
     },
 
     'click #logout': function(event) {

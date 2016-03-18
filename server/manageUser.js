@@ -92,7 +92,7 @@ Meteor.methods({
         })
         return true
       }
-      else{        
+      else{
         return false
       }
     }
@@ -109,5 +109,28 @@ Meteor.methods({
 
   updateVetVerify: function (userId,bool) {
     Meteor.users.update({_id:userId}, {$set: {'profile.vetInfo.verified':bool}})
+  },
+
+  upsertFbAccount: function (_id) {
+    Meteor.users.upsert({_id: _id}, {
+      $set: {
+        username: Meteor.user().services.facebook.name,
+        emails: [
+          {
+            address: Meteor.user().services.facebook.email,
+            verified: false  
+          }
+        ],
+        profile: {
+          birthday: "",
+          topics: [],
+          vetInfo : "",
+          followers : [],
+          following : [],
+          asAdmin : {loggedIn: false},
+          privileged: false
+        }
+      }
+    })
   }
 })

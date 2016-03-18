@@ -2,26 +2,26 @@
   <div class="col-lg-4 edit-profile-picture">
     <img class="img-thumbnail profile-picture-aboutMe" src="{{profilePicture this._id}}" alt="">
   </div>
-  <div class="col-lg-8 edit-profile">
-    <b>Name : </b><span class="my-color-brown">{{this.username}}</span>
-    <br>
-    <b>Email : </b>
-    <span class="my-color-brown">
-      {{#each this.emails}}
-        {{address}}
-      {{/each}}
-    </span>
-    <br>
-    <b>Birthday : </b><span class="my-color-brown">{{this.profile.birthday}}</span>
-    <br>
-    <b>หัวข้อที่สนใจ : </b>
-    <span class="my-color-brown">
-      <ul>
-        {{#each topic in this.profile.topics}}
-          <li>{{topic}}</li>
+  <div class="col-lg-8 edit-profile">    
+      <b>Name : </b><span class="my-color-brown">{{this.username}}</span>
+      <br>
+      <b>Email : </b>
+      <span class="my-color-brown">
+        {{#each this.emails}}
+          {{address}}
         {{/each}}
-      </ul>
-    </span>
+      </span>
+      <br>
+      <b>Birthday : </b><span class="my-color-brown">{{this.profile.birthday}}</span>
+      <br>
+      <b>หัวข้อที่สนใจ : </b>
+      <span class="my-color-brown">
+        <ul>
+          {{#each topic in this.profile.topics}}
+            <li>{{topic}}</li>
+          {{/each}}
+        </ul>
+      </span>
     {{#if checkAuthority this._id}}
     <button class="btn my-btn-edit">Edit</button>
     {{/if}}
