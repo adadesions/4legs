@@ -94,6 +94,21 @@ Template.aboutMe.events({
   }
 })
 
+Template.body.events({
+  'click .my-btn-unfollow' : function (e) {
+    let id = $(e.target).attr('id'),
+        person = Meteor.users.findOne({_id:id})
+    Meteor.call('unFollower',id)
+    Meteor.call('unFollowing', id, function (err) {
+      if(err) toastr.error("Sorry, you can't unfollow "+person.username)
+      else{
+        Session.set('followingBtn', false)
+        toastr.success("Unfollowing "+person.username)
+      }
+    })
+  }
+})
+
 Template.aboutMe.onRendered(function () {
   $('.head-badge-popup').popup()
   $('.badge-medal').popup()
