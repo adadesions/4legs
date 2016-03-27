@@ -24,15 +24,17 @@ Template.newsfeed.helpers({
     return len === 1 ? true : false
   },
   isMobile: function () {
-    const ratio = window.devicePixelRatio
-    let width = window.screen.width*ratio    
-    return width <= 1500 ? true : false
+    return Meteor.isMobile
   }
 })
 
 Template.newsfeed.onRendered(function () {
   //SEO
   Meta.setTitle("Newsfeed")
+
+  //Restructure FB account
+  if(Meteor.user().profile.name && !Meteor.user().profile.username)
+    Meteor.call('upsertFbAccount', Meteor.userId())
 
   $('.ui.sticky').sticky({
     context: '.feed-container'

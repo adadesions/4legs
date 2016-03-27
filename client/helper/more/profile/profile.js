@@ -32,7 +32,7 @@ Template.profile.events({
 
   },
   'click .my-btn-unfollow' : function (e) {
-    let id = $('.my-btn-unfollow').attr('id'),
+    let id = $(e.target).attr('id'),
         person = Meteor.users.findOne({_id:id})
     Meteor.call('unFollower',id)
     Meteor.call('unFollowing', id, function (err) {

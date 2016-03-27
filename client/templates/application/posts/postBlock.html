@@ -5,7 +5,11 @@
       <div class="content">
         <div class="extra content">
           <div class="left floated author">
-            <img class="ui avatar big image" src="{{profilePicture currentUser._id}}">
+            {{#if currentUser.services.facebook}}
+              <img class="ui avatar big image" src="{{fbProfilePicture currentUser.services.facebook.id}}">
+            {{else}}
+              <img class="ui avatar big image" src="{{profilePicture currentUser._id}}">
+            {{/if}}
           </div>
           <div class="right floated">
             <i id="photo-upload" class="photo big icon"></i>
