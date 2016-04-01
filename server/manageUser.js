@@ -20,7 +20,7 @@ Meteor.methods({
   },
 
   addFollowing : function (followingId) {
-    Meteor.users.upsert({_id:this.userId},{
+    Meteor.users.update({_id:this.userId},{
       $addToSet: {
         "profile.following" : {
           followingId : followingId,
@@ -38,7 +38,7 @@ Meteor.methods({
   },
 
   addFollower : function (followingId) {
-    Meteor.users.upsert({_id:followingId},{
+    Meteor.users.update({_id:followingId},{
       $addToSet: {
         "profile.followers" : {
           followerId : this.userId,
@@ -118,7 +118,7 @@ Meteor.methods({
         emails: [
           {
             address: Meteor.user().services.facebook.email,
-            verified: false  
+            verified: false
           }
         ],
         profile: {

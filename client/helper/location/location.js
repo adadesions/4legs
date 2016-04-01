@@ -239,9 +239,6 @@ Template.location.events({
   'click .add-location': function () {
     Session.set('locationContainer', 'createLocation')
   },
-  'click #locationEdit': function () {
-    Session.set('locationContainer', 'editLocation')
-  },
   'click #sidebar-add-location':function () {
     $('.ui.sidebar')
     .sidebar({
@@ -302,16 +299,10 @@ Template.verifyOwner.helpers({
 })
 
 Template.registerHelper('isChecked', function (day,id) {
-  let dayCheck = Markers.findOne({_id:id}).daysWeek
+  let dayCheck = Markers.findOne({_id:id}).dateSet[0].days
   return _.contains(dayCheck, day) ? 'checked' : ''
 })
 
-Template.editLocation.helpers({
-  selectedLocationId: function () { return Session.get('selectedLocationId')},
-  findLocation: function (id) {
-    return Markers.findOne({_id:id})
-  }
-})
 
 Template.editAnnouncementPromotion.helpers({
   selectedLocationId: function () { return Session.get('selectedLocationId')},
@@ -320,9 +311,96 @@ Template.editAnnouncementPromotion.helpers({
   },
 })
 
+Template.editLocation.helpers({
+  selectedLocationId: function () { return Session.get('selectedLocationId')},
+  findLocation: function (id) {
+    return Markers.findOne({_id:id})
+  },
+  getOpenTime: function (date) {
+    return date[0].open
+  },
+  getCloseTime: function (date) {
+    return date[0].close
+  }
+})
+
 Template.editLocation.events({
   'click #back': function (e) {
     Session.set('locationContainer', 'locationSelected')
+  },
+  'click #next': function (e) {
+    let openTime = $('[name=open-time]').val(),
+        closeTime = $('[name=close-time]').val(),
+        address = $('[name=address]').val(),
+        tel = $('[name=tel]').val(),
+        email = $('[name=email]').val(),
+        facebook = $('[name=facebook]').val(),
+        line = $('[name=line]').val(),
+        instagram = $('[name=instagram]').val(),
+        detail = $('[name=detail]').val(),
+        markerId = Session.get('selectedLocationId'),
+        days = $('[name=days-week]:checked').map(function () { return this.value }).get(),
+        newMarker = {
+          openTime,
+          closeTime,
+          address,
+          tel,
+          email,
+          facebook,
+          line,
+          instagram,
+          detail,
+          days
+        }
+    Meteor.call('editLocationFromOwner',markerId,newMarker, function (err) {
+      if(err) toastr.error("Can't update this location...")
+      else{
+        toastr.success("Updated location detail")
+        Session.set('locationContainer', 'locationSelected')
+      }
+    })
+  },
+  'change [name=upload]': function (e) {
+    FS.Utility.eachFile(e, function (file) {
+      Images.insert(file, function (err, fileObj) {
+        if(err){
+          toastr.error("Upload failed... please try again.")
+        }else{
+          Meteor.call('updateLocationPhoto', Session.get('selectedLocationId'), fileObj._id)
+          toastr.success('Upload succeeded!')
+        }
+      })
+      var img = document.createElement("img"),
+          preview = $('.preview-location-photo')
+
+      img.file = $('[name=upload]')[0].files[0]
+      img.onload = function () {
+               if(this.width > this.height) {
+                 img.classList.add('preview-photo-gtwidth-location')
+                 $('.upload-group-profile').css({"margin-top":"0"})
+               }
+               else{
+                 img.classList.add('preview-photo-gtheight-location')
+                 $('.upload-group-profile').css({"margin-top":"4em"})
+               }
+           };
+      img.classList.add('preview-img')
+      img.classList.add('preview-for-profile')
+
+      if(preview.length){
+          preview.empty()
+          preview.append(img)
+      }
+      else
+        preview.append(img)
+      var reader = new FileReader()
+      reader.onload = (function(aImg) {
+        return function(e) {
+          aImg.src = e.target.result
+        }
+      })(img)
+      reader.readAsDataURL(file)
+    })
   }
 })
 
@@ -564,6 +642,9 @@ Template.locationDetail.events({
   },
   'click #verifyOwnerButton': function () {
     Session.set('locationContainer', 'verifyOwner')
+  },
+  'click #locationEdit': function () {
+    Session.set('locationContainer', 'editLocation')
   }
 })
 

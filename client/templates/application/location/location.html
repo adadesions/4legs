@@ -282,12 +282,13 @@
     <br>
     <form class="form-inline">
       <div class="form-group">
-        <label></label>
-        <input type="text" name="open-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาเปิด" value="{{openTime}}">
+        <label>เวลาเปิดทำการ</label>
+        <input type="text" name="open-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาเปิด" value="{{getOpenTime dateSet}}">
       </div>
+      <br><br>
       <div class="form-group">
-        <label></label>
-        <input type="text" name="close-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาปิด" value="{{closeTime}}">
+        <label>เวลาปิดทำการ </label>
+        <input type="text" name="close-time" class="form-control shop-time timepicker" placeholder="&#xf017; เวลาปิด" value="{{getCloseTime dateSet}}">
       </div>
 
     </form>
@@ -305,7 +306,7 @@
     <input type="text" name="email" class="form-control" value="{{email}}">
     <br>
     <label for="website">Website</label>
-    <input type="text" name="website" class="form-control">
+    <input type="text" name="website" class="form-control" value="{{website}}">
     <br>
     <label for="facebook">Facebook</label>
     <input type="text" name="facebook" class="form-control" value="{{facebook}}">
@@ -314,7 +315,7 @@
     <input type="text" name="line" class="form-control" value="{{line}}">
     <br>
     <label for="instagram">Instagram</label>
-    <input type="text" name="instagram" class="form-control">
+    <input type="text" name="instagram" class="form-control" value="{{instagram}}">
     <br><br>
     <label for="shop-photo">รูปภาพประกอบ</label>
     <br>
@@ -324,7 +325,7 @@
     <input type="file" name="upload" id="file" class="upload-img">
     <label for="file" class="my-color-brown label-upload text-center">
       <img id="location-add-photo" src="/images/object/5-location/add.png" alt="">
-      <u>เพิ่มรูปภาพ</u>
+      <u>เปลี่ยนรูปภาพ</u>
     </label>
     <br><br>
     <div class="col-lg-12 edit-location-button">

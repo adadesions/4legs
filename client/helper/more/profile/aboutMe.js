@@ -46,8 +46,8 @@ Template.aboutMe.helpers({
   oneBronzeMedal: function (label) {
     return getBronzeMedal(label, 1)
   },
-  tenBronzeMedal: function (label) {
-    return getBronzeMedal(label, 10)
+  tenSliverMedal: function (label) {
+    return getSliverMedal(label, 10)
   },
   goldMedal: function (label) {
     return getGoldMedal(label, 100)
@@ -67,9 +67,9 @@ Template.aboutMe.helpers({
     else return activityBadge.newLocation.blankUrl
   },
   getSosMedal: function (position) {
-    let numberOfSos = Posts.find({'info.postOwner':Meteor.userId(), catagory:'sos'})
-    if(numberOfSos >= 5 && numberOfSos < 20 && position === 0) return activityBadge.sos.goldUrl
-    else if(numberOfSos >= 20 && numberOfSos < 50 && position === 1) return activityBadge.sos.goldUrl
+    let numberOfSos = Posts.find({'info.postOwner':Meteor.userId(), catagory:'sos'}).count()
+    if(numberOfSos >= 5 && numberOfSos < 20 && position === 0) return activityBadge.sos.bronzeUrl
+    else if(numberOfSos >= 20 && numberOfSos < 50 && position === 1) return activityBadge.sos.sliverUrldUrl
     else if(numberOfSos >= 50 && position === 2) return activityBadge.sos.goldUrl
     else return activityBadge.sos.blankUrl
   },
@@ -91,6 +91,21 @@ Template.aboutMe.events({
   'click .link-seeall-following': function (e) {
     $('.ui.modal.following')
       .modal('show')
+  }
+})
+
+Template.body.events({
+  'click .my-btn-unfollow' : function (e) {
+    let id = $(e.target).attr('id'),
+        person = Meteor.users.findOne({_id:id})
+    Meteor.call('unFollower',id)
+    Meteor.call('unFollowing', id, function (err) {
+      if(err) toastr.error("Sorry, you can't unfollow "+person.username)
+      else{
+        Session.set('followingBtn', false)
+        toastr.success("Unfollowing "+person.username)
+      }
+    })
   }
 })
 
@@ -194,6 +209,15 @@ function getBronzeMedal(label, numberOfFollowing) {
       newLabel = res.newLabel
 
   if(calObj[label] >= numberOfFollowing) return petImgs[newLabel].bronzeUrl
+  else return petImgs[newLabel].blankUrl
+}
+
+function getSliverMedal(label, numberOfFollowing) {
+  let res = getMedal(label,numberOfFollowing),
+      calObj = res.calObj,
+      newLabel = res.newLabel
+
+  if(calObj[label] >= numberOfFollowing) return petImgs[newLabel].sliverUrl
   else return petImgs[newLabel].blankUrl
 }
 
