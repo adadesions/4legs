@@ -149,8 +149,8 @@ Template.location.onCreated(function() {
             avoidTolls: false
             }, function(response, status) {
             if (status !== google.maps.DistanceMatrixStatus.OK) {
-              alert('Error was: ' + status);
-            }
+              //Error status disable
+             }
             else {
               let originList = response.originAddresses,
                   destinationList = response.destinationAddresses,
@@ -195,7 +195,7 @@ Template.location.onCreated(function() {
       avoidTolls: false
       }, function(response, status) {
       if (status !== google.maps.DistanceMatrixStatus.OK) {
-        alert('Error was: ' + status);
+        // alert('Error was: ' + status);
       }
       else {
         let originList = response.originAddresses,

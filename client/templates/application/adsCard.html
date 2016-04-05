@@ -1,4 +1,4 @@
-<template name="adsCard">  
+<template name="adsCard">
   <div class="ui card">
   <div class="image">
     <img src="{{getImage img._id}}">
@@ -15,6 +15,7 @@
       <a href="http://{{info.cardUrl}}">{{info.cardUrl}}</a>
     </a>
   </div>
+  <button id="{{_id}}" class="ui red button delete-ads">Delete</button>
 </div>
 </template>
 
