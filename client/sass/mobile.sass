@@ -1,7 +1,8 @@
 @import "colors"
 
-$tablet: "(min-width: 800px) and (max-width: 992px)"
-$mobile: "(min-width: 100px) and (max-width: 800px)"
+$tablet: "(min-width: 768px) and (max-width: 992px)"
+$mobile: "(min-width: 100px) and (max-width: 767px)"
+$tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
 
 @media #{$mobile}
   .mynav-main
@@ -645,6 +646,16 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
     margin: 0 auto
   .term-condition-content
     overflow-y: auto
+  .item-addfollow
+    img
+      width: 5em
+      height: 5em
+    .username-addfollow
+      width: 13em
+      word-wrap: break-word
+  .group-addfollow
+    padding-left: 1em
+    padding-right: 1em
 @media #{$tablet}
   .pic-landing
     position: absolute
@@ -731,7 +742,7 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
       height: 8em
       margin-top: 0
   .topics-center-panel
-    margin-top: 13em
+    margin-top: 15em
   .catagory
     display: flex
     flex-flow: row
@@ -760,3 +771,61 @@ $mobile: "(min-width: 100px) and (max-width: 800px)"
     img
       width: 2em
       height: 2em
+  .navbar-nav
+    li
+      width: 7em
+  .menu-icon
+    width: 5em
+    height: 3em
+  .menu-icon-dropdown
+    width: 5em
+    height: 3em
+  #location-right-side-favorite-place
+    width: 100%
+  .item-addfollow
+    .username-addfollow
+      width: 15em
+      word-wrap: break-word
+  .group-addfollow
+    padding-left: 1em
+    padding-right: 1em
+  .register-button
+    display: flex
+    justify-content: center
+    height: 12em
+    #signup-btn
+      height: 2.5em
+  #term-condition
+    display: flex
+    justify-content: center
+    margin-top: 2em
+    padding-left: 4em
+  .pic-pro-tablet
+    display: flex
+    justify-content: center
+@media #{$tabletLandscape}
+  .topics-menu
+    top: 6em
+  .topics-center-panel
+    margin-left: 10em
+    margin-right: 10em
+  .catagory
+    top: 6em
+    margin-left: 65em
+  .sos-identify
+    margin-top: 2em
+  #location-right-side-favorite-place
+    width: 100%
+  .register-button
+    display: flex
+    justify-content: center
+    height: 12em
+    #signup-btn
+      height: 2.5em
+  #term-condition
+    display: flex
+    justify-content: center
+    margin-top: 2em
+  .pic-pro-tablet
+    display: flex
+    justify-content: center

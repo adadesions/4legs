@@ -1,6 +1,6 @@
 <template name="mainTopics">
   <div class="main-topic">
-    <div class="col-lg-1 topics-left-panel">
+    <div class="col-lg-1 col-md-1 topics-left-panel">
       <div class="row">
         <div class="topics-menu margin-topic">
             <div id="vet-article" class="topics-menu-item text-center {{isMenuActive 'vetArticle'}}">
@@ -28,7 +28,7 @@
         <div class="catagory">
           <p class="hidden-xs">Pets</p>
           {{#each petIcon}}
-            <div id="{{catagoryItemId label}}" class="catagory-item" data-animaltype='{{label}}'>              
+            <div id="{{catagoryItemId label}}" class="catagory-item" data-animaltype='{{label}}'>
             </div>
           {{/each}}
         </div>

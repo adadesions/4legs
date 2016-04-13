@@ -430,13 +430,14 @@ Template.locationList.onRendered(function () {
       }
     }
     const isOpen24 = (open,close) => {
-      if(open && close){
-        let o = timeDecision(open),
-            c = timeDecision(close)
-        if(o >= 13) o = (o-12).toFixed(2)
-        else if (c >= 13) c = (c-12).toFixed(2)
-        return o == c ? true : false
-      }
+      return open == close
+      // if(open && close){
+      //   let o = timeDecision(open),
+      //       c = timeDecision(close)
+      //   if(o >= 13) o = (o-12).toFixed(2)
+      //   else if (c >= 13) c = (c-12).toFixed(2)
+      //   return o == c ? true : false
+      // }
     }
 
     if(isOpen24(theDay[0].open,theDay[0].close)) return x
