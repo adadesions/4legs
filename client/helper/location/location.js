@@ -410,12 +410,11 @@ Template.editLocation.events({
 Template.locationList.onRendered(function () {
   Session.set('locationSearch', '')
   let today = new Date(),
-      mapDay = ['จ','อ','พ','พฤ','ศ','ส','อา'],
-      day = mapDay[today.getDay()-1]
-
+      mapDay = ['อา','จ','อ','พ','พฤ','ศ','ส'],
+      day = mapDay[today.getDay()]
   let allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}})
   let avaliableList = allMarkers.map(x => {
-    let theDay = x.dateSet.map(y => {
+    let theDay = x.dateSet.map(y => {      
       return _.contains(y.days,day) ? y : ''
     })
 
