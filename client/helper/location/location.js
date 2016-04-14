@@ -414,7 +414,7 @@ Template.locationList.onRendered(function () {
       day = mapDay[today.getDay()]
   let allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}})
   let avaliableList = allMarkers.map(x => {
-    let theDay = x.dateSet.map(y => {      
+    let theDay = x.dateSet.map(y => {        
       return _.contains(y.days,day) ? y : ''
     })
 
