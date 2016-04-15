@@ -150,6 +150,7 @@ Template.location.onCreated(function() {
             }, function(response, status) {
             if (status !== google.maps.DistanceMatrixStatus.OK) {
               //Error status disable
+              console.log(status);
              }
             else {
               let originList = response.originAddresses,
@@ -185,6 +186,8 @@ Template.location.onCreated(function() {
     let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
         destination = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}).fetch(),
         service = new google.maps.DistanceMatrixService
+    alert(destination.length)
+    
     let matrixDestination = destination.map( d => new google.maps.LatLng(d.lat,d.lng))
     service.getDistanceMatrix({
       origins: [origin],
@@ -195,14 +198,14 @@ Template.location.onCreated(function() {
       avoidTolls: false
       }, function(response, status) {
       if (status !== google.maps.DistanceMatrixStatus.OK) {
-        // alert('Error was: ' + status);
+        alert('Error was: ' + status);
       }
       else {
         let originList = response.originAddresses,
             destinationList = response.destinationAddresses,
             distance = response.rows[0].elements[0].distance.text
-        rawDistance = response.rows.map( r => { return r.elements.map( (e,index) => {
-              return e.distance.value
+            response.rows.map( r => { return r.elements.map( (e,index) => {
+              rawDistance.push(e.distance.value)
           })
         })
         Session.set('rawDistance', rawDistance)
