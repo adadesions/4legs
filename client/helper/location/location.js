@@ -197,7 +197,7 @@ Template.location.onCreated(function() {
         avoidTolls: false
         }, function(response, status) {
         if (status !== google.maps.DistanceMatrixStatus.OK) {
-          alert('Error was: ' + status);
+          // alert('Error was: ' + status);
         }
         else {
           rawDistance.push(response.rows[0].elements[0].distance.value);
