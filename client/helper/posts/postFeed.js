@@ -91,10 +91,13 @@ Template.postFeed.helpers({
     else return state[1]
   },
   showPostOption: function (postId) {
-    if(Meteor.user().profile.privileged) return true
+    if(Meteor.user()){
+      if(Meteor.user().profile.privileged) return true
 
-    let post = Posts.findOne({_id:postId})
-    if(post.info.postOwner === Meteor.userId()) return true
+      let post = Posts.findOne({_id:postId})
+      if(post.info.postOwner === Meteor.userId()) return true
+    }
+    return false       
   },
   isSosPost: function (postId) {
     let post = Posts.findOne({_id:postId}).catagory,
