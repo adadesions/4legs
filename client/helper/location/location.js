@@ -1,6 +1,6 @@
 Session.set('zoom',10)
 let markers = {},
-    rawDistance
+    rawDistance = []
 
 function getIcon(value) {
   let imgUrl = {
@@ -185,31 +185,32 @@ Template.location.onCreated(function() {
     //Distance Services
     let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
         destination = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}).fetch(),
-        service = new google.maps.DistanceMatrixService
-    alert(destination.length)
-    
-    let matrixDestination = destination.map( d => new google.maps.LatLng(d.lat,d.lng))
-    service.getDistanceMatrix({
-      origins: [origin],
-      destinations: matrixDestination,
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-      avoidHighways: false,
-      avoidTolls: false
-      }, function(response, status) {
-      if (status !== google.maps.DistanceMatrixStatus.OK) {
-        alert('Error was: ' + status);
-      }
-      else {
-        let originList = response.originAddresses,
-            destinationList = response.destinationAddresses,
-            distance = response.rows[0].elements[0].distance.text
-            response.rows.map( r => { return r.elements.map( (e,index) => {
-              rawDistance.push(e.distance.value)
-          })
-        })
-        Session.set('rawDistance', rawDistance)
-      }
+        service = new google.maps.DistanceMatrixService,
+        matrixDestination = []
+    const howFarIsit = (service, origin, matrixDestination) => {
+      service.getDistanceMatrix({
+        origins: [origin],
+        destinations: [matrixDestination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+        }, function(response, status) {
+        if (status !== google.maps.DistanceMatrixStatus.OK) {
+          alert('Error was: ' + status);
+        }
+        else {
+          rawDistance.push(response.rows[0].elements[0].distance.value);
+          Session.set('rawDistance', rawDistance);
+        }
+      })
+    }
+    if(destination.length >= rawDistance.length) {
+      rawDistance = [];
+    }
+    _.map(destination, d => {
+      let md = new google.maps.LatLng(d.lat,d.lng)
+      howFarIsit(service, origin, md)
     })
   })//END GOOGLE MAPS READY
 })
@@ -435,13 +436,6 @@ Template.locationList.onRendered(function () {
     }
     const isOpen24 = (open,close) => {
       return open == close
-      // if(open && close){
-      //   let o = timeDecision(open),
-      //       c = timeDecision(close)
-      //   if(o >= 13) o = (o-12).toFixed(2)
-      //   else if (c >= 13) c = (c-12).toFixed(2)
-      //   return o == c ? true : false
-      // }
     }
 
     if(isOpen24(theDay[0].open,theDay[0].close)) return x
@@ -459,7 +453,7 @@ Template.locationList.helpers({
   allLocation: function () {
     let onlyOpen = Session.get('nowOpen'),
         allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}),
-        distanceList = _.flatten(Session.get('rawDistance'))
+        distanceList = _.compact(Session.get('rawDistance'))
 
     allMarkers = allMarkers.map( (m,index) => {
       m.distanceValue = distanceList[index]
@@ -467,6 +461,8 @@ Template.locationList.helpers({
     })
     //allMarkers were sorted by distanceValue
     allMarkers = _.sortBy(allMarkers, 'distanceValue')
+    console.log(allMarkers);
+
     if(onlyOpen){
       return Session.get('avaliableList')
     }
