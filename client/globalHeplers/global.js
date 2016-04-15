@@ -1,15 +1,16 @@
 Template.registerHelper('profilePicture', function (_id) {
   let user = Meteor.users.findOne({_id:_id})
 
-  if(user.services.facebook){
-    let fbId = user.services.facebook.id
-    return `http://graph.facebook.com/${fbId}/picture/?type=large`
+  if(user){
+    if(user.services.facebook){
+      let fbId = user.services.facebook.id
+      return `http://graph.facebook.com/${fbId}/picture/?type=large`
+    }
+    else if(user.profile.image._id){
+      let img = Images.findOne({_id:user.profile.image._id})
+      return img.url()
+    }
   }
-  else if(user.profile.image._id){
-    let img = Images.findOne({_id:user.profile.image._id})
-    return img.url()
-  }
-
   return '/images/object/2-signup/profile-img.png'
 
 })
@@ -23,7 +24,7 @@ Template.registerHelper('fbProfilePicture', function (fbId) {
 
 Template.registerHelper('getUsername', function (id) {
   var user = Meteor.users.findOne({_id:id})
-  return user.username
+  return user ? user.username : ''
 })
 
 Template.registerHelper('checkAuthority', function (id) {

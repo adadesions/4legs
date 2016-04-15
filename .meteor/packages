@@ -39,7 +39,6 @@ reactive-var
 tyler:numeric
 dburles:google-maps
 mdg:geolocation
-meteorhacks:fast-render
 tsega:bootstrap3-datetimepicker
 jplack:bootstrap-timepicker
 matdutour:popup-confirm
@@ -60,3 +59,4 @@ mquandalle:ismobile
 jazeee:spiderable-longer-timeout
 npm-bcrypt
 meteorhacks:ssr
+meteorhacks:fast-render

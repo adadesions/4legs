@@ -15,7 +15,9 @@
       <a href="http://{{info.cardUrl}}">{{info.cardUrl}}</a>
     </a>
   </div>
-  <button id="{{_id}}" class="ui red button delete-ads">Delete</button>
+  {{#if currentUser.profile.privileged}}
+    <button id="{{_id}}" class="ui red button delete-ads">Delete</button>
+  {{/if}}
 </div>
 </template>
 
