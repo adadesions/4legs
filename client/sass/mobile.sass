@@ -1,8 +1,7 @@
 @import "colors"
-
+$breakpoint-mobile: 992px
 $tablet: "(min-width: 768px) and (max-width: 992px)"
 $mobile: "(min-width: 100px) and (max-width: 767px)"
-$tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
 
 @media #{$mobile}
   .mynav-main
@@ -803,7 +802,7 @@ $tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
   .pic-pro-tablet
     display: flex
     justify-content: center
-@media #{$tabletLandscape}
+@media only screen and (min-width: $breakpoint-mobile) and (max-width: 1199px) and (orientation : landscape)
   .topics-menu
     top: 6em
   .topics-center-panel
@@ -827,5 +826,11 @@ $tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
     justify-content: center
     margin-top: 2em
   .pic-pro-tablet
+    display: flex
+    justify-content: center
+  .profile-summary
+    display: flex
+    justify-content: center
+  .profile-container
     display: flex
     justify-content: center
