@@ -2,7 +2,8 @@
   <div class="col-lg-4 edit-profile-picture">
     <img class="img-thumbnail profile-picture-aboutMe" src="{{profilePicture this._id}}" alt="">
   </div>
-  <div class="col-lg-8 edit-profile">    
+  <div class="col-lg-8 edit-profile">
+    <div>
       <b>Name : </b><span class="my-color-brown">{{this.username}}</span>
       <br>
       <b>Email : </b>
@@ -25,5 +26,6 @@
     {{#if checkAuthority this._id}}
     <button class="btn my-btn-edit">Edit</button>
     {{/if}}
+    </div>
   </div>
 </template>
