@@ -1,0 +1,61 @@
+<template name="specLocation">
+  <div class="spec-location-container container">
+    <div class="ui card spec-location-card">
+      <div class="image">
+        <img src="{{getImageUrl photos._id}}" alt="">
+      </div>
+      <div class="content">
+        <div class="open-days">
+          <h5>เปิดทำการ :</h5>
+          <div class="selected-duration">
+            <br>
+            {{#each dateSet}}
+              {{days}}
+              <br><br>
+              <i class="fa fa-clock-o fa-lg"></i>
+              {{open}} - {{close}}
+              <br><br>
+            {{/each}}
+          </div>
+        </div>
+        <br>
+        <div class="selected-duration">
+          <i class="fa fa-commenting-o fa-lg"></i>
+          <span>วันหยุดและวันทำการพิเศษจะแสดงที่หัวข้อประกาศ</span>
+        </div>
+        <div class="selected-detail">
+          <h5>รายละเอียด​ :</h5>
+          <pre>{{detail}}</pre>
+        </div>
+        <div class="selected-detail">
+          <h5>ที่อยู่​ :</h5>
+          <pre>{{address}}</pre>
+        </div>
+        <div class="selected-detail">
+          <h5>โทร :</h5>
+          <span>{{tel}}</span>
+        </div>
+        <div class="selected-detail">
+          <h5>E-mail :</h5>
+          <span>{{email}}</span>
+        </div>
+        <div class="selected-detail">
+          <h5>Facebook :</h5>
+          <span>{{facebook}}</span>
+        </div>
+        <div class="selected-detail">
+          <h5>Line ID:</h5>
+          <span>{{line}}</span>
+        </div>
+        </div>
+        <div class="spec-location-review">
+          <div class="extra">
+              <h4>Rating : </h4><div class="ui star rating" data-id="{{_id}}" data-rating="{{getRating _id}}"></div>
+          </div>
+          <div class="check-checkin">
+            <h4>Checkin number : {{numberOfCheckin}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
