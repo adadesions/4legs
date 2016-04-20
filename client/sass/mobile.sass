@@ -1,5 +1,5 @@
 @import "colors"
-
+$breakpoint-mobile: 767px
 $tablet: "(min-width: 768px) and (max-width: 992px)"
 $mobile: "(min-width: 100px) and (max-width: 767px)"
 $tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
@@ -803,7 +803,7 @@ $tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
   .pic-pro-tablet
     display: flex
     justify-content: center
-@media #{$tabletLandscape}
+@media only screen and (min-width: $breakpoint-mobile) and (max-width: 1199px) and (orientation : landscape)
   .topics-menu
     top: 6em
   .topics-center-panel
@@ -829,3 +829,30 @@ $tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
   .pic-pro-tablet
     display: flex
     justify-content: center
+  .profile-summary
+    display: flex
+    justify-content: center
+  .profile-left-panel
+    height: 50vh
+  .edit-profile-picture
+    display: flex
+    justify-content: center
+  .edit-profile
+    display: flex
+    justify-content: center
+  .my-btn-edit
+    width: 100%
+  .btn:hover
+    color: #fff
+  .btn:focus
+    color: #fff
+  .btn.focus
+    color: #fff
+  .add-more-pic
+    top: 0
+  .admin-add-more-pic
+    top: 0
+  .img-footer-reigster
+    img
+      position: relative
+      bottom: 0

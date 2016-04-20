@@ -236,7 +236,7 @@ Template.location.helpers({
     var error = Geolocation.error();
     return error && error.message;
   },
-  locationContainer: function () { return Session.get('locationContainer')}
+  locationContainer: function () { return Session.get('locationContainer') }
 })
 
 Template.location.events({
@@ -454,12 +454,12 @@ Template.locationList.helpers({
         allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}),
         distanceList = _.compact(Session.get('rawDistance'))
 
-    allMarkers = allMarkers.map( (m,index) => {
+    allMarkers = _.map(allMarkers, (m,index) => {
       m.distanceValue = distanceList[index]
       return m
     })
     //allMarkers were sorted by distanceValue
-    allMarkers = _.sortBy(allMarkers, 'distanceValue')    
+    allMarkers = _.sortBy(allMarkers, 'distanceValue')
 
     if(onlyOpen){
       return Session.get('avaliableList')
@@ -570,7 +570,7 @@ Template.locationSelected.events({
   'click #locationAnnouncement': function (e) { Session.set('subSelectedLocationContainer','locationAnnouncement')},
   'click #locationComment': function (e) { Session.set('subSelectedLocationContainer','locationComment')},
   'click .icon-favorite': function (e) {
-    let id =$(e.target).attr('id')
+    let id = $(e.target).attr('id')
     Markers.upsert({_id:id},{
       $addToSet: {
         asFavorite: Meteor.userId()
