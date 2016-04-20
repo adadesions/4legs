@@ -1,8 +1,6 @@
 @import "colors"
-$breakpoint-mobile: 767px
-$tablet: "(min-width: 768px) and (max-width: 992px)"
+$breakpoint-mobile: 768px
 $mobile: "(min-width: 100px) and (max-width: 767px)"
-$tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
 
 @media #{$mobile}
   .mynav-main
@@ -673,7 +671,17 @@ $tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
     padding-right: 1em
     h4
       font-size: 12px
-@media #{$tablet}
+@media only screen and (min-width: $breakpoint-mobile) and (max-width: 1199px) and (orientation : portrait)
+  .logo-landing-page
+    padding-left: 9em
+  #loginLandingPage
+    margin-right: 0
+    margin-left: 3em
+  #btn-signUp-landing
+    margin-bottom: 0.8em
+    margin-left: 2em
+    i
+      margin-right: 2.5em
   .pic-landing
     position: absolute
     margin-top: 0em
@@ -750,26 +758,28 @@ $tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
       height: 12em
       margin-left: 20.8em
   .topics-menu
-    width: 100%
-    display: flex
-    flex-flow: row
-    align-items: flex-start
+    width: 15%
   .topics-menu-item
     img
       height: 8em
       margin-top: 0
   .topics-center-panel
-    margin-top: 15em
-  .catagory
+    margin-top: 2em
+    padding-left: 10em
+    padding-right: 10em
     display: flex
-    flex-flow: row
-    position: sticky
-    top: 13em
-  .catagory-item
-    margin-left: 1em
+    justify-content: center
+  .topics-right-panel
+    margin-top: -25em
+    height: 1px !important
+    position: none !important
+  .catagory
+    position: absolute
+    top: 0
+    right: 2em
   .profile-left-panel
     background-color: #FFF3E0
-    height: 50vh
+    height: 10vh
   .edit-profile-picture
     padding-left: 1em
   .profile-picture-large
@@ -850,7 +860,7 @@ $tabletLandscape: "(min-height: 768px) and (min-width: 992px)"
     display: flex
     justify-content: center
   .profile-left-panel
-    height: 50vh
+    height: 6vh
   .edit-profile-picture
     display: flex
     justify-content: center
