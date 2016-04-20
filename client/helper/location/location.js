@@ -774,3 +774,29 @@ Template.editAnnouncementPromotion.events({
     $('[name=promotion-upload]').trigger('click')
   },
 })
+
+Template.specLocation.helpers({
+  getImageUrl: function (imgId) {
+    let img = Images.findOne({_id:imgId})
+    return img ? img.url() : '/images/object/7-profile/badge-top2-04.png'
+  },
+  isOpen: function (obj) {
+    return _.contains(obj.hash.data, obj.hash.day) ? 'is-open' : ''
+  },
+  getRating: function (markerId) {
+    let rating = Markers.findOne({_id: markerId}).rating
+    return Math.floor((rating.reduce( (r,x) => r+x))/(rating.length))
+  },
+  numberOfCheckin: function () {
+    let markerId = Session.get('selectedLocationId')
+    let numberOfCheckin = Markers.findOne({_id: markerId}).checkin
+    return numberOfCheckin ? numberOfCheckin.length : 0
+  }
+})
+
+Template.specLocation.onRendered(function () {
+  $('.ui.rating')
+  .rating({
+    maxRating: 5
+  })
+})
