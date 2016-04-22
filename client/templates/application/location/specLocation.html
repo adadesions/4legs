@@ -1,6 +1,24 @@
 <template name="specLocation">
   <div class="spec-location-container container">
+    <br>
     <div class="ui card spec-location-card">
+      <div class="ui aligned column">
+        <div class="locaiton-name-margin">
+          <h3 class="ui header text-center">
+            {{locationName}}
+            <div class="sub header">
+             {{businessTypes}}
+            </div>
+          </h3>
+        </div>
+      </div>
+      <div class="ui center aligned container">
+          <div class="ui mini centered images">
+           {{#each animalTypes}}
+              <img class="ui image" src="{{locationServices this}}" alt="">
+           {{/each}}
+          </div>
+      </div>
       <div class="image">
         <img src="{{getImageUrl photos._id}}" alt="">
       </div>
