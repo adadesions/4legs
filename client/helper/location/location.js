@@ -134,6 +134,12 @@ Template.location.onCreated(function() {
           // infoWindow.open()
           Session.set('selectedLocationId',document._id)
           Session.set('locationContainer','locationSelected')
+          $('.ui.sidebar')
+          .sidebar({
+            dimPage: true,
+            closable: true
+          })
+          .sidebar('toggle')
 
           //Distance Services
           let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
@@ -231,13 +237,18 @@ Template.location.events({
     .sidebar('show')
   },
   'click #sidebar-location-list':function () {
+    Session.set('locationContainer', 'locationList')
     $('.ui.sidebar')
     .sidebar({
       dimPage: true,
       closable: true
     })
-    .sidebar('toggle')
+    .sidebar('show')
   },
+})
+
+Template.location.onDestroyed(function () {
+  $('.ui.sidebar').remove()
 })
 
 Template.verifyOwner.onRendered(function () {
@@ -477,7 +488,7 @@ Template.locationList.helpers({
         sorted.map( obj => {
           allMarkers[obj.key] = _.extend(allMarkers[obj.key], { distance: obj.distance})
         })
-        let ready = _.sortBy(allMarkers, 'distance');        
+        let ready = _.sortBy(allMarkers, 'distance');
         return ready
       }
     }
@@ -554,7 +565,7 @@ Template.locationSelected.helpers({
 })
 Template.locationSelected.events({
   'click #back': function (e) {
-    Session.set('locationContainer', 'location')
+    Session.set('locationContainer', 'locationList')
   },
   'click #locationDetail': function (e) { Session.set('subSelectedLocationContainer','locationDetail')},
   'click #locationAnnouncement': function (e) { Session.set('subSelectedLocationContainer','locationAnnouncement')},
