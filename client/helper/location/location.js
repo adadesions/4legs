@@ -134,6 +134,12 @@ Template.location.onCreated(function() {
           // infoWindow.open()
           Session.set('selectedLocationId',document._id)
           Session.set('locationContainer','locationSelected')
+          $('.ui.sidebar')
+          .sidebar({
+            dimPage: true,
+            closable: true
+          })
+          .sidebar('toggle')
 
           //Distance Services
           let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
@@ -186,32 +192,11 @@ Template.location.onCreated(function() {
     let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
         destination = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}).fetch(),
         service = new google.maps.DistanceMatrixService,
-        matrixDestination = []
-    const howFarIsit = (service, origin, matrixDestination) => {
-      service.getDistanceMatrix({
-        origins: [origin],
-        destinations: [matrixDestination],
-        travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.METRIC,
-        avoidHighways: false,
-        avoidTolls: false
-        }, function(response, status) {
-        if (status !== google.maps.DistanceMatrixStatus.OK) {
-          // alert('Error was: ' + status);
+        matrixDestination = [],
+        userCoord = {
+          latitude: latLng.lat,
+          longitude: latLng.lng
         }
-        else {
-          rawDistance.push(response.rows[0].elements[0].distance.value);
-          Session.set('rawDistance', rawDistance);
-        }
-      })
-    }
-    if(destination.length >= rawDistance.length) {
-      rawDistance = [];
-    }
-    _.map(destination, d => {
-      let md = new google.maps.LatLng(d.lat,d.lng)
-      howFarIsit(service, origin, md)
-    })
   })//END GOOGLE MAPS READY
 })
 
@@ -252,13 +237,18 @@ Template.location.events({
     .sidebar('show')
   },
   'click #sidebar-location-list':function () {
+    Session.set('locationContainer', 'locationList')
     $('.ui.sidebar')
     .sidebar({
       dimPage: true,
       closable: true
     })
-    .sidebar('toggle')
+    .sidebar('show')
   },
+})
+
+Template.location.onDestroyed(function () {
+  $('.ui.sidebar').remove()
 })
 
 Template.verifyOwner.onRendered(function () {
@@ -452,16 +442,17 @@ Template.locationList.helpers({
   allLocation: function () {
     let onlyOpen = Session.get('nowOpen'),
         allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}})
+    //Find user current position
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let userCoords = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }
+      Session.set('userCoords', userCoords)
+    })
 
-    Tracker.autorun(function () {
-      distanceList = _.compact(Session.get('rawDistance'))
-      allMarkers = allMarkers.map((m,index) => {
-        m.distanceValue = distanceList[index]
-        return m
-      })
-
-      //allMarkers were sorted by distanceValue
-      allMarkers = _.sortBy(allMarkers, 'distanceValue')
+    allMarkers = allMarkers.map((marker) => {
+      return _.extend(marker, {latitude: marker.lat, longitude: marker.lng})
     })
 
     if(onlyOpen){
@@ -491,8 +482,15 @@ Template.locationList.helpers({
         })
         return _.reject(searchList, x => x === undefined)
       }
-      else
-        return allMarkers
+      else {
+        const userCoords = Session.get('userCoords')
+        let sorted = geolib.orderByDistance(userCoords, allMarkers)
+        sorted.map( obj => {
+          allMarkers[obj.key] = _.extend(allMarkers[obj.key], { distance: obj.distance})
+        })
+        let ready = _.sortBy(allMarkers, 'distance');
+        return ready
+      }
     }
   },
   promotingLocation: function () {
@@ -567,7 +565,7 @@ Template.locationSelected.helpers({
 })
 Template.locationSelected.events({
   'click #back': function (e) {
-    Session.set('locationContainer', 'location')
+    Session.set('locationContainer', 'locationList')
   },
   'click #locationDetail': function (e) { Session.set('subSelectedLocationContainer','locationDetail')},
   'click #locationAnnouncement': function (e) { Session.set('subSelectedLocationContainer','locationAnnouncement')},

@@ -52,9 +52,9 @@ Template.createStep1.events({
     Session.set('stepsContainer', 'createStep2')
   },
   'click #cancel': function () {
-    Session.set('locationContainer', 'location')
+    // Session.set('locationContainer', 'location')
     $('.ui.sidebar')
-    .sidebar('hide')
+    .sidebar('toggle')
   }
 })
 
