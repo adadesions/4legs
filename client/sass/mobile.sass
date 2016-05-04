@@ -3,6 +3,9 @@ $breakpoint-mobile: 768px
 $mobile: "(min-width: 100px) and (max-width: 767px)"
 
 @media #{$mobile}
+  .head-landing-page
+    background: url("/images/object/1-login/bg.png")
+    background-size: contain
   .mynav-main
     height: 3.9em
   .logo
@@ -671,6 +674,9 @@ $mobile: "(min-width: 100px) and (max-width: 767px)"
     h4
       font-size: 12px
 @media only screen and (min-width: $breakpoint-mobile) and (max-width: 1024px) and (orientation : portrait)
+  .head-landing-page
+    background: url("/images/object/1-login/bg.png")
+    background-size: contain
   .logo-landing-page
     padding-left: 9em
   #loginLandingPage
@@ -829,7 +835,23 @@ $mobile: "(min-width: 100px) and (max-width: 767px)"
   .pic-pro-tablet
     display: flex
     justify-content: center
+  .button-accept-login
+    display: flex
+    justify-content: center
+  #loginLandingButton
+    width: 100%
+    margin-bottom: 0.5em
+  .login-landing-facebook
+    width: 100%
+  #facebook-login
+    width: 100%
+    i
+      margin-left: 2em
+    h3
+      margin-left: 2.5em
 @media only screen and (min-width: $breakpoint-mobile) and (max-width: 1024px) and (orientation : landscape)
+  .logo-landing-page
+    padding-left: 15em
   .topics-menu
     top: 6em
   .topics-center-panel
@@ -882,3 +904,39 @@ $mobile: "(min-width: 100px) and (max-width: 767px)"
     img
       position: relative
       bottom: 0
+  #btn-signUp-landing
+    margin-bottom: 0.8em
+    margin-left: 2em
+    i
+      margin-right: 2.5em
+  #loginLandingPage
+    margin-right: 0
+    margin-left: 3em
+  .button-landing-page-group
+    margin-left: 6.3em
+  .pic-landing
+    position: absolute
+    margin-top: 0em
+    margin-left: 0em
+    width: 0em
+    height: auto
+    img
+      width: 0
+      height: auto
+  .button-accept-login
+    display: flex
+    justify-content: center
+  #loginLandingButton
+    width: 100%
+    margin-bottom: 0.5em
+  .login-landing-facebook
+    width: 100%
+  #facebook-login
+    width: 100%
+    i
+      margin-left: 2em
+    h3
+      margin-left: 2.5em
+  .head-landing-page
+    background: url("/images/object/1-login/bg.png")
+    background-size: contain
