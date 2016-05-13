@@ -40,7 +40,7 @@ tyler:numeric
 dburles:google-maps
 mdg:geolocation
 tsega:bootstrap3-datetimepicker
-jplack:bootstrap-timepicker
+jplack:bootstrap-timepicker@0.2.2
 matdutour:popup-confirm
 tomi:upload-jquery
 tomi:upload-server
