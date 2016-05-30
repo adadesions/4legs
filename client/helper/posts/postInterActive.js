@@ -50,3 +50,8 @@ Template.shareBtn.events({
 UI.registerHelper('shareOnFacebookLink', function(postId) {
   return `https://www.facebook.com/sharer/sharer.php?&u=${window.location.origin}/post/${postId}`
 });
+
+//FB Location
+UI.registerHelper('shareOnFacebookLocation', function(locationId) {
+  return `https://www.facebook.com/sharer/sharer.php?&u=${window.location.origin}/specLocation/${locationId}`
+});

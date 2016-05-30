@@ -1,6 +1,6 @@
 Session.set('zoom',10)
 let markers = {},
-    rawDistance
+    rawDistance = []
 
 function getIcon(value) {
   let imgUrl = {
@@ -134,6 +134,12 @@ Template.location.onCreated(function() {
           // infoWindow.open()
           Session.set('selectedLocationId',document._id)
           Session.set('locationContainer','locationSelected')
+          $('.ui.sidebar')
+          .sidebar({
+            dimPage: true,
+            closable: true
+          })
+          .sidebar('toggle')
 
           //Distance Services
           let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
@@ -150,6 +156,7 @@ Template.location.onCreated(function() {
             }, function(response, status) {
             if (status !== google.maps.DistanceMatrixStatus.OK) {
               //Error status disable
+              console.log(status);
              }
             else {
               let originList = response.originAddresses,
@@ -184,30 +191,12 @@ Template.location.onCreated(function() {
     //Distance Services
     let origin = new google.maps.LatLng(latLng.lat, latLng.lng),
         destination = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}).fetch(),
-        service = new google.maps.DistanceMatrixService
-    let matrixDestination = destination.map( d => new google.maps.LatLng(d.lat,d.lng))
-    service.getDistanceMatrix({
-      origins: [origin],
-      destinations: matrixDestination,
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-      avoidHighways: false,
-      avoidTolls: false
-      }, function(response, status) {
-      if (status !== google.maps.DistanceMatrixStatus.OK) {
-        // alert('Error was: ' + status);
-      }
-      else {
-        let originList = response.originAddresses,
-            destinationList = response.destinationAddresses,
-            distance = response.rows[0].elements[0].distance.text
-        rawDistance = response.rows.map( r => { return r.elements.map( (e,index) => {
-              return e.distance.value
-          })
-        })
-        Session.set('rawDistance', rawDistance)
-      }
-    })
+        service = new google.maps.DistanceMatrixService,
+        matrixDestination = [],
+        userCoord = {
+          latitude: latLng.lat,
+          longitude: latLng.lng
+        }
   })//END GOOGLE MAPS READY
 })
 
@@ -232,7 +221,7 @@ Template.location.helpers({
     var error = Geolocation.error();
     return error && error.message;
   },
-  locationContainer: function () { return Session.get('locationContainer')}
+  locationContainer: function () { return Session.get('locationContainer') }
 })
 
 Template.location.events({
@@ -248,13 +237,18 @@ Template.location.events({
     .sidebar('show')
   },
   'click #sidebar-location-list':function () {
+    Session.set('locationContainer', 'locationList')
     $('.ui.sidebar')
     .sidebar({
       dimPage: true,
       closable: true
     })
-    .sidebar('toggle')
+    .sidebar('show')
   },
+})
+
+Template.location.onDestroyed(function () {
+  $('.ui.sidebar').remove()
 })
 
 Template.verifyOwner.onRendered(function () {
@@ -414,7 +408,7 @@ Template.locationList.onRendered(function () {
       day = mapDay[today.getDay()]
   let allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}})
   let avaliableList = allMarkers.map(x => {
-    let theDay = x.dateSet.map(y => {        
+    let theDay = x.dateSet.map(y => {
       return _.contains(y.days,day) ? y : ''
     })
 
@@ -431,13 +425,6 @@ Template.locationList.onRendered(function () {
     }
     const isOpen24 = (open,close) => {
       return open == close
-      // if(open && close){
-      //   let o = timeDecision(open),
-      //       c = timeDecision(close)
-      //   if(o >= 13) o = (o-12).toFixed(2)
-      //   else if (c >= 13) c = (c-12).toFixed(2)
-      //   return o == c ? true : false
-      // }
     }
 
     if(isOpen24(theDay[0].open,theDay[0].close)) return x
@@ -454,15 +441,20 @@ Template.locationList.onRendered(function () {
 Template.locationList.helpers({
   allLocation: function () {
     let onlyOpen = Session.get('nowOpen'),
-        allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}}),
-        distanceList = _.flatten(Session.get('rawDistance'))
-
-    allMarkers = allMarkers.map( (m,index) => {
-      m.distanceValue = distanceList[index]
-      return m
+        allMarkers = Markers.find({promoting: false, dateSet: {$ne:[]}},{sort: {locationName: 1}})
+    //Find user current position
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let userCoords = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }
+      Session.set('userCoords', userCoords)
     })
-    //allMarkers were sorted by distanceValue
-    allMarkers = _.sortBy(allMarkers, 'distanceValue')
+
+    allMarkers = allMarkers.map((marker) => {
+      return _.extend(marker, {latitude: marker.lat, longitude: marker.lng})
+    })
+
     if(onlyOpen){
       return Session.get('avaliableList')
     }
@@ -490,8 +482,15 @@ Template.locationList.helpers({
         })
         return _.reject(searchList, x => x === undefined)
       }
-      else
-        return allMarkers
+      else {
+        const userCoords = Session.get('userCoords')
+        let sorted = geolib.orderByDistance(userCoords, allMarkers)
+        sorted.map( obj => {
+          allMarkers[obj.key] = _.extend(allMarkers[obj.key], { distance: obj.distance})
+        })
+        let ready = _.sortBy(allMarkers, 'distance');
+        return ready
+      }
     }
   },
   promotingLocation: function () {
@@ -566,13 +565,13 @@ Template.locationSelected.helpers({
 })
 Template.locationSelected.events({
   'click #back': function (e) {
-    Session.set('locationContainer', 'location')
+    Session.set('locationContainer', 'locationList')
   },
   'click #locationDetail': function (e) { Session.set('subSelectedLocationContainer','locationDetail')},
   'click #locationAnnouncement': function (e) { Session.set('subSelectedLocationContainer','locationAnnouncement')},
   'click #locationComment': function (e) { Session.set('subSelectedLocationContainer','locationComment')},
   'click .icon-favorite': function (e) {
-    let id =$(e.target).attr('id')
+    let id = $(e.target).attr('id')
     Markers.upsert({_id:id},{
       $addToSet: {
         asFavorite: Meteor.userId()
