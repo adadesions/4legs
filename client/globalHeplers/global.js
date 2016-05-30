@@ -17,7 +17,7 @@ Template.registerHelper('profilePicture', function (_id) {
 
 Template.registerHelper('fbProfilePicture', function (fbId) {
   if(Meteor.user().services.facebook)
-    return `http://graph.facebook.com/${fbId}/picture/?type=large`
+    return `https://graph.facebook.com/${fbId}/picture/?type=large`
   else
     return '/images/object/2-signup/profile-img.png'
 })
