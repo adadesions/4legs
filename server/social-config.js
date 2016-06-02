@@ -6,6 +6,7 @@ ServiceConfiguration.configurations.insert({
     service: 'facebook',
     appId: '1650232795264053',
     secret: 'b121f8fd0cdd123defe16f5050d55a9b',
+    redirectUri: 'https://4kha.com/_oauth/facebook',
     loginStyle: "popup"
 });
 

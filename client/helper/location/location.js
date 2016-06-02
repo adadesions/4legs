@@ -415,11 +415,23 @@ Template.locationList.onRendered(function () {
     const timeDecision = (time) => {
       if(time){
         if(time.includes('AM')){
-          time = Number(time.replace('AM','').replace(':','.'))
+          let isMidnight = (time[0] + time[1]) === '12';
+          if ( isMidnight ) {
+            time = Number(time.replace('AM','').replace(':','.'))+12
+          }
+          else {
+            time = Number(time.replace('AM','').replace(':','.'))
+          }
         }
         else if(time.includes('PM')){
-          time = Number(time.replace('PM','').replace(':','.'))+12
-        }
+          let isNoon = (time[0] + time[1]) === '12';
+          if ( isNoon ) {
+            time = Number(time.replace('PM','').replace(':','.'))
+          }
+          else {
+            time = Number(time.replace('PM','').replace(':','.'))+12
+          }
+        }        
         return time
       }
     }
