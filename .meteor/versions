@@ -65,6 +65,7 @@ flemay:less-autoprefixer@1.2.0
 fortawesome:fontawesome@4.4.0
 fourseven:scss@3.4.1
 gadicohen:phantomjs@0.0.2
+gentlenode:spiderable-ssl@0.1.8
 geojson-utils@1.0.4
 gwendall:body-events@0.1.6
 hot-code-push@1.0.0
@@ -135,7 +136,6 @@ session@1.1.1
 sha@1.0.4
 spacebars@1.0.7
 spacebars-compiler@1.0.7
-spiderable@1.0.9
 srp@1.0.4
 standard-minifiers@1.0.2
 tanis:bootstrap-social@0.1.1

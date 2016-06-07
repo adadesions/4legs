@@ -54,7 +54,6 @@ mediumeditor:mediumeditor
 email
 yasinuslu:blaze-meta
 gadicohen:phantomjs
-spiderable
 mquandalle:ismobile
 jazeee:spiderable-longer-timeout
 npm-bcrypt
@@ -62,3 +61,4 @@ meteorhacks:ssr
 meteorhacks:fast-render
 outatime:geolib
 facebook
+gentlenode:spiderable-ssl
